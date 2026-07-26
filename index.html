@@ -127,8 +127,58 @@ body {
     color:#12151a; text-shadow:0 2px 40px #000; max-width:26vw; }
   #pw-side .hint { font-size:14px; letter-spacing:0.18em; color:#2A2E33; writing-mode:vertical-rl; }
   @media (max-aspect-ratio: 3/4) { #pw-side { display:none; } #canvas { width:100vw; height:auto; } }
+
+  /* ---- branded download splash: restyle Godot's #status boot screen ---- */
+  #status {
+    position:fixed; inset:0; z-index:100; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:0;
+    background:
+      radial-gradient(64% 40% at 50% 34%, #16110a 0%, #0a0b10 52%, #05060a 100%) !important;
+  }
+  #status-splash { display:none !important; }            /* hide the Godot logo */
+  #pw-mark {
+    width:132px; height:132px; border-radius:24px; display:flex; align-items:center;
+    justify-content:center; background:linear-gradient(180deg,#1b1f26,#0c0f14);
+    border:1px solid rgba(255,169,77,.42);
+    box-shadow:0 0 60px rgba(255,169,77,.20) inset, 0 0 60px rgba(255,169,77,.16);
+    font-family:Anton, Impact, sans-serif; font-size:66px; color:#FFC97A;
+    text-shadow:0 0 26px rgba(255,169,77,.7); animation:pwPulse 2.4s ease-in-out infinite; }
+  @keyframes pwPulse { 0%,100% { transform:scale(1); opacity:.92 } 50% { transform:scale(1.05); opacity:1 } }
+  #pw-word { margin-top:34px; font-family:Anton, Impact, sans-serif; text-transform:uppercase;
+    font-size:44px; letter-spacing:0.01em; color:#EDEFF2; }
+  #pw-sub  { margin-top:12px; font-family:'IBM Plex Mono', ui-monospace, monospace;
+    font-size:15px; letter-spacing:0.28em; color:#5A6068; }
+  #status-progress, progress {
+    -webkit-appearance:none; appearance:none; width:min(440px,72vw); height:14px;
+    margin-top:40px; border:none; border-radius:5px; overflow:hidden;
+    background:#161a20 !important; }
+  #status-progress::-webkit-progress-bar { background:#161a20; border-radius:5px; }
+  #status-progress::-webkit-progress-value {
+    background:linear-gradient(180deg,#FFC97A,#FFA94D); border-radius:5px;
+    box-shadow:0 0 12px rgba(255,169,77,.6); }
+  #status-progress::-moz-progress-bar {
+    background:linear-gradient(180deg,#FFC97A,#FFA94D); border-radius:5px; }
+  #status-notice {
+    margin-top:22px; background:transparent !important; border:none !important;
+    color:#9AA0A6 !important; font-family:'IBM Plex Mono', ui-monospace, monospace !important;
+    font-size:15px !important; letter-spacing:0.12em; max-width:80vw; text-align:center; }
 </style>
 <script>
+  // brand the download splash: drop the PW mark + wordmark into Godot's #status,
+  // above its progress bar. These live inside #status, so they vanish with it the
+  // moment the engine hands over to the game's own loader.
+  function pwBrandBoot() {
+    var st = document.getElementById('status');
+    var prog = document.getElementById('status-progress');
+    if (!st || !prog || document.getElementById('pw-mark')) return;
+    var mark = document.createElement('div'); mark.id = 'pw-mark'; mark.textContent = 'PW';
+    var word = document.createElement('div'); word.id = 'pw-word'; word.textContent = 'POSTCODE WARS';
+    var sub = document.createElement('div'); sub.id = 'pw-sub'; sub.textContent = 'LOADING THE MANOR';
+    st.insertBefore(sub, prog); st.insertBefore(word, sub); st.insertBefore(mark, word);
+  }
+  document.addEventListener('DOMContentLoaded', pwBrandBoot);
+  pwBrandBoot();
+
   window.addEventListener('load', function () {
     var s = document.createElement('div'); s.id = 'pw-side';
     s.innerHTML = '<div class="wm">POSTCODE<br>WARS</div>' +
