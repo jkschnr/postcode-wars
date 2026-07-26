@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '1785061519|1942661';
+const CACHE_VERSION = '1785063159|1867131';
 /** @type {string} */
 const CACHE_PREFIX = 'Postcode Wars-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
