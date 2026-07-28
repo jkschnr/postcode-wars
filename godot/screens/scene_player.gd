@@ -11,6 +11,8 @@ var _cards: Array = []
 var _idx := 0
 var on_done: Callable
 var _wrap: CenterContainer
+var _backdrop: SceneBackdrop
+var _cur_scene := ""
 
 func setup(bid: String, cb: Callable) -> void:
 	beat_id = bid
@@ -20,8 +22,13 @@ func setup(bid: String, cb: Callable) -> void:
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_STOP
+	# WO2: an animated scene sits behind the story cards, driven by each card's scene
+	_backdrop = SceneBackdrop.new()
+	_backdrop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	_backdrop.visible = false
+	add_child(_backdrop)
 	var dim := ColorRect.new()
-	dim.color = Color(0.02, 0.03, 0.04, 0.92)
+	dim.color = Color(0.02, 0.03, 0.04, 0.66)   # lowered so the scene reads behind the paper
 	dim.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	add_child(dim)
 	_wrap = CenterContainer.new()
@@ -61,6 +68,12 @@ func _sub(s: String) -> String:
 	return s.replace("{name}", nm)
 
 func _render(card: Dictionary) -> void:
+	# WO2: swap the backdrop to this card's scene (cards without one keep the last)
+	var sc := str(card.get("scene", ""))
+	if sc != "" and sc != _cur_scene:
+		_cur_scene = sc
+		_backdrop.bind(sc)
+	_backdrop.visible = _cur_scene != ""
 	var v := _panel()
 	var speaker: String = card.get("speaker", "")
 	if str(card.get("location", "")) != "":
