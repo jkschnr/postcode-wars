@@ -1,6 +1,13 @@
 {
-  "curve": { "base": 70, "exp": 1.5, "max_level": 100 },
-  "per_level": { "energy_cap": 2, "stat_points": 1 },
+  "curve": {
+    "base": 180,
+    "exp": 1.5,
+    "max_level": 100
+  },
+  "per_level": {
+    "energy_cap": 2,
+    "stat_points": 1
+  },
   "milestones": {
     "1": "Petty jobs · London",
     "5": "Travel to Manchester",

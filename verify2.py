@@ -101,6 +101,15 @@ cmb = read(f"{G}/systems/combat.gd")
 for tok in ("STRIKE","GUARD","RUSH"):
     if tok not in cmb.upper(): fails.append(f"combat.gd: no {tok} input")
 
+# 8. REACHABILITY — the check that existence checks alone missed. Every job has a
+# stages file, so the real job path is job_stages.gd. The minigame must actually be
+# invoked from THERE, mapped through the registry — not merely exist on disk.
+js = read(f"{G}/ui/job_stages.gd")
+if "run_minigame" not in js:
+    fails.append("job_stages.gd: never calls run_minigame — minigames not wired into the push-your-luck path (unreachable in play)")
+if "MinigameRegistry" not in js:
+    fails.append("job_stages.gd: no MinigameRegistry lookup — no job→minigame mapping in the stage flow")
+
 # ---- report ----
 print()
 if fails:
@@ -118,4 +127,5 @@ print(f"  job bindings:    {bound} / 15")
 print("  resolver seam:   wired")
 print("  reveal upgrade:  complete")
 print("  combat upgrade:  complete")
+print("  minigame reach:  wired into job_stages.gd (reachable in play)")
 if warns: print(f"\n  ({len(warns)} non-blocking warnings)")

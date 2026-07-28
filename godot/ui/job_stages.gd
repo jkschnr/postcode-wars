@@ -14,6 +14,9 @@ var _on_done: Callable
 var _haul := 0
 var _room := 1          # deciding whether to push INTO this room; room 0 already banked
 var _body: VBoxContainer
+var _backdrop: SceneBackdrop
+var _last_mg_detail := ""     # carried into the reveal so the stars show (WO2)
+var _last_mg_score := 0.4
 var _rng := RandomNumberGenerator.new()
 
 func setup(jid: String, base_take: int, vig: Dictionary, on_done: Callable) -> void:
@@ -29,7 +32,12 @@ func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	_rng.randomize()
-	var dim := ColorRect.new(); dim.color = Color(0.02, 0.03, 0.04, 0.86)
+	# WO2: the job's animated scene sits behind the stage cards
+	_backdrop = SceneBackdrop.new()
+	_backdrop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	_backdrop.bind(String(_job.get("scene", MinigameRegistry.scene_for(_jid))))
+	add_child(_backdrop)
+	var dim := ColorRect.new(); dim.color = Color(0.02, 0.03, 0.04, 0.62)  # lowered so the scene reads through
 	dim.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT); dim.mouse_filter = Control.MOUSE_FILTER_STOP
 	add_child(dim)
 	var wrap := CenterContainer.new()
@@ -96,18 +104,60 @@ func _get_out() -> void:
 
 func _push(risk: float) -> void:
 	Audio.ui()
-	if _rng.randf() < risk:
+	# WO2: play the mapped minigame for THIS room (difficulty rising with the room
+	# index), then feed its score into the stage resolve. No minigame mapped/built →
+	# resolve at the neutral 0.4 baseline (the old behaviour).
+	var score := 0.4
+	if MinigameRegistry.has(_jid) and ResourceLoader.exists(MinigameRegistry.path_for(_jid)):
+		var mg: Dictionary = await App.I.run_minigame(_mg_ctx())
+		score = float(mg.get("score", 0.4))
+		var det: Dictionary = mg.get("detail", {})
+		_last_mg_detail = String(det.get("detail", ""))
+		_last_mg_score = score
+	_resolve_push(risk, score)
+
+## The stage roll, nudged by the minigame score exactly like the resolver seam: a
+## perfect play cuts the catch chance ~10%, a fumble adds ~5%. Score modifies the
+## outcome, it never decides it.
+func _resolve_push(risk: float, score: float) -> void:
+	var eff_risk: float = clampf(risk - (score * 0.15 - 0.05), 0.02, 0.97)
+	if _rng.randf() < eff_risk:
 		# caught — drop the bag
 		var st: Dictionary = _stages[_room]
 		var ft = st.get("fail_text", "It goes wrong and you don't wait to find out how bad.")
 		_finish(false, _variant(ft))
 	else:
-		var got := int(_base * PushLuck.loot_mult(_room) * _rng.randf_range(0.7, 1.15))
+		var bonus: float = 1.0 + (score - 0.4) * 0.25   # play it well, carry a little more out
+		var got := int(_base * PushLuck.loot_mult(_room) * _rng.randf_range(0.7, 1.15) * bonus)
 		_haul += got
 		_room += 1
 		Game.s["_max_stage"] = max(int(Game.s.get("_max_stage", 0)), _room + 1)   # objective: stage_reached
 		Audio.cash()
 		_render()
+
+## Context for the mapped minigame, difficulty climbing per room (stage_index=_room
+## also drives each minigame's own escalation — extra marker, lower snap line, etc).
+func _mg_ctx() -> Dictionary:
+	var stat_name := String(_job.get("stat", "slickness"))
+	var city := Config.city(Game.s.city)
+	var danger := int(city.get("danger", 3))
+	var tier := int(_job.get("tier", 1))
+	var diff: float = clampf(0.20 + (tier - 1) * 0.22 + (danger - 3) * 0.05 + _room * 0.12, 0.05, 0.95)
+	return {
+		"job_id": _jid,
+		"job_name": String(_job.get("name", "Job")),
+		"tier": tier,
+		"approach": "",
+		"tools": [],
+		"crew": [],
+		"stat_value": float(Game.eff_stat(stat_name)),
+		"stat_name": stat_name,
+		"skill": Game.skill_level(_jid),
+		"difficulty": diff,
+		"stage_index": _room,
+		"vignette": _variant(_stages[_room].get("text", "")),
+		"scene": String(_job.get("scene", MinigameRegistry.scene_for(_jid))),
+	}
 
 func _finish(success: bool, fail_text: String) -> void:
 	var rooms_cleared := _room  # rooms banked before this decision
@@ -146,6 +196,10 @@ func _finish(success: bool, fail_text: String) -> void:
 			Game.add_dirty(-lost)
 			res["arrested"] = true; res["dirty_lost"] = lost
 
+	# WO2: surface how the last room's minigame was played in the reveal (3-star line)
+	if _last_mg_detail != "":
+		res["mg_detail"] = _last_mg_detail
+		res["minigame_score"] = _last_mg_score
 	Game.persist(); Game.changed.emit()
 	var cb := _on_done
 	queue_free()

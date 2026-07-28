@@ -47,7 +47,8 @@ func bind(scene_id: String, actor := "") -> void:
 	_rng.seed = hash(scene_id)
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	clip_contents = true
-	resized.connect(_seed_layers)
+	if not resized.is_connected(_seed_layers):
+		resized.connect(_seed_layers)
 	_seed_layers()
 	set_process(true)
 
