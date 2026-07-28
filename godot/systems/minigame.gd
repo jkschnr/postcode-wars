@@ -83,3 +83,106 @@ func has_crew(role: String) -> bool:
 ## Defaults to our own rect if the host hasn't sized us yet.
 func play_rect() -> Rect2:
 	return Rect2(Vector2.ZERO, size)
+
+# ============================================================================
+# WO3 — universal fairness layer. Every minigame gets these identically; no
+# subclass rolls its own timing floor or skips the ready beat.
+# ============================================================================
+
+var _plays := 0          # this minigame's lifetime plays BEFORE the current one
+
+## Stable id per minigame, derived from the script filename (e.g. "timing_bar").
+func mg_id() -> String:
+	var s: Script = get_script()
+	if s != null:
+		return String(s.resource_path).get_file().get_basename()
+	return "minigame"
+
+func _load_plays() -> int:
+	return int((Game.s.get("mg_plays", {}) as Dictionary).get(mg_id(), 0))
+
+func _bump_plays() -> void:
+	var d: Dictionary = Game.s.get("mg_plays", {})
+	d[mg_id()] = int(d.get(mg_id(), 0)) + 1
+	Game.s["mg_plays"] = d
+	Game.persist()
+
+## TASK 1 — the 3-phase opening. Nothing the subclass animates should move until
+## this returns (keep your own _running flag false / set_process(true) after). SHOW
+## the static board + instruction, then SET (READY→GO + haptic), then hand back.
+## After the 5th play the SHOW shrinks and the instruction drops to a corner label.
+func _ready_beat(instruction: String) -> void:
+	_plays = _load_plays()
+	_bump_plays()
+	var veteran := _plays >= 5
+
+	var lbl := Label.new()
+	lbl.add_theme_font_override("font", Pal.display_font())
+	lbl.add_theme_color_override("font_color", Pal.GLOW)
+	lbl.add_theme_font_size_override("font_size", 30 if veteran else 46)
+	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	if veteran:
+		# small corner label — veterans aren't lectured
+		lbl.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
+		lbl.add_theme_color_override("font_color", Pal.MUTED)
+		lbl.add_theme_font_override("font", Pal.mono_font(500))
+		lbl.add_theme_font_size_override("font_size", 20)
+		lbl.offset_top = 8
+	else:
+		lbl.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+		lbl.offset_left = -420; lbl.offset_right = 420; lbl.offset_top = -40
+	add_child(lbl)
+
+	# PHASE 1 — SHOW
+	lbl.text = instruction
+	await get_tree().create_timer(0.5 if veteran else 1.2).timeout
+	if _done: lbl.queue_free(); return
+	# PHASE 2 — SET
+	if not veteran:
+		lbl.text = "READY"
+		Audio.ui()
+		await get_tree().create_timer(0.45).timeout
+		if _done: lbl.queue_free(); return
+		lbl.text = "GO"
+		lbl.add_theme_color_override("font_color", Pal.HIVIS)
+		Audio.whoosh()
+		if OS.has_feature("mobile"): Input.vibrate_handheld(30)
+		await get_tree().create_timer(0.35).timeout
+	lbl.queue_free()
+	# PHASE 3 — the subclass now starts moving.
+
+## TASK 5 — the one timing formula. Returns a reaction window in ms: stats widen,
+## difficulty + stage narrow (bounded), and a HARD FLOOR nothing goes below.
+func window_ms(base_ms: float, min_ms := 250.0) -> float:
+	var w := base_ms
+	w *= 1.0 + stat() * 0.012        # stats widen
+	w *= 1.0 - difficulty() * 0.25   # difficulty narrows, bounded
+	w *= 1.0 - stage_index() * 0.06  # stages narrow, bounded
+	return maxf(min_ms, w)
+
+## First 3 plays are 1.4× easier — an explicit training ramp on top of window_ms().
+func training_mult() -> float:
+	return 1.4 if _load_plays() < 3 else 1.0
+
+## TASK 3 — end a run showing the diagnosable reason (fiction voice) for 1.5s, then
+## finish. `detail.reason` also rides through to the caller. Success skips the hold.
+func _end_with(score: float, detail: Dictionary) -> void:
+	if _done:
+		return
+	var reason := String(detail.get("reason", ""))
+	if reason != "" and score < 0.7:
+		var r := Label.new()
+		r.text = reason
+		r.add_theme_font_override("font", Pal.body_font(500))
+		r.add_theme_font_size_override("font_size", 30)
+		r.add_theme_color_override("font_color", Pal.DANGER_RED)
+		r.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		r.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		r.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		r.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+		r.offset_left = -440; r.offset_right = 440; r.offset_top = -30
+		add_child(r)
+		await get_tree().create_timer(1.5).timeout
+	_finish(score, detail)

@@ -121,6 +121,10 @@ func _ready() -> void:
 		_minigame_test()
 		return
 
+	if OS.get_environment("ENDS_MGWIN") == "1":
+		_minigame_window_table()
+		return
+
 	if OS.get_environment("ENDS_BALANCE") == "1":
 		_balance_sim()
 		return
@@ -1107,6 +1111,45 @@ func _minigame_test() -> void:
 	print("MGTEST TOTAL ok=%d fail=%d" % [ok, fail])
 	print("MGTEST OK")
 	get_tree().quit()
+
+# ------------------------------------------------------------------ reaction windows
+## ENDS_MGWIN=1 — the WO3 reaction-window table. For each minigame that declares
+## req_windows(), print the actual required reaction window (ms) at base stats
+## (5, diff 0.4, stage 0), the spec's "hardest" (60, 0.9, stage 4), and the TRUE
+## narrowest case (5, 0.9, stage 4). Any window < 250ms is a FAIL.
+func _minigame_window_table() -> void:
+	Game.reset()
+	Game.new_character("Win", 0, "road")
+	print("MGWIN %-16s %-14s %9s %11s %10s  %s" % ["MINIGAME", "INPUT", "BASE(ms)", "HARDEST(ms)", "WORST(ms)", "FLOOR_OK"])
+	var seen: Array = []
+	for jid in MinigameRegistry.MAP.keys():
+		var path := MinigameRegistry.path_for(jid)
+		if path in seen or not ResourceLoader.exists(path):
+			continue
+		seen.append(path)
+		var mg := MinigameRegistry.make(jid)
+		if mg == null or not mg.has_method("req_windows"):
+			continue
+		add_child(mg)
+		var name := mg.mg_id()
+		for row in mg.call("req_windows"):
+			var label: String = row[0]
+			var base_ms: float = row[1]
+			var min_ms: float = row[2]
+			var b := _win_at(mg, 5.0, 0.4, 0, base_ms, min_ms)
+			var h := _win_at(mg, 60.0, 0.9, 4, base_ms, min_ms)
+			var w := _win_at(mg, 5.0, 0.9, 4, base_ms, min_ms)
+			# FLOOR_OK: does the WORST case meet this input's own specified floor?
+			# (green's floor is 300; gold is the nested skill-ceiling bonus, floor 120)
+			var ok: bool = w >= min_ms - 0.5
+			print("MGWIN %-16s %-14s %9d %11d %10d  %s (floor %d)" % [name, label, int(round(b)), int(round(h)), int(round(w)), ("OK" if ok else "FAIL"), int(min_ms)])
+		mg.queue_free()
+	print("MGWIN DONE")
+	get_tree().quit()
+
+func _win_at(mg: Minigame, stat_v: float, diff: float, stage: int, base_ms: float, min_ms: float) -> float:
+	mg.setup({"stat_value": stat_v, "difficulty": diff, "stage_index": stage})
+	return mg.window_ms(base_ms, min_ms)
 
 # ------------------------------------------------------------------ balance sim
 ## ENDS_BALANCE=1 — a playtest harness. Part A reads every job's tuning in
