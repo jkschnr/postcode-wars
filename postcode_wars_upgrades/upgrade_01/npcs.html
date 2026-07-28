@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>NPC roster — Postcode Wars</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../ui.css">
+<script src="npcs.js"></script>
+<script>window.NPC_ART_BASE = 'art/';</script>
+<style>
+  #frame { background:#14161a; height:auto; min-height:1920px; }
+  .sheet { position:relative; z-index:10; }
+  .card { border:1px solid #2A2E33; border-radius:14px; background:#1E2126; overflow:hidden; display:flex; flex-direction:column; }
+  .pill { border:1px solid #2A2E33; border-radius:8px; background:#16191D; color:#9AA0A6;
+    font-family:'IBM Plex Mono',monospace; font-size:20px; letter-spacing:0.1em; padding:14px 18px; cursor:pointer; }
+  .pill[data-on="1"] { border-color:#FFA94D; color:#FFA94D; background:rgba(255,169,77,0.08); }
+  .px { image-rendering:pixelated; background-size:cover; background-position:50% 12%; }
+</style>
+</head>
+<body>
+<div id="frame">
+  <div style="position:absolute; inset:0; background:
+      radial-gradient(42% 20% at 72% 6%, rgba(255,169,77,0.14), rgba(255,169,77,0) 66%),
+      linear-gradient(180deg, #1a1d21 0%, #14161a 46%, #0E1013 100%);"></div>
+  <div class="disp" style="position:absolute; right:-22px; bottom:180px; z-index:0; font-size:280px; line-height:0.78; color:#EDEFF2; opacity:0.045;">50</div>
+
+  <div class="sheet" style="padding:64px 32px 96px; display:flex; flex-direction:column; gap:28px;">
+
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <span class="mono" style="font-size:22px; letter-spacing:0.2em; color:#FFA94D;">NPC ROSTER · 50 NAMED · 13 CITIES · 7 FACTIONS</span>
+      <span class="disp" style="font-size:96px; line-height:0.88;">The manor<br>knows you</span>
+      <span style="font-size:26px; line-height:1.45; color:#9AA0A6; max-width:920px;">Fifty people who exist whether or not you meet them. Each one sits in a city, answers to a faction, and has a job that makes them useful, dangerous or both. Ring colour is faction.</span>
+    </div>
+
+    <div style="display:flex; gap:12px;">
+      <a class="pill" href="demo.html" style="border-color:#FFA94D; color:#FFA94D; text-decoration:none;">← Upgrade 01</a>
+      <a class="pill" href="../00-index.html" style="text-decoration:none;">All screens</a>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:10px;" id="facRow"></div>
+    <div style="display:flex; flex-wrap:wrap; gap:10px;" id="cityRow"></div>
+
+    <div style="display:flex; align-items:baseline; gap:20px;">
+      <span class="mono" id="count" style="font-size:22px; letter-spacing:0.16em; color:#FFC97A;"></span>
+      <span style="flex:1; height:1px; background:#2A2E33;"></span>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:16px;" id="grid"></div>
+
+    <div style="display:flex; align-items:baseline; gap:20px; padding-top:20px;">
+      <span class="disp" style="font-size:44px; text-transform:uppercase;">Factions</span>
+      <span style="flex:1; height:1px; background:#2A2E33;"></span>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:16px;" id="facCards"></div>
+
+  </div>
+  <div class="tooth"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+const state = { faction:'all', city:'all' };
+const CITIES = ['all', ...new Set(NPCS.map(n => n.city))];
+const FACS = ['all', ...Object.keys(FACTION)];
+
+function chips() {
+  document.getElementById('facRow').innerHTML = FACS.map(f =>
+    `<button class="pill" data-t="faction" data-v="${f}" data-on="${state.faction === f ? 1 : 0}"
+      ${f !== 'all' ? `style="border-color:${FACTION[f].ring}44;color:${state.faction === f ? FACTION[f].ring : '#9AA0A6'};"` : ''}>${f === 'all' ? 'ALL FACTIONS' : FACTION[f].label}</button>`).join('');
+  document.getElementById('cityRow').innerHTML = CITIES.map(c =>
+    `<button class="pill" data-t="city" data-v="${c}" data-on="${state.city === c ? 1 : 0}">${(c === 'all' ? 'all cities' : c).toUpperCase()}</button>`).join('');
+}
+
+function paint() {
+  const list = NPCS.filter(n =>
+    (state.faction === 'all' || n.faction === state.faction) &&
+    (state.city === 'all' || n.city === state.city));
+  document.getElementById('count').textContent =
+    list.length + ' OF ' + NPCS.length + ' SHOWN' +
+    (state.city !== 'all' ? ' · ' + state.city.toUpperCase() : '') +
+    (state.faction !== 'all' ? ' · ' + FACTION[state.faction].label : '');
+
+  document.getElementById('grid').innerHTML = list.map(n => {
+    const ring = npcRing(n);
+    return `<div class="card" style="border-color:${ring}33;">
+      <div class="px" style="height:240px; background-color:#0C0E10; background-image:url(${npcArt(n.id)});"></div>
+      <div style="padding:16px 18px; display:flex; flex-direction:column; gap:8px; flex:1;">
+        <div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px;">
+          <span class="disp" style="font-size:30px; line-height:1;">${n.name}</span>
+          <span class="mono" style="font-size:19px; color:#5A6068;">${n.age}</span>
+        </div>
+        <span class="mono" style="font-size:20px; letter-spacing:0.1em; color:${ring};">${n.role.toUpperCase()}</span>
+        <span class="mono" style="font-size:19px; color:#5A6068;">${n.city.toUpperCase()} · ${n.place.toUpperCase()}</span>
+        <span style="font-size:21px; line-height:1.4; color:#9AA0A6; margin-top:4px;">${n.note}</span>
+      </div>
+    </div>`;
+  }).join('');
+  chips();
+}
+
+document.addEventListener('click', e => {
+  const b = e.target.closest('.pill[data-t]');
+  if (!b) return;
+  state[b.dataset.t] = b.dataset.v;
+  paint();
+});
+
+document.getElementById('facCards').innerHTML = Object.entries(FACTION).map(([k, f]) => {
+  const list = npcsOf(k);
+  return `<div class="card" style="border-color:${f.ring}44; padding:20px; gap:14px;">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px;">
+      <span class="disp" style="font-size:30px;">${f.label}</span>
+      <span class="mono" style="font-size:22px; color:${f.ring};">${list.length}</span>
+    </div>
+    <span style="font-size:21px; line-height:1.4; color:#9AA0A6;">${f.note}</span>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">${list.slice(0, 6).map(n => npcSlot(n, 56)).join('')}</div>
+  </div>`;
+}).join('');
+
+paint();
+</script>
+</body>
+</html>

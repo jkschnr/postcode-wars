@@ -1,0 +1,159 @@
+[
+ {
+  "id": "grow_loft",
+  "target": {
+   "name": null,
+   "detail": "the loft grow, lights on a timer"
+  },
+  "setup": "Bypassed meter, foil on the walls, forty plants under lights hotter than the argument you're avoiding with the landlord. Harvest's ready and heavy.",
+  "on_success": "Cut, bag, and out through the back before the smell tells the whole street. Weigh in heavier than the plug guessed.",
+  "on_fail": "The bypassed meter finally bit back — half the street's lights flicker as yours trip, and someone rings it in.",
+  "on_crit": "Better strain than anyone let on. This isn't shake, this is the good stuff, and it prices itself.",
+  "job": "grow_harvest",
+  "conditions": {
+   "max_heat": 12
+  }
+ },
+ {
+  "id": "grow_farm",
+  "conditions": {
+   "cities": [
+    "manchester"
+   ],
+   "max_heat": 12
+  },
+  "target": {
+   "name": "the unit",
+   "detail": "the industrial grow out past the ring road"
+  },
+  "setup": "Whole unit off the ring road, hundreds of plants, a gardener who doesn't ask questions and doesn't speak much English either. Product by the holdall.",
+  "on_success": "Load the van in the loading bay like it's a legitimate delivery, because from the road it is.",
+  "on_fail": "The unit two doors down is a proper business with a proper CCTV budget and it points the wrong way for you.",
+  "on_crit": "A second room they hadn't shown you, further along. You were only told about half of it.",
+  "job": "grow_harvest"
+ },
+ {
+  "id": "grow_loft_hatch",
+  "conditions": {
+   "max_heat": 7
+  },
+  "target": {
+   "name": "—",
+   "detail": "the loft conversion that was never a conversion"
+  },
+  "setup": "Ladder down from a hatch on a landing that smells of absolutely nothing, which is the expensive part. Extraction that's better than the heating, foil on the rafters, and a crop that's finally ready and heavy.",
+  "on_success": "Four hours of careful cutting and a bin bag that weighs more than it should. Ladder goes back up, hatch goes back to being a hatch, house goes back to being a house.",
+  "on_fail": "The extraction fan packed in sometime this week and half of it's gone over. You take what's left and it barely covers the electric it stole.",
+  "on_crit": "Whoever set this up knew exactly what they were doing before they got nicked. Best yield you've ever seen out of a room that size.",
+  "job": "grow_harvest"
+ },
+ {
+  "id": "grow_terrace_meter",
+  "conditions": {
+   "time": "night",
+   "max_heat": 6
+  },
+  "target": {
+   "name": "—",
+   "detail": "the mid-terrace with the meter bypassed and the lights on a timer"
+  },
+  "setup": "Bypassed meter, foil on the walls, forty plants under lamps hotter than the argument you're avoiding, and a smell you can taste from the alley. The whole street runs a little warm because of this house.",
+  "on_success": "Cut, bag, and out the back before the smell gives the street ideas. You weigh in heavier than the plug guessed, which never happens twice.",
+  "on_fail": "The bypassed meter finally bites back — half the terrace's lights flicker as yours trips, and a neighbour who's had enough dials it in.",
+  "job": "grow_harvest"
+ },
+ {
+  "id": "grow_industrial_unit",
+  "conditions": {
+   "cities": [
+    "manchester"
+   ],
+   "min_level": 8,
+   "max_heat": 12
+  },
+  "target": {
+   "name": "—",
+   "detail": "the whole unit off the ring road, hundreds under glass"
+  },
+  "setup": "An industrial unit past the ring road, hundreds of plants, a gardener who doesn't ask questions and doesn't speak much English either, and product measured by the holdall rather than the plant.",
+  "on_success": "Load the van in the loading bay like a legitimate delivery, because from the road that's exactly what it looks like. Nobody stops a man with a clipboard.",
+  "on_fail": "The unit two doors down is a real business with a real CCTV budget, and its camera points the exactly wrong way for you.",
+  "on_crit": "There's a second room they never showed you, further back, fuller than the first. You were only ever told about half of it.",
+  "job": "grow_harvest"
+ },
+ {
+  "id": "grow_pensioner_bungalow",
+  "conditions": {
+   "max_heat": 5
+  },
+  "target": {
+   "name": "Doreen",
+   "detail": "the bungalow where a frightened old woman was paid to look the other way"
+  },
+  "setup": "A spare room in a pensioner's bungalow, rented off a woman who signed something she didn't understand and now can't sleep for the hum through the wall. She lets you in without a word and goes to make tea she won't drink.",
+  "on_success": "You cut fast and quiet and leave her a bit more than the arrangement, because she's the one who'll be here when it's found and you won't.",
+  "on_fail": "She's finally told her daughter, and the daughter's told someone with a warrant card, and there's a car outside that isn't the district nurse.",
+  "job": "grow_harvest"
+ },
+ {
+  "id": "grow_rented_house",
+  "conditions": {
+   "time": "night",
+   "max_heat": 8
+  },
+  "target": {
+   "name": "—",
+   "detail": "the rental the landlord thinks is empty between tenants"
+  },
+  "setup": "A between-lets rental, deposit paid in cash to an agent who didn't look twice, every room but the bathroom given over to lamps, and a landlord who's about to have questions about his damp.",
+  "on_success": "In through your own key, harvest the lot, and hand the place back looking like students lived there rather than a jungle. The mould's the landlord's problem now.",
+  "on_fail": "The landlord's doing a surprise inspection because the electric bill frightened him, and he's standing in the hall with the letting agent when you come down.",
+  "job": "grow_harvest"
+ },
+ {
+  "id": "grow_allotment_shed",
+  "conditions": {
+   "time": "day",
+   "max_heat": 4
+  },
+  "target": {
+   "name": "—",
+   "detail": "the allotment shed that's warmer than the greenhouse"
+  },
+  "setup": "An allotment down the end, a shed lined and lit and running off a stolen spur from the site supply, tomatoes out front for show and something else entirely under a grow-light in the back.",
+  "on_success": "You clear it wearing gardening gloves and nobody on the plots looks twice at a man carrying bags out of a shed. Best cover there is.",
+  "on_fail": "The old boy on the next plot has been suspicious about your water usage for weeks and today he's brought the site secretary round for a look.",
+  "job": "grow_harvest"
+ },
+ {
+  "id": "grow_flat_over_shop",
+  "conditions": {
+   "cities": [
+    "birmingham"
+   ],
+   "max_heat": 7
+  },
+  "target": {
+   "name": "—",
+   "detail": "the flat over the closed-down shop, blacked-out windows"
+  },
+  "setup": "Above a shuttered shop, windows painted black from the inside, a separate entrance down the side, and a crop that the whole parade can smell but nobody dares mention out loud.",
+  "on_success": "Down the side entrance, up the stairs, out with the lot in two trips while the parade very deliberately minds its own business.",
+  "on_fail": "The shop below has new owners doing it up and one of them's up a ladder at your window height at exactly the wrong moment.",
+  "job": "grow_harvest"
+ },
+ {
+  "id": "grow_first_grow_greedy",
+  "conditions": {
+   "max_heat": 6
+  },
+  "target": {
+   "name": "Callum",
+   "detail": "the mate's first grow he's too proud to harvest properly"
+  },
+  "setup": "A mate's bedroom operation, first proper crop, and he's left it a week too long chasing a bigger number because somebody told him bigger's better. Half of it's turned and he can't bring himself to admit it.",
+  "on_success": "You show him where he went wrong, save what's savable, and take a cut for the lesson. He'll do it right next time, which is worth more than this crop.",
+  "on_fail": "He's told half the estate he's a grower now, and 'half the estate' is a wide enough net to have caught someone who talks to the police.",
+  "job": "grow_harvest"
+ }
+]

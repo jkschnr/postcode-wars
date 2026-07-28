@@ -1,0 +1,30 @@
+{
+ "job": "smuggle",
+ "stages": [
+  {
+   "name": "The first container",
+   "text": "One box off the stack, off the manifest, onto the flatbed during the fifteen-minute gap in the camera loop you paid a fortune for. Clean lift. The clock on the loop is the only thing that matters now.",
+   "fail_text": "The gap in the loop was yesterday's gap. Tonight it's nothing and you're stood in a lit yard."
+  },
+  {
+   "name": "The second one",
+   "text": "There's another box two rows over that was meant for next week's run, and the forklift driver's still on the clock. Double the load, double the time in the yard, double the paperwork that doesn't exist.",
+   "fail_text": "The driver's shift ends mid-lift and the man who relieves him is not on anybody's payroll."
+  },
+  {
+   "name": "The gate",
+   "text": "Both boxes are loaded and the gate man's bonus is your best security. Roll through slow on his nod. Push a third box and the flatbed's over weight, and an over-weight lorry is the one thing that gets pulled.",
+   "fail_text": "The flatbed's sitting too low and the tyres are flat to the arches, and that's exactly what a weighbridge notices."
+  },
+  {
+   "name": "The customs lane",
+   "text": "Twenty miles inland there's a check you can take the quiet lane past, or brazen straight through with a bought stamp. The stamp holds for cold, boring loads that nobody wants to unpack.",
+   "fail_text": "The one keen officer on the shift decides today's the day he unpacks a lorry, bought stamp or not."
+  },
+  {
+   "name": "The buyer's yard",
+   "text": "The buyer's an hour further on and pays for everything in one bag. An hour more on the road with three off-manifest containers is an hour of being the most illegal thing on the motorway.",
+   "fail_text": "An unmarked car's been three vehicles back since the services, matching your speed, waiting for the yard."
+  }
+ ]
+}

@@ -1,0 +1,30 @@
+{
+ "job": "chop_run",
+ "stages": [
+  {
+   "name": "The pull",
+   "text": "In, started, moving inside forty seconds. Nobody's curtain has twitched.",
+   "fail_text": "Immobiliser you didn't clock. Cuts out at the end of the road and you walk."
+  },
+  {
+   "name": "The ring road",
+   "text": "Clean run to the dual carriageway. Two miles of nothing and a car that isn't yours behind you for one of them.",
+   "fail_text": "The car behind is a car behind. Right up until it isn't."
+  },
+  {
+   "name": "The second one",
+   "text": "There's another on the same estate, same make, and Delroy pays double for a matched pair. It's a twenty-minute round trip. It's twenty minutes you've already used.",
+   "fail_text": "Somebody's up. Somebody's at a window with a phone. You've got maybe two minutes."
+  },
+  {
+   "name": "The plates",
+   "text": "Delroy will pay more if it comes in on plates that aren't screaming. There's a scrapyard four miles the wrong way with a hundred to choose from.",
+   "fail_text": "There's a car in the scrapyard gate and it's not a scrapper."
+  },
+  {
+   "name": "The long way",
+   "text": "Take it out of the city and there's a buyer who doesn't ask, doesn't haggle, and pays in one go. Two hours on an A-road in a stolen car with a hot plate on it.",
+   "fail_text": "Roadside check outside Coventry. Not even for you. Just the wrong minute of the wrong hour."
+  }
+ ]
+}

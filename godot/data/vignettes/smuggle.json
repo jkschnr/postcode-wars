@@ -1,0 +1,161 @@
+[
+ {
+  "id": "smug_off_manifest",
+  "conditions": {
+   "time": "night",
+   "max_heat": 12
+  },
+  "target": {
+   "name": null,
+   "detail": "the container off the manifest"
+  },
+  "setup": "Container off the ship, off the paperwork, a bought forklift driver and a fifteen-minute gap in the yard's camera loop that cost more than a car.",
+  "on_success": "Off the stack, onto the flatbed, through the gate on the driver's pass during the loop. The sea never happened.",
+  "on_fail": "The gap in the loop was fifteen minutes yesterday. Today it's nothing, and the driver's phone is off.",
+  "on_crit": "Extra crate wedged behind the declared load that even the plug forgot to mention.",
+  "job": "smuggle"
+ },
+ {
+  "id": "smug_small_boat",
+  "target": {
+   "name": "the beach run",
+   "detail": "the RIB and the tide"
+  },
+  "setup": "RIB on a dark beach, cargo double-wrapped and buoyant, a tide table memorised and a coastguard shift you've timed to the minute.",
+  "on_success": "In on the high water, unload to the van up the slipway, back out before the tide turns and the patrol comes round.",
+  "on_fail": "Tide's wrong, engine floods, and a dog walker who couldn't sleep is already on the phone describing your torch.",
+  "on_crit": "Sea was flat, run was fast, and there was more in the wrap than the weight you paid for.",
+  "job": "smuggle",
+  "conditions": {
+   "max_heat": 12
+  }
+ },
+ {
+  "id": "smug_container_loop",
+  "conditions": {
+   "time": "night",
+   "cities": [
+    "liverpool"
+   ],
+   "max_heat": 12
+  },
+  "target": {
+   "name": "—",
+   "detail": "the container that walked off the manifest"
+  },
+  "setup": "A container off the ship and off the paperwork, a bought forklift driver, and a fifteen-minute gap in the yard's camera loop that cost more than a car and lasts exactly as long as it was paid to.",
+  "on_success": "Off the stack, onto the flatbed, through the gate on the driver's pass during the loop. As far as the sea's concerned, this box never crossed it.",
+  "on_fail": "The gap in the loop was fifteen minutes yesterday. Tonight it's nothing, and the driver's phone is off, and you're stood in a lit yard.",
+  "on_crit": "There's an extra crate wedged behind the declared load that even the plug forgot to mention. Finders keepers, at these prices.",
+  "job": "smuggle"
+ },
+ {
+  "id": "smug_beach_rib",
+  "conditions": {
+   "time": "night",
+   "max_heat": 10
+  },
+  "target": {
+   "name": "—",
+   "detail": "the RIB coming in on the high tide"
+  },
+  "setup": "A dark beach, cargo double-wrapped and floating, a tide table memorised to the minute, and a coastguard shift you've timed twice to be sure. The sea does half the work if you read it right.",
+  "on_success": "In on the high water, unloaded to the van up the slipway, and back out before the tide turns and the patrol comes round the headland.",
+  "on_fail": "The tide's wrong, the engine floods, and a dog walker who couldn't sleep is already describing your torch to somebody official.",
+  "job": "smuggle"
+ },
+ {
+  "id": "smug_ferry_foot",
+  "conditions": {
+   "time": "day",
+   "min_level": 15,
+   "max_heat": 12
+  },
+  "target": {
+   "name": "Aleks",
+   "detail": "the foot passenger nobody searches"
+  },
+  "setup": "A ferry, a foot passenger with an ordinary bag and an ordinary face, and a lining sewn just right. Cars get searched; people with return tickets and boring shoes mostly don't.",
+  "on_success": "Walk on, walk off, nothing in the hold to find because it's all in the lining and the lining's all in a bag that looks like a hundred others.",
+  "on_fail": "There's a spot-check today because someone got greedy last week, and the dog by the ramp doesn't care how boring your shoes are.",
+  "on_crit": "You're waved through so fast you could've carried twice as much, and next time, God help you, you probably will.",
+  "job": "smuggle"
+ },
+ {
+  "id": "smug_lorry_tomatoes",
+  "conditions": {
+   "cities": [
+    "grimsby"
+   ],
+   "max_heat": 8
+  },
+  "target": {
+   "name": "—",
+   "detail": "the refrigerated lorry with a false floor under the fish boxes"
+  },
+  "setup": "A reefer full of fish boxes off the docks, a false floor under the pallets, a driver on the payroll, and a customs check that mostly waves cold, smelly loads straight through because nobody wants to unpack fish.",
+  "on_success": "The check leans in, gets a face full of week-old cod, waves it on. The floor stays a floor. The driver stays calm. Everyone stays out of prison.",
+  "on_fail": "The one keen officer on the shift decides today's the day he unpacks a fish lorry, and the false floor is exactly false enough to notice.",
+  "job": "smuggle"
+ },
+ {
+  "id": "smug_light_aircraft",
+  "conditions": {
+   "time": "night",
+   "min_level": 15,
+   "max_heat": 11
+  },
+  "target": {
+   "name": "—",
+   "detail": "the grass strip out past the farms with the landing lights on a timer"
+  },
+  "setup": "A private grass strip, a light aircraft that files no plan, landing lights on a timer, and a farmer who's decided his fields earn more in ten minutes at night than in a year of subsidies.",
+  "on_success": "Wheels down, engine barely off, cargo swapped to the Land Rover and the plane's a dot again before the timer kills the lights.",
+  "on_fail": "There's a plane on the radar that shouldn't be, a coastguard controller having a slow night, and a police helicopter that's already turning.",
+  "job": "smuggle"
+ },
+ {
+  "id": "smug_motorhome_border",
+  "conditions": {
+   "time": "day",
+   "max_heat": 7
+  },
+  "target": {
+   "name": "Sandra",
+   "detail": "the retired couple's motorhome with the extra tank"
+  },
+  "setup": "A motorhome coming off the tunnel, a grey-haired couple with a folder of campsite bookings, and a water tank that holds a good deal more than water. Nobody strip-searches a caravan full of pensioners.",
+  "on_success": "They ask about the weather in France, wave the folder, get waved through. The 'water tank' gets pumped out in a lay-by twenty miles on.",
+  "on_fail": "A new officer follows the training to the letter, taps the tank, hears the wrong kind of hollow, and asks them to pull into bay three.",
+  "job": "smuggle"
+ },
+ {
+  "id": "smug_parcel_mule",
+  "conditions": {
+   "max_heat": 6
+  },
+  "target": {
+   "name": "—",
+   "detail": "the parcels posted to a dozen empty addresses"
+  },
+  "setup": "Small dear things broken across a dozen packages, posted to a dozen addresses that are all empty flats with working letterboxes, so no single parcel is worth a search and no single address means a thing.",
+  "on_success": "The postal system does the smuggling for you, one harmless little box at a time, and you collect the set from a round of empty hallways.",
+  "on_fail": "One address gets flagged for a different reason entirely, and a routine visit turns up a mat piled with parcels that all want explaining.",
+  "job": "smuggle"
+ },
+ {
+  "id": "smug_first_run_scared",
+  "conditions": {
+   "time": "night",
+   "max_heat": 9
+  },
+  "target": {
+   "name": "—",
+   "detail": "the holdall you're carrying for the first time and can feel the weight of"
+  },
+  "setup": "Your first proper run, a holdall that weighs nothing and everything, a service station rendezvous, and the specific terror of standing in a bright shop pretending to choose a meal deal while carrying a decade.",
+  "on_success": "You buy the meal deal you don't want, meet the car you're supposed to, hand it over, and get in your own car with hands that won't quite stop.",
+  "on_fail": "You clock a patrol car in the services and freeze for exactly one second too long, and a bored officer notices a man being that still.",
+  "job": "smuggle"
+ }
+]

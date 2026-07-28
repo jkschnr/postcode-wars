@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Upgrade 01 — Postcode Wars</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../ui.css">
+<script src="grade.js"></script>
+<script src="ambience.js"></script>
+<script src="fx.js"></script>
+<script src="art-map.js"></script>
+<style>
+  /* reference sheet, not a game screen — let it grow instead of scrolling inside the frame */
+  #frame { background:#14161a; height:auto; min-height:1920px; }
+  .sheet { position:relative; z-index:10; }
+  .card { border:1px solid #2A2E33; border-radius:16px; background:#1E2126; overflow:hidden; }
+  .head { padding:18px 22px; display:flex; align-items:baseline; justify-content:space-between; gap:14px; border-bottom:1px solid #2A2E33; }
+  .num { font-family:'IBM Plex Mono',monospace; font-size:20px; letter-spacing:0.16em; color:#FFA94D; }
+  .note { font-family:'IBM Plex Mono',monospace; font-size:19px; line-height:1.6; color:#5A6068; }
+  .street { position:relative; height:300px; background-image:url(../art/tex-brick.png); background-size:cover; overflow:hidden; }
+  .pill { border:1px solid #2A2E33; border-radius:8px; background:#16191D; color:#9AA0A6;
+    font-family:'IBM Plex Mono',monospace; font-size:20px; letter-spacing:0.1em; padding:14px 18px; cursor:pointer; }
+  .pill[data-on="1"] { border-color:#FFA94D; color:#FFA94D; background:rgba(255,169,77,0.08); }
+  .row { display:flex; flex-wrap:wrap; gap:10px; }
+</style>
+</head>
+<body>
+<div id="frame">
+  <div style="position:absolute; inset:0; background:
+      radial-gradient(42% 22% at 74% 6%, rgba(255,169,77,0.14), rgba(255,169,77,0) 66%),
+      linear-gradient(180deg, #1a1d21 0%, #14161a 46%, #0E1013 100%);"></div>
+  <div class="disp" style="position:absolute; left:-24px; bottom:220px; z-index:0; font-size:300px; line-height:0.78; color:#EDEFF2; opacity:0.045;">01</div>
+
+  <div class="sheet" style="padding:64px 32px 96px; box-sizing:border-box; display:flex; flex-direction:column; gap:26px;">
+
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <span class="mono" style="font-size:22px; letter-spacing:0.2em; color:#FFA94D;">GRAPHIC UPGRADE · ADDITIVE · NO BASE FILES CHANGED</span>
+      <span class="disp" style="font-size:96px; line-height:0.88;">Upgrade 01</span>
+      <span style="font-size:26px; line-height:1.4; color:#9AA0A6; max-width:900px;">Thirteen additions, each live below. Every one is a drop-in module or a new art file — nothing in the base build has to move.</span>
+      <div style="display:flex; gap:12px; padding-top:6px;">
+        <a class="pill" href="npcs.html" style="border-color:#FFA94D; color:#FFA94D; text-decoration:none;">50 NPCs →</a>
+        <a class="pill" href="../00-index.html" style="text-decoration:none;">← All screens</a>
+      </div>
+    </div>
+
+    <!-- 1-4 GRADE -->
+    <div class="card">
+      <div class="head"><span class="disp" style="font-size:36px;">1–4 · City grade, weather, time, heat</span><span class="num">GRADE.JS</span></div>
+      <div class="street" id="gradeStage">
+        <div style="position:absolute; left:24px; bottom:20px; z-index:20; display:flex; flex-direction:column; gap:4px;">
+          <span class="disp" id="gradeCity" style="font-size:54px; line-height:1;">London</span>
+          <span class="mono" id="gradeState" style="font-size:20px; letter-spacing:0.12em; color:#FFC97A;"></span>
+        </div>
+      </div>
+      <div style="padding:20px 22px; display:flex; flex-direction:column; gap:14px;">
+        <div class="row" id="cityRow"></div>
+        <div class="row" id="wxRow"></div>
+        <div class="row" id="todRow"></div>
+        <div class="row" id="heatRow"></div>
+        <div class="note">Same art in all states. Grade is four stacked overlay layers — city tint, time-of-day multiply, wet sheen, rain sheets. Heat 4+ adds a police-blue wash that breathes on a 2.6 s cycle.</div>
+      </div>
+    </div>
+
+    <!-- 9 AMBIENCE -->
+    <div class="card">
+      <div class="head"><span class="disp" style="font-size:36px;">9 · Idle ambience</span><span class="num">AMBIENCE.JS</span></div>
+      <div class="street" id="ambStage" style="background-image:url(../art/tex-shutter.png);">
+        <div style="position:absolute; left:24px; bottom:20px; z-index:20;" class="mono">HEADLIGHT SWEEP EVERY 9–16 S · ONE LAMP FLICKERING · SLOW HAZE DRIFT</div>
+      </div>
+      <div style="padding:20px 22px;" class="note">Nothing is happening on this screen and it still moves. All decorative, pointer-events none, safe to strip for a still capture with <span style="color:#FFA94D;">ambienceOff()</span>.</div>
+    </div>
+
+    <!-- 5 SIGNAGE -->
+    <div class="card">
+      <div class="head"><span class="disp" style="font-size:36px;">5 · Venue signage</span><span class="num">8 FASCIAS · 640 × 220</span></div>
+      <div style="padding:20px 22px; display:grid; grid-template-columns:1fr 1fr; gap:14px;" id="signGrid"></div>
+      <div style="padding:0 22px 22px;" class="note">Turns the venue grid from tiles into a street. Lit tube above the board, spill on the pavement below, brick behind.</div>
+    </div>
+
+    <!-- 7 VEHICLES + 8 BADGES -->
+    <div style="display:grid; grid-template-columns:1.4fr 1fr; gap:26px;">
+      <div class="card">
+        <div class="head"><span class="disp" style="font-size:32px;">7 · Vehicles</span><span class="num">4 · SIDE-ON</span></div>
+        <div style="padding:20px; display:grid; grid-template-columns:1fr 1fr; gap:14px;" id="vehGrid"></div>
+      </div>
+      <div class="card">
+        <div class="head"><span class="disp" style="font-size:32px;">8 · Crew badges</span><span class="num">4 CLASSES</span></div>
+        <div style="padding:20px; display:grid; grid-template-columns:1fr 1fr; gap:14px;" id="badgeGrid"></div>
+      </div>
+    </div>
+
+    <!-- 6 ITEMS -->
+    <div class="card">
+      <div class="head"><span class="disp" style="font-size:36px;">6 · Item art, expanded</span><span class="num">+28 · 40 TOTAL</span></div>
+      <div style="padding:20px 22px; display:grid; grid-template-columns:repeat(4, 1fr); gap:14px;" id="itemGrid"></div>
+    </div>
+
+    <!-- 12 RARITY -->
+    <div class="card">
+      <div class="head"><span class="disp" style="font-size:36px;">12 · Rarity as light</span><span class="num">FX.JS · RARITYLIGHT()</span></div>
+      <div style="padding:34px 22px; display:grid; grid-template-columns:repeat(5, 1fr); gap:22px;" id="rarityRow"></div>
+      <div style="padding:0 22px 22px;" class="note">Certi and Iconic get a glow pool that spills onto the surface behind the card and pulses slowly. Rarity stops being a stroke colour and starts being light.</div>
+    </div>
+
+    <!-- 10 STINGERS -->
+    <div class="card">
+      <div class="head"><span class="disp" style="font-size:36px;">10 · Job-type stingers</span><span class="num">4 ENTRANCES</span></div>
+      <div class="street" id="stingStage" style="height:340px; background-image:url(../art/tex-tarmac.png);"></div>
+      <div style="padding:20px 22px; display:flex; flex-direction:column; gap:14px;">
+        <div class="row" id="stingRow"></div>
+        <div class="note" id="stingNote">Four job types, four ways in. The player knows what kind of job it was before reading a word.</div>
+      </div>
+    </div>
+
+    <!-- 11 TRAVEL -->
+    <div class="card">
+      <div class="head"><span class="disp" style="font-size:36px;">11 · Map travel draw</span><span class="num">GLOW RIDES THE LINE</span></div>
+      <div style="position:relative; height:420px; background:#0E1013;" id="travelStage">
+        <svg id="travelSvg" style="position:absolute; inset:0; width:100%; height:100%;"></svg>
+      </div>
+      <div style="padding:20px 22px; display:flex; gap:14px; align-items:center;">
+        <button class="pill" id="travelBtn" style="border-color:#FFA94D; color:#FFA94D;">Travel London → Glasgow</button>
+        <span class="note">Curved path, drawn over 900 ms, with the glow head riding it. Route stays on the map after arrival.</span>
+      </div>
+    </div>
+
+    <!-- 13 PAPERWORK -->
+    <div class="card">
+      <div class="head"><span class="disp" style="font-size:36px;">13 · Paperwork interrupt</span><span class="num">4 KINDS</span></div>
+      <div style="position:relative; height:420px; background-image:url(../art/tex-concrete.png); background-size:cover;" id="paperStage">
+        <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center;" class="mono">A DOCUMENT ARRIVES OVER THE SCREEN, NOT IN A MENU</div>
+      </div>
+      <div style="padding:20px 22px;" class="row" id="paperRow"></div>
+    </div>
+
+  </div>
+  <div class="tooth"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+/* ---------- 1-4 grade ---------- */
+const state = { city:'london', weather:'rain', time:'night', heat:2 };
+const stage = document.getElementById('gradeStage');
+const CITIES = ['london','manchester','glasgow','liverpool','bristol','newcastle','margate'];
+function pills(host, list, key, label) {
+  document.getElementById(host).innerHTML = list.map(v =>
+    `<button class="pill" data-k="${key}" data-v="${v}" data-on="${state[key] === v ? 1 : 0}">${(label ? label(v) : v).toUpperCase()}</button>`).join('');
+}
+function paintGrade() {
+  const s = applyGrade(stage, state);
+  document.getElementById('gradeState').textContent = s.toUpperCase() + ' · ' + CITY_GRADE[state.city].name.toUpperCase();
+  document.getElementById('gradeCity').textContent = state.city[0].toUpperCase() + state.city.slice(1);
+  pills('cityRow', CITIES, 'city');
+  pills('wxRow', Object.keys(WEATHER), 'weather');
+  pills('todRow', Object.keys(TIME_OF_DAY), 'time');
+  pills('heatRow', [0,1,2,3,4,5], 'heat', v => 'heat ' + v);
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('.pill[data-k]');
+  if (!b) return;
+  const v = b.dataset.v;
+  state[b.dataset.k] = b.dataset.k === 'heat' ? +v : v;
+  paintGrade();
+});
+paintGrade();
+
+/* ---------- 9 ambience ---------- */
+ambience(document.getElementById('ambStage'), { litter:true, lampX:62 });
+applyGrade(document.getElementById('ambStage'), { city:'manchester', weather:'drizzle', time:'night', heat:0 });
+
+/* ---------- 5 signage ---------- */
+const SIGNS = [['barber','Uncle T · Barber'],['chicken','ChickenLix'],['tyres','Maz Tyres'],['betting','Betfrenz'],
+  ['laundry','Bubbles'],['corner','Pearl & Sons'],['gym','Ironworks'],['lockups','Arch 14']];
+document.getElementById('signGrid').innerHTML = SIGNS.map(([id, name]) => `
+  <div style="border:1px solid #2A2E33; border-radius:12px; overflow:hidden;">
+    <img src="art/sign-${id}.png" style="display:block; width:100%;">
+    <div style="padding:12px 14px; background:#16191D;"><span class="mono" style="font-size:20px; color:#C3C9CF;">${name.toUpperCase()}</span></div>
+  </div>`).join('');
+
+/* ---------- 7 vehicles ---------- */
+const VEHS = [['moped','Moped'],['scooter','Scooter'],['transit','White Transit'],['hirecar','Hire car']];
+document.getElementById('vehGrid').innerHTML = VEHS.map(([id, name]) => `
+  <div style="border:1px solid #2A2E33; border-radius:12px; overflow:hidden;">
+    <img src="art/veh-${id}.png" style="display:block; width:100%;">
+    <div style="padding:12px 14px; background:#16191D;"><span class="mono" style="font-size:20px; color:#C3C9CF;">${name.toUpperCase()}</span></div>
+  </div>`).join('');
+
+/* ---------- 8 badges ---------- */
+const BADGES = [['driver','#4DA3FF'],['muscle','#D63B3B'],['tech','#B06CF0'],['face','#F2C14E']];
+document.getElementById('badgeGrid').innerHTML = BADGES.map(([id, col]) => `
+  <div style="border:1px solid ${col}44; border-radius:12px; background:#16191D; padding:16px; display:flex; flex-direction:column; align-items:center; gap:10px;">
+    <img src="art/badge-${id}.png" style="width:88px; height:88px;">
+    <span class="mono" style="font-size:19px; letter-spacing:0.12em; color:${col};">${id.toUpperCase()}</span>
+  </div>`).join('');
+
+/* ---------- 6 items ---------- */
+const SHOW = ['crowbar','angle_grinder','chain','watch','laptop','radio','warrant','passport',
+  'pill_bag','scales','crate','ladder'];
+document.getElementById('itemGrid').innerHTML = SHOW.map(id => `
+  <div style="border:1px solid #2A2E33; border-radius:12px; overflow:hidden;">
+    <img src="art/item-${id}.png" style="display:block; width:100%;">
+    <div style="padding:10px 12px; background:#16191D;"><span class="mono" style="font-size:19px; color:#9AA0A6;">${id.replace(/_/g,' ').toUpperCase()}</span></div>
+  </div>`).join('');
+
+/* ---------- 12 rarity ---------- */
+document.getElementById('rarityRow').innerHTML = Object.keys(RARITY).map(r => `
+  <div class="rcard" data-r="${r}" style="border:2px solid #2A2E33; border-radius:14px; background:#1E2126; overflow:visible; padding:0 0 14px;">
+    <div style="height:130px; border-radius:12px 12px 0 0; overflow:hidden;">
+      <img src="art/item-${{basic:'crate',decent:'gloves',peng:'laptop',certi:'passport',iconic:'watch'}[r]}.png" style="display:block; width:100%;">
+    </div>
+    <div style="padding:12px 14px 0;"><span class="mono" style="font-size:20px;">${r.toUpperCase()}</span></div>
+  </div>`).join('');
+document.querySelectorAll('.rcard').forEach(c => rarityLight(c, c.dataset.r));
+
+/* ---------- 10 stingers ---------- */
+const sting = document.getElementById('stingStage');
+applyGrade(sting, { city:'london', weather:'rain', time:'night', heat:3 });
+document.getElementById('stingRow').innerHTML = Object.entries(STINGER).map(([k, v]) =>
+  `<button class="pill" data-sting="${k}" style="border-color:${v.col}55; color:${v.col};">${k.toUpperCase()}</button>`).join('');
+document.querySelectorAll('[data-sting]').forEach(b => b.addEventListener('click', () => {
+  const s = stinger(sting, b.dataset.sting);
+  document.getElementById('stingNote').textContent = b.dataset.sting.toUpperCase() + ' — ' + s.note;
+}));
+setTimeout(() => stinger(sting, 'graft'), 700);
+
+/* ---------- 11 travel ---------- */
+const svg = document.getElementById('travelSvg');
+const NODES = [['London', 0.72, 0.80],['Birmingham', 0.52, 0.60],['Manchester', 0.42, 0.42],
+  ['Leeds', 0.56, 0.36],['Newcastle', 0.56, 0.20],['Glasgow', 0.30, 0.10]];
+function drawNodes() {
+  const b = svg.getBoundingClientRect();
+  svg.innerHTML = NODES.map(([n, x, y]) => `
+    <circle cx="${x * b.width}" cy="${y * b.height}" r="9" fill="#0E1013" stroke="#5A6068" stroke-width="2"></circle>
+    <text x="${x * b.width + 18}" y="${y * b.height + 7}" fill="#9AA0A6"
+      style="font-family:'IBM Plex Mono',monospace; font-size:19px; letter-spacing:0.1em;">${n.toUpperCase()}</text>`).join('');
+}
+drawNodes();
+document.getElementById('travelBtn').addEventListener('click', () => {
+  drawNodes();
+  const b = svg.getBoundingClientRect();
+  let i = 0;
+  const hop = () => {
+    if (i >= NODES.length - 1) return;
+    const a = NODES[i], c = NODES[i + 1];
+    travelDraw(svg, { x:a[1] * b.width, y:a[2] * b.height }, { x:c[1] * b.width, y:c[2] * b.height }, 520, () => { i++; hop(); });
+  };
+  hop();
+});
+
+/* ---------- 13 paperwork ---------- */
+const paper = document.getElementById('paperStage');
+const FIELDS = {
+  warrant:  { premises:'Arch 14, Hackney', issued:'02:41 · 18 Mar 2026', officer:'DC Hallow', force:'Authorised' },
+  seizure:  { amount:'£12,480', location:'Bung Savings, Dalston', reference:'Held 48 hrs', officer:'DC Hallow' },
+  eviction: { premises:'Flat 62, Cardigan House', arrears:'£3,910', vacate:'14 days', landlord:'S. Rhodes' },
+  charge:   { offence:'Handling stolen goods', bail:'Refused', court:'Thames Mags', date:'04 Apr 2026' }
+};
+document.getElementById('paperRow').innerHTML = Object.keys(PAPER_KIND).map(k =>
+  `<button class="pill" data-paper="${k}" style="border-color:${PAPER_KIND[k].col}55; color:${PAPER_KIND[k].col};">${PAPER_KIND[k].title}</button>`).join('');
+document.querySelectorAll('[data-paper]').forEach(b => b.addEventListener('click', () =>
+  paperInterrupt(paper, b.dataset.paper, FIELDS[b.dataset.paper])));
+
+/* the demo grades a few stages on load; re-grade on resize so the travel svg stays true */
+addEventListener('resize', () => drawNodes());
+</script>
+</body>
+</html>

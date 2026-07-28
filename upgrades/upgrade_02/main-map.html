@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Main map v2 — Postcode Wars</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="../ui.css">
+<script src="npcs.js"></script>
+<script>window.NPC_ART_BASE = 'art/';</script>
+<script src="../chrome.js"></script>
+<style>
+  html, body { margin:0; background:#07080A; }
+  #leaf { position:absolute; inset:0; z-index:0; isolation:isolate; background:#07080A; }
+  /* cooler, deeper grade than v1 so the faction colour can sit on top and sing */
+  .leaflet-tile-pane { filter:grayscale(1) brightness(0.34) contrast(1.55) sepia(0.18) hue-rotate(-6deg) saturate(1.2); }
+  .leaflet-container { background:#07080A; font-family:'IBM Plex Mono', monospace; }
+  .leaflet-control-attribution { background:rgba(7,8,10,0.7) !important; color:#4A5058 !important; font-size:11px !important; }
+  .leaflet-control-attribution a { color:#8A9299 !important; }
+  .node { position:absolute; transform:translate(-50%,-50%); }
+  .label { position:absolute; white-space:nowrap; display:flex; flex-direction:column; gap:4px; pointer-events:none; }
+  .disp { font-family:Anton, Impact, sans-serif; text-transform:uppercase; }
+  .mono { font-family:'IBM Plex Mono', monospace; }
+  .tab  { font-variant-numeric:tabular-nums; }
+  @keyframes flow { to { stroke-dashoffset:-160; } }
+  @keyframes breathe { 0%,100% { opacity:0.55; } 50% { opacity:1; } }
+  @keyframes ping { 0% { transform:scale(0.6); opacity:0.9; } 100% { transform:scale(2.4); opacity:0; } }
+  @keyframes sheetUp { from { transform:translateY(110%); } to { transform:none; } }
+</style>
+</head>
+<body>
+<div id="frame">
+
+  <div id="leaf"></div>
+
+  <!-- faction influence, painted under the labels and over the tiles -->
+  <canvas id="bloom" width="1080" height="1920"
+    style="position:absolute; inset:0; z-index:6; pointer-events:none; mix-blend-mode:screen; opacity:1;"></canvas>
+
+  <!-- supply / money / heat lines -->
+  <svg id="lines" viewBox="0 0 1080 1920" style="position:absolute; inset:0; z-index:8; pointer-events:none;"></svg>
+
+  <!-- night grade, vignette, top and bottom fades so type always reads -->
+  <div style="position:absolute; inset:0; pointer-events:none; z-index:14; background:
+      radial-gradient(58% 34% at 70% 76%, rgba(255,169,77,0.13), rgba(255,169,77,0) 68%),
+      linear-gradient(180deg, rgba(7,8,10,0.96) 0%, rgba(7,8,10,0.30) 16%, rgba(7,8,10,0) 32%,
+        rgba(7,8,10,0) 58%, rgba(7,8,10,0.72) 84%, rgba(7,8,10,0.97) 100%);"></div>
+
+  <div id="overlay" style="position:absolute; inset:0; z-index:16;"></div>
+
+  <div id="hud"></div>
+
+  <!-- title block -->
+  <div style="position:absolute; left:32px; top:170px; z-index:20; display:flex; flex-direction:column; gap:10px;">
+    <span class="mono" style="font-size:20px; letter-spacing:0.22em; color:#FFA94D;">THE MANOR · CONTESTED</span>
+    <span class="disp" style="font-size:104px; line-height:0.84; color:#EDEFF2; text-shadow:0 4px 30px rgba(0,0,0,0.9);">Thirteen<br>cities</span>
+    <div style="display:flex; gap:8px; align-items:center; padding-top:4px;">
+      <span class="mono" style="font-size:19px; letter-spacing:0.14em; color:#9AA0A6;">TERRITORY</span>
+      <div style="width:210px; height:12px; border-radius:6px; overflow:hidden; display:flex; border:1px solid #2A2E33;">
+        <div style="width:38%; background:#FFA94D;"></div>
+        <div style="width:26%; background:#B06CF0;"></div>
+        <div style="width:21%; background:#C9A227;"></div>
+        <div style="flex:1; background:#2A2E33;"></div>
+      </div>
+      <span class="mono tab" style="font-size:19px; color:#FFC97A;">38%</span>
+    </div>
+  </div>
+
+  <!-- legend -->
+  <div style="position:absolute; right:32px; top:170px; z-index:20; display:flex; flex-direction:column; gap:10px; align-items:flex-end;">
+    <span class="mono" style="font-size:19px; letter-spacing:0.2em; color:#5A6068;">HELD BY</span>
+    <div id="legend" style="display:flex; flex-direction:column; gap:8px; align-items:flex-end;"></div>
+    <span class="mono" style="font-size:19px; letter-spacing:0.2em; color:#5A6068; padding-top:12px;">LINES</span>
+    <div style="display:flex; flex-direction:column; gap:8px; align-items:flex-end;">
+      <div style="display:flex; align-items:center; gap:10px;"><span class="mono" style="font-size:18px; color:#9AA0A6;">SUPPLY</span><span style="width:44px; height:3px; background:#B06CF0;"></span></div>
+      <div style="display:flex; align-items:center; gap:10px;"><span class="mono" style="font-size:18px; color:#9AA0A6;">MONEY</span><span style="width:44px; height:3px; background:#C9A227;"></span></div>
+      <div style="display:flex; align-items:center; gap:10px;"><span class="mono" style="font-size:18px; color:#9AA0A6;">HEAT</span><span style="width:44px; height:3px; background:#D63B3B;"></span></div>
+    </div>
+  </div>
+
+  <!-- selected city sheet -->
+  <div id="sheet" style="position:absolute; left:24px; right:24px; bottom:180px; z-index:22;"></div>
+
+  <div id="nav"></div>
+  <div class="tooth"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+const W = 1080, H = 1920;
+
+/* faction control per city — this is what makes the country read as a colour map */
+const CITIES = [
+  { name:'Glasgow',    lat:55.861, lon:-4.250, danger:4, tier:'city', state:'locked', req:'LVL 40',
+    hold:{ rhodes:64, vale:22, manor:0 },  jobs:0,  take:'£0',      heat:1 },
+  { name:'Newcastle',  lat:54.978, lon:-1.618, danger:3, tier:'city', state:'open', req:'LVL 24',
+    hold:{ vale:58, trade:30, manor:12 },  jobs:2,  take:'£1.2k',   heat:2 },
+  { name:'Liverpool',  lat:53.408, lon:-2.991, danger:3, tier:'city', state:'open', req:'LVL 18',
+    hold:{ trade:52, manor:28, vale:20 },  jobs:3,  take:'£2.4k',   heat:2 },
+  { name:'Leeds',      lat:53.800, lon:-1.549, danger:3, tier:'city', state:'open', req:'LVL 20',
+    hold:{ trade:46, manor:34, rhodes:20 },jobs:2,  take:'£1.9k',   heat:3 },
+  { name:'Manchester', lat:53.480, lon:-2.242, danger:3, tier:'city', state:'ready', req:'JOB READY',
+    hold:{ vale:61, manor:24, trade:15 },  jobs:4,  take:'£3.6k',   heat:4 },
+  { name:'Grimsby',    lat:53.567, lon:-0.081, danger:2, tier:'town', state:'town', req:'TOWN',
+    hold:{ trade:70, manor:12 },           jobs:1,  take:'£420',    heat:1 },
+  { name:'Nottingham', lat:52.954, lon:-1.158, danger:2, tier:'city', state:'open', req:'LVL 14',
+    hold:{ vale:55, trade:28, manor:17 },  jobs:2,  take:'£1.1k',   heat:2 },
+  { name:'Birmingham', lat:52.486, lon:-1.890, danger:3, tier:'city', state:'open', req:'LVL 16',
+    hold:{ trade:44, manor:38, vale:18 },  jobs:3,  take:'£2.8k',   heat:3 },
+  { name:'Swindon',    lat:51.559, lon:-1.781, danger:1, tier:'town', state:'town', req:'TOWN',
+    hold:{ rhodes:66, trade:20 },          jobs:1,  take:'£380',    heat:1 },
+  { name:'Bristol',    lat:51.454, lon:-2.588, danger:2, tier:'city', state:'ready', req:'JOB READY',
+    hold:{ manor:57, trade:29, vale:14 },  jobs:4,  take:'£2.2k',   heat:2 },
+  { name:'Luton',      lat:51.879, lon:-0.417, danger:1, tier:'town', state:'town', req:'TOWN',
+    hold:{ rhodes:72, manor:14 },          jobs:1,  take:'£510',    heat:2 },
+  { name:'Margate',    lat:51.385, lon:1.386,  danger:1, tier:'town', state:'town', req:'TOWN',
+    hold:{ manor:48, trade:34 },           jobs:2,  take:'£690',    heat:1 },
+  { name:'London',     lat:51.507, lon:-0.128, danger:5, tier:'city', state:'current', req:'YOU ARE HERE',
+    hold:{ manor:62, vale:22, rhodes:16 }, jobs:6,  take:'£8.4k',   heat:3 }
+];
+
+/* three line types instead of one flat route web */
+const LINES = [
+  ['London','Luton','money'], ['Luton','Birmingham','money'], ['Birmingham','Manchester','supply'],
+  ['Manchester','Liverpool','supply'], ['Manchester','Leeds','supply'], ['Leeds','Newcastle','heat'],
+  ['Newcastle','Glasgow','heat'], ['Birmingham','Nottingham','supply'], ['Nottingham','Grimsby','supply'],
+  ['Birmingham','Swindon','money'], ['Swindon','Bristol','money'], ['London','Bristol','supply'],
+  ['London','Margate','money'], ['London','Birmingham','heat']
+];
+const LINE_COL = { supply:'#B06CF0', money:'#C9A227', heat:'#D63B3B' };
+const byName = Object.fromEntries(CITIES.map(c => [c.name, c]));
+const topFaction = c => Object.entries(c.hold).sort((a, b) => b[1] - a[1])[0];
+
+function scaleFrame() {
+  const f = document.getElementById('frame');
+  const s = Math.min(1, window.innerHeight / H, window.innerWidth / W);
+  f.style.transform = 'scale(' + s + ')';
+  document.body.style.height = (H * s) + 'px';
+}
+addEventListener('resize', scaleFrame);
+scaleFrame();
+mountChrome('map', {});
+
+const map = L.map('leaf', {
+  dragging:false, touchZoom:false, scrollWheelZoom:false, doubleClickZoom:false,
+  boxZoom:false, keyboard:false, zoomControl:false, zoomSnap:0.1
+});
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution:'© OpenStreetMap contributors', maxZoom:19
+}).addTo(map);
+map.fitBounds([[50.1, -6.6], [56.1, 1.6]], { paddingTopLeft:[0, 290], paddingBottomRight:[0, 300] });
+
+const overlay = document.getElementById('overlay');
+const bloom = document.getElementById('bloom');
+const bctx = bloom.getContext('2d');
+const svg = document.getElementById('lines');
+const radius = c => c.state === 'current' ? 56 : c.tier === 'town' ? 24 : 40;
+
+/* ---- 1 · influence blooms: every city bleeds its holder's colour into the map ---- */
+function paintBloom(pt) {
+  bctx.clearRect(0, 0, W, H);
+  CITIES.forEach(c => {
+    const p = pt[c.name];
+    const entries = Object.entries(c.hold).sort((a, b) => b[1] - a[1]);
+    entries.forEach(([f, pct], i) => {
+      const col = (FACTION[f] || FACTION.trade).ring;
+      const r = (c.tier === 'town' ? 120 : 230) * (0.5 + pct / 130) * (i ? 0.62 : 1);
+      const a = (i ? 0.20 : 0.52) * (pct / 100 + 0.4);
+      const g = bctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r);
+      g.addColorStop(0, col + Math.round(a * 255).toString(16).padStart(2, '0'));
+      g.addColorStop(0.55, col + '22');
+      g.addColorStop(1, col + '00');
+      bctx.fillStyle = g;
+      bctx.beginPath();
+      bctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+      bctx.fill();
+    });
+    /* heat sits on top as a red core — felt before it is read */
+    if (c.heat >= 3) {
+      const r = 130 + c.heat * 22;
+      const g = bctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r);
+      g.addColorStop(0, 'rgba(214,59,59,' + (0.06 + c.heat * 0.035) + ')');
+      g.addColorStop(1, 'rgba(214,59,59,0)');
+      bctx.fillStyle = g;
+      bctx.beginPath();
+      bctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+      bctx.fill();
+    }
+  });
+}
+
+/* ---- 2 · flowing lines, curved, colour-coded, dash animated ---- */
+function paintLines(pt) {
+  svg.innerHTML = LINES.map(([a, b, kind]) => {
+    const p = pt[a], q = pt[b];
+    const dx = q.x - p.x, dy = q.y - p.y;
+    const mx = p.x + dx * 0.5 - dy * 0.13, my = p.y + dy * 0.5 + dx * 0.13;
+    const col = LINE_COL[kind];
+    const hot = a === 'London' || b === 'London';
+    return `<path d="M${p.x},${p.y} Q${mx},${my} ${q.x},${q.y}" fill="none" stroke="${col}"
+      stroke-width="${hot ? 3.4 : 2.2}" stroke-linecap="round" opacity="${hot ? 0.62 : 0.34}"
+      stroke-dasharray="16 22" style="animation:flow ${hot ? 2600 : 4200}ms linear infinite;"></path>`;
+  }).join('');
+}
+
+/* ---- 3 · nodes: faction ring, jobs-ready arc, heat pulse ---- */
+function nodeHTML(c) {
+  const size = radius(c) * 2;
+  const [fac] = topFaction(c);
+  const col = c.state === 'locked' ? '#5A6068' : (FACTION[fac] || FACTION.trade).ring;
+  const R = size / 2 - 5, C = 2 * Math.PI * R;
+  const pct = Math.min(1, c.jobs / 6);
+  const ready = c.state === 'ready' || c.state === 'current';
+  return `<div style="position:relative; width:${size}px; height:${size}px;">
+    ${c.heat >= 3 ? `<span style="position:absolute;inset:-24%;border-radius:50%;
+      background:radial-gradient(circle, rgba(214,59,59,0.34), rgba(214,59,59,0) 70%);
+      animation:breathe 2400ms ease-in-out infinite;"></span>` : ''}
+    ${ready ? `<span style="position:absolute;inset:0;border-radius:50%;border:2px solid ${col};
+      animation:ping 2200ms ease-out infinite;"></span>` : ''}
+    <div style="position:absolute;inset:0;border-radius:50%;
+      background:radial-gradient(circle, rgba(8,10,12,0.9), rgba(8,10,12,0.55) 70%);
+      border:${c.state === 'locked' ? '2px dashed #5A6068' : '2px solid ' + col};
+      box-shadow:0 0 ${c.state === 'current' ? 60 : 26}px ${col}${c.state === 'current' ? '55' : '2e'};"></div>
+    <svg width="${size}" height="${size}" style="position:absolute;inset:0;transform:rotate(-90deg);">
+      <circle cx="${size / 2}" cy="${size / 2}" r="${R}" fill="none" stroke="${col}" stroke-width="5"
+        stroke-linecap="round" stroke-dasharray="${C * pct} ${C}" opacity="0.95"></circle>
+    </svg>
+    ${c.state === 'current'
+      ? `<span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:22px;height:22px;
+          border-radius:50%;background:#FFC97A;box-shadow:0 0 24px #FFA94D;"></span>`
+      : `<span class="mono tab" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+          font-size:${c.tier === 'town' ? 18 : 24}px;color:${col};">${c.jobs || '–'}</span>`}
+  </div>`;
+}
+
+function labelHTML(c) {
+  const [fac, pct] = topFaction(c);
+  const col = c.state === 'locked' ? '#5A6068' : (FACTION[fac] || FACTION.trade).ring;
+  const town = c.tier === 'town';
+  const bar = Object.entries(c.hold).sort((a, b) => b[1] - a[1]).map(([f, p]) =>
+    `<span style="width:${p * (town ? 0.7 : 1.1)}px;height:6px;background:${(FACTION[f] || FACTION.trade).ring};"></span>`).join('');
+  return `
+    <div class="disp" style="font-size:${c.state === 'current' ? 48 : town ? 23 : 34}px; line-height:0.94;
+      color:${c.state === 'locked' ? '#6A7078' : '#EDEFF2'};
+      text-shadow:0 2px 16px rgba(0,0,0,0.98), 0 0 6px rgba(0,0,0,0.9);">${c.name}</div>
+    <div style="display:flex; gap:2px; border-radius:3px; overflow:hidden; width:max-content;">${bar}</div>
+    <div class="mono" style="font-size:${town ? 15 : 18}px; letter-spacing:0.12em; color:${col};
+      text-shadow:0 2px 10px rgba(0,0,0,0.98);">${(FACTION[fac] || FACTION.trade).label} ${pct}%</div>
+    ${c.state === 'current' || c.state === 'ready'
+      ? `<div class="mono tab" style="font-size:17px; letter-spacing:0.1em; color:#8A9299;
+          text-shadow:0 2px 10px rgba(0,0,0,0.98);">${c.take} / DAY · HEAT ${c.heat}</div>`
+      : ''}`;
+}
+
+const rank = { current:0, ready:1, open:2, locked:3, town:4 };
+const order = CITIES.slice().sort((a, b) => rank[a.state] - rank[b.state]);
+const nodeEls = {}, labelEls = {};
+CITIES.forEach(c => {
+  const n = document.createElement('div');
+  n.className = 'node';
+  n.style.cursor = 'pointer';
+  n.innerHTML = nodeHTML(c);
+  n.addEventListener('click', () => select(c.name));
+  overlay.appendChild(n);
+  nodeEls[c.name] = n;
+  const l = document.createElement('div');
+  l.className = 'label';
+  l.innerHTML = labelHTML(c);
+  overlay.appendChild(l);
+  labelEls[c.name] = l;
+});
+
+/* measured, collision-free label placement — same approach as v1, kept */
+const PAD = 14;
+const BOUNDS = { x0:32, y0:470, x1:1000, y1:1520 };
+const hits = (a, b) => a.x < b.x + b.w + PAD && a.x + a.w + PAD > b.x && a.y < b.y + b.h + PAD && a.y + a.h + PAD > b.y;
+
+function place() {
+  const scale = overlay.getBoundingClientRect().width / W;
+  const pt = {};
+  CITIES.forEach(c => {
+    const p = map.latLngToContainerPoint([c.lat, c.lon]);
+    pt[c.name] = p;
+    nodeEls[c.name].style.left = p.x + 'px';
+    nodeEls[c.name].style.top = p.y + 'px';
+  });
+  paintBloom(pt);
+  paintLines(pt);
+
+  const circles = CITIES.map(c => ({ x:pt[c.name].x, y:pt[c.name].y, r:radius(c) }));
+  const placed = [];
+  order.forEach(c => {
+    const el = labelEls[c.name], b = el.getBoundingClientRect();
+    const w = b.width / scale, h = b.height / scale, p = pt[c.name], r = radius(c) + 12;
+    const cands = [
+      { x:p.x + r, y:p.y - h / 2 }, { x:p.x - r - w, y:p.y - h / 2 },
+      { x:p.x - w / 2, y:p.y + r }, { x:p.x - w / 2, y:p.y - r - h },
+      { x:p.x + r * 0.7, y:p.y + r * 0.7 }, { x:p.x - r * 0.7 - w, y:p.y + r * 0.7 },
+      { x:p.x + r * 0.7, y:p.y - r * 0.7 - h }, { x:p.x - r * 0.7 - w, y:p.y - r * 0.7 - h }
+    ];
+    let best = null, bestScore = -1e9;
+    for (const cd of cands) {
+      const box = { x:cd.x, y:cd.y, w, h };
+      let score = 0;
+      if (box.x < BOUNDS.x0 || box.y < BOUNDS.y0 || box.x + w > BOUNDS.x1 || box.y + h > BOUNDS.y1) score -= 6000;
+      for (const q of placed) if (hits(box, q)) score -= 2200;
+      for (const ci of circles) {
+        const cxp = Math.max(box.x, Math.min(ci.x, box.x + w));
+        const cyp = Math.max(box.y, Math.min(ci.y, box.y + h));
+        const d = Math.hypot(ci.x - cxp, ci.y - cyp);
+        if (d < ci.r + 6) score -= 1400;
+      }
+      score -= Math.hypot(cd.x + w / 2 - p.x, cd.y + h / 2 - p.y) * 0.05;
+      if (score > bestScore) { bestScore = score; best = box; }
+    }
+    /* every candidate can be out of bounds for a node near a frame edge —
+       clamp the winner back inside so a label is never clipped */
+    best.x = Math.max(BOUNDS.x0, Math.min(best.x, BOUNDS.x1 - w));
+    best.y = Math.max(BOUNDS.y0, Math.min(best.y, BOUNDS.y1 - h));
+    el.style.left = best.x + 'px';
+    el.style.top = best.y + 'px';
+    placed.push(best);
+  });
+}
+
+/* ---- 4 · selected-city sheet ---- */
+let current = 'London', expanded = false;
+function select(name) {
+  current = name;
+  const c = byName[name];
+  const [fac, pct] = topFaction(c);
+  const col = (FACTION[fac] || FACTION.trade).ring;
+  const here = (typeof npcsIn === 'function' ? npcsIn(name) : []).slice(0, 5);
+  const bars = Object.entries(c.hold).sort((a, b) => b[1] - a[1]).map(([f, p]) => `
+    <div style="display:flex; align-items:center; gap:10px;">
+      <span class="mono" style="font-size:18px; letter-spacing:0.1em; color:${(FACTION[f] || FACTION.trade).ring}; width:120px;">${(FACTION[f] || FACTION.trade).label}</span>
+      <div style="flex:1; height:10px; background:#15181C; border-radius:5px; overflow:hidden;">
+        <div style="width:${p}%; height:100%; background:${(FACTION[f] || FACTION.trade).ring};"></div>
+      </div>
+      <span class="mono tab" style="font-size:18px; color:#9AA0A6; width:46px; text-align:right;">${p}%</span>
+    </div>`).join('');
+
+  const sheet = document.getElementById('sheet');
+
+  if (!expanded) {
+    sheet.innerHTML = `
+      <div id="peek" style="border:1px solid ${col}44; border-left:6px solid ${col}; border-radius:16px;
+        background:linear-gradient(180deg, rgba(30,33,38,0.97), rgba(14,16,19,0.97)); cursor:pointer;
+        padding:18px 22px; display:flex; align-items:center; gap:18px;
+        animation:sheetUp 240ms cubic-bezier(.2,.8,.3,1) both; box-shadow:0 -16px 50px rgba(0,0,0,0.6);">
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:4px;">
+          <span class="mono" style="font-size:18px; letter-spacing:0.16em; color:${col};">${c.state === 'current' ? 'YOU ARE HERE' : c.req} · ${(FACTION[fac] || FACTION.trade).label} ${pct}%</span>
+          <span class="disp" style="font-size:46px; line-height:0.94;">${c.name}</span>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:flex-end; gap:4px;">
+          <span class="disp tab" style="font-size:34px; color:#C9A227;">${c.take}</span>
+          <div style="display:flex; gap:5px;">${Array.from({ length:5 }, (_, i) =>
+            `<span style="width:13px;height:13px;border-radius:3px;background:${i < c.heat ? '#D63B3B' : '#2A2E33'};"></span>`).join('')}</div>
+        </div>
+        ${c.state === 'locked'
+          ? `<span class="mono" style="font-size:19px; color:#5A6068; letter-spacing:0.14em;">LOCKED</span>`
+          : `<a class="btn" href="city-map.html" style="width:250px; background:#D9E021; color:#121417;
+              text-decoration:none; font-size:30px;">${c.state === 'current' ? 'Enter' : 'Travel'}</a>`}
+        <span class="mono" style="font-size:22px; color:#5A6068;">▲</span>
+      </div>`;
+    document.getElementById('peek').addEventListener('click', e => {
+      if (e.target.closest('a')) return;
+      expanded = true;
+      select(name);
+    });
+    return;
+  }
+
+  sheet.innerHTML = `
+    <div style="border:1px solid ${col}44; border-left:6px solid ${col}; border-radius:18px;
+      background:linear-gradient(180deg, rgba(30,33,38,0.97), rgba(14,16,19,0.97));
+      padding:22px 26px; display:flex; flex-direction:column; gap:14px; animation:sheetUp 260ms cubic-bezier(.2,.8,.3,1) both;
+      box-shadow:0 -20px 60px rgba(0,0,0,0.6);">
+      <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:20px;">
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <span class="mono" id="collapse" style="font-size:19px; letter-spacing:0.18em; color:${col}; cursor:pointer;">▼ ${c.state === 'current' ? 'YOU ARE HERE' : c.req}</span>
+          <span class="disp" style="font-size:56px; line-height:0.9;">${c.name}</span>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
+          <span class="mono" style="font-size:18px; letter-spacing:0.14em; color:#5A6068;">TAKE / DAY</span>
+          <span class="disp tab" style="font-size:44px; color:#C9A227;">${c.take}</span>
+          <div style="display:flex; gap:6px;">
+            ${Array.from({ length:5 }, (_, i) => `<span style="width:16px;height:16px;border-radius:4px;background:${i < c.heat ? '#D63B3B' : '#2A2E33'};"></span>`).join('')}
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:8px;">${bars}</div>
+      ${here.length ? `<div style="display:flex; align-items:center; gap:14px; border-top:1px solid #2A2E33; padding-top:16px;">
+        <span class="mono" style="font-size:18px; letter-spacing:0.14em; color:#5A6068;">ON THE MANOR</span>
+        <div style="display:flex; gap:8px;">${here.map(n => npcSlot(n, 60)).join('')}</div>
+        <span class="mono" style="font-size:18px; color:#8A9299;">${here.map(n => n.name.split(' ')[0]).join(' · ')}</span>
+      </div>` : ''}
+      <div style="display:flex; gap:14px;">
+        ${c.state === 'locked'
+          ? `<button class="btn" style="flex:1; background:#1E2126; color:#5A6068; border:1px solid #2A2E33;">Locked · ${c.req}</button>`
+          : `<a class="btn" href="city-map.html" style="flex:1; background:#D9E021; color:#121417; text-decoration:none;">${c.state === 'current' ? 'Enter city' : 'Travel here'}</a>`}
+        <button class="btn btn-secondary" style="width:220px;">Intel</button>
+      </div>
+    </div>`;
+  document.getElementById('collapse').addEventListener('click', () => { expanded = false; select(name); });
+}
+
+/* legend: only the factions that actually hold ground, biggest first */
+const held = {};
+CITIES.forEach(c => Object.entries(c.hold).forEach(([f, p]) => { held[f] = (held[f] || 0) + p; }));
+document.getElementById('legend').innerHTML = Object.entries(held)
+  .sort((a, b) => b[1] - a[1])
+  .map(([f]) => {
+    const F = FACTION[f] || FACTION.trade;
+    return `<div style="display:flex; align-items:center; gap:10px;">
+      <span class="mono" style="font-size:18px; letter-spacing:0.1em; color:#9AA0A6;">${F.label}</span>
+      <span style="width:18px; height:18px; border-radius:5px; background:${F.ring};
+        box-shadow:0 0 14px ${F.ring}66;"></span></div>`;
+  }).join('');
+
+map.on('move zoom moveend zoomend', place);
+map.whenReady(() => { place(); select('London'); setTimeout(place, 400); });
+setTimeout(place, 1200);
+</script>
+</body>
+</html>

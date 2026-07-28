@@ -1,0 +1,30 @@
+{
+ "job": "extortion",
+ "stages": [
+  {
+   "name": "The first shop",
+   "text": "Chip shop on the corner of the parade. New, no arrangement, nice till. A quiet word by the drinks fridge and the first envelope of the round is in your pocket.",
+   "fail_text": "His cousin's exactly the cousin you didn't want, and now you owe the conversation, not him."
+  },
+  {
+   "name": "The barber's",
+   "text": "Two doors down, three chairs, cash all day. He clocks you in the mirror and keeps cutting. Do the whole parade in one round and you never have to come back till Friday.",
+   "fail_text": "He's been paying somebody for eleven years and it wasn't you, and he says so with the clippers still running."
+  },
+  {
+   "name": "The nail bar",
+   "text": "Busier out the back than the front, all cash, never banked. She's watched you do the last two through the window and knows what the walk means. Push on and the round pays for itself twice over.",
+   "fail_text": "She's already on the phone to the firm you'd rather not name, and now they know you're working their parade."
+  },
+  {
+   "name": "The takeaway",
+   "text": "The kebab shop had a small fire last month, coincidentally, and reopened nervous. He'll pay more than the rest combined because he's the most frightened. Which is exactly why it's a mistake to lean too hard.",
+   "fail_text": "His son's back from doing something in the forces and has strong feelings about men who frighten his dad."
+  },
+  {
+   "name": "The whole parade at once",
+   "text": "Every shopkeeper's watching you now and they've got a group chat. Collect the last three in one sweep before they can compare notes, or come back next week to a parade that's decided together to say no.",
+   "fail_text": "They compared notes. All eight of them are stood in their doorways at once, and none of them are reaching for an envelope."
+  }
+ ]
+}

@@ -1,0 +1,30 @@
+{
+ "job": "counterfeit",
+ "stages": [
+  {
+   "name": "The market boys",
+   "text": "Boot of knock-off trainers and tick-logo tops to the market lads who'll triple it. Safe, quick, everyone believes they're the clever one. Move this lot and the day's already paid for.",
+   "fail_text": "Trading Standards left a friend behind last week and your buyer's got a lanyard under his coat."
+  },
+  {
+   "name": "The precinct table",
+   "text": "Set up a folding table of boxed perfume that smells almost right. It sells while it smells, which is about an hour. More stock out means more moved before anyone's nose catches up.",
+   "fail_text": "A woman sprays a tester, pulls a face, and says 'fake' loud enough that the whole precinct turns round."
+  },
+  {
+   "name": "The match-day holdall",
+   "text": "Home game, thousands walking to the ground wanting this season's shirt at a quarter of the price. A holdall empties fast on a match day — if the sponsor's printed close enough and the stewards stay lazy.",
+   "fail_text": "A copper on a horse clocks the badge is wrong and starts walking his horse very deliberately at your table."
+  },
+  {
+   "name": "The cash-and-carry",
+   "text": "A back-street wholesaler buys fakes by the pallet, no questions, as long as the box says a brand. One pallet of dud razors moves in a single handshake — but pallets leave a trail a brand's lawyers can follow.",
+   "fail_text": "The wholesaler's had a visit from a brand-protection firm and decided the safe pallet is the one he grasses."
+  },
+  {
+   "name": "The whole container",
+   "text": "There's a container's worth left and a bloke who 'supplies shops' who'll take the lot before teatime. Clear it all in one and you're done for a month — or you're the one holding a shipping container full of evidence.",
+   "fail_text": "His 'shops' are a warehouse full of officers who've been waiting for someone to offer them exactly a container."
+  }
+ ]
+}

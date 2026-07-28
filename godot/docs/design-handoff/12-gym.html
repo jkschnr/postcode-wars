@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>12-gym — Postcode Wars</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="ui.css">
+<script src="cast.js"></script>
+<script src="chrome.js"></script>
+<script src="anim.js"></script>
+<script src="atmos.js"></script>
+</head>
+<body>
+<div id="frame">
+  <div id="hud"></div>
+
+  <div class="scroll" style="top:140px; bottom:160px; padding:28px 32px 48px; box-sizing:border-box; display:flex; flex-direction:column; gap:26px;">
+
+    <div id="hero"></div>
+
+    <div id="stats" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;"></div>
+
+    <div class="panel" style="padding:28px; display:flex; flex-direction:column; gap:20px;">
+      <div class="sechead">
+        <span class="mono" style="font-size:20px; letter-spacing:0.2em; color:#FFA94D;">SESSION</span>
+        <span class="rule"></span>
+        <span id="picked" class="mono" style="font-size:20px; color:#FFA94D;">STRENGTH</span>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:14px;">
+        <button class="btn btn-secondary" data-len="1" style="font-size:26px; flex-direction:column; gap:4px; height:126px;">Light<span class="mono" style="font-size:20px; color:#9AA0A6;">EN 10 · 30M · +1</span></button>
+        <button class="btn btn-secondary" data-len="2" style="font-size:26px; flex-direction:column; gap:4px; height:126px; border-color:#FFA94D; color:#FFA94D;">Proper<span class="mono" style="font-size:20px; color:#FFA94D;">EN 24 · 2H · +3</span></button>
+        <button class="btn btn-secondary" data-len="3" style="font-size:26px; flex-direction:column; gap:4px; height:126px;">Till it hurts<span class="mono" style="font-size:20px; color:#9AA0A6;">EN 48 · 6H · +7</span></button>
+      </div>
+      <span class="mono" style="font-size:20px; color:#5A6068;">TRAINING RUNS WHILE THE APP IS SHUT. ENERGY IS SPENT UP FRONT.</span>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div class="sechead">
+        <span class="mono" style="font-size:20px; letter-spacing:0.2em; color:#FFA94D;">IN THE QUEUE</span>
+        <span class="rule"></span>
+        <span class="mono" style="font-size:20px; color:#5A6068;">2 OF 3 SLOTS</span>
+      </div>
+      <div id="queue" class="tab" style="display:flex; flex-direction:column; gap:14px;"></div>
+      <button class="btn btn-primary">Collect gains</button>
+    </div>
+
+    <div id="trainer" class="panel" style="border-left:6px solid #FFA94D; background:#2A2E33; padding:22px 26px; display:flex; align-items:center; gap:20px;"></div>
+  </div>
+
+  <div id="nav"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+mountChrome('char', {});
+mountHero({ lat:51.5270, lon:-0.0550, zoom:16.6, ghost:'IRON',
+  kicker:'PICK ONE, QUEUE THE REST', title:'The gym', meta:'BETHNAL GREEN IRON · OPEN 24H · NO MIRRORS',
+  back:{ label:'LONDON', href:'02-city.html' } });
+
+const STATS = [
+  { k:'STRENGTH', v:18, pct:36, note:'CARRY MORE, TAKE LESS' },
+  { k:'NERVE',    v:24, pct:48, note:'HOLD IT TOGETHER LONGER' },
+  { k:'SPEED',    v:15, pct:30, note:'GET OFF THE ROAD FASTER' },
+  { k:'CHARM',    v:50, pct:100, note:'MAXED — NOTHING LEFT TO LEARN' }
+];
+let picked = 'STRENGTH';
+
+function draw() {
+  document.getElementById('stats').innerHTML = STATS.map(s => {
+    const on = s.k === picked, max = s.pct === 100;
+    return `<div class="panel tab" data-k="${s.k}" style="padding:24px; display:flex; flex-direction:column; gap:14px; cursor:pointer;
+      ${on ? 'border-color:#FFA94D; background:rgba(255,169,77,0.08);' : ''}${max ? 'opacity:0.6;' : ''}">
+      <div style="display:flex; align-items:baseline; justify-content:space-between;">
+        <span class="mono" style="font-size:22px; letter-spacing:0.14em; color:${max ? '#F2C14E' : on ? '#FFA94D' : '#9AA0A6'};">${s.k}</span>
+        <span class="disp" style="font-size:52px; line-height:1; color:${max ? '#F2C14E' : '#EDEFF2'};">${s.v}</span>
+      </div>
+      <div style="height:20px; border-radius:10px; background:#0C0E10; border:1px solid ${max ? '#F2C14E' : '#2A2E33'}; overflow:hidden; display:flex;">
+        <div style="width:${s.pct}%; background:${max ? '#F2C14E' : '#FFA94D'};"></div>
+      </div>
+      <span class="mono" style="font-size:20px; color:#5A6068;">${s.note}</span>
+    </div>`;
+  }).join('');
+  document.getElementById('picked').textContent = picked;
+  document.querySelectorAll('#stats [data-k]').forEach(el =>
+    el.addEventListener('click', () => { if (el.dataset.k !== 'CHARM') { picked = el.dataset.k; draw(); } }));
+}
+draw();
+
+const QUEUE = [
+  { k:'NERVE +3', pct:74, left:'00:31', tint:'#FFA94D' },
+  { k:'SPEED +1', pct:100, left:'READY', tint:'#D9E021' }
+];
+document.getElementById('queue').innerHTML = QUEUE.map(q => `
+  <div class="panel" style="padding:20px 24px; display:flex; align-items:center; gap:20px; ${q.left === 'READY' ? 'border-color:#D9E021;' : ''}">
+    ${timerRing(q.pct, q.tint, 64)}
+    <div style="flex:1; display:flex; flex-direction:column; gap:6px;">
+      <span class="mono" style="font-size:20px; letter-spacing:0.12em; color:#9AA0A6;">SESSION</span>
+      <span class="disp" style="font-size:38px; line-height:1;">${q.k}</span>
+    </div>
+    <span class="disp" style="font-size:${q.left === 'READY' ? 34 : 40}px; color:${q.left === 'READY' ? '#D9E021' : '#EDEFF2'};">${q.left}</span>
+  </div>`).join('');
+
+const t = pick(CAST.filter(c => ['uncle_t','maz','marlon','kadeem','pearl'].includes(c.id)));
+document.getElementById('trainer').innerHTML = `
+  ${portraitSlot(t, 96, '#FFA94D')}
+  <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:8px;">
+    <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#FFA94D;">${t.name.toUpperCase()} · SPOTTING YOU</span>
+    <span style="font-size:26px; line-height:1.35;">“${pick(t.lines)}”</span>
+  </div>`;
+</script>
+</body>
+</html>

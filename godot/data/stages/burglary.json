@@ -1,0 +1,70 @@
+{
+ "job": "burglary",
+ "stages": [
+  {
+   "name": "The front room",
+   "text": [
+    "Telly's still warm. There's a laptop bag by the sofa and a jar of coins on the shelf that's got more in it than you'd think.",
+    "Curtains open, lights off, a games console under the telly and a handbag over the arm of a chair like it was only ever going to be borrowed.",
+    "Somebody's just moved in — boxes half-unpacked, the good stuff still in bubble wrap, a laptop charging on a pile of paperwork that has their whole life on it."
+   ],
+   "fail_text": [
+    "Motion light out the back. You're over the fence before it finishes coming on.",
+    "A key turns in the front door. School run came back early and you go out the way you came in.",
+    "The telly being warm meant someone was just watching it, and someone still is, from the kitchen doorway."
+   ]
+  },
+  {
+   "name": "The bedroom",
+   "text": [
+    "Jewellery box on the side. Watches in a bowl like they're nothing. Something's ticking somewhere and you can't find what.",
+    "Two bedside tables and only one of them's got anything in it. That tells you who's still living here, and where they keep the rings.",
+    "Bed not made, drawer half open, the whole room saying somebody left in a hurry this morning — and will come back in one too."
+   ],
+   "fail_text": [
+    "Floorboard goes. Someone says 'hello?' from upstairs and you don't wait to find out who.",
+    "The jewellery box plays a tune when you open it, the kind a child would've loved and a burglar really wouldn't.",
+    "A cat you didn't know about knocks the watch bowl off the side and the whole street hears the house wake up."
+   ]
+  },
+  {
+   "name": "The office",
+   "text": [
+    "Laptop, two phones, and a drawer that's locked, which is the only drawer in this house that's locked.",
+    "A desk with a docked laptop, a camera in a bag, and a filing cabinet somebody's put a proper lock on, which is the same as a signpost.",
+    "Home office, box of pristine tech somebody claimed back on expenses, and a hard drive that's worth nothing to you and everything to them."
+   ],
+   "fail_text": [
+    "The drawer's alarmed. You've got maybe forty seconds and you spend six of them swearing.",
+    "The locked drawer's locked because it's the panic button, and you've just given it a very good reason.",
+    "A webcam light blinks on as you pass it and somewhere a phone buzzes on a nightshift worker's break."
+   ]
+  },
+  {
+   "name": "The safe",
+   "text": [
+    "It's behind the wardrobe because of course it is. It's not a good safe. It's a safe that a man who's never been robbed thinks is a good safe.",
+    "Bolted to the floor of the airing cupboard, a keypad with four keys worn shinier than the rest — which narrows the code to about six tries.",
+    "Under the stairs, a fire safe more suited to documents than valuables, which means whatever's in it, they were more scared of losing it than of you."
+   ],
+   "fail_text": [
+    "Blue light comes through the curtain. You go out the window and you leave the bag.",
+    "It's bolted through the joists and it isn't coming with you, and the drilling's brought a face to the top of the stairs.",
+    "The worn keys were a decoy code and the third wrong try triggers a dialler you can hear connecting."
+   ]
+  },
+  {
+   "name": "The loft",
+   "text": [
+    "Nobody keeps anything up here except the things they can't explain to anyone. Which is exactly why you're going up.",
+    "The hatch is the only clean thing in a dusty house — used often, by someone hiding what they visit often, which is always worth the ladder.",
+    "Boxes labelled 'XMAS' and 'BABY' and one with no label at all, pushed to the back under the water tank where you'd put a thing you loved."
+   ],
+   "fail_text": [
+    "You come down the ladder into a torch beam. That's that.",
+    "The loft boards aren't boards, they're plasterboard, and your foot comes through the landing ceiling with the rest of you close behind.",
+    "The unlabelled box is empty except for a note that says they knew this day would come, and downstairs a floorboard answers your weight."
+   ]
+  }
+ ]
+}

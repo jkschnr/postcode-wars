@@ -1,0 +1,106 @@
+[
+  {
+    "id": "uncle_t_van",
+    "speaker": "Uncle T", "col": "#FFA94D",
+    "conditions": { "min_level": 1, "max_heat": 7 },
+    "text": "\"Man's got a van full of bits needs moving tonight. Two hundred, cash, no questions. You in or you busy?\"",
+    "options": [
+      { "label": "Take it", "hint": "+£200 · +heat", "effects": { "dirty": 200, "heat": 2, "xp": 40 } },
+      { "label": "Ask for more", "hint": "Slickness check", "check": { "stat": "slickness", "dc": 12 },
+        "on_pass": { "dirty": 350, "heat": 2, "xp": 60, "text": "\"Alright, alright. You've got some mouth on you.\"" },
+        "on_fail": { "xp": 5, "text": "He laughs. \"Know your place, yout.\"" } },
+      { "label": "Pass", "hint": "walk away", "effects": { "text": "\"Suit yourself.\"" } }
+    ]
+  },
+  {
+    "id": "plug_bulk",
+    "speaker": "The Plug", "col": "#D63B3B",
+    "conditions": { "min_level": 3 },
+    "text": "\"Bulk ting, one time. Box of product, cheap — but I need the paper up front, yeah?\"",
+    "options": [
+      { "label": "Buy the box", "hint": "-£400 dirty", "req_dirty": 400,
+        "effects": { "dirty": -400, "xp": 30, "text": "Boxed up. That'll move fast." } },
+      { "label": "Haggle", "hint": "Slickness check", "check": { "stat": "slickness", "dc": 14 },
+        "on_pass": { "dirty": -250, "xp": 45, "text": "Talked him right down. Respect." },
+        "on_fail": { "heat": 1, "text": "\"Cheeky.\" He walks. Word gets round." } },
+      { "label": "Allow it", "effects": { "text": "Maybe next time." } }
+    ]
+  },
+  {
+    "id": "feds_stop",
+    "speaker": "The Feds", "col": "#2E5EAA",
+    "conditions": { "min_level": 1, "min_heat": 3 },
+    "text": "Blue lights. \"Empty your pockets, son.\" You're carrying dirty and your heat's up.",
+    "options": [
+      { "label": "Say nothing", "hint": "Toughness check", "check": { "stat": "toughness", "dc": 12 },
+        "on_pass": { "heat": -2, "xp": 25, "text": "\"On your way.\" Cool as you like." },
+        "on_fail": { "dirty_frac": 1.0, "heat": 2, "text": "Nicked. They took the lot." } },
+      { "label": "Leg it", "hint": "Speed check", "check": { "stat": "speed", "dc": 13 },
+        "on_pass": { "heat": -1, "xp": 40, "energy": -20, "text": "Gone. Over the fence and away." },
+        "on_fail": { "dirty_frac": 1.0, "heat": 3, "text": "Caught. Assault charge added." } },
+      { "label": "Call the Brief", "hint": "-£300 clean", "req_clean": 300,
+        "effects": { "clean": -300, "heat": -3, "text": "\"Say nothing till I'm there.\" Sorted." } }
+    ]
+  },
+  {
+    "id": "keisha_fence",
+    "speaker": "Keisha", "col": "#4DA3FF",
+    "conditions": { "min_level": 1 },
+    "text": "\"You keep pulling phones, I keep finding buyers. Got a bag of Ps here for anything peng.\"",
+    "options": [
+      { "label": "Take the cash", "hint": "+£180 dirty", "effects": { "dirty": 180, "xp": 15, "text": "Quick flip, no questions." } },
+      { "label": "Push the price", "hint": "Slickness check", "check": { "stat": "slickness", "dc": 13 },
+        "on_pass": { "dirty": 320, "xp": 25, "text": "She rated you. Top price." },
+        "on_fail": { "dirty": 120, "text": "\"Take it or leave it.\" You take it." } }
+    ]
+  },
+  {
+    "id": "glb_tax",
+    "speaker": "Green Lane Boys", "col": "#57C785",
+    "conditions": { "min_level": 4 },
+    "text": "Three of them block the road. \"This our postcode. Wanna work here? You pay tax. Twenty percent.\"",
+    "options": [
+      { "label": "Pay the tax", "hint": "-20% dirty", "effects": { "dirty_frac": 0.2, "heat": -1, "text": "Paid. Beef squashed — for now." } },
+      { "label": "Send a message", "hint": "Strength check", "check": { "stat": "strength", "dc": 14 },
+        "on_pass": { "xp": 60, "heat": 2, "text": "You backed them down. That's a name made." },
+        "on_fail": { "dirty_frac": 0.4, "heat": 2, "energy": -25, "text": "Duppy'd. They took double." } },
+      { "label": "Back off", "effects": { "text": "You allow it. Word travels." } }
+    ]
+  },
+  {
+    "id": "cleaner",
+    "speaker": "The Cleaner", "col": "#B06CF0",
+    "conditions": { "min_level": 2, "min_heat": 4 },
+    "text": "\"Footage? What footage. I can wipe the cameras that clocked you — for a price.\"",
+    "options": [
+      { "label": "Pay him", "hint": "-£500 clean", "req_clean": 500,
+        "effects": { "clean": -500, "heat": -5, "text": "Wiped. You were never there." } },
+      { "label": "Ride it out", "effects": { "text": "You'll let the heat cool on its own." } }
+    ]
+  },
+  {
+    "id": "drunk_cityboy",
+    "speaker": "A drunk city boy", "col": "#D9E021",
+    "conditions": { "min_level": 1 },
+    "text": "Stumbling out the club, phone out, Rolex on, no idea where he is. Easy.",
+    "options": [
+      { "label": "Snatch it all", "hint": "Speed check", "check": { "stat": "speed", "dc": 11 },
+        "on_pass": { "dirty": 350, "xp": 30, "heat": 1, "text": "Watch AND phone. Peng." },
+        "on_fail": { "heat": 2, "text": "Bouncer clocked you. Move." } },
+      { "label": "Just the phone", "hint": "+£120 · +heat", "effects": { "dirty": 120, "heat": 1, "xp": 12, "text": "Quick and quiet." } },
+      { "label": "Leave him", "effects": { "text": "Not tonight." } }
+    ]
+  },
+  {
+    "id": "younger_wants_in",
+    "speaker": "A Younger", "col": "#9AA0A6",
+    "conditions": { "min_level": 2 },
+    "text": "\"Big man. I see you movin'. Let me run for you — I'm quick, I know the trains.\"",
+    "options": [
+      { "label": "Test him", "hint": "Slickness check", "check": { "stat": "slickness", "dc": 12 },
+        "on_pass": { "dirty": 120, "xp": 40, "text": "He passed. Loyal one, this — remember him." },
+        "on_fail": { "heat": 1, "text": "He bottled it and got clocked. Allow him." } },
+      { "label": "Not yet", "effects": { "text": "\"Say no more.\"" } }
+    ]
+  }
+]

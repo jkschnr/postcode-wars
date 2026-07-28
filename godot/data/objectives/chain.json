@@ -1,0 +1,105 @@
+{
+  "start": "obj_first_500",
+  "chain": [
+    { "id": "obj_first_500", "text": "Earn £500", "subtext": "T told you the three safe ways. Start there.",
+      "target": { "type": "dirty_earned_total", "amount": 500 }, "goto": { "screen": "jobs" },
+      "on_complete": { "unlock_venues": ["bank"], "trigger_beat": "nads_teaches_banking", "grant": { "xp": 120 }, "next": "obj_bank_it" } },
+
+    { "id": "obj_bank_it", "text": "Bank your money", "subtext": "Nads: you're carrying it in your sock like a muppet.",
+      "target": { "type": "clean_balance", "amount": 300 }, "goto": { "screen": "bank" },
+      "on_complete": { "next": "obj_sell_gear" } },
+
+    { "id": "obj_sell_gear", "text": "Sell three things you've nicked", "subtext": "Keisha's in the market. She'll rob you politely.",
+      "target": { "type": "items_sold", "count": 3 }, "goto": { "screen": "fence" },
+      "on_complete": { "unlock_venues": ["fence"], "trigger_beat": "keisha_intro", "grant": { "xp": 120 }, "next": "obj_get_stronger" } },
+
+    { "id": "obj_get_stronger", "text": "Train twice", "subtext": "You got dropped by a nineteen-year-old.",
+      "target": { "type": "stat_trained", "count": 2 }, "goto": { "screen": "gym" },
+      "on_complete": { "unlock_venues": ["gym"], "trigger_beat": "uncle_t_gym", "next": "obj_train_once" } },
+
+    { "id": "obj_train_once", "text": "Put the work in", "subtext": "Iron Temple, under the arches. Ronnie charges nothing.",
+      "target": { "type": "stat_trained", "count": 3 }, "goto": { "screen": "gym" },
+      "on_complete": { "grant": { "xp": 120 }, "next": "obj_first_crew" } },
+
+    { "id": "obj_first_crew", "text": "Put one on the payroll", "subtext": "Rico's been hanging around asking. He'll say yes before you finish.",
+      "target": { "type": "crew_size", "count": 1 }, "goto": { "screen": "crew" },
+      "on_complete": { "unlock_venues": ["crew"], "trigger_beat": "rico_intro", "next": "obj_2000" } },
+
+    { "id": "obj_2000", "text": "Raise £2,000", "subtext": "First payment. Silas doesn't do extensions.",
+      "target": { "type": "clean_balance", "amount": 2000 }, "goto": { "screen": "jobs" },
+      "on_complete": { "unlock_venues": ["shop"], "trigger_beat": "gear_intro", "grant": { "xp": 250 }, "next": "obj_leave_london" } },
+
+    { "id": "obj_leave_london", "text": "Get out of London", "subtext": "Delroy says Birmingham pays better for cars.",
+      "target": { "type": "travel_any", "count": 1 }, "goto": { "screen": "map" },
+      "on_complete": { "unlock_venues": ["map_full", "contacts"], "next": "obj_level_10" } },
+
+    { "id": "obj_level_10", "text": "Make a name", "subtext": "People have started using it instead of pointing.",
+      "target": { "type": "level_reached", "level": 10 }, "goto": { "screen": "jobs" },
+      "on_complete": { "unlock_venues": ["trapline"], "trigger_beat": "silas_trapline", "grant": { "xp": 400 }, "next": "obj_level_15" } },
+
+    { "id": "obj_level_15", "text": "Reach level 15", "subtext": "Silas has been asking about you. That's not good news.",
+      "target": { "type": "level_reached", "level": 15 }, "goto": { "screen": "jobs" },
+      "on_complete": { "unlock_venues": ["firm", "territory"], "grant": { "xp": 800 }, "next": "obj_warehouse" } },
+
+    { "id": "obj_warehouse", "text": "Save £3,000 for the setup", "subtext": "Nads has a plan and it involves Delroy's van, which Delroy doesn't know about yet.",
+      "target": { "type": "clean_balance", "amount": 3000 }, "goto": { "screen": "jobs" },
+      "on_complete": { "trigger_beat": "a1_warehouse", "grant": { "xp": 350 }, "next": "obj_pay_silas" } },
+
+    { "id": "obj_pay_silas", "text": "Bank £5,000 clean", "subtext": "He counts it in front of you. That's not distrust — that's a man who's been let down before.",
+      "target": { "type": "clean_balance", "amount": 5000 }, "goto": { "screen": "bank" },
+      "on_complete": { "trigger_beat": "a1_payment", "grant": { "xp": 400 }, "next": "obj_survive_ambush" } },
+
+    { "id": "obj_survive_ambush", "text": "Turn over £15,000 in all", "subtext": "You carry that home once and you understand why nobody talks about how heavy it is.",
+      "target": { "type": "dirty_earned_total", "amount": 15000 }, "goto": { "screen": "jobs" },
+      "on_complete": { "unlock_venues": ["shop_tier2"], "grant": { "xp": 300 }, "next": "obj_gear_up" } },
+
+    { "id": "obj_gear_up", "text": "Equip five pieces", "subtext": "Delroy: you're worth robbing now. Dress like it or don't cry when it happens.",
+      "target": { "type": "items_equipped", "count": 5 }, "goto": { "screen": "character" },
+      "on_complete": { "trigger_beat": "gear_intro_2", "grant": { "xp": 250 }, "next": "obj_glb_beef" } },
+
+    { "id": "obj_glb_beef", "text": "Case two of Zeb's targets", "subtext": "Green Lane's noticed you. Watch before you move — Zeb doesn't do second chances.",
+      "target": { "type": "target_cased", "count": 2 }, "goto": { "screen": "jobs" },
+      "on_complete": { "trigger_beat": "a2_glb", "grant": { "xp": 350 }, "next": "obj_first_line" } },
+
+    { "id": "obj_first_line", "text": "Push a job to the third room", "subtext": "A line runs itself once it's set. Learn to go deeper before you learn to go wider.",
+      "target": { "type": "stage_reached", "stage": 3 }, "goto": { "screen": "jobs" },
+      "on_complete": { "unlock_venues": ["trapline"], "trigger_beat": "silas_trapline", "grant": { "xp": 300 }, "next": "obj_line_running" } },
+
+    { "id": "obj_line_running", "text": "Turn over £25,000 in all", "subtext": "Three clean runs and nobody's noticed. That's the whole art of it — being boring on purpose.",
+      "target": { "type": "dirty_earned_total", "amount": 25000 }, "goto": { "screen": "jobs" },
+      "on_complete": { "trigger_beat": "a2_line_working", "grant": { "xp": 450 }, "next": "obj_second_city" } },
+
+    { "id": "obj_second_city", "text": "Move between three manors", "subtext": "Manchester pays and Manchester forgets your face. Both are useful.",
+      "target": { "type": "travel_any", "count": 3 }, "goto": { "screen": "map" },
+      "on_complete": { "unlock_venues": ["manchester_jobs"], "grant": { "xp": 300 }, "next": "obj_arena_first" } },
+
+    { "id": "obj_arena_first", "text": "Win one on the street", "subtext": "Respect's a currency too. Nobody fronts a name that's put someone on the deck.",
+      "target": { "type": "arena_wins", "count": 1 }, "goto": { "screen": "arena" },
+      "on_complete": { "trigger_beat": "arena_intro", "grant": { "xp": 300 }, "next": "obj_crew_of_three" } },
+
+    { "id": "obj_crew_of_three", "text": "Build a crew of three", "subtext": "One's a favour, two's a habit, three's a firm. Careful what you're becoming.",
+      "target": { "type": "crew_size", "count": 3 }, "goto": { "screen": "crew" },
+      "on_complete": { "trigger_beat": "crew_expand", "grant": { "xp": 400 }, "next": "obj_call_kayo" } },
+
+    { "id": "obj_call_kayo", "text": "Take Kayo's call", "subtext": "He gets nine minutes a week. He's spending some of them on you. Pick up.",
+      "target": { "type": "calls_made", "count": 1 }, "goto": { "screen": "messages" },
+      "on_complete": { "trigger_beat": "kayo_first_call", "grant": { "xp": 200 }, "next": "obj_deep_push" } },
+
+    { "id": "obj_deep_push", "text": "Push a job to the fifth room", "subtext": "The money's always in the room you nearly didn't go into. Nearly.",
+      "target": { "type": "stage_reached", "stage": 5 }, "goto": { "screen": "jobs" },
+      "on_complete": { "grant": { "xp": 600 }, "next": "obj_specialise" } },
+
+    { "id": "obj_specialise", "text": "Reach level 20", "subtext": "Uncle T wants a word. He's decided what you are, and he's usually right.",
+      "target": { "type": "level_reached", "level": 20 }, "goto": { "screen": "jobs" },
+      "on_complete": { "trigger_beat": "specialisation_naming", "grant": { "xp": 700 }, "next": "obj_keisha_rumour" } },
+
+    { "id": "obj_keisha_rumour", "text": "Sell Keisha five things", "subtext": "She never just buys. Sell enough and she starts telling you things — for free, which from Keisha means it's expensive.",
+      "target": { "type": "items_sold", "count": 5 }, "goto": { "screen": "fence" },
+      "on_complete": { "trigger_beat": "keisha_rumour", "grant": { "xp": 400 }, "next": "obj_ledger_contract" } },
+
+    { "id": "obj_ledger_contract", "text": "Turn over £35,000 in all", "subtext": "The Ledger has a contract with your name on it, and a woman called Yasmin who wrote it.",
+      "target": { "type": "dirty_earned_total", "amount": 35000 }, "goto": { "screen": "jobs" },
+      "fallback": true,
+      "on_complete": { "trigger_beat": "a2_yasmin", "grant": { "xp": 900 }, "next": "" } }
+  ]
+}

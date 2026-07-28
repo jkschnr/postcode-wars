@@ -1,0 +1,70 @@
+{
+ "job": "corner_shotting",
+ "stages": [
+  {
+   "name": "First hour",
+   "text": [
+    "Regulars. Nods, no talking. Easy money.",
+    "Bench by the shops, youngers doing loops as eyes, the little bag taped under the third slat. Slow, quiet, the way a good night starts.",
+    "First light traffic of the evening, faces you've served a hundred times, nothing above a twenty, nobody you don't already know."
+   ],
+   "fail_text": [
+    "A face you don't like slows down to look twice. You call it a night early.",
+    "One of the buyers has shoes too clean for round here. He's counting, not buying, and you clock it a beat late.",
+    "The younger on the bike pedals off without a word, which is the signal, and you're already walking the other way."
+   ]
+  },
+  {
+   "name": "Busy",
+   "text": [
+    "Word's got round. There's a queue, which is good money and bad news at the same time.",
+    "A dry spell everywhere else has sent every phone in the postcode to yours. Too much demand is its own kind of danger — a queue you can see from space.",
+    "Steady stream now, hand to hand, no gaps between them, the good rhythm where the money's coming faster than you can worry about it."
+   ],
+   "fail_text": [
+    "Too many hands, too little light. One of them isn't buying.",
+    "The queue got long enough to notice and long enough to film, and one face in it was sent to make exactly that happen.",
+    "Two of them hang back instead of leaving, and men who don't leave are men waiting for something."
+   ]
+  },
+  {
+   "name": "The school run",
+   "text": [
+    "Wrong time of day for this. Too many eyes. Too much money.",
+    "Home-time crowd, a gap in the railings the sixth-formers use, blazers with dinner money and worse ideas. The gap brings them to you, which is the only clean part.",
+    "Mums at the gates, kids everywhere, and a run of quick quiet sales in the chaos where nobody's looking at anybody for the right reasons."
+   ],
+   "fail_text": [
+    "A parent's got their phone up. Not filming you. Filming near you. Close enough.",
+    "A teacher on gate duty has watched that gap in the railings all term, and today she walks over instead of writing it down.",
+    "One of the blazers is somebody's little brother and somebody's little brother is exactly who tells."
+   ]
+  },
+  {
+   "name": "After dark",
+   "text": [
+    "Different crowd now. Bigger orders. Less chat.",
+    "Night proper now, the bench swapped for a doorway, bigger money and bigger risk and buyers who count in hundreds instead of twenties.",
+    "The evening's turned — fewer faces, deeper pockets, the kind of orders that pay for the week and attract the kind of attention that ends it."
+   ],
+   "fail_text": [
+    "The bigger order comes with a bigger problem, and the problem's got mates.",
+    "A car pulls up wanting weight you don't carry on the corner, and wanting is a short step from taking.",
+    "The doorway you picked belongs to a flat whose tenant's had enough, and the door opens behind you."
+   ]
+  },
+  {
+   "name": "Last call",
+   "text": [
+    "One car's been past three times. You've clocked it. You keep serving anyway.",
+    "Last of the night, one more sale, and a saloon that's done a slow lap of the block twice too often. You know better and you serve anyway because it's money.",
+    "You're packing up when one more face wants serving, and behind him a car sits with its lights off and its engine running."
+   ],
+   "fail_text": [
+    "The car stops. The doors open on both sides. You were right about the car.",
+    "The last face wasn't buying — he was keeping you talking while the saloon came round for the third time.",
+    "Blue lights, no siren, the quiet kind that means they've been watching the whole last hour decide who you are."
+   ]
+  }
+ ]
+}

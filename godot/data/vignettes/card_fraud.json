@@ -1,0 +1,156 @@
+[
+ {
+  "id": "fraud_shimmer",
+  "target": {
+   "name": null,
+   "detail": "the cashpoint with the extra bit on it"
+  },
+  "setup": "Shimmer in the card slot, pinhole camera up top angled at the keypad, a day's worth of a busy machine's punters writing themselves down.",
+  "on_success": "Pull the kit at the quiet hour, clone the cards, and spend from three towns over before the first statement lands.",
+  "on_fail": "The machine got serviced early and the engineer knows exactly what your little extra is and where the camera points — at you.",
+  "on_crit": "A business account went through with a fat float on it. One card, a very good week.",
+  "job": "card_fraud",
+  "conditions": {
+   "max_heat": 12
+  }
+ },
+ {
+  "id": "fraud_cloned",
+  "conditions": {
+   "cities": [
+    "leeds"
+   ],
+   "max_heat": 12
+  },
+  "target": {
+   "name": "the runners",
+   "detail": "the cloned cards and a shopping list"
+  },
+  "setup": "Stack of cloned cards, a list of what buys clean and resells fast — gift cards, spirits, the odd laptop — and a couple of youngers to walk them in.",
+  "on_success": "Spread across a dozen tills so no one card gets warm. Convert to clean goods, goods to cash, cash to gone.",
+  "on_fail": "One runner gets greedy at the till, tries it twice, the card declines loud and the security guard was bored anyway.",
+  "on_crit": "A card with no limit anyone's found yet. You stop before you get greedy. Just.",
+  "job": "card_fraud"
+ },
+ {
+  "id": "cf_petrol_pump",
+  "conditions": {
+   "max_heat": 6
+  },
+  "target": {
+   "name": "—",
+   "detail": "the outer pump the CCTV can't quite reach"
+  },
+  "setup": "Pay-at-pump station, one bank of pumps angled away from the kiosk camera. A cloned card in your pocket and a full tank's worth of nerve. Nobody watches pump six.",
+  "on_success": "Card in, pump runs, receipt declined into your pocket. You fill two jerry cans in the boot as well, because a tank's a tank.",
+  "on_fail": "The pump asks for a postcode you don't have and holds the transaction while it thinks about you on camera.",
+  "job": "card_fraud"
+ },
+ {
+  "id": "cf_contactless_run",
+  "conditions": {
+   "time": "day",
+   "max_heat": 7
+  },
+  "target": {
+   "name": "Denise",
+   "detail": "a stack of cards good for one tap each before they trip"
+  },
+  "setup": "Cloned cards, none of them worth a proper spend, all of them good for a contactless tap under the limit. A high street full of tills that don't ask twice.",
+  "on_success": "You tap your way down the parade — coffee, phone case, two meal deals, a bottle of something — and bin each card before it can say no.",
+  "on_fail": "Third shop, the card beeps the wrong colour and the girl behind the till already has her finger on the button under the counter.",
+  "on_crit": "One of the cards isn't clipped at all. It just keeps working, tap after tap, all the way to the retail park.",
+  "job": "card_fraud"
+ },
+ {
+  "id": "cf_hotel_preauth",
+  "conditions": {
+   "min_level": 10,
+   "max_heat": 12
+  },
+  "target": {
+   "name": "—",
+   "detail": "a business card with a fat float sitting on it"
+  },
+  "setup": "Hotel check-in with a cloned corporate card, the kind with a spending limit that could buy a car. The receptionist's more worried about your bags than your details.",
+  "on_success": "Room booked, minibar emptied, spa treatments billed to a company that won't notice for a month. You check out before the pre-auth clears into a charge.",
+  "on_fail": "The card flags on the pre-authorisation and the duty manager appears with the specific calm of someone trained for exactly this.",
+  "job": "card_fraud"
+ },
+ {
+  "id": "cf_online_dropbox",
+  "conditions": {
+   "max_heat": 12
+  },
+  "target": {
+   "name": "—",
+   "detail": "a delivery address that isn't yours and never was"
+  },
+  "setup": "An empty flat with a working letterbox, a laptop, and a list of card numbers. Order the small dear things — phones, gift cards, perfume — and let the couriers do the crime for you.",
+  "on_success": "Parcels stack up on the mat of a flat that belongs to nobody. You collect once, convert twice, and the address never sees you.",
+  "on_fail": "The card company's fraud team flags the address before the courier does, and there's a very still car outside when you go to collect.",
+  "job": "card_fraud"
+ },
+ {
+  "id": "cf_atm_shimmer",
+  "conditions": {
+   "time": "night",
+   "max_heat": 6
+  },
+  "target": {
+   "name": "—",
+   "detail": "the hole in the wall outside the shut-up bank"
+  },
+  "setup": "A shimmer thin as a bus ticket already sitting in the card slot, a pinhole camera on the light fitting above the keypad, and a whole day's worth of a busy machine writing itself down for you.",
+  "on_success": "You pull the kit at the dead hour, clone the night's takings, and spend them three towns over before the first statement lands on a doormat.",
+  "on_fail": "An engineer's out early servicing the machine and he knows exactly what your little extra is, and exactly where the pinhole's pointing.",
+  "on_crit": "A business account went through the machine with the weekend's float still on it. One card, a very good week.",
+  "job": "card_fraud"
+ },
+ {
+  "id": "cf_taxi_terminal",
+  "conditions": {
+   "max_heat": 5
+  },
+  "target": {
+   "name": "—",
+   "detail": "the cab firm that lets the driver key the amount"
+  },
+  "setup": "Minicab with a card reader the driver types the fare into himself. Cloned card, a long fake journey, and a cut for a driver who's decided he doesn't earn enough to have a conscience.",
+  "on_success": "A forty-mile fare that never happened, split down the middle at the rank, and a receipt for a trip to an airport you never saw.",
+  "on_fail": "The driver bottles it halfway and cancels the transaction, and now two people know and only one of them is calm.",
+  "job": "card_fraud"
+ },
+ {
+  "id": "cf_charity_tin_tap",
+  "conditions": {
+   "max_heat": 12
+  },
+  "target": {
+   "name": "—",
+   "detail": "a card machine glued into a fake collection tin"
+  },
+  "setup": "A tabard, a lanyard, and a tap-to-donate tin rigged to a reader that isn't a charity's. The precinct on a Saturday is full of people who'd rather tap than make eye contact.",
+  "on_success": "A pound a tap, a hundred taps an hour, and everyone walks away feeling good about themselves. Nobody checks where good feelings go.",
+  "on_fail": "A woman who actually volunteers for the real charity clocks a logo that's a shade wrong and won't stop asking questions.",
+  "job": "card_fraud"
+ },
+ {
+  "id": "cf_student_bundle",
+  "conditions": {
+   "time": "day",
+   "cities": [
+    "leeds"
+   ],
+   "max_heat": 12
+  },
+  "target": {
+   "name": "Yusuf",
+   "detail": "first-years who'll walk cards in for a cut of nothing"
+  },
+  "setup": "Cloned cards and a couple of skint students who'll do the walking for beer money. A retail park, a shopping list of things that resell in a day, and youngers who don't know how deep this goes.",
+  "on_success": "They buy, you convert, everyone eats. The kids think it's a laugh. You let them, because the day they understand is the day they want more.",
+  "on_fail": "One of them gets greedy at the till, tries the card twice, and the security guard was already bored enough to care.",
+  "job": "card_fraud"
+ }
+]

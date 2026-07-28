@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>06-choice — Postcode Wars</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<script src="art.js"></script>
+<script src="cast.js"></script>
+<script src="anim.js"></script>
+<style>
+  html, body { margin:0; background:#0C0E10; }
+  body { display:flex; justify-content:center; }
+  a { color:#FFA94D; text-decoration:none; }
+  a:hover { color:#FFC97A; }
+  #frame { position:relative; width:1080px; height:1920px; flex:none; overflow:hidden;
+    background:#121417; color:#EDEFF2; font-family:Inter, system-ui, sans-serif; transform-origin:top center; }
+  .mono { font-family:'IBM Plex Mono', monospace; }
+  .disp { font-family:Anton, Impact, sans-serif; text-transform:uppercase; }
+  .tab { font-variant-numeric:tabular-nums; }
+  #leaf { position:absolute; inset:0; z-index:0; isolation:isolate; background:#0E1013; }
+  .leaflet-tile-pane { filter:grayscale(1) brightness(0.34) contrast(1.4) sepia(0.3) hue-rotate(-12deg) saturate(1.4) blur(1px); }
+  .leaflet-container { background:#0E1013; font-family:'IBM Plex Mono', monospace; }
+  .leaflet-control-attribution { background:rgba(12,14,16,0.72) !important; color:#5A6068 !important; font-size:11px !important; }
+  .leaflet-control-attribution a { color:#9AA0A6 !important; }
+  .opt { min-height:96px; border:1px solid #2A2E33; border-radius:16px; background:#2A2E33; color:#EDEFF2;
+    font-family:Inter, sans-serif; font-size:28px; text-align:left; padding:16px 28px; width:100%;
+    display:flex; align-items:center; justify-content:space-between; gap:20px; box-sizing:border-box; cursor:pointer; }
+  .opt:active { transform:scale(0.99); }
+  .tooth { position:absolute; inset:0; pointer-events:none; z-index:1; opacity:0.22; mix-blend-mode:soft-light;
+    background-image:url("art/tex-concrete.png"); background-size:512px 512px; }
+  .grain { position:absolute; inset:0; pointer-events:none; opacity:0.05; mix-blend-mode:screen; z-index:60;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
+    background-size:280px 280px; }
+</style>
+</head>
+<body>
+<div id="frame">
+
+  <div id="leaf"></div>
+  <div style="position:absolute; inset:0; z-index:20; pointer-events:none; background:
+      radial-gradient(40% 30% at 60% 26%, rgba(255,169,77,0.20), rgba(255,169,77,0) 70%),
+      rgba(12,14,16,0.74);"></div>
+
+  <a href="03-jobs.html" class="mono" style="position:absolute; left:32px; top:60px; z-index:45; height:72px; padding:0 24px; border:1px solid #2A2E33; border-radius:14px; background:rgba(18,20,23,0.82); display:flex; align-items:center; font-size:20px; letter-spacing:0.14em; color:#9AA0A6;">← BACK</a>
+  <div id="shuffle" class="mono" style="position:absolute; right:32px; top:60px; z-index:45; height:72px; padding:0 22px; border:1px solid #2A2E33; border-radius:14px; background:rgba(18,20,23,0.82); display:flex; align-items:center; font-size:20px; letter-spacing:0.14em; color:#FFA94D; cursor:pointer;">⟳ NEXT SCENE</div>
+
+  <!-- CHOICE CARD -->
+  <div style="position:absolute; left:32px; right:32px; top:200px; bottom:140px; z-index:35; display:flex; flex-direction:column; justify-content:center; gap:22px;">
+    <div id="card" style="border:1px solid #2A2E33; border-radius:16px; background:#1E2126; padding:44px 32px 32px; display:flex; flex-direction:column; align-items:center; gap:26px;">
+      <div id="portrait"></div>
+      <div style="display:flex; flex-direction:column; align-items:center; gap:8px; text-align:center;">
+        <div id="who" class="disp" style="font-size:52px; line-height:1;"></div>
+        <div id="where" class="mono" style="font-size:22px; letter-spacing:0.14em;"></div>
+      </div>
+      <div id="line" style="font-size:30px; line-height:1.45; text-align:center; text-wrap:pretty;"></div>
+      <div id="opts" style="width:100%; display:flex; flex-direction:column; gap:16px; padding-top:6px;"></div>
+    </div>
+    <div id="statebar" class="mono" style=" display:flex; gap:12px; justify-content:center; color:#5A6068; font-size:20px; letter-spacing:0.14em;"></div>
+  </div>
+
+  <div class="tooth"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+const W = 1080, H = 1920;
+function scaleFrame() {
+  const f = document.getElementById('frame');
+  const s = Math.min(1, window.innerHeight / H, window.innerWidth / W);
+  f.style.transform = 'scale(' + s + ')';
+  document.body.style.height = (H * s) + 'px';
+}
+window.addEventListener('resize', scaleFrame);
+scaleFrame();
+
+const map = L.map('leaf', { dragging:false, touchZoom:false, scrollWheelZoom:false, doubleClickZoom:false,
+  boxZoom:false, keyboard:false, zoomControl:false, zoomSnap:0.1, attributionControl:true });
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution:'© OpenStreetMap contributors', maxZoom:19 }).addTo(map);
+
+const SPOTS = {
+  London:     [51.5455, -0.0553], Manchester: [53.4515, -2.2470], Birmingham: [52.4760, -1.8850],
+  Liverpool:  [53.3860, -2.9640], Leeds:      [53.8090, -1.5170], Bristol:    [51.4650, -2.5840]
+};
+
+// three states, cast picked at random each time
+const STATES = [
+  { key:'CONVERSATION', build:c => ({
+      line: '“' + pick(c.lines) + '”',
+      opts: [
+        { label:'Hear him out', hint:'FREE', tint:'#9AA0A6' },
+        { label:'Ask who else knows', hint:'NV 4', tint:'#B06CF0' },
+        { label:'Say you\u2019ll think about it', hint:'', tint:'' }
+      ] }) },
+  { key:'STAT CHECK', build:c => ({
+      line: '“Talk fast. I\u2019ve heard three versions of tonight already and none of them had you in it.”',
+      opts: [
+        { label:'Talk your way round it', hint:'CHARM 14 · 68%', tint:'#FFA94D', ring:true },
+        { label:'Outrun him down the alley', hint:'SPEED 20 — LOCKED', tint:'#5A6068', off:true },
+        { label:'Say nothing', hint:'HEAT +1', tint:'#D63B3B' }
+      ] }) },
+  { key:'COSTLY', build:c => ({
+      line: '“I can make tonight go away. I don\u2019t do instalments and I don\u2019t do gratitude, so decide now.”',
+      opts: [
+        { label:'Pay what he\u2019s asking', hint:'−£8,000 DIRTY', tint:'#C9A227', ring:true },
+        { label:'Owe him the favour instead', hint:'DEBT · LEDGER', tint:'#D63B3B', ring:true },
+        { label:'Walk out', hint:'', tint:'' }
+      ] }) }
+];
+
+let si = 0;
+function render() {
+  const state = STATES[si % STATES.length];
+  const c = pick(CAST);
+  const tint = c.id === 'hallow' ? '#2E5EAA' : c.role === 'THE BRIEF' ? '#C9A227' : '#FFA94D';
+  const data = state.build(c);
+
+  document.getElementById('portrait').innerHTML =
+    '<div id="pxhead" style="width:220px;height:275px;border:2px solid ' + tint +
+    ';border-radius:8px;overflow:hidden;background-color:#0C0E10;"></div>';
+  document.getElementById('who').textContent = c.name;
+  const where = document.getElementById('where');
+  where.textContent = c.place.toUpperCase() + ' · ' + c.city.toUpperCase();
+  where.style.color = tint;
+  const src = 'art/anim-' + (window.PX_ID[c.id] ? c.id : 'nads') + '.png';
+  if (window.head) window.head.stop();
+  window.head = talkingHead(document.getElementById('pxhead'), src, {});
+  const ms = data.line.length * (1000 / 46) + 300;
+  window.head.say(ms);
+  typeOut(document.getElementById('line'), data.line, 46);
+
+  document.getElementById('opts').innerHTML = data.opts.map(o => `
+    <button class="opt" style="${o.ring ? `border-color:${o.tint}; background:${o.tint}1A;` : ''}${o.off ? 'color:#5A6068;' : ''}">
+      <span>${o.label}</span>
+      ${o.hint ? `<span class="mono" style="font-size:22px; color:${o.tint || '#9AA0A6'};">${o.hint}</span>` : ''}
+    </button>`).join('');
+
+  document.getElementById('statebar').innerHTML = STATES.map((s, i) =>
+    `<span style="color:${i === si % STATES.length ? '#FFA94D' : '#5A6068'};">${s.key}</span>`).join('<span>·</span>');
+
+  const spot = SPOTS[c.city] || SPOTS.London;
+  map.setView(spot, 16.4);
+  si++;
+}
+document.getElementById('shuffle').addEventListener('click', render);
+render();
+</script>
+</body>
+</html>

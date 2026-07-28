@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>02-city — Postcode Wars</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<style>
+  html, body { margin:0; background:#0C0E10; }
+  body { display:flex; justify-content:center; }
+  a { color:#FFA94D; text-decoration:none; }
+  a:hover { color:#FFC97A; }
+  #frame { position:relative; width:1080px; height:1920px; flex:none; overflow:hidden;
+    background:#121417; color:#EDEFF2; font-family:Inter, system-ui, sans-serif; transform-origin:top center; }
+  .mono { font-family:'IBM Plex Mono', monospace; }
+  .disp { font-family:Anton, Impact, sans-serif; text-transform:uppercase; }
+  .tab { font-variant-numeric:tabular-nums; }
+  #leaf { position:absolute; left:0; top:140px; width:1080px; height:820px; z-index:0; isolation:isolate; background:#0E1013; }
+  .leaflet-tile-pane { filter:grayscale(1) brightness(0.46) contrast(1.42) sepia(0.32) hue-rotate(-12deg) saturate(1.5); }
+  .leaflet-container { background:#0E1013; font-family:'IBM Plex Mono', monospace; }
+  .leaflet-control-attribution { background:rgba(12,14,16,0.72) !important; color:#5A6068 !important; font-size:11px !important; }
+  .leaflet-control-attribution a { color:#9AA0A6 !important; }
+  .venue { border:1px solid #2A2E33; border-radius:16px; background:#1E2126; padding:20px 24px; min-height:126px;
+    display:flex; align-items:center; gap:18px; box-sizing:border-box; cursor:pointer; }
+  .venue:active { transform:scale(0.99); }
+  .portrait { width:88px; height:88px; flex:none; border-radius:50%; border:2px solid #FFA94D;
+    background-color:#0C0E10; background-image:repeating-linear-gradient(135deg, #16191D 0 7px, #0C0E10 7px 14px);
+    display:flex; align-items:center; justify-content:center; text-align:center; }
+  .chip { min-width:0; height:100px; padding:0 8px; border:1px solid #2A2E33; border-radius:14px; background:#1E2126;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; cursor:pointer; overflow:hidden; }
+  .chip > span { max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .chip.on { border-color:#FFA94D; background:rgba(255,169,77,0.10); }
+  .tooth { position:absolute; inset:0; pointer-events:none; z-index:1; opacity:0.22; mix-blend-mode:soft-light;
+    background-image:url("art/tex-concrete.png"); background-size:512px 512px; }
+  .grain { position:absolute; inset:0; pointer-events:none; opacity:0.045; mix-blend-mode:screen; z-index:60;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
+    background-size:280px 280px; }
+</style>
+<script src="anim.js"></script>
+</head>
+<body>
+<div id="frame">
+
+  <div id="leaf"></div>
+  <!-- night grade over the real streets -->
+  <div style="position:absolute; left:0; top:140px; width:1080px; height:820px; z-index:20; pointer-events:none; background:
+      radial-gradient(50% 40% at 62% 34%, rgba(255,169,77,0.26) 0%, rgba(255,169,77,0.06) 46%, rgba(255,169,77,0) 72%),
+      linear-gradient(180deg, rgba(18,20,23,0.65) 0%, rgba(18,20,23,0.05) 26%, rgba(12,14,16,0.55) 68%, #121417 100%);"></div>
+
+  <!-- TOP HUD -->
+  <div style="position:absolute; left:0; top:0; width:1080px; height:140px; box-sizing:border-box; padding:0 32px 14px; display:flex; flex-direction:column; justify-content:flex-end; background:#2A2E33; border-bottom:1px solid #3A3F45; z-index:40;">
+    <div class="tab" style="display:flex; align-items:center; gap:16px;">
+      <div style="display:flex; align-items:center; gap:10px; height:56px; padding:0 16px; border:1px solid #C9A227; border-radius:12px; background:rgba(201,162,39,0.10);">
+        <span style="width:20px; height:20px; border-radius:4px; border:2px solid #C9A227;"></span>
+        <span class="disp" style="font-size:32px; color:#C9A227;">£12,480</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; height:56px; padding:0 16px; border:1px solid #57C785; border-radius:12px; background:rgba(87,199,133,0.10);">
+        <span style="width:20px; height:20px; border-radius:4px; border:2px solid #57C785;"></span>
+        <span class="disp" style="font-size:32px; color:#57C785;">£3,050</span>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:8px; padding-left:8px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="mono" style="font-size:16px; color:#FFA94D; width:26px;">EN</span>
+          <div style="flex:1; height:12px; border-radius:6px; background:#0C0E10; overflow:hidden; display:flex;"><div style="width:62%; background:#FFA94D;"></div></div>
+          <span class="mono" style="font-size:16px; color:#9AA0A6;">62/100</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="mono" style="font-size:16px; color:#B06CF0; width:26px;">NV</span>
+          <div style="flex:1; height:12px; border-radius:6px; background:#0C0E10; overflow:hidden; display:flex;"><div style="width:35%; background:#B06CF0;"></div></div>
+          <span class="mono" style="font-size:16px; color:#9AA0A6;">7/20</span>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+        <div style="display:flex; gap:6px;">
+          <span style="width:14px; height:14px; border-radius:7px; background:#D63B3B;"></span>
+          <span style="width:14px; height:14px; border-radius:7px; background:#D63B3B;"></span>
+          <span style="width:14px; height:14px; border-radius:7px; background:#D63B3B;"></span>
+          <span style="width:14px; height:14px; border-radius:7px; background:#3A3F45;"></span>
+          <span style="width:14px; height:14px; border-radius:7px; background:#3A3F45;"></span>
+        </div>
+        <span class="mono" style="font-size:16px; letter-spacing:0.1em; color:#9AA0A6;">HEAT</span>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px; padding-left:20px; border-left:1px solid #3A3F45;">
+        <span class="disp" style="font-size:40px; line-height:1;">37</span>
+        <div style="width:96px; height:6px; border-radius:3px; background:#0C0E10; overflow:hidden; display:flex;"><div style="width:48%; background:#FFC97A;"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BACK TO MAP -->
+  <a href="01-map.html" class="mono" style="position:absolute; left:32px; top:170px; z-index:35; height:72px; padding:0 24px; border:1px solid #2A2E33; border-radius:14px; background:rgba(18,20,23,0.82); display:flex; align-items:center; gap:12px; font-size:20px; letter-spacing:0.14em; color:#9AA0A6;">← THE MANOR</a>
+
+  <!-- CITY HEADER over the map -->
+  <div style="position:absolute; left:32px; right:32px; top:620px; z-index:35; display:flex; align-items:flex-end; justify-content:space-between; gap:24px;">
+    <div style="display:flex; flex-direction:column; gap:10px; min-width:0;">
+      <span id="c-region" class="mono" style="font-size:22px; letter-spacing:0.16em; color:#FFA94D;">GREATER LONDON</span>
+      <span id="c-name" class="disp" style="font-size:104px; line-height:0.86; text-shadow:0 6px 30px rgba(0,0,0,0.95);">London</span>
+      <span id="c-district" class="mono" style="font-size:24px; letter-spacing:0.1em; color:#C3C9CF; text-shadow:0 2px 12px rgba(0,0,0,0.9);">HACKNEY · E8 · MARE STREET</span>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:14px; align-items:flex-end;">
+      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
+        <span class="mono" style="font-size:18px; letter-spacing:0.14em; color:#9AA0A6;">DANGER</span>
+        <div id="c-danger" style="display:flex; gap:7px;"></div>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
+        <span class="mono" style="font-size:18px; letter-spacing:0.14em; color:#D63B3B;">YOUR HEAT HERE</span>
+        <div id="c-heat" style="display:flex; gap:7px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CITY SWITCHER -->
+  <div style="position:absolute; left:0; right:0; top:988px; z-index:35; padding:0 32px; box-sizing:border-box;">
+    <div id="switcher" style="display:grid; grid-template-columns:repeat(6, 1fr); gap:12px;"></div>
+  </div>
+
+  <!-- VENUES -->
+  <div style="position:absolute; left:32px; right:32px; top:1108px; z-index:35; display:flex; flex-direction:column; gap:16px;">
+    <div style="display:flex; align-items:center; gap:16px;">
+      <span class="mono" style="font-size:20px; letter-spacing:0.18em; color:#5A6068;">WHERE TO</span>
+      <span style="flex:1; height:1px; background:#2A2E33;"></span>
+      <span id="c-status" class="mono" style="font-size:20px; letter-spacing:0.12em; color:#D9E021;">2 JOBS READY</span>
+    </div>
+    <div id="venues" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;"></div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div style="position:absolute; left:0; bottom:0; width:1080px; background:#2A2E33; border-top:1px solid #3A3F45; z-index:50;">
+    <div style="height:120px; display:grid; grid-template-columns:repeat(5, 1fr);">
+      <a href="01-map.html" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;">
+        <span style="width:36px; height:36px; border:2px solid #9AA0A6; border-radius:50% 50% 50% 4px; transform:rotate(-45deg);"></span>
+        <span class="mono" style="font-size:18px; letter-spacing:0.1em; color:#9AA0A6;">MAP</span>
+      </a>
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; border-top:4px solid #FFA94D; background:linear-gradient(180deg, rgba(255,169,77,0.14), rgba(255,169,77,0));">
+        <span style="width:36px; height:36px; border:2px solid #FFA94D; border-radius:4px;"></span>
+        <span class="mono" style="font-size:18px; letter-spacing:0.1em; color:#FFA94D;">CITY</span>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; position:relative;">
+        <span style="width:36px; height:36px; border:2px solid #9AA0A6; border-radius:50%;"></span>
+        <span style="position:absolute; top:24px; right:calc(50% - 34px); width:16px; height:16px; border-radius:8px; background:#D9E021;"></span>
+        <span class="mono" style="font-size:18px; letter-spacing:0.1em; color:#9AA0A6;">CHAR</span>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;">
+        <span style="width:36px; height:36px; border:2px solid #9AA0A6; border-radius:4px 4px 18px 18px;"></span>
+        <span class="mono" style="font-size:18px; letter-spacing:0.1em; color:#9AA0A6;">CREW</span>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;">
+        <span style="width:36px; height:36px; border:2px solid #5A6068; border-radius:4px; transform:rotate(45deg);"></span>
+        <span class="mono" style="font-size:18px; letter-spacing:0.1em; color:#5A6068;">FIRM</span>
+      </div>
+    </div>
+    <div style="height:40px; display:flex; align-items:center; justify-content:center;">
+      <span style="width:200px; height:6px; border-radius:3px; background:#5A6068;"></span>
+    </div>
+  </div>
+
+  <div class="tooth"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+const W = 1080, H = 1920;
+function scaleFrame() {
+  const f = document.getElementById('frame');
+  const s = Math.min(1, window.innerHeight / H, window.innerWidth / W);
+  f.style.transform = 'scale(' + s + ')';
+  document.body.style.height = (H * s) + 'px';
+}
+window.addEventListener('resize', scaleFrame);
+scaleFrame();
+
+// Real districts — each city opens on its own streets.
+const CITIES = [
+  { key:'london', name:'London', region:'GREATER LONDON', district:'HACKNEY · E8 · MARE STREET',
+    lat:51.5455, lon:-0.0553, zoom:15.4, danger:5, heat:3, status:'2 JOBS READY',
+    venues:[['Jobs','7 on the board','job'],['Gym','Bethnal Green Iron','—'],['Crew','4 on payroll','—'],
+            ['Bank','Bung · Mare St branch','—'],['Fence',"Delroy's chop shop",'portrait:DELROY'],
+            ['Shop','PoundZone, London Fields','—'],['Contacts',"Uncle T's barbers",'portrait:UNCLE T'],
+            ['Territory','3 of 8 blocks held','—']] },
+  { key:'manchester', name:'Manchester', region:'GREATER MANCHESTER', district:'MOSS SIDE · M14 · PRINCESS RD',
+    lat:53.4515, lon:-2.2470, zoom:15.2, danger:3, heat:1, status:'JOB READY',
+    venues:[['Jobs','5 on the board','job'],['Gym','Hulme Powerhouse','—'],['Crew','2 on payroll','—'],
+            ['Bank','Bung · Rusholme','—'],['Fence','Ardwick tyre yard','portrait:MAZ'],
+            ['Shop','ChickenLix, Wilmslow Rd','—'],['Contacts','Aunty Pearl, Claremont','portrait:PEARL'],
+            ['Territory','1 of 6 blocks held','—']] },
+  { key:'birmingham', name:'Birmingham', region:'WEST MIDLANDS', district:'DIGBETH · B5 · HIGH ST',
+    lat:52.4760, lon:-1.8850, zoom:15.2, danger:3, heat:0, status:'NOTHING WAITING',
+    venues:[['Jobs','4 on the board','job'],['Gym','Small Heath Barbell','—'],['Crew','0 on payroll','—'],
+            ['Bank','Bung · Bull Ring','—'],['Fence','Sparkbrook lockups','portrait:RANJ'],
+            ['Shop','PoundZone, Digbeth','—'],['Contacts','Old Nev, Custard Factory','portrait:NEV'],
+            ['Territory','Not established','—']] },
+  { key:'liverpool', name:'Liverpool', region:'MERSEYSIDE', district:'TOXTETH · L8 · PARK RD',
+    lat:53.3860, lon:-2.9640, zoom:15.2, danger:3, heat:0, status:'LOCKED · LVL 18',
+    venues:[['Jobs','Locked','—'],['Gym','Dingle Boxing Club','—'],['Crew','—','—'],
+            ['Bank','Bung · Lodge Lane','—'],['Fence','Docks container 12','portrait:BEV'],
+            ['Shop','Betfrenz, Park Rd','—'],['Contacts','Not introduced','—'],
+            ['Territory','Locked','—']] },
+  { key:'leeds', name:'Leeds', region:'WEST YORKSHIRE', district:'HAREHILLS · LS8 · ROUNDHAY RD',
+    lat:53.8090, lon:-1.5170, zoom:15.2, danger:3, heat:0, status:'LOCKED · LVL 20',
+    venues:[['Jobs','Locked','—'],['Gym','Beeston Weights','—'],['Crew','—','—'],
+            ['Bank','Bung · Harehills Lane','—'],['Fence','Cross Green scrap','—'],
+            ['Shop','ChickenLix, Roundhay Rd','—'],['Contacts','Not introduced','—'],
+            ['Territory','Locked','—']] },
+  { key:'bristol', name:'Bristol', region:'AVON', district:'ST PAULS · BS2 · GROSVENOR RD',
+    lat:51.4650, lon:-2.5840, zoom:15.2, danger:2, heat:1, status:'JOB READY',
+    venues:[['Jobs','3 on the board','job'],['Gym','Easton Fight Gym','—'],['Crew','1 on payroll','—'],
+            ['Bank','Bung · Stokes Croft','—'],['Fence','Lawrence Hill unit 4','portrait:CASS'],
+            ['Shop','PoundZone, Stapleton Rd','—'],['Contacts','Marlon, Grosvenor','portrait:MARLON'],
+            ['Territory','1 of 4 blocks held','—']] }
+];
+
+const map = L.map('leaf', {
+  dragging:false, touchZoom:false, scrollWheelZoom:false, doubleClickZoom:false,
+  boxZoom:false, keyboard:false, zoomControl:false, zoomSnap:0.1, attributionControl:true
+});
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution:'© OpenStreetMap contributors', maxZoom:19
+}).addTo(map);
+
+const pips = (n, tint) => Array.from({ length:5 }, (_, i) =>
+  `<span style="width:20px;height:20px;border-radius:4px;background:${i < n ? tint : 'rgba(90,96,104,0.4)'};"></span>`).join('');
+
+function render(city, fly) {
+  document.getElementById('c-region').textContent = city.region;
+  document.getElementById('c-name').textContent = city.name;
+  document.getElementById('c-district').textContent = city.district;
+  document.getElementById('c-danger').innerHTML = pips(city.danger, '#D63B3B');
+  document.getElementById('c-heat').innerHTML = pips(city.heat, '#FFA94D');
+  const st = document.getElementById('c-status');
+  st.textContent = city.status;
+  st.style.color = city.status.startsWith('LOCKED') ? '#5A6068' : city.status === 'NOTHING WAITING' ? '#9AA0A6' : '#D9E021';
+
+  document.getElementById('venues').innerHTML = city.venues.map(([title, sub, flag]) => {
+    const locked = sub === 'Locked' || sub === '—' || sub === 'Not introduced' || sub === 'Not established';
+    const portrait = flag.startsWith('portrait:');
+    return `<div class="venue" style="${locked ? 'opacity:0.55;' : ''}${flag === 'job' ? 'border-color:#FFA94D;' : ''}">
+      ${portrait ? `<div class="portrait"><span class="mono" style="font-size:20px;line-height:1.3;color:#5A6068;">${flag.slice(9)}</span></div>` : ''}
+      <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:8px;">
+        <span class="disp" style="font-size:40px; line-height:0.95;">${title}</span>
+        <span class="mono" style="font-size:19px; color:${flag === 'job' ? '#FFA94D' : '#9AA0A6'};">${sub}</span>
+      </div>
+      ${flag === 'job' ? '<span class="mono" style="font-size:34px;color:#FFA94D;">›</span>' : '<span class="mono" style="font-size:34px;color:#3A3F45;">›</span>'}
+    </div>`;
+  }).join('');
+
+  Array.from(document.getElementById('switcher').children).forEach(el =>
+    el.classList.toggle('on', el.dataset.key === city.key));
+
+  if (fly) map.flyTo([city.lat, city.lon], city.zoom, { duration:0.8 });
+  else map.setView([city.lat, city.lon], city.zoom);
+}
+
+document.getElementById('switcher').innerHTML = CITIES.map(c => `
+  <div class="chip" data-key="${c.key}">
+    <span class="disp" style="font-size:25px; line-height:1; letter-spacing:0;">${c.name}</span>
+    <span class="mono" style="font-size:14px; letter-spacing:0.04em; color:#9AA0A6;">${c.district.split(' · ')[0]}</span>
+  </div>`).join('');
+Array.from(document.getElementById('switcher').children).forEach((el, i) =>
+  el.addEventListener('click', () => render(CITIES.find(c => c.key === el.dataset.key), true)));
+
+render(CITIES[0], false);
+</script>
+</body>
+</html>

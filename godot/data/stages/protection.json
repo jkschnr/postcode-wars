@@ -1,0 +1,30 @@
+{
+ "job": "protection",
+ "stages": [
+  {
+   "name": "The offie",
+   "text": "First stop on the round. Robbed twice this month, shutter too slow, a man who's stopped sleeping. The weekly envelope buys him a quiet Friday and buys you an easy start.",
+   "fail_text": "He's fitted a panic button and decided the police are cheaper than you. For now, they are."
+  },
+  {
+   "name": "The burger van",
+   "text": "Late-trade pitch outside the clubs that's been somebody's for years. New bloke, out of town, doesn't know the ground rent isn't optional. Sort him and the round's flowing.",
+   "fail_text": "He's got a licence, a permit, and a cousin on the council, and reads you all three before you finish."
+  },
+  {
+   "name": "The arcade",
+   "text": "Machines fat with pound coins, a manager who walks the takings to the bank alone. An arrangement keeps that walk boring. Bank this one and you're two-thirds round with time to spare.",
+   "fail_text": "It's part of a chain with its own security firm, and the manager just follows the policy, and the policy is no."
+  },
+  {
+   "name": "The building site",
+   "text": "Bleeding copper every night, a foreman sick of the excess. Guarantee the fence stays up — because you're why it's been coming down — and he'll pay handsome. But developers bring dogs.",
+   "fail_text": "They've put in floodlights and a dog handler this week, and your arrangement just became redundant."
+  },
+  {
+   "name": "The pub with no door",
+   "text": "Last stop: the boozer that sacked its door firm to save money and can't handle its own Fridays. The biggest payer on the round, if the brewery's area manager doesn't pick tonight to visit.",
+   "fail_text": "The area manager's in the corner nursing a lime and soda, and he's heard every word about licences and legal doorstaff."
+  }
+ ]
+}

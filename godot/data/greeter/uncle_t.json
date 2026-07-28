@@ -1,0 +1,22 @@
+{
+  "character": "uncle_t",
+  "name": "Uncle T",
+  "sets": {
+    "morning": [
+      { "id": "t_morn_1", "lines": ["Morning, young man. Sit down.", "I said sit, not hover."] },
+      { "id": "t_morn_2", "lines": ["You're early.", "In my experience that means you want something or you did something."] }
+    ],
+    "evening": [
+      { "id": "t_eve_1", "lines": ["It's late, young man.", "I'm not stopping you. I'm just noting it."] }
+    ],
+    "post_loss": [
+      { "id": "t_loss_1", "lines": ["You're out.", "I'm not going to say anything. I'm going to cut your hair and you're going to sit there and think about it."] }
+    ],
+    "high_heat": [
+      { "id": "t_heat_1", "lines": ["You've been busy.", "Too busy. Sit down for a day. It costs you nothing and it saves you everything."] }
+    ],
+    "default": [
+      { "id": "t_def_1", "lines": ["Sit down, young man.", "The chair's free and so is the advice."] }
+    ]
+  }
+}

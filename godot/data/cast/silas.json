@@ -1,0 +1,14 @@
+{
+  "id": "silas",
+  "display_name": "Silas Rhodes",
+  "full_name": "Silas Rhodes, \"the Bookkeeper\"",
+  "role": "The debt. The books.",
+  "where": "Above a dry cleaner's, Bermondsey",
+  "portrait": "silas",
+  "start": { "relationship": 0, "trust": 0 },
+  "reactions": {
+    "up": "Silas makes a small note in the margin. It's the closest he comes to a smile.",
+    "down": "Silas caps his pen. \"Noted,\" he says, and writes nothing.",
+    "lost": "Silas closes the ledger. \"We're done being useful to each other,\" he says, pleasantly."
+  }
+}

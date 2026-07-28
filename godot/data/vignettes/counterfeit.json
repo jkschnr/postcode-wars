@@ -1,0 +1,154 @@
+[
+ {
+  "id": "cf_market_gear",
+  "target": {
+   "name": null,
+   "detail": "the knock-off stall and the lock-up behind it"
+  },
+  "setup": "Tick logos close enough to fool a birthday present, boxed trainers that were never near the real factory, a lock-up full of it out the back.",
+  "on_success": "Move the lot to the market boys at a mark-up they can still triple. Everyone down the line thinks they got a deal.",
+  "on_fail": "Trading Standards did a quiet visit last week and left a friend behind. The 'buyer' has a lanyard under his coat.",
+  "on_crit": "A container's worth clears in an afternoon — a stag do, a market, and a bloke who 'supplies shops'.",
+  "job": "counterfeit",
+  "conditions": {
+   "max_heat": 12
+  }
+ },
+ {
+  "id": "cf_shirts",
+  "target": {
+   "name": "match day",
+   "detail": "the fake kits outside the ground"
+  },
+  "setup": "Home game, thousands walking to the ground, half of them wanting this season's shirt at a quarter of the club shop. You have this season's shirt. Sort of.",
+  "on_success": "Sell out before kickoff from a holdall and a folding table that vanishes when a steward looks over.",
+  "on_fail": "Club's own stewards clock the pitch and the printing's off on the sponsor. A copper on horseback takes an interest.",
+  "on_crit": "An away coach empties out and buys the lot for the trip home. Bulk, cash, gone before the whistle.",
+  "job": "counterfeit",
+  "conditions": {
+   "max_heat": 12
+  }
+ },
+ {
+  "id": "cf_match_day_shirts",
+  "conditions": {
+   "time": "day",
+   "max_heat": 12
+  },
+  "target": {
+   "name": "—",
+   "detail": "the fake kits going out of a holdall outside the ground"
+  },
+  "setup": "Home game, thousands walking to the ground, half of them wanting this season's shirt at a quarter of the club-shop price. You've got this season's shirt. The sponsor's printed a shade off, but nobody's looking that hard on the way in.",
+  "on_success": "Sold out before kickoff from a holdall and a folding table that folds itself the second a steward looks over. Everyone thinks they got a deal.",
+  "on_fail": "The club's own stewards clock the pitch, the printing's wrong on the badge, and a copper on a horse takes a slow interest in your table.",
+  "on_crit": "An away coach empties out and buys the entire holdall for the trip home. Bulk, cash, gone before the whistle.",
+  "job": "counterfeit"
+ },
+ {
+  "id": "cf_market_trainers",
+  "conditions": {
+   "max_heat": 6
+  },
+  "target": {
+   "name": "Baz",
+   "detail": "the lock-up of boxed trainers that were never near the factory"
+  },
+  "setup": "Tick logos close enough to fool a birthday present, boxes printed off the same machine as the shoes, and a lock-up out the back of the market stacked to the shutter.",
+  "on_success": "Move the lot to the market boys at a mark-up they can still triple. Everyone down the line believes they're the clever one.",
+  "on_fail": "Trading Standards did a quiet walk-round last week and left a friend behind, and your 'customer' has a lanyard under his coat.",
+  "on_crit": "A container's worth clears in an afternoon — a stag do, a car boot, and a bloke who 'supplies shops' and doesn't blink at the price.",
+  "job": "counterfeit"
+ },
+ {
+  "id": "cf_perfume_precinct",
+  "conditions": {
+   "time": "day",
+   "max_heat": 5
+  },
+  "target": {
+   "name": "—",
+   "detail": "the pop-up table of designer scent that smells almost right"
+  },
+  "setup": "Christmas precinct, a table of boxed perfume with the names spelled just close enough, and a script about a warehouse clearance that people want to believe because the alternative is paying full price.",
+  "on_success": "It smells nearly like the real thing for nearly an hour, which is exactly as long as anyone's checking. Cash box full by lunch.",
+  "on_fail": "A woman sprays a tester, pulls a face she can't hide, and says the word 'fake' loud enough that the whole precinct turns round.",
+  "job": "counterfeit"
+ },
+ {
+  "id": "cf_dvd_boxsets",
+  "conditions": {
+   "max_heat": 12
+  },
+  "target": {
+   "name": "—",
+   "detail": "the burned box sets going round the pubs in a sports bag"
+  },
+  "setup": "A sports bag of copied box sets and the latest films that are still in the cinema, doing the rounds of the estate pubs on a Friday where the lighting's kind and the standards are low.",
+  "on_success": "A tenner for a film nobody can see yet, three for twenty-five, and a whole pub that'd rather not ask how you've got it.",
+  "on_fail": "One of them plays it back at home and it's a shaky cam with someone's head in the corner, and he wants his tenner back with interest.",
+  "job": "counterfeit"
+ },
+ {
+  "id": "cf_fake_charger_stall",
+  "conditions": {
+   "time": "day",
+   "max_heat": 6
+  },
+  "target": {
+   "name": "Kel",
+   "detail": "the phone-bits stall where nothing's genuine"
+  },
+  "setup": "Market stall of chargers, cables and cases, all of it moulded in a shed and none of it safe, priced so low that the danger reads as a bargain to anyone in a hurry.",
+  "on_success": "They sell faster than the real ones because they're a third of the price, and the burn risk is next month's problem for somebody who isn't you.",
+  "on_fail": "One of last week's chargers has melted into somebody's socket and they've brought the blackened lump back to the stall in front of everyone.",
+  "job": "counterfeit"
+ },
+ {
+  "id": "cf_wholesale_shops",
+  "conditions": {
+   "min_level": 10,
+   "max_heat": 7
+  },
+  "target": {
+   "name": "—",
+   "detail": "the cash-and-carry that stocks its shelves with your gear"
+  },
+  "setup": "A back-street cash-and-carry that fills its shelves with knock-off razors, batteries and washing tabs, and a manager who buys by the pallet and asks nothing as long as the box says a brand.",
+  "on_success": "A pallet of fake razors that shave nobody well moves in one go, and it's on a corner-shop shelf three counties over by the weekend.",
+  "on_fail": "The manager's had a visit from a brand-protection firm with real lawyers and he's decided the safest pallet is the one he grasses up.",
+  "job": "counterfeit"
+ },
+ {
+  "id": "cf_wedding_dresses",
+  "conditions": {
+   "cities": [
+    "leeds"
+   ],
+   "max_heat": 12
+  },
+  "target": {
+   "name": "Farah",
+   "detail": "the 'sample sale' of dresses copied from a catalogue"
+  },
+  "setup": "An upstairs room done out like a boutique, a rail of wedding dresses stitched from photos of the real ones, and brides-to-be who want the dream for a tenth and won't look too close in the flattering light.",
+  "on_success": "She cries, she pays, everyone's happy, and the dress holds together for exactly one perfect day, which is genuinely all it needs to.",
+  "on_fail": "A mother-of-the-bride who does sewing spots a seam no real designer would allow and asks, very calmly, to speak to whoever's in charge.",
+  "job": "counterfeit"
+ },
+ {
+  "id": "cf_scratchcards",
+  "conditions": {
+   "time": "night",
+   "max_heat": 8
+  },
+  "target": {
+   "name": "—",
+   "detail": "the pad of scratchcards that never had a winner in it"
+  },
+  "setup": "A pub, a laminated pad of homemade scratchcards, a story about a raffle for a lad who's poorly. Every card's a pound, the top prize is real to nobody, and a full pub wants to feel generous.",
+  "on_success": "Fifty quid off a room full of people who think they've done a good deed. The poorly lad is you, in a way, if you squint.",
+  "on_fail": "Somebody actually knows the family you named and knows the lad's fine, and asks the question you have no answer to.",
+  "job": "counterfeit"
+ }
+]

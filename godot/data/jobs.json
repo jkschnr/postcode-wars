@@ -1,0 +1,427 @@
+{
+ "phone_snatch": {
+  "name": "Phone Snatch",
+  "tier": 1,
+  "stat": "slickness",
+  "base_chance": 0.82,
+  "energy": 6,
+  "nerve": 2,
+  "payout": [
+   40,
+   120
+  ],
+  "xp": 40,
+  "heat": 1,
+  "level_req": 1,
+  "skill": "snatch",
+  "verb": "SNATCH",
+  "blurb": "Screen out, headphones in, no clue you're there. On the shoulder and gone.",
+  "crit_item": "Flagship Phone",
+  "crit_rarity": "peng",
+  "crit_value": [
+   300,
+   500
+  ],
+  "scene": "street_night"
+ },
+ "pickpocket": {
+  "name": "Pickpocket",
+  "tier": 1,
+  "stat": "slickness",
+  "base_chance": 0.78,
+  "energy": 5,
+  "nerve": 2,
+  "payout": [
+   25,
+   80
+  ],
+  "xp": 36,
+  "heat": 1,
+  "level_req": 1,
+  "skill": "dip",
+  "verb": "DIP",
+  "blurb": "Busy crowd, loose jacket, wallet sitting proud in the back pocket.",
+  "crit_item": "Gold Watch",
+  "crit_rarity": "peng",
+  "crit_value": [
+   150,
+   400
+  ],
+  "scene": "street_night"
+ },
+ "shoplift": {
+  "name": "Shoplift",
+  "tier": 1,
+  "stat": "slickness",
+  "base_chance": 0.8,
+  "energy": 5,
+  "nerve": 2,
+  "payout": [
+   30,
+   90
+  ],
+  "xp": 32,
+  "heat": 1,
+  "level_req": 1,
+  "skill": "graft",
+  "verb": "PALM",
+  "blurb": "Corner shop, one bored bossman, blind spot by the fridges.",
+  "scene": "shop_interior"
+ },
+ "burglary": {
+  "name": "Burglary",
+  "tier": 2,
+  "stat": "slickness",
+  "base_chance": 0.6,
+  "energy": 12,
+  "nerve": 4,
+  "payout": [
+   200,
+   600
+  ],
+  "xp": 95,
+  "heat": 2,
+  "level_req": 4,
+  "skill": "creep",
+  "verb": "CREEP",
+  "blurb": "Terraced gaff, lights off, curtains open. Somebody's on holiday.",
+  "crit_item": "Wall Safe",
+  "crit_rarity": "certi",
+  "crit_value": [
+   800,
+   1500
+  ],
+  "approach": [
+   {
+    "label": "Go quiet",
+    "chance": 0.08,
+    "heat": -1,
+    "payout_mult": 0.85,
+    "blurb": "Back window, slow and clean. Less in the bag, less noise."
+   },
+   {
+    "label": "Kick it in",
+    "chance": -0.06,
+    "heat": 2,
+    "payout_mult": 1.2,
+    "blurb": "Front door, grab everything, out in ninety seconds."
+   },
+   {
+    "label": "Come back later",
+    "cancel": true,
+    "blurb": "Neighbour's twitching the curtain. Bottle it — lose nothing."
+   }
+  ],
+  "scene": "terrace_night"
+ },
+ "corner_shotting": {
+  "name": "Corner Shotting",
+  "tier": 2,
+  "stat": "slickness",
+  "base_chance": 0.72,
+  "energy": 8,
+  "nerve": 5,
+  "payout": [
+   120,
+   320
+  ],
+  "xp": 70,
+  "heat": 1,
+  "level_req": 5,
+  "skill": "shot",
+  "verb": "SERVE",
+  "blurb": "Hold the block, serve the fiends, clock the undercover before he clocks you.",
+  "crit_item": "Weight Buyer",
+  "crit_rarity": "peng",
+  "crit_value": [
+   120,
+   260
+  ],
+  "scene": "corner_block"
+ },
+ "chop_run": {
+  "name": "Chop Run",
+  "tier": 2,
+  "stat": "speed",
+  "base_chance": 0.58,
+  "energy": 14,
+  "nerve": 6,
+  "payout": [
+   400,
+   900
+  ],
+  "xp": 120,
+  "heat": 3,
+  "level_req": 8,
+  "skill": "wheels",
+  "verb": "JACK",
+  "blurb": "Delroy wants a grey German saloon, E-plates, no scratches. It's parked up on the high road.",
+  "crit_item": "Rare Order",
+  "crit_rarity": "certi",
+  "crit_value": [
+   900,
+   1800
+  ],
+  "approach": [
+   {
+    "label": "Tow it quiet",
+    "chance": 0.1,
+    "heat": -1,
+    "payout_mult": 0.9,
+    "blurb": "Flatbed at 4am. Slow money, cold trail."
+   },
+   {
+    "label": "Hotwire & drive",
+    "chance": -0.04,
+    "heat": 2,
+    "payout_mult": 1.15,
+    "blurb": "In and gone. Faster, hotter, better paid."
+   }
+  ],
+  "scene": "lockup_yard"
+ },
+ "extortion": {
+  "name": "Extortion",
+  "tier": 2,
+  "stat": "strength",
+  "base_chance": 0.66,
+  "energy": 9,
+  "nerve": 5,
+  "payout": [
+   150,
+   380
+  ],
+  "xp": 72,
+  "heat": 2,
+  "level_req": 6,
+  "skill": "lean",
+  "verb": "COLLECT",
+  "blurb": "Lean on the stalls for their weekly. Most pay. Some need convincing.",
+  "scene": "market"
+ },
+ "protection": {
+  "name": "Protection Round",
+  "tier": 2,
+  "stat": "strength",
+  "base_chance": 0.68,
+  "energy": 10,
+  "nerve": 5,
+  "payout": [
+   200,
+   460
+  ],
+  "xp": 80,
+  "heat": 2,
+  "level_req": 6,
+  "skill": "lean",
+  "verb": "COLLECT",
+  "blurb": "Shops pay to stay standing. You're the reason they stay standing.",
+  "scene": "corner_block"
+ },
+ "grow_harvest": {
+  "name": "Grow-Op Harvest",
+  "tier": 2,
+  "stat": "slickness",
+  "base_chance": 0.74,
+  "energy": 8,
+  "nerve": 4,
+  "payout": [
+   180,
+   420
+  ],
+  "xp": 66,
+  "heat": 1,
+  "level_req": 8,
+  "skill": "grow",
+  "verb": "HARVEST",
+  "blurb": "Attic full of product, lamps humming. Cut it, bag it, move it before the smell does.",
+  "scene": "grow_room"
+ },
+ "counterfeit": {
+  "name": "Counterfeit Run",
+  "tier": 2,
+  "stat": "slickness",
+  "base_chance": 0.7,
+  "energy": 9,
+  "nerve": 5,
+  "payout": [
+   220,
+   520
+  ],
+  "xp": 85,
+  "heat": 2,
+  "level_req": 10,
+  "skill": "fraud",
+  "verb": "FLIP",
+  "blurb": "Pallet of fakes, real margins. Move it before anyone checks the stitching.",
+  "crit_item": "Designer Batch",
+  "crit_rarity": "peng",
+  "crit_value": [
+   300,
+   700
+  ],
+  "scene": "market"
+ },
+ "card_fraud": {
+  "name": "Card Cloning",
+  "tier": 2,
+  "stat": "slickness",
+  "base_chance": 0.64,
+  "energy": 10,
+  "nerve": 6,
+  "payout": [
+   300,
+   700
+  ],
+  "xp": 95,
+  "heat": 3,
+  "level_req": 12,
+  "skill": "fraud",
+  "verb": "CLONE",
+  "blurb": "Skimmer on the cashpoint, numbers in the burner. Cash out before the bank clocks it.",
+  "crit_item": "Full Wallet Dump",
+  "crit_rarity": "certi",
+  "crit_value": [
+   600,
+   1400
+  ],
+  "scene": "shop_interior"
+ },
+ "ram_raid": {
+  "name": "ATM Ram-Raid",
+  "tier": 3,
+  "stat": "strength",
+  "base_chance": 0.55,
+  "energy": 18,
+  "nerve": 9,
+  "payout": [
+   1200,
+   3500
+  ],
+  "xp": 150,
+  "heat": 5,
+  "level_req": 16,
+  "skill": "raid",
+  "verb": "RAM",
+  "blurb": "Van in reverse, cashpoint out the wall, ninety seconds till armed response.",
+  "crit_item": "Full Cassette",
+  "crit_rarity": "certi",
+  "crit_value": [
+   2000,
+   4500
+  ],
+  "approach": [
+   {
+    "label": "4am, empty streets",
+    "chance": 0.08,
+    "heat": -1,
+    "payout_mult": 0.9,
+    "blurb": "Quiet as it gets. Smaller take."
+   },
+   {
+    "label": "Go now, go loud",
+    "chance": -0.08,
+    "heat": 3,
+    "payout_mult": 1.25,
+    "blurb": "Broad strokes. Big money, big noise."
+   },
+   {
+    "label": "Abort",
+    "cancel": true,
+    "blurb": "Too many eyes. Live to raid another night."
+   }
+  ],
+  "scene": "precinct_night"
+ },
+ "warehouse": {
+  "name": "Warehouse Job",
+  "tier": 3,
+  "stat": "slickness",
+  "base_chance": 0.58,
+  "energy": 16,
+  "nerve": 8,
+  "payout": [
+   900,
+   2600
+  ],
+  "xp": 135,
+  "heat": 4,
+  "level_req": 15,
+  "skill": "raid",
+  "verb": "CRACK",
+  "blurb": "Pallets of gear behind a roller shutter and two bored guards. Stealth or speed.",
+  "crit_item": "Cage Pallet",
+  "crit_rarity": "certi",
+  "crit_value": [
+   1500,
+   3200
+  ],
+  "approach": [
+   {
+    "label": "Slip past the guards",
+    "chance": 0.06,
+    "heat": -1,
+    "payout_mult": 0.9,
+    "blurb": "Slickness routes. Clean but slow."
+   },
+   {
+    "label": "Bang the door, race the clock",
+    "chance": -0.05,
+    "heat": 2,
+    "payout_mult": 1.2,
+    "blurb": "Loud. Grab and go."
+   }
+  ],
+  "scene": "docks_night"
+ },
+ "smuggle": {
+  "name": "Container Smuggle",
+  "tier": 3,
+  "stat": "speed",
+  "base_chance": 0.6,
+  "energy": 15,
+  "nerve": 8,
+  "payout": [
+   800,
+   2200
+  ],
+  "xp": 128,
+  "heat": 4,
+  "level_req": 15,
+  "skill": "import",
+  "verb": "RUN",
+  "blurb": "Container off the ship, off the manifest. Get it off the dock before the check.",
+  "crit_item": "Import Gear Crate",
+  "crit_rarity": "certi",
+  "crit_value": [
+   1400,
+   3000
+  ],
+  "scene": "docks_night"
+ },
+ "gun_deal": {
+  "name": "Strap Deal",
+  "tier": 3,
+  "stat": "strength",
+  "base_chance": 0.5,
+  "energy": 20,
+  "nerve": 12,
+  "payout": [
+   2500,
+   6000
+  ],
+  "xp": 220,
+  "heat": 8,
+  "level_req": 40,
+  "skill": "strap",
+  "verb": "DEAL",
+  "blurb": "Nottingham plug, back of a car park. Straps are loud money and days of heat.",
+  "crit_item": "The Whole Package",
+  "crit_rarity": "iconic",
+  "crit_value": [
+   4000,
+   9000
+  ],
+  "scene": "towpath"
+ }
+}

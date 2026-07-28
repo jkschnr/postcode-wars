@@ -1,0 +1,160 @@
+[
+ {
+  "id": "chop_keyless",
+  "conditions": {
+   "time": "night",
+   "max_heat": 12
+  },
+  "target": {
+   "name": null,
+   "detail": "the keyless German on the nice drive"
+  },
+  "setup": "Relay box in the rucksack, one of you at the front door catching the fob signal through the wall, other on the handle. Ninety seconds, tops.",
+  "on_success": "Signal caught, doors pop, push-start and roll it off the drive in silence. On the transporter before the owner's kettle boils.",
+  "on_fail": "They've got a Faraday pouch and a Ring doorbell and now they've got your face saying 'oi' on the internet.",
+  "on_crit": "Two on the drive keyed to the same system. Why take one. The chop shop's going to love you.",
+  "job": "chop_run"
+ },
+ {
+  "id": "chop_delivery",
+  "target": {
+   "name": "the courier",
+   "detail": "engine running outside the flats"
+  },
+  "setup": "Delivery driver double-parked, hazards on, engine running, sprinting a parcel to a door forty feet away. The car is basically waving.",
+  "on_success": "You're in the seat and gone before the parcel's even scanned. He turns round to an empty space and a lesson.",
+  "on_fail": "He kept the fob in his pocket, not the ignition. You're sat in a running car you can't actually move, looking daft.",
+  "on_crit": "Back's full of other people's parcels. Christmas came whenever this is.",
+  "job": "chop_run",
+  "conditions": {
+   "max_heat": 12
+  }
+ },
+ {
+  "id": "chop_keyless_drive",
+  "conditions": {
+   "time": "night",
+   "cities": [
+    "birmingham"
+   ],
+   "max_heat": 12
+  },
+  "target": {
+   "name": "—",
+   "detail": "the keyless German on the paved-over front garden"
+  },
+  "setup": "Relay box in the bag, one of you at the front door catching the fob signal through the brickwork, the other on the handle. Ninety seconds if the fob's in the hallway, which it always is.",
+  "on_success": "Signal caught, doors clunk, push-start and roll it off the drive in silence. On the transporter before the owner's kettle's even boiled.",
+  "on_fail": "They've kept the fob in a tin in the kitchen like the leaflet said, and the doorbell camera's already got your good side.",
+  "on_crit": "Two on the drive keyed to the same account. Why take one. The chop shop's going to think it's Christmas.",
+  "job": "chop_run"
+ },
+ {
+  "id": "chop_courier_running",
+  "conditions": {
+   "time": "day",
+   "max_heat": 6
+  },
+  "target": {
+   "name": "Wojciech",
+   "detail": "sprinting a parcel with the engine still running"
+  },
+  "setup": "Courier double-parked, hazards blinking, engine ticking over, sprinting a parcel to a door forty feet away with the clock on his handset. The van's practically holding the door open for you.",
+  "on_success": "You're in the seat and away before the parcel's even scanned. He turns round to a gap where his afternoon used to be.",
+  "on_fail": "He kept the fob in his pocket, not the barrel. You're sat in a running van you can't actually move, looking like exactly what you are.",
+  "on_crit": "Back's full of everyone's parcels. Whatever this week is, it just got better.",
+  "job": "chop_run"
+ },
+ {
+  "id": "chop_dealer_forecourt",
+  "conditions": {
+   "time": "night",
+   "min_level": 8,
+   "max_heat": 12
+  },
+  "target": {
+   "name": "—",
+   "detail": "the pick of the forecourt behind a chain a bolt-cropper laughs at"
+  },
+  "setup": "Used-car lot, a chain across the entrance that's more suggestion than security, and trade plates in the portacabin drawer if you fancy the extra ten seconds.",
+  "on_success": "Chain off, best motor on the lot, trade plates on it so it looks like it's meant to be moving. You drive it out of the gate like you bought it.",
+  "on_fail": "The cheap-looking cabin has an expensive-looking alarm and a dog you didn't cost into the plan.",
+  "job": "chop_run"
+ },
+ {
+  "id": "chop_hospital_carpark",
+  "conditions": {
+   "max_heat": 7
+  },
+  "target": {
+   "name": "Bev",
+   "detail": "the nice one parked up on a long-stay ticket"
+  },
+  "setup": "Multi-storey by the hospital, level four, half-empty in the small hours. A clean estate on a week-long ticket, which means an owner who won't be back to notice for days.",
+  "on_success": "Nobody parks on four at 3am. You've got the time to do it properly and the days to be long gone before it's reported.",
+  "on_fail": "A porter on his break is having a cigarette by the stairwell and watches you do the whole thing, then reaches for his radio.",
+  "job": "chop_run"
+ },
+ {
+  "id": "chop_matched_pair",
+  "conditions": {
+   "time": "night",
+   "max_heat": 12
+  },
+  "target": {
+   "name": "—",
+   "detail": "the second one, same make, three doors down"
+  },
+  "setup": "You've already got one on the transporter when you clock its twin outside a house down the road. Delroy pays double for a matched pair and it's a twenty-minute round trip you've technically already used.",
+  "on_success": "Greedy pays, this once. Two identical motors on the same flatbed and a fence who actually smiles, which you've never seen before.",
+  "on_fail": "Somebody's curtain moves on the second run. A face at a window with a phone. You've got maybe two minutes and you spend one deciding.",
+  "job": "chop_run"
+ },
+ {
+  "id": "chop_school_run",
+  "conditions": {
+   "time": "day",
+   "max_heat": 5
+  },
+  "target": {
+   "name": "—",
+   "detail": "the engine left running at the school gates"
+  },
+  "setup": "Drop-off time, a queue of motors, and one left ticking over while the driver walks a small person to the railings. Thirty seconds of nobody looking at anybody in the chaos.",
+  "on_success": "Straight in, straight out, gone into the traffic before the parent's even turned round. The one time the school run works in your favour.",
+  "on_fail": "There's a toddler still strapped in the back you didn't see, and now you're not a car thief, you're something you never signed up to be.",
+  "job": "chop_run"
+ },
+ {
+  "id": "chop_scrapyard_plates",
+  "conditions": {
+   "time": "night",
+   "min_level": 10,
+   "max_heat": 12
+  },
+  "target": {
+   "name": "—",
+   "detail": "a hundred number plates to choose from behind the fence"
+  },
+  "setup": "The plate on the motor's screaming by now. There's a scrapyard four miles the wrong way with a field of donors and a fence a bolt-cropper solves. Fresh plates make the whole run quieter.",
+  "on_success": "A matched plate off a scrapped twin of the same colour, screwed on in the dark. The motor stops being hot and starts being invisible.",
+  "on_fail": "There's a car in the scrapyard gateway and it isn't a scrapper — it's a nightwatchman who took the job seriously.",
+  "job": "chop_run"
+ },
+ {
+  "id": "chop_a_road_buyer",
+  "conditions": {
+   "time": "night",
+   "min_level": 12,
+   "max_heat": 12
+  },
+  "target": {
+   "name": "—",
+   "detail": "the buyer out past the ring road who doesn't ask, doesn't haggle"
+  },
+  "setup": "Take it out of the city and there's a man who pays in one go for anything German after 2019. Two hours on an A-road, at night, in a stolen car, on a plate that might not hold up to a bored patrol.",
+  "on_success": "Two hours of doing exactly the speed limit and it's someone else's problem in a barn outside nowhere, paid in a bag, no names.",
+  "on_fail": "Roadside check outside Coventry. Not even for you — just the wrong minute of the wrong hour, and the plate doesn't match the tax.",
+  "job": "chop_run"
+ }
+]

@@ -1,0 +1,20 @@
+{
+ "job": "phone_snatch",
+ "stages": [
+  {
+   "name": "The first one",
+   "text": "Woman on the corner, phone flat in her palm, following the blue dot instead of the road. One clean lift and you're into the crowd before she looks up.",
+   "fail_text": "Wrist strap you didn't clock. Now you're both holding the same phone and only one of you is embarrassed."
+  },
+  {
+   "name": "One more in the crowd",
+   "text": "The precinct's rammed and everyone's got a phone out. Another mark, thirty feet on, headphones in, world switched off. The crowd hides you but it hides them clocking you too.",
+   "fail_text": "His mate saw. The mate's the problem, not him, and the mate's already shouting."
+  },
+  {
+   "name": "The one filming",
+   "text": "A tourist holding the newest model out at arm's length, filming the whole street, you included. Worth triple the others — and pointed at your face right up until the second you take it.",
+   "fail_text": "The livestream had three hundred people watching, and now three hundred people have watched you do it in daylight."
+  }
+ ]
+}

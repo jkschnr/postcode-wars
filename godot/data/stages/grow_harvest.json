@@ -1,0 +1,30 @@
+{
+ "job": "grow_harvest",
+ "stages": [
+  {
+   "name": "The first room",
+   "text": "Front bedroom, foil walls, a crop that's ready and heavy. Cut this one and you've covered the night; everything past here is profit and risk in equal measure.",
+   "fail_text": "The extraction fan packed in this week and half of it's turned. You take what's left and it barely covers the electric."
+  },
+  {
+   "name": "The second room",
+   "text": "The box room's got another dozen plants, smaller but further along. Another twenty minutes in a house that smells like a crime from the street. Twenty minutes is a long time to stand in this smell.",
+   "fail_text": "A neighbour who's had enough of the hum through the wall has finally dialled it in, and blue lights are turning onto the road."
+  },
+  {
+   "name": "The loft",
+   "text": "There's a hatch on the landing and better kit above it than in either bedroom. The good stuff's always in the loft. So is the heat, and the ladder that groans loud enough to wake the terrace.",
+   "fail_text": "The ladder gives at the third rung and you come down through the hatch faster than the plants ever grew."
+  },
+  {
+   "name": "The mother plants",
+   "text": "Downstairs there's a locked room the grower kept the mothers in — worth more than the whole crop to the right buyer, if you take them alive. That means trays, means space, means trips.",
+   "fail_text": "Loading trays out the front like a garden centre is exactly the picture the passing patrol car needed."
+  },
+  {
+   "name": "The bypass",
+   "text": "The meter's been rigged this whole time and if you kill it right on the way out, the leccy company never gets the flag that started all the questions. One wrong wire in the dark and the whole street goes black.",
+   "fail_text": "You cross the wrong wire and the terrace drops into darkness, and a hundred people at once wonder why."
+  }
+ ]
+}

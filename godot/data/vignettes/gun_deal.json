@@ -1,0 +1,164 @@
+[
+ {
+  "id": "gun_carpark",
+  "conditions": {
+   "time": "night",
+   "min_heat": 2,
+   "max_heat": 12
+  },
+  "target": {
+   "name": null,
+   "detail": "the multi-storey, level four, no cameras"
+  },
+  "setup": "Top deck of the multi-storey, cameras that gave up years ago, a buyer you half-know and a package that turns everything you own into evidence.",
+  "on_success": "Boot to boot, count it, gone in opposite directions inside two minutes. Nobody's name said out loud once.",
+  "on_fail": "The buyer's too keen, asks the wrong question, and the second car that pulls up isn't with him — or it is, and that's worse.",
+  "on_crit": "He wants the whole parcel, not the half you brought to test the water, and he's brought the money to prove it.",
+  "job": "gun_deal"
+ },
+ {
+  "id": "gun_clean_one",
+  "conditions": {
+   "cities": [
+    "nottingham"
+   ],
+   "max_heat": 12
+  },
+  "target": {
+   "name": "the clean one",
+   "detail": "never fired, no history"
+  },
+  "setup": "A clean one — no history, never spoken for, worth triple a dirty one to the right nervous buyer. He's very nervous. That's the price.",
+  "on_success": "Hand it over wrapped, take the premium for the silence that comes with it, and forget his face on purpose.",
+  "on_fail": "Clean means everyone wants it, including the ones who wire themselves before a meet. His jacket sits wrong.",
+  "on_crit": "He's buying for others too, not just himself. One clean piece opens a standing order you'll pretend you don't have.",
+  "job": "gun_deal"
+ },
+ {
+  "id": "gun_multistorey_meet",
+  "conditions": {
+   "time": "night",
+   "min_heat": 2,
+   "max_heat": 12
+  },
+  "target": {
+   "name": "—",
+   "detail": "level four of the multi-storey, the cameras that gave up years ago"
+  },
+  "setup": "Top deck of the car park, cameras dead since a budget cut, a buyer you half-know, and a package that turns everything you own into evidence the second it's in the car. Two minutes, boot to boot.",
+  "on_success": "Count it, hand it over wrapped, and drive off in the opposite direction inside two minutes. Nobody's name said out loud once.",
+  "on_fail": "The buyer's too keen, asks the one wrong question, and the second car that pulls up isn't with him — or it is, and that's worse.",
+  "on_crit": "He wants the whole parcel, not the half you brought to test the water, and he's brought the money to prove he means it.",
+  "job": "gun_deal"
+ },
+ {
+  "id": "gun_clean_piece",
+  "conditions": {
+   "cities": [
+    "nottingham"
+   ],
+   "min_heat": 2,
+   "max_heat": 12
+  },
+  "target": {
+   "name": "—",
+   "detail": "the clean one — no history, never spoken for"
+  },
+  "setup": "A clean piece, no history, never fired in anger, worth triple a dirty one to the right nervous buyer. He's very nervous. That nervousness is the price and you're charging it in full.",
+  "on_success": "Hand it over double-wrapped, take the premium for the silence that comes with it, and forget his face on purpose before you're off the estate.",
+  "on_fail": "Clean means everyone wants it, including the ones who wire themselves before a meet, and his jacket sits a shade too square across the chest.",
+  "on_crit": "He's buying for others, not just himself. One clean piece opens a standing order you'll pretend, to yourself, that you don't have.",
+  "job": "gun_deal"
+ },
+ {
+  "id": "gun_canal_towpath",
+  "conditions": {
+   "time": "night",
+   "max_heat": 10
+  },
+  "target": {
+   "name": "Dev",
+   "detail": "the towpath under the bridge where nobody walks after dark"
+  },
+  "setup": "Canal towpath, under a bridge, the only light a phone screen and the only witnesses ducks. A meet with a face who's been away and come back needing to catch up on what he missed.",
+  "on_success": "Quick handover in the dark, the parcel goes one way up the towpath and you go the other, and the water takes the wrapping.",
+  "on_fail": "There's a dog walker who couldn't sleep and a torch swinging down the towpath, and 'just talking' looks like exactly what it is.",
+  "job": "gun_deal"
+ },
+ {
+  "id": "gun_range_backdoor",
+  "conditions": {
+   "min_level": 12,
+   "max_heat": 9
+  },
+  "target": {
+   "name": "—",
+   "detail": "the bloke at the clay range with a back door and a loose inventory"
+  },
+  "setup": "A shooting range out in the sticks with a man who signs for more than comes back and sells the difference off the books, all of it legal-looking on paper and none of it legal in your hands.",
+  "on_success": "Off the range, out the back, and the paperwork says it's still locked in the cabinet where it very much isn't. Country crime, quiet as a field.",
+  "on_fail": "His stock-take gets audited the same week and a very polite man in a fleece starts asking where three specific things went.",
+  "job": "gun_deal"
+ },
+ {
+  "id": "gun_hotel_carpark",
+  "conditions": {
+   "time": "night",
+   "min_level": 10,
+   "max_heat": 12
+  },
+  "target": {
+   "name": "—",
+   "detail": "the airport hotel car park where every car's a stranger's"
+  },
+  "setup": "Budget hotel by the airport, a car park full of hire cars and nobody who'll be here tomorrow, a buyer who flew in for the afternoon and flies out tonight with the parcel and no forwarding address.",
+  "on_success": "Boot to boot between two cars that'll both be gone by morning. He's a face in a crowd that reshuffles every day. Perfect.",
+  "on_fail": "The 'buyer' knew the meet before you told anyone the meet, and the only person you told was the one who set it up.",
+  "on_crit": "He's a middleman and he likes you, and middlemen who like you are how a bad little sideline becomes a bad big career.",
+  "job": "gun_deal"
+ },
+ {
+  "id": "gun_estate_lockup",
+  "conditions": {
+   "max_heat": 8
+  },
+  "target": {
+   "name": "—",
+   "detail": "the row of garages where three don't have cars in them"
+  },
+  "setup": "A row of council lock-ups, most with cars, three with other arrangements. A meet in the middle one, roller door half down, a torch on the floor pointing at the deal so nobody has to see a face.",
+  "on_success": "Quick, dark, done. Roller door down, torch off, everyone out the pedestrian gate at intervals like strangers, because tonight you are.",
+  "on_fail": "The garages back onto a school field and there's a caretaker locking up who's seen enough round here to know what a half-down door means.",
+  "job": "gun_deal"
+ },
+ {
+  "id": "gun_debt_settle",
+  "conditions": {
+   "min_heat": 3,
+   "max_heat": 11
+  },
+  "target": {
+   "name": "Marlon",
+   "detail": "the man who'd rather pay you in a piece than in cash he hasn't got"
+  },
+  "setup": "He owes and he's skint, and instead of money he's offering the thing he was saving for exactly the kind of trouble owing you might become. Taking it settles the debt and starts a worse one.",
+  "on_success": "You take it in lieu, the debt's clean, and you've got a clean piece you never went looking for — which is how most people end up holding one.",
+  "on_fail": "His offer's a set-up to clear the debt the permanent way, and the meet was always going to have a third man in it.",
+  "job": "gun_deal"
+ },
+ {
+  "id": "gun_first_time_conscience",
+  "conditions": {
+   "time": "night",
+   "max_heat": 9
+  },
+  "target": {
+   "name": "—",
+   "detail": "the kid who's too young to be buying this and old enough to try"
+  },
+  "setup": "A younger with more money than sense and a grievance he won't explain, wanting the one thing you've always told yourself you'd never be the reason for. His hands aren't steady and neither, for once, are yours.",
+  "on_success": "You sell him a story instead — that it's sold, that it's gone, that he should go home — and he believes you because he wants an excuse. That's the deal you can live with.",
+  "on_fail": "He's not taking no, he's got the money out, and the longer you stand in the dark arguing the more it looks like the thing you don't want it to look like.",
+  "job": "gun_deal"
+ }
+]

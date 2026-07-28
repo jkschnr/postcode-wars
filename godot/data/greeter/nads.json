@@ -1,0 +1,49 @@
+{
+  "character": "nads",
+  "name": "Nads",
+  "sets": {
+    "morning": [
+      { "id": "nads_morn_1", "lines": ["You're up.", "Good, 'cause I've been up since six and it's boring being the only one."] },
+      { "id": "nads_morn_2", "lines": ["Morning. Roads are quiet.", "Which either means it's a good day or everyone's waiting for something."] },
+      { "id": "nads_morn_3", "lines": ["You look like you slept in your coat.", "No, I'm not asking."] }
+    ],
+    "afternoon": [
+      { "id": "nads_aft_1", "lines": ["Afternoon. High street's rammed — everyone's got their phone out like it's free money."] },
+      { "id": "nads_aft_2", "lines": ["Where've you been?", "Don't answer that, I've got things to tell you."] }
+    ],
+    "evening": [
+      { "id": "nads_eve_1", "lines": ["There he is.", "Night shift, yeah? Pays better. Costs more."] },
+      { "id": "nads_eve_2", "lines": ["It's late. Which is fine, I'm not your mum.", "Though she did ring me."] }
+    ],
+    "return_1_3": [
+      { "id": "nads_back_1", "lines": ["Right. Two days.", "I'm not going to make it weird.", "Here's what you missed."] }
+    ],
+    "return_4_7": [
+      { "id": "nads_back_2", "lines": ["Four days.", "I rang you twice.", "No, don't explain, honestly. You're here now."], "requires_recap": true },
+      { "id": "nads_back_3", "lines": ["Your corner's been stacking up like nobody owns it.", "Which, for four days, nobody did."], "requires_recap": true }
+    ],
+    "return_8": [
+      { "id": "nads_back_4", "lines": ["Look who it is.", "Sit down, I'll catch you up, and then we're not talking about it again."], "requires_recap": true }
+    ],
+    "post_loss": [
+      { "id": "nads_loss_1", "lines": ["How's the face?", "Don't. I'm allowed one."] },
+      { "id": "nads_loss_2", "lines": ["Right, that's the bad bit done.", "Everyone gets one. Let's not make it a habit."] }
+    ],
+    "big_win": [
+      { "id": "nads_win_1", "lines": ["So. Word's out.", "You did that with a crowbar and a bin bag and I'm not going to let you forget it."] },
+      { "id": "nads_win_2", "lines": ["You've gone quiet since you got money.", "Classic."] }
+    ],
+    "high_heat": [
+      { "id": "nads_heat_1", "lines": ["Before you do anything — you're hot.", "Properly hot. Everyone knows you were out last night."] }
+    ],
+    "heavy_collect": [
+      { "id": "nads_coll_1", "lines": ["Before anything else — go and pick your money up.", "It's sat there embarrassing both of us."] }
+    ],
+    "empty": [
+      { "id": "nads_empty_1", "lines": ["Nothing's cooking. Which is a problem, because that means we're not earning.", "Right — I've got one thing. Small thing. You want it?"], "grants": "free_street_tip" }
+    ],
+    "default": [
+      { "id": "nads_def_1", "lines": ["You're here. Good.", "Let's make the day worth something."] }
+    ]
+  }
+}

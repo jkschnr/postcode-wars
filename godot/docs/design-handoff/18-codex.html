@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>18-codex — Postcode Wars</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ui.css">
+<script src="art.js"></script>
+<script src="cast.js"></script>
+<script src="chrome.js"></script>
+<script src="anim.js"></script>
+</head>
+<body>
+<div id="frame">
+  <div style="position:absolute; inset:0; background:
+      radial-gradient(50% 26% at 20% 10%, rgba(255,169,77,0.14), rgba(255,169,77,0) 68%),
+      linear-gradient(180deg, #15181C 0%, #121417 52%, #0E1013 100%);"></div>
+  <div id="hud"></div>
+
+  <div style="position:absolute; left:32px; right:32px; top:180px; z-index:35; display:flex; flex-direction:column; gap:20px;">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px;">
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <span class="mono" style="font-size:22px; letter-spacing:0.18em; color:#FFA94D;">EVERYTHING YOU'VE LEARNED, AND OWE</span>
+        <span class="disp" style="font-size:80px; line-height:0.9;">Codex</span>
+      </div>
+      <span class="mono tab" style="font-size:20px; color:#5A6068;">62% COMPLETE</span>
+    </div>
+    <div id="tabs" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:14px;"></div>
+  </div>
+
+  <div id="body" class="scroll" style="top:460px; bottom:180px; padding:0 32px 40px; box-sizing:border-box; display:flex; flex-direction:column; gap:16px;"></div>
+
+  <div id="nav"></div>
+  <div class="tooth"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+mountChrome('char', {});
+
+const TABS = ['PEOPLE', 'PLACES', 'LEDGER OF CONSEQUENCES'];
+let tab = 0;
+
+const PLACES = [
+  ['Mare Street, E8', 'LONDON', 'Barbers, chicken shop, Bung branch. Where it started and where it keeps coming back to.'],
+  ['The Bow yard', 'LONDON', 'Transit vans, copper cable, one gate code that somebody keeps selling.'],
+  ['Hackney arches', 'LONDON', "Delroy's. Two work lamps and a floor you don't look at too closely."],
+  ['Moss Side, M14', 'MANCHESTER', 'Aunty Pearl\u2019s kitchen. The only room where nobody raises their voice.'],
+  ['Digbeth, B5', 'BIRMINGHAM', 'Lockups behind the old works. Ranj has the shutters until Thursday.'],
+  ['Container 12', 'LIVERPOOL', 'Bev signs it out for one night and asks nothing.']
+];
+
+const LEDGER = [
+  ['£8,000', 'SILAS RHODES', 'Paid for a file to be tidied. He kept the copy.', '#C9A227'],
+  ['A moped', 'DELIVERY LAD, MARE ST', 'He was 19. He paid for it himself, over four months.', '#D63B3B'],
+  ['£4,100', 'SEIZED AT WOOD GREEN', 'Gone. Nobody to blame but the timing.', '#D63B3B'],
+  ['The yard code', 'NADS', 'He gave it to you before he trusted you. You used it twice.', '#FFA94D'],
+  ['£2,400', 'BETFRENZ TILL', 'Insured. The manager was sacked anyway.', '#C9A227'],
+  ['Two favours', 'UNCLE T', 'Neither has been called in. That\u2019s the part that worries you.', '#FFA94D']
+];
+
+function draw() {
+  document.getElementById('tabs').innerHTML = TABS.map((t, i) => `
+    <div data-t="${i}" class="panel" style="min-height:96px; padding:0 18px; display:flex; align-items:center; justify-content:center; text-align:center; cursor:pointer;
+      ${i === tab ? 'border-color:#FFA94D; background:rgba(255,169,77,0.10);' : ''}">
+      <span class="mono" style="font-size:20px; letter-spacing:0.12em; color:${i === tab ? '#FFA94D' : '#9AA0A6'};">${t}</span>
+    </div>`).join('');
+  document.querySelectorAll('#tabs [data-t]').forEach(el =>
+    el.addEventListener('click', () => { tab = +el.dataset.t; draw(); }));
+
+  const b = document.getElementById('body');
+  if (tab === 0) {
+    b.innerHTML = `<div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">` + CAST.map((c, i) => {
+      const met = i < 11;
+      return `<div class="panel" style="padding:20px; display:flex; gap:18px; ${met ? '' : 'opacity:0.5;'}">
+        ${met ? `<div style="width:110px; height:130px; flex:none; border-radius:12px; overflow:hidden; background-image:url(${plateFor(c)}); background-size:cover; background-position:50% 26%;"></div>`
+              : `<div style="width:110px; height:130px; flex:none; border-radius:12px; border:1px dashed #3A3F45; display:flex; align-items:center; justify-content:center;">
+                   <span class="mono" style="font-size:20px; color:#5A6068;">?</span></div>`}
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:8px;">
+          <span class="disp" style="font-size:34px; line-height:1;">${met ? c.name : 'Not met'}</span>
+          <span class="mono" style="font-size:20px; letter-spacing:0.12em; color:#FFA94D;">${met ? c.role + ' · ' + c.age : '—'}</span>
+          <span style="font-size:22px; line-height:1.35; color:#9AA0A6;">${met ? c.place : 'Somebody in ' + c.city + '.'}</span>
+        </div>
+      </div>`;
+    }).join('') + `</div>`;
+  } else if (tab === 1) {
+    b.innerHTML = PLACES.map(([n, city, note]) => `
+      <div class="panel" style="padding:24px 26px; display:flex; align-items:center; gap:22px;">
+        <div style="width:120px; height:96px; flex:none; border-radius:12px; background-image:url(art/tex-brick.png); background-size:cover;"></div>
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:6px;">
+          <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#FFA94D;">${city}</span>
+          <span class="disp" style="font-size:38px; line-height:1;">${n}</span>
+          <span style="font-size:24px; line-height:1.35; color:#9AA0A6;">${note}</span>
+        </div>
+      </div>`).join('');
+  } else {
+    b.innerHTML = `
+      <div class="panel" style="padding:24px 26px; background:rgba(30,33,38,0.9); display:flex; flex-direction:column; gap:8px;">
+        <span class="mono" style="font-size:20px; letter-spacing:0.16em; color:#C9A227;">WHAT YOU TOOK, AND WHO FROM</span>
+        <span style="font-size:26px; line-height:1.4; color:#9AA0A6;">Nothing here can be paid off. It only gets read back to you later.</span>
+      </div>` + LEDGER.map(([what, who, note, tint]) => `
+      <div class="panel" style="padding:22px 26px; border-left:6px solid ${tint}; display:flex; align-items:center; gap:22px;">
+        <span class="disp tab" style="width:240px; flex:none; font-size:40px; color:${tint};">${what}</span>
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:6px;">
+          <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#9AA0A6;">${who}</span>
+          <span style="font-size:24px; line-height:1.35;">${note}</span>
+        </div>
+      </div>`).join('');
+  }
+}
+draw();
+</script>
+</body>
+</html>

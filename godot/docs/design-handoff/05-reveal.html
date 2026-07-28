@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>05-reveal — Postcode Wars</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="art.js"></script>
+<script src="cast.js"></script>
+<style>
+  html, body { margin:0; background:#0C0E10; }
+  body { display:flex; justify-content:center; }
+  a { color:#FFA94D; text-decoration:none; }
+  a:hover { color:#FFC97A; }
+  #frame { position:relative; width:1080px; height:1920px; flex:none; overflow:hidden;
+    background:#0C0E10; color:#EDEFF2; font-family:Inter, system-ui, sans-serif; transform-origin:top center; cursor:pointer; }
+  .mono { font-family:'IBM Plex Mono', monospace; }
+  .disp { font-family:Anton, Impact, sans-serif; text-transform:uppercase; }
+  .tab { font-variant-numeric:tabular-nums; }
+  .tooth { position:absolute; inset:0; pointer-events:none; z-index:1; opacity:0.22; mix-blend-mode:soft-light;
+    background-image:url("art/tex-concrete.png"); background-size:512px 512px; }
+  .grain { position:absolute; inset:0; pointer-events:none; opacity:0.05; mix-blend-mode:screen; z-index:60;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
+    background-size:280px 280px; }
+  .lootcard { width:316px; min-height:356px; border:2px solid #B9C0C7; border-radius:16px; background:#1E2126; overflow:hidden;
+    display:flex; flex-direction:column; animation:flipin 260ms cubic-bezier(.2,.8,.3,1) both; }
+  @keyframes flipin { from { transform:perspective(900px) rotateY(90deg) scale(0.94); opacity:0; } to { transform:none; opacity:1; } }
+  @keyframes stinger { 0% { transform:scale(1.14); opacity:0; } 40% { transform:scale(1); opacity:1; } 100% { transform:scale(1); opacity:1; } }
+  @keyframes bagdrop { 0% { transform:translateY(-140px) scale(0.96); opacity:0; } 70% { transform:translateY(10px) scale(1.01); opacity:1; } 100% { transform:none; opacity:1; } }
+</style>
+<script src="anim.js"></script>
+</head>
+<body>
+<div id="frame">
+
+  <!-- dimmed job screen behind the ceremony -->
+  <div style="position:absolute; inset:0; background:
+      radial-gradient(60% 40% at 50% 40%, rgba(30,33,38,0.9), rgba(12,14,16,0.96) 70%), #0C0E10;"></div>
+  <div id="pool" style="position:absolute; left:0; right:0; top:280px; height:720px; pointer-events:none;"></div>
+
+  <!-- OUTCOME -->
+  <div style="position:absolute; left:32px; right:32px; top:180px; z-index:30; display:flex; flex-direction:column; align-items:center; gap:16px; text-align:center;">
+    <div id="stinger" class="disp" style="font-size:88px; line-height:0.9; letter-spacing:0.02em;"></div>
+    <div id="outcome" style="font-size:30px; line-height:1.4; color:#C3C9CF; max-width:880px; text-wrap:pretty;"></div>
+  </div>
+
+  <!-- BAG + LOOT -->
+  <div style="position:absolute; left:0; right:0; top:536px; z-index:30; display:flex; flex-direction:column; align-items:center; gap:56px;">
+    <div id="bag" style="width:480px; height:280px; border-radius:120px 120px 28px 28px; border:1px solid #3A3F45;
+      background-image:url(art/tex-canvasbag.png); background-size:cover; background-position:center;
+      display:flex; align-items:flex-end; justify-content:center; padding-bottom:18px; animation:bagdrop 420ms cubic-bezier(.2,.8,.3,1) both;">
+      <span class="mono" style="font-size:20px; letter-spacing:0.16em; color:#C3C9CF; text-shadow:0 2px 10px rgba(0,0,0,0.9);">EVERYTHING YOU TOOK</span>
+    </div>
+    <div id="loot" style="display:flex; gap:20px; justify-content:center; align-items:stretch; flex-wrap:wrap; max-width:1016px;"></div>
+  </div>
+
+  <!-- CHARACTER TEXT ARRIVING -->
+  <div id="toast" style="position:absolute; left:32px; right:32px; bottom:352px; z-index:40; border:1px solid #2A2E33; border-left:6px solid #FFA94D; border-radius:16px; background:#2A2E33; padding:22px 26px; display:flex; align-items:center; gap:20px;"></div>
+
+  <!-- XP -->
+  <div class="tab" style="position:absolute; left:32px; right:32px; bottom:196px; z-index:40; display:flex; flex-direction:column; gap:14px;">
+    <div style="display:flex; align-items:baseline; justify-content:space-between;">
+      <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#9AA0A6;">LEVEL 37 · ROADMAN</span>
+      <span id="xpgain" class="disp" style="font-size:40px; color:#FFC97A;">+85 XP</span>
+    </div>
+    <div style="height:20px; border-radius:10px; background:#121417; border:1px solid #2A2E33; overflow:hidden; display:flex;">
+      <div id="xpbar" style="width:48%; background:linear-gradient(90deg, #FFA94D, #FFC97A); transition:width 520ms cubic-bezier(.2,1.4,.3,1);"></div>
+    </div>
+    <div style="display:flex; justify-content:space-between;">
+      <span class="mono" style="font-size:20px; color:#5A6068;">14,820 / 18,400</span>
+      <span class="mono" style="font-size:20px; color:#5A6068;">NEXT: SHOTTER</span>
+    </div>
+  </div>
+
+  <div class="mono" style="position:absolute; left:0; right:0; bottom:120px; z-index:40; text-align:center; font-size:20px; letter-spacing:0.2em; color:#5A6068;">TAP ANYWHERE TO CONTINUE</div>
+
+  <a href="03-jobs.html" class="mono" style="position:absolute; left:32px; top:60px; z-index:45; height:72px; padding:0 24px; border:1px solid #2A2E33; border-radius:14px; background:rgba(18,20,23,0.82); display:flex; align-items:center; font-size:20px; letter-spacing:0.14em; color:#9AA0A6;">← THE BOARD</a>
+
+  <div class="tooth"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+const W = 1080, H = 1920;
+function scaleFrame() {
+  const f = document.getElementById('frame');
+  const s = Math.min(1, window.innerHeight / H, window.innerWidth / W);
+  f.style.transform = 'scale(' + s + ')';
+  document.body.style.height = (H * s) + 'px';
+}
+window.addEventListener('resize', scaleFrame);
+scaleFrame();
+
+const RARITY = {
+  basic:  { c:'#B9C0C7', label:'BASIC' },
+  decent: { c:'#6FCF6F', label:'DECENT' },
+  peng:   { c:'#4DA3FF', label:'PENG' },
+  certi:  { c:'#B06CF0', label:'CERTI' },
+  iconic: { c:'#F2C14E', label:'ICONIC' }
+};
+const ITEMS = [
+  ['basic','Burner handset'], ['basic','Half-empty jerry can'], ['basic','Bolt cutters, blunt'],
+  ['decent','Scuffed trainers'], ['decent','Hi-vis and a clipboard'], ['decent','Spare plate set'],
+  ['peng','Cloned card reader'], ['peng','Signal jammer, boxed'], ['peng','Keys to a white Transit'],
+  ['certi','Yard keys, copied'], ['certi','Betfrenz till codes'],
+  ['iconic',"Rhodes' ledger page"], ['iconic','The barber\u2019s little black book']
+];
+const OUTCOMES = {
+  crit:      { word:'CRIT', tint:'#D9E021', lines:[
+                 "Clean off the kerb before the lights changed. Nobody even looked up.",
+                 "Second attempt at the wire and it turned over first time. Gone in eleven seconds."] },
+  normal:    { word:'DONE', tint:'#FFA94D', lines:[
+                 "Wet corner, one wobble, then straight down the back roads to the arches.",
+                 "He shouted. You didn't stop. That's the whole job, really."] },
+  nearmiss:  { word:'NEAR MISS', tint:'#D63B3B', lines:[
+                 "FEDS WERE 0.7s OUT. Van turned into Mare Street as you turned out of it.",
+                 "CAMERA CAUGHT YOUR BACK. Not your face. Not this time."] }
+};
+
+function money(n) { return n >= 10000 ? '£' + (n / 1000).toFixed(1) + 'k' : '£' + n.toLocaleString('en-GB'); }
+
+function countUp(el, target) {
+  const t0 = performance.now(), dur = 900;
+  function step(t) {
+    const p = Math.min(1, (t - t0) / dur);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = money(Math.round(target * eased));
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+function reroll() {
+  const roll = Math.random();
+  const kind = roll < 0.18 ? 'crit' : roll < 0.42 ? 'nearmiss' : 'normal';
+  const o = OUTCOMES[kind];
+  const count = kind === 'crit' ? 2 : Math.random() < 0.5 ? 1 : 2;
+  const items = pickCast ? null : null;
+  const drops = [];
+  const poolItems = ITEMS.slice();
+  const weight = kind === 'crit' ? ['peng','certi','iconic','decent'] : kind === 'nearmiss' ? ['basic','basic','decent'] : ['basic','decent','decent','peng'];
+  for (let i = 0; i < count; i++) {
+    const r = pick(weight);
+    const opts = poolItems.filter(it => it[0] === r);
+    drops.push(opts.length ? pick(opts) : pick(poolItems));
+  }
+  const cash = kind === 'crit' ? 480 + Math.floor(Math.random() * 260)
+             : kind === 'nearmiss' ? 90 + Math.floor(Math.random() * 130)
+             : 240 + Math.floor(Math.random() * 250);
+  const best = drops.map(d => d[0]).sort((a, b) =>
+    Object.keys(RARITY).indexOf(b) - Object.keys(RARITY).indexOf(a))[0];
+  const bestC = RARITY[best].c;
+
+  const st = document.getElementById('stinger');
+  st.textContent = o.word;
+  st.style.color = o.tint;
+  st.style.animation = 'none';
+  void st.offsetWidth;
+  st.style.animation = 'stinger 320ms cubic-bezier(.2,.9,.3,1) both';
+  document.getElementById('outcome').textContent = pick(o.lines);
+
+  document.getElementById('pool').style.background =
+    `radial-gradient(46% 60% at 50% 56%, ${bestC}44 0%, ${bestC}14 42%, rgba(0,0,0,0) 72%)`;
+  const bag = document.getElementById('bag');
+  bag.style.borderColor = bestC;
+  bag.style.animation = 'none'; void bag.offsetWidth;
+  bag.style.animation = 'bagdrop 420ms cubic-bezier(.2,.8,.3,1) both';
+
+  const cashCard = `
+    <div class="lootcard" style="border-color:#C9A227; background:linear-gradient(180deg, rgba(201,162,39,0.18), #1E2126 60%); animation-delay:0ms;">
+      <div style="flex:1; padding:34px 20px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;">
+        <span class="mono" style="font-size:22px; letter-spacing:0.16em; color:#C9A227;">DIRTY CASH</span>
+        <span id="cash" class="disp tab" style="font-size:72px; line-height:1; color:#C9A227;">£0</span>
+        <span class="mono" style="font-size:20px; color:#5A6068;">STRAIGHT IN THE BAG</span>
+      </div>
+    </div>`;
+  const itemCards = drops.map(([r, name], i) => `
+    <div class="lootcard" style="border-color:${RARITY[r].c}; background:linear-gradient(180deg, ${RARITY[r].c}22, #1E2126 55%); animation-delay:${140 + i * 120}ms;">
+      ${itemArt(name, 250, 'border-radius:0;')}
+      <div style="padding:18px 20px; display:flex; flex-direction:column; gap:8px;">
+        <span class="mono" style="font-size:22px; letter-spacing:0.16em; color:${RARITY[r].c};">${RARITY[r].label}</span>
+        <span class="disp" style="font-size:28px; line-height:1;">${name}</span>
+      </div>
+    </div>`).join('');
+  document.getElementById('loot').innerHTML = cashCard + itemCards;
+  countUp(document.getElementById('cash'), cash);
+
+  const xp = kind === 'crit' ? 170 : kind === 'nearmiss' ? 40 : 85;
+  document.getElementById('xpgain').textContent = '+' + xp + ' XP';
+  const bar = document.getElementById('xpbar');
+  bar.style.width = '48%';
+  setTimeout(() => { bar.style.width = (48 + xp / 22) + '%'; }, 260);
+
+  const c = pick(CAST);
+  const tint = c.id === 'hallow' ? '#2E5EAA' : '#FFA94D';
+  const toast = document.getElementById('toast');
+  toast.style.borderLeftColor = tint;
+  toast.innerHTML = `
+    ${portraitSlot(c, 88, tint)}
+    <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:6px;">
+      <span class="mono" style="font-size:22px; letter-spacing:0.14em; color:${tint};">${c.name.toUpperCase()} · ${c.city.toUpperCase()} · NOW</span>
+      <span style="font-size:26px; line-height:1.35;">“${pick(c.lines)}”</span>
+    </div>
+    <span class="mono" style="font-size:30px; color:#5A6068;">›</span>`;
+}
+
+document.getElementById('frame').addEventListener('click', e => {
+  if (e.target.closest('a')) return;
+  reroll();
+});
+reroll();
+</script>
+</body>
+</html>

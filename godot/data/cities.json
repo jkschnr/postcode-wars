@@ -1,0 +1,608 @@
+{
+ "london": {
+  "name": "London",
+  "danger": 5,
+  "level_req": 1,
+  "payout_mult": 1.6,
+  "heat_mult": 1.4,
+  "speciality": "Everything. Highest heat, most variety. Where you start weakest and end strongest.",
+  "x": 0.585,
+  "y": 0.8,
+  "start": true,
+  "boroughs": [
+   {
+    "id": "the_strip",
+    "name": "The Strip",
+    "postcode": "W1",
+    "danger": 3,
+    "level_req": 1,
+    "jobs": [
+     "phone_snatch",
+     "pickpocket",
+     "shoplift"
+    ]
+   },
+   {
+    "id": "rimley",
+    "name": "Rimley Market",
+    "postcode": "SE15",
+    "danger": 4,
+    "level_req": 4,
+    "jobs": [
+     "burglary",
+     "corner_shotting",
+     "extortion"
+    ]
+   },
+   {
+    "id": "docks",
+    "name": "The Docks",
+    "postcode": "E16",
+    "danger": 5,
+    "level_req": 8,
+    "jobs": [
+     "chop_run",
+     "ram_raid",
+     "warehouse"
+    ]
+   },
+   {
+    "id": "broadwater",
+    "name": "Broadwater Farm",
+    "postcode": "N17",
+    "danger": 5,
+    "level_req": 12,
+    "jobs": [
+     "gun_deal",
+     "extortion",
+     "ram_raid"
+    ]
+   }
+  ],
+  "owner": "player"
+ },
+ "manchester": {
+  "name": "Manchester",
+  "danger": 4,
+  "level_req": 5,
+  "payout_mult": 1.35,
+  "heat_mult": 1.15,
+  "speciality": "Wholesale product & grow-ops. Cheapest plug in the game.",
+  "x": 0.45,
+  "y": 0.42,
+  "boroughs": [
+   {
+    "id": "northside",
+    "name": "Northside",
+    "postcode": "M16",
+    "danger": 4,
+    "level_req": 5,
+    "jobs": [
+     "corner_shotting",
+     "grow_harvest",
+     "burglary"
+    ]
+   },
+   {
+    "id": "moss_side",
+    "name": "Moss Side",
+    "postcode": "M14",
+    "danger": 4,
+    "level_req": 8,
+    "jobs": [
+     "grow_harvest",
+     "corner_shotting",
+     "burglary"
+    ]
+   },
+   {
+    "id": "ancoats",
+    "name": "Ancoats",
+    "postcode": "M4",
+    "danger": 5,
+    "level_req": 13,
+    "jobs": [
+     "warehouse",
+     "smuggle",
+     "gun_deal"
+    ]
+   }
+  ],
+  "owner": "blue"
+ },
+ "birmingham": {
+  "name": "Birmingham",
+  "danger": 4,
+  "level_req": 10,
+  "payout_mult": 1.3,
+  "heat_mult": 1.2,
+  "speciality": "Chop shops & car crime. Best dinger prices in the country.",
+  "x": 0.48,
+  "y": 0.6,
+  "boroughs": [
+   {
+    "id": "chopland",
+    "name": "Bordesley",
+    "postcode": "B10",
+    "danger": 4,
+    "level_req": 10,
+    "jobs": [
+     "chop_run",
+     "ram_raid",
+     "corner_shotting"
+    ]
+   },
+   {
+    "id": "small_heath",
+    "name": "Small Heath",
+    "postcode": "B9",
+    "danger": 4,
+    "level_req": 13,
+    "jobs": [
+     "chop_run",
+     "ram_raid",
+     "burglary"
+    ]
+   },
+   {
+    "id": "aston",
+    "name": "Aston",
+    "postcode": "B6",
+    "danger": 5,
+    "level_req": 18,
+    "jobs": [
+     "ram_raid",
+     "warehouse",
+     "gun_deal"
+    ]
+   }
+  ],
+  "owner": "red"
+ },
+ "liverpool": {
+  "name": "Liverpool",
+  "danger": 3,
+  "level_req": 15,
+  "payout_mult": 1.25,
+  "heat_mult": 1.1,
+  "speciality": "The docks. Smuggling, imports, container work.",
+  "x": 0.34,
+  "y": 0.44,
+  "boroughs": [
+   {
+    "id": "l_docks",
+    "name": "Toxteth Docks",
+    "postcode": "L8",
+    "danger": 4,
+    "level_req": 15,
+    "jobs": [
+     "smuggle",
+     "warehouse",
+     "chop_run"
+    ]
+   },
+   {
+    "id": "everton",
+    "name": "Everton",
+    "postcode": "L5",
+    "danger": 4,
+    "level_req": 15,
+    "jobs": [
+     "burglary",
+     "corner_shotting",
+     "smuggle"
+    ]
+   },
+   {
+    "id": "bootle",
+    "name": "Bootle Docks",
+    "postcode": "L20",
+    "danger": 5,
+    "level_req": 20,
+    "jobs": [
+     "smuggle",
+     "warehouse",
+     "gun_deal"
+    ]
+   }
+  ],
+  "owner": "neutral"
+ },
+ "leeds": {
+  "name": "Leeds",
+  "danger": 3,
+  "level_req": 25,
+  "payout_mult": 1.2,
+  "heat_mult": 1.1,
+  "speciality": "Counterfeit & fraud. Fake goods and cloned cards.",
+  "x": 0.51,
+  "y": 0.37,
+  "boroughs": [
+   {
+    "id": "harehills",
+    "name": "Harehills",
+    "postcode": "LS8",
+    "danger": 3,
+    "level_req": 25,
+    "jobs": [
+     "counterfeit",
+     "card_fraud",
+     "burglary"
+    ]
+   },
+   {
+    "id": "chapeltown",
+    "name": "Chapeltown",
+    "postcode": "LS7",
+    "danger": 4,
+    "level_req": 25,
+    "jobs": [
+     "card_fraud",
+     "counterfeit",
+     "corner_shotting"
+    ]
+   },
+   {
+    "id": "leeds_ctr",
+    "name": "City Centre",
+    "postcode": "LS1",
+    "danger": 4,
+    "level_req": 31,
+    "jobs": [
+     "counterfeit",
+     "card_fraud",
+     "warehouse"
+    ]
+   }
+  ],
+  "owner": "neutral"
+ },
+ "glasgow": {
+  "name": "Glasgow",
+  "danger": 4,
+  "level_req": 20,
+  "payout_mult": 1.35,
+  "heat_mult": 1.2,
+  "speciality": "Enforcement work & protection. Hard city, hard money.",
+  "x": 0.4,
+  "y": 0.16,
+  "boroughs": [
+   {
+    "id": "calton",
+    "name": "Calton",
+    "postcode": "G40",
+    "danger": 4,
+    "level_req": 20,
+    "jobs": [
+     "extortion",
+     "protection",
+     "warehouse"
+    ]
+   },
+   {
+    "id": "possil",
+    "name": "Possilpark",
+    "postcode": "G22",
+    "danger": 4,
+    "level_req": 20,
+    "jobs": [
+     "protection",
+     "extortion",
+     "corner_shotting"
+    ]
+   },
+   {
+    "id": "govan",
+    "name": "Govan",
+    "postcode": "G51",
+    "danger": 5,
+    "level_req": 27,
+    "jobs": [
+     "extortion",
+     "warehouse",
+     "gun_deal"
+    ]
+   }
+  ],
+  "owner": "purple"
+ },
+ "nottingham": {
+  "name": "Nottingham",
+  "danger": 3,
+  "level_req": 40,
+  "payout_mult": 1.3,
+  "heat_mult": 1.2,
+  "speciality": "Weapons. The only reliable strap plug in the game.",
+  "x": 0.54,
+  "y": 0.5,
+  "boroughs": [
+   {
+    "id": "stanns",
+    "name": "St Ann's",
+    "postcode": "NG3",
+    "danger": 4,
+    "level_req": 40,
+    "jobs": [
+     "gun_deal",
+     "ram_raid",
+     "corner_shotting"
+    ]
+   },
+   {
+    "id": "radford",
+    "name": "Radford",
+    "postcode": "NG7",
+    "danger": 4,
+    "level_req": 40,
+    "jobs": [
+     "gun_deal",
+     "corner_shotting",
+     "protection"
+    ]
+   },
+   {
+    "id": "meadows",
+    "name": "The Meadows",
+    "postcode": "NG2",
+    "danger": 5,
+    "level_req": 47,
+    "jobs": [
+     "gun_deal",
+     "warehouse",
+     "smuggle"
+    ]
+   }
+  ],
+  "owner": "neutral"
+ },
+ "bristol": {
+  "name": "Bristol",
+  "danger": 2,
+  "level_req": 12,
+  "payout_mult": 1.1,
+  "heat_mult": 1.0,
+  "speciality": "Fencing & mid-tier graft. Easy money, low heat.",
+  "x": 0.39,
+  "y": 0.7,
+  "boroughs": [
+   {
+    "id": "easton",
+    "name": "Easton",
+    "postcode": "BS5",
+    "danger": 2,
+    "level_req": 12,
+    "jobs": [
+     "burglary",
+     "shoplift",
+     "counterfeit"
+    ]
+   },
+   {
+    "id": "lawrence_hill",
+    "name": "Lawrence Hill",
+    "postcode": "BS5",
+    "danger": 3,
+    "level_req": 15,
+    "jobs": [
+     "burglary",
+     "corner_shotting",
+     "card_fraud"
+    ]
+   },
+   {
+    "id": "knowle_west",
+    "name": "Knowle West",
+    "postcode": "BS4",
+    "danger": 4,
+    "level_req": 21,
+    "jobs": [
+     "warehouse",
+     "chop_run",
+     "counterfeit"
+    ]
+   }
+  ],
+  "owner": "neutral"
+ },
+ "newcastle": {
+  "name": "Newcastle",
+  "danger": 2,
+  "level_req": 18,
+  "payout_mult": 1.1,
+  "heat_mult": 0.9,
+  "speciality": "Quiet money, low heat. Graft in peace up north.",
+  "x": 0.55,
+  "y": 0.25,
+  "boroughs": [
+   {
+    "id": "byker",
+    "name": "Byker",
+    "postcode": "NE6",
+    "danger": 2,
+    "level_req": 18,
+    "jobs": [
+     "burglary",
+     "corner_shotting",
+     "pickpocket"
+    ]
+   },
+   {
+    "id": "benwell",
+    "name": "Benwell",
+    "postcode": "NE4",
+    "danger": 3,
+    "level_req": 18,
+    "jobs": [
+     "burglary",
+     "corner_shotting",
+     "grow_harvest"
+    ]
+   },
+   {
+    "id": "walker",
+    "name": "Walker",
+    "postcode": "NE6",
+    "danger": 4,
+    "level_req": 24,
+    "jobs": [
+     "warehouse",
+     "chop_run",
+     "corner_shotting"
+    ]
+   }
+  ],
+  "owner": "neutral"
+ },
+ "luton": {
+  "name": "Luton",
+  "danger": 2,
+  "level_req": 8,
+  "payout_mult": 1.25,
+  "heat_mult": 1.0,
+  "tier": "town",
+  "speciality": "Airport-adjacent. Cloned plates, lifted converters, duty-free tax. Quiet, close to home.",
+  "x": 0.55,
+  "y": 0.72,
+  "owner": "neutral",
+  "boroughs": [
+   {
+    "id": "marsh_farm",
+    "name": "Marsh Farm",
+    "postcode": "LU3",
+    "danger": 2,
+    "level_req": 8,
+    "jobs": [
+     "chop_run",
+     "card_fraud",
+     "shoplift"
+    ]
+   },
+   {
+    "id": "luton_air",
+    "name": "Airport Strip",
+    "postcode": "LU2",
+    "danger": 3,
+    "level_req": 11,
+    "jobs": [
+     "chop_run",
+     "counterfeit",
+     "warehouse"
+    ]
+   }
+  ]
+ },
+ "margate": {
+  "name": "Margate",
+  "danger": 1,
+  "level_req": 10,
+  "payout_mult": 1.3,
+  "heat_mult": 0.9,
+  "tier": "town",
+  "speciality": "Seaside. Beach smuggle runs and off-season quiet — low heat, tidal money.",
+  "x": 0.68,
+  "y": 0.82,
+  "owner": "neutral",
+  "boroughs": [
+   {
+    "id": "cliftonville",
+    "name": "Cliftonville",
+    "postcode": "CT9",
+    "danger": 2,
+    "level_req": 10,
+    "jobs": [
+     "burglary",
+     "smuggle",
+     "shoplift"
+    ]
+   },
+   {
+    "id": "margate_harb",
+    "name": "The Harbour",
+    "postcode": "CT9",
+    "danger": 3,
+    "level_req": 14,
+    "jobs": [
+     "smuggle",
+     "warehouse",
+     "corner_shotting"
+    ]
+   }
+  ]
+ },
+ "swindon": {
+  "name": "Swindon",
+  "danger": 1,
+  "level_req": 12,
+  "payout_mult": 1.3,
+  "heat_mult": 1.0,
+  "tier": "town",
+  "speciality": "Distribution country. A warehouse off every junction, HGVs full of everything.",
+  "x": 0.5,
+  "y": 0.74,
+  "owner": "neutral",
+  "boroughs": [
+   {
+    "id": "penhill",
+    "name": "Penhill",
+    "postcode": "SN2",
+    "danger": 2,
+    "level_req": 12,
+    "jobs": [
+     "warehouse",
+     "chop_run",
+     "burglary"
+    ]
+   },
+   {
+    "id": "orbital",
+    "name": "The Orbital",
+    "postcode": "SN3",
+    "danger": 3,
+    "level_req": 17,
+    "jobs": [
+     "warehouse",
+     "ram_raid",
+     "smuggle"
+    ]
+   }
+  ]
+ },
+ "grimsby": {
+  "name": "Grimsby",
+  "danger": 2,
+  "level_req": 15,
+  "payout_mult": 1.35,
+  "heat_mult": 0.95,
+  "tier": "town",
+  "speciality": "The docks up north. Fish boxes, container imports, nobody watching the water.",
+  "x": 0.56,
+  "y": 0.44,
+  "owner": "neutral",
+  "boroughs": [
+   {
+    "id": "east_marsh",
+    "name": "East Marsh",
+    "postcode": "DN32",
+    "danger": 2,
+    "level_req": 15,
+    "jobs": [
+     "burglary",
+     "smuggle",
+     "grow_harvest"
+    ]
+   },
+   {
+    "id": "fish_docks",
+    "name": "Fish Docks",
+    "postcode": "DN31",
+    "danger": 3,
+    "level_req": 19,
+    "jobs": [
+     "smuggle",
+     "warehouse",
+     "chop_run"
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "job": "gun_deal",
+ "stages": [
+  {
+   "name": "The meet",
+   "text": "Top deck of the multi-storey, cameras long dead, a buyer you half-know. Show him the one piece, take the money, be gone in two minutes with no name said out loud. That's the whole safe version.",
+   "fail_text": "He asks the one wrong question and the second car that pulls onto the deck isn't with him. Or it is."
+  },
+  {
+   "name": "The full parcel",
+   "text": "He's brought the money for the lot, not the sample. Selling the whole parcel here and now doubles the take and doubles the time you stand in one place holding everything you own that could jail you.",
+   "fail_text": "Counting a parcel's worth of cash takes long enough for a patrol doing its rounds to notice two cars nose to nose."
+  },
+  {
+   "name": "The second buyer",
+   "text": "There's a second face who texted wanting the same, twenty minutes away. Two deals in one night is twice the money — and twice the meets, twice the strangers, twice the chances one of them's wearing a wire.",
+   "fail_text": "The second buyer knew the meet before you set the meet, and the only person who could've told him set it up."
+  },
+  {
+   "name": "The standing order",
+   "text": "The buyer likes you and wants a regular arrangement. A standing order is the money that never stops — and the day you say yes is the day a sideline becomes the thing they build the whole case around.",
+   "fail_text": "'Regular' means a pattern, and a pattern is the one thing a surveillance team can set a watch by."
+  },
+  {
+   "name": "The clean one",
+   "text": "He wants the clean piece — no history, never fired, worth triple — and he'll wait while you fetch it. Going to get it means moving it across town tonight, which is the longest you'll ever hold your breath.",
+   "fail_text": "Moving the clean one across town puts you through the one junction with a camera that reads plates, at the one wrong minute."
+  }
+ ]
+}

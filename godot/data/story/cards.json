@@ -1,0 +1,1928 @@
+{
+ "pv1": {
+  "speaker": "kayo",
+  "location": "HMP Belmarsh. Visiting hall. A guard by the door pretending not to listen.",
+  "text": "You look terrible. — Is that my jacket? — That's my jacket. You came to visit me in my own jacket.",
+  "options": [
+   {
+    "label": "It fits me better now.",
+    "outcome": "He almost laughs. Almost."
+   },
+   {
+    "label": "You said keep it warm for you."
+   },
+   {
+    "label": "…"
+   }
+  ],
+  "scene": "precinct_night"
+ },
+ "pv2": {
+  "speaker": "kayo",
+  "text": "Mum alright? — Don't say she's alright, I can hear it when you lie. She's not sleeping, is she. — Yeah. Thought so.",
+  "options": [
+   {
+    "label": "She's coping.",
+    "effects": {
+     "trust": {
+      "kayo": -2
+     }
+    },
+    "outcome": "\"Coping. There's a word.\""
+   },
+   {
+    "label": "She's scared, Kay.",
+    "effects": {
+     "trust": {
+      "kayo": 3
+     }
+    },
+    "outcome": "He nods, slow, like it cost him something."
+   }
+  ]
+ },
+ "pv3": {
+  "speaker": "kayo",
+  "text": "Listen to me. When you get home there's going to be a man there. Or there's going to have been one. — Don't talk to him. Don't be clever. Don't say my name.",
+  "options": [
+   {
+    "label": "What have you done?"
+   },
+   {
+    "label": "Who is he?"
+   },
+   {
+    "label": "I'll handle it."
+   }
+  ]
+ },
+ "pv4": {
+  "speaker": "kayo",
+  "text": "Just listen, then ring the number I gave Mum. — Time's up, that's them. {name}. Look at me. Nothing. You do nothing.",
+  "narration": "The guard's hand is already on his shoulder. He's still looking at you when the door takes him.",
+  "options": [
+   {
+    "label": "Nothing. I promise.",
+    "outcome": "You both know you're lying. That's the last thing he sees."
+   },
+   {
+    "label": "…",
+    "outcome": "He holds your eye through the glass until the guard's hand closes on his shoulder."
+   }
+  ]
+ },
+ "pt1": {
+  "speaker": "silas",
+  "location": "Your mum's kitchen. He's been here twenty minutes. Two cups out. He stands when you come in.",
+  "text": "{name}. Good. I was hoping to catch you before you'd built the whole thing up in your head. — Sit. Please. Your mum makes a lovely cup of tea.",
+  "options": [
+   {
+    "label": "Shake his hand.",
+    "effects": {
+     "meet": [
+      "silas"
+     ]
+    },
+    "outcome": "His grip is dry and brief, like signing for a parcel."
+   },
+   {
+    "label": "Stay standing.",
+    "effects": {
+     "meet": [
+      "silas"
+     ],
+     "rel": {
+      "silas": -3
+     }
+    },
+    "outcome": "\"Suit yourself. It's a long story to hear on your feet.\""
+   }
+  ],
+  "scene": "shop_interior"
+ },
+ "pt2": {
+  "speaker": "silas",
+  "text": "Forty thousand pounds. — I want you to hear the number properly, because people hear a number like that and it turns into a feeling, and feelings are no use to either of us. It isn't a punishment. It's a balance. Balances get cleared.",
+  "options": [
+   {
+    "label": "That's not our debt.",
+    "outcome": "\"It's got your family's name on it. That's the same thing, in accounting.\""
+   },
+   {
+    "label": "How long?"
+   }
+  ]
+ },
+ "pt3": {
+  "speaker": "silas",
+  "text": "Ninety days. — Not because ninety is fair. Because ninety is what I can explain to the people above me. — I'll ask after your mum when I come back. I mean that, which I understand doesn't help.",
+  "options": [
+   {
+    "label": "And if it's not there?",
+    "outcome": "\"Then we have a different, sadder conversation. Let's not have that one.\""
+   },
+   {
+    "label": "…",
+    "outcome": "Silas lets the question hang, which is its own kind of answer."
+   }
+  ]
+ },
+ "pt4": {
+  "speaker": "narrator",
+  "location": "The door clicks shut. Two cups on the table.",
+  "narration": "Your mum picks up his cup. Puts it in the sink. Turns the tap on. Leaves it running for a long time without washing anything.",
+  "options": [
+   {
+    "label": "Ninety days.",
+    "outcome": "The clock started when he closed the door."
+   },
+   {
+    "label": "…",
+    "outcome": "The number sits in the kitchen like a third person nobody invited."
+   }
+  ],
+  "scene": "street_night"
+ },
+ "pb1": {
+  "speaker": "uncle_t",
+  "location": "Fresh Cutz. Clippers going. He doesn't look up from the man in the chair.",
+  "text": "Silas Rhodes drank tea in your mother's kitchen. — I heard before you knocked. That's how it travels. — Sit down, young man.",
+  "options": [
+   {
+    "label": "You know him.",
+    "outcome": "\"Everyone my age knows him. That's not a good thing to be able to say.\""
+   },
+   {
+    "label": "…",
+    "outcome": "Uncle T keeps cutting, but the clippers slow, just a little."
+   }
+  ],
+  "scene": "barbershop"
+ },
+ "pb2": {
+  "speaker": "uncle_t",
+  "text": "Nobody talks Silas out of a number. It doesn't bend. It gets paid. — And I won't help you do crime. I've cut hair for thirty years so I'd never have to say a sentence like the one I'm about to say.",
+  "options": [
+   {
+    "label": "Then don't."
+   },
+   {
+    "label": "I've got no one else."
+   }
+  ]
+ },
+ "pb3": {
+  "speaker": "uncle_t",
+  "text": "There's three ways a wasteman makes quick money round here without a shooter and without a cell. Phones. Pockets. Shops. — I'm telling you because if I don't, someone worse will, and they won't tell you when to stop.",
+  "options": [
+   {
+    "label": "Teach me.",
+    "effects": {
+     "rel": {
+      "uncle_t": 6
+     }
+    },
+    "outcome": "He finally looks up. He does not look pleased to have won you."
+   },
+   {
+    "label": "…",
+    "outcome": "He sets the clippers down. That's the first time all day he's stopped."
+   }
+  ]
+ },
+ "pb4": {
+  "speaker": "uncle_t",
+  "text": "Small. Quiet. Never twice on the same road. And you come here after — you understand? You come here and you sit in that chair and you let me see you're still you.",
+  "options": [
+   {
+    "label": "I will.",
+    "effects": {
+     "trust": {
+      "uncle_t": 4
+     }
+    },
+    "outcome": "\"Mm. They all say that too.\""
+   },
+   {
+    "label": "…",
+    "outcome": "He nods, slow, like it cost him something to hear you say it."
+   }
+  ]
+ },
+ "pf1": {
+  "speaker": "narrator",
+  "location": "High road. Lunchtime. Nobody's looking at anybody.",
+  "narration": "Older bloke, tan coat, phone in the back pocket like an invitation. He's arguing with someone on the other end about a boiler that's been broken three weeks.",
+  "options": [
+   {
+    "label": "Do it. First time for everything."
+   },
+   {
+    "label": "…",
+    "outcome": "The bloke follows the blue dot, oblivious, trusting the whole city to move around him."
+   }
+  ],
+  "scene": "street_night"
+ },
+ "pf_job": {
+  "speaker": "narrator",
+  "job": {
+   "id": "pickpocket",
+   "vignette": "pickpocket_boiler_man"
+  },
+  "options": [
+   {
+    "label": "Go.",
+    "outcome": ""
+   },
+   {
+    "label": "…",
+    "outcome": ""
+   }
+  ]
+ },
+ "pf2": {
+  "speaker": "narrator",
+  "location": "The 38, upper deck, back seat.",
+  "narration": "You do the maths on the bus home. Sixty-odd quid. Against forty thousand. It's not good maths. You do it three more times anyway, like it'll come out different.",
+  "options": [
+   {
+    "label": "Keep going."
+   },
+   {
+    "label": "…",
+    "outcome": "You keep going, because stopping now is the one thing that gets you caught."
+   }
+  ],
+  "scene": "street_night"
+ },
+ "pn1": {
+  "speaker": "nads",
+  "location": "The wall outside your block. She's sat on it like she's been there hours. She has.",
+  "text": "Don't. — I already know. Your mum told my mum, took eleven minutes. — Forty grand, ninety days. I've done the sums as well.",
+  "options": [
+   {
+    "label": "So you know it's impossible.",
+    "outcome": "\"Impossible's just maths nobody's been clever enough at yet.\""
+   },
+   {
+    "label": "…",
+    "outcome": "Nads folds her arms. \"That silence means you're going to try anyway. Good.\""
+   }
+  ],
+  "scene": "corner_block"
+ },
+ "pn2": {
+  "speaker": "nads",
+  "text": "About four-fifty a day. Every day. No days off, no getting nicked, no getting greedy. Which means doing it on your own is how you end up in a cell next to your brother. — So you're not doing it on your own.",
+  "options": [
+   {
+    "label": "I can't ask you to.",
+    "effects": {
+     "trust": {
+      "nads": 3
+     }
+    },
+    "outcome": "\"You didn't ask. Keep up.\""
+   },
+   {
+    "label": "You'd do that?",
+    "effects": {
+     "rel": {
+      "nads": 4
+     }
+    },
+    "outcome": "\"I'm insulted you're checking.\""
+   }
+  ]
+ },
+ "pn3": {
+  "speaker": "nads",
+  "text": "Right. We need a map, a system, and someone who buys phones with no questions. I know all three. — We're going to have to be clever, {name}. Properly clever. Starting now.",
+  "narration": "\"We,\" she says. Like it was never a question.",
+  "options": [
+   {
+    "label": "Then let's be clever.",
+    "effects": {
+     "meet": [
+      "nads"
+     ]
+    },
+    "outcome": "She's already off the wall and walking. You have to jog to catch up."
+   },
+   {
+    "label": "…",
+    "outcome": "She's already off the wall and walking, so you follow, which was always the plan."
+   }
+  ]
+ },
+ "a2b1": {
+  "speaker": "uncle_t",
+  "location": "Fresh Cutz, gone ten. Shutter half down, one light on, the smell of hot clippers and old aftershave.",
+  "text": "Sit. — You're doing well. That's the problem. — Every yout' doing well in this postcode ends the same two ways, and I've been to enough of those funerals and enough of those visiting halls to not want a third option for you.",
+  "options": [
+   {
+    "label": "So what's the option?",
+    "outcome": "\"North. But first you do something for me, and you do it quiet.\""
+   },
+   {
+    "label": "…",
+    "outcome": "Uncle T waits, sweeping hair that's already swept, letting you get there yourself."
+   }
+  ],
+  "scene": "street_night"
+ },
+ "a2b2": {
+  "speaker": "uncle_t",
+  "text": "A man owes a friend of mine. Won't pay a woman, won't pay a pensioner, thinks he's safe. — Go and correct his thinking. No marks he can show a copper. Just the money.",
+  "narration": "He hands you an address on the back of a appointment card. Bordesley. He's already looked it up.",
+  "options": [
+   {
+    "label": "Consider it corrected.",
+    "effects": {
+     "trust": {
+      "uncle_t": 1
+     }
+    }
+   },
+   {
+    "label": "…",
+    "outcome": "He hands you the address without another word. He's already looked it up."
+   }
+  ]
+ },
+ "a2b_job": {
+  "speaker": "narrator",
+  "job": {
+   "id": "extortion",
+   "vignette": "ext_chicken_shop"
+  },
+  "options": [
+   {
+    "label": "Go.",
+    "outcome": ""
+   },
+   {
+    "label": "…",
+    "outcome": ""
+   }
+  ]
+ },
+ "a2b3": {
+  "speaker": "uncle_t",
+  "text": "Good. Clean. — Now listen. The name is Marlowe. Manchester. Everyone who lasts up there meets him eventually; the ones who don't last meet him too late. — Up north nobody owes you nothing. You build it or you beg it. Don't beg.",
+  "narration": "He goes back to sweeping hair that was already swept. That's you dismissed, and promoted.",
+  "options": [
+   {
+    "label": "I'll build it.",
+    "effects": {
+     "flags": [
+      "a2_started"
+     ],
+     "rel": {
+      "uncle_t": 2
+     }
+    },
+    "outcome": "\"I know you will. That's the other reason I worry.\""
+   },
+   {
+    "label": "…",
+    "outcome": "\"I know you will. That's the other reason I worry,\" he says, and goes back to the floor."
+   }
+  ]
+ },
+ "a2p1": {
+  "speaker": "nads",
+  "location": "Euston, the 19:40 to Piccadilly on the board. She's got two tickets and that look.",
+  "text": "Before you say it — yes I bought both, no you're not going alone, and yes I've read up on your Mr Marlowe. — He only deals with people who move weight and leave no trail. Which means we decide right now what kind of firm we are.",
+  "options": [
+   {
+    "label": "What are the choices?",
+    "outcome": "She spreads a napkin with two columns already drawn. Of course she has."
+   },
+   {
+    "label": "…",
+    "outcome": "She spreads a napkin with two columns already drawn on it. Of course she has."
+   }
+  ],
+  "scene": "street_night"
+ },
+ "a2p2": {
+  "speaker": "nads",
+  "text": "Fast and fat, take everything, burn hot and get out before it catches us. — Or slow and quiet, leave money on the table so nobody ever counts us. — I know which one's smarter. I want to know which one's you.",
+  "options": [
+   {
+    "label": "Fast. Take it all.",
+    "effects": {
+     "counter": {
+      "greed": 1
+     },
+     "flags": [
+      "a2_plug"
+     ]
+    },
+    "outcome": "\"Then we go in loud and leave rich. God help us both.\" She almost smiles."
+   },
+   {
+    "label": "Quiet. Leave a little.",
+    "effects": {
+     "counter": {
+      "careful": 1
+     },
+     "flags": [
+      "a2_plug"
+     ]
+    },
+    "outcome": "\"Good. Boring men die old and warm in their beds. Let's be boring.\""
+   }
+  ]
+ },
+ "a2p3": {
+  "speaker": "nads",
+  "text": "Line's open. Marlowe'll test you with something small first — they always do. — After that it's yours to hold, and holding is the hard part. Anyone can open a line. Nobody teaches you how to not lose it.",
+  "narration": "The train pulls out. London slides backward in the window like it's letting you go.",
+  "options": [
+   {
+    "label": "Then let's hold it.",
+    "effects": {
+     "rel": {
+      "nads": 1
+     }
+    }
+   },
+   {
+    "label": "…",
+    "outcome": "The train pulls out and London slides backward in the window like it's letting you go."
+   }
+  ]
+ },
+ "a2l1": {
+  "speaker": "silas",
+  "location": "A members' bar with no members, somewhere off the ring road. Silas Rhodes was here before you were born.",
+  "text": "Look at you. Postcode kid with cities now. — I knew your mother. I know what she'd say about this room, so let's be quick. — You've got a choice most never get offered. Sit properly and I'll lay it out.",
+  "options": [
+   {
+    "label": "I'm listening.",
+    "outcome": "He pours two, drinks neither. Old habit — a full glass means you're expected to stay honest."
+   },
+   {
+    "label": "…",
+    "outcome": "Silas pours two, drinks neither. A full glass means you're expected to stay honest."
+   }
+  ],
+  "scene": "street_night"
+ },
+ "a2l2": {
+  "speaker": "silas",
+  "text": "Take my old contacts. Every city, doors already open, favours already owed. Safe as anything down this life gets. — Or turn me down, build clean, owe no man — and find out the hard way that clean is just a nicer word for alone. — Which yout' are you.",
+  "options": [
+   {
+    "label": "Take the contacts.",
+    "effects": {
+     "flags": [
+      "a2_line",
+      "a2_indebted"
+     ],
+     "rel": {
+      "silas": 2
+     },
+     "dirty": 1800,
+     "clean": 0
+    },
+    "outcome": "\"Sensible. You'll owe me, and owing me is the safest debt in Britain — as long as you pay it.\""
+   },
+   {
+    "label": "I build it clean.",
+    "effects": {
+     "flags": [
+      "a2_line",
+      "a2_independent"
+     ],
+     "trust": {
+      "silas": 1
+     },
+     "dirty": 600
+    },
+    "outcome": "He looks at you a long time. \"Your mother's answer exactly. It cost her too. Go on, then — it's yours.\""
+   }
+  ]
+ },
+ "a2l3": {
+  "speaker": "silas",
+  "text": "Either way you walk out of here a name in nine cities. — That's not a reward, understand. That's a target on nine backs at once. — Keep your people close, keep your heat low, and when it goes wrong — and it will — go home before you get greedy. That's the whole book.",
+  "narration": "He finally lifts his glass. Not to you — past you, to somebody who isn't in the room anymore.",
+  "options": [
+   {
+    "label": "I'll remember it.",
+    "effects": {
+     "flags": [
+      "act2_done"
+     ],
+     "counter": {
+      "respect": 3
+     }
+    },
+    "outcome": "You leave. The city's bigger than it was this morning, and so, somehow, are you."
+   },
+   {
+    "label": "…",
+    "outcome": "He lifts his glass at last — not to you, but past you, to someone who isn't in the room."
+   }
+  ]
+ },
+ "a1k1": {
+  "speaker": "keisha",
+  "location": "Rewind. A vintage shop that has never sold anything vintage.",
+  "text": "You've been carrying that laptop three days. — It's not getting more valuable. That's not how laptops work. That's not how anything works.",
+  "options": [
+   {
+    "label": "How much?",
+    "outcome": "\"Two hundred. And before you make the face — the face is free. Only thing in here that is.\""
+   },
+   {
+    "label": "It's worth more.",
+    "outcome": "She goes back to the till. She'll wait longer than you will, and she knows it."
+   },
+   {
+    "label": "…",
+    "outcome": "She looks at you properly for the first time. \"Alright. You'll do.\""
+   }
+  ],
+  "effects": {
+   "meet": [
+    "keisha"
+   ],
+   "rel": {
+    "keisha": 4
+   }
+  },
+  "scene": "shop_interior"
+ },
+ "a1k2": {
+  "speaker": "keisha",
+  "text": "Two hundred, then. — And a word you didn't pay for: whoever sent you here sends everyone here. That's not a compliment to you.",
+  "options": [
+   {
+    "label": "Who sends everyone?",
+    "outcome": "\"People who like knowing where their little earners go to sell. Think about it.\""
+   },
+   {
+    "label": "I'll take the two hundred.",
+    "outcome": "The notes are counted before you've finished the sentence. She's done this a thousand times."
+   }
+  ]
+ },
+ "a1k3": {
+  "speaker": "keisha",
+  "text": "Come back when you've got something interesting. — Phones bore me. Everyone brings phones. Bring me something that has a story and I'll pay for the story too.",
+  "options": [
+   {
+    "label": "Like what?",
+    "outcome": "\"If I tell you, it stops being interesting. That's rather the point.\""
+   },
+   {
+    "label": "…",
+    "outcome": "She smiles like you've said something clever, which you haven't."
+   }
+  ]
+ },
+ "a1k4": {
+  "speaker": "keisha",
+  "text": "Go on. — And tidy yourself up before you sell to anyone else. You look exactly like what you are, and looking like it is how you end up inside for it.",
+  "options": [
+   {
+    "label": "Noted.",
+    "outcome": "\"We'll see.\" She's already looking past you at the next one.",
+    "effects": {
+     "trust": {
+      "keisha": 1
+     }
+    }
+   },
+   {
+    "label": "…",
+    "outcome": "You leave. The bell over the door is the only thing in here that isn't fake."
+   }
+  ]
+ },
+ "a1d1": {
+  "speaker": "delroy",
+  "location": "The arches. A gearbox in pieces on a bench, laid out like an autopsy.",
+  "text": "See this? — Six-speed, German, and they've gone and bonded the casing so you can't rebuild it. Planned obsolescence. — Anyway. You're Silas's new one. I knew your dad.",
+  "options": [
+   {
+    "label": "You knew my dad?",
+    "outcome": "\"Bit. Long time ago. He was quicker than you. Don't take that badly.\""
+   },
+   {
+    "label": "What do you need?",
+    "outcome": "\"Cars. German. After 2019. Bring them here, don't ask what happens next.\""
+   },
+   {
+    "label": "…",
+    "outcome": "He wipes his hands and looks at you properly. \"Yeah. You've got his patience, at least.\""
+   }
+  ],
+  "effects": {
+   "meet": [
+    "delroy"
+   ]
+  },
+  "scene": "street_night"
+ },
+ "a1d2": {
+  "speaker": "delroy",
+  "text": "A car's just a computer that carries you now. — Which is good and bad. Good, it's easy to steal. Bad, it remembers everything. — You bring it, I make it forget. That's the arrangement.",
+  "options": [
+   {
+    "label": "How much per car?",
+    "outcome": "\"Depends what it is. Matched pairs pay double. Clean plates pay more. I'll teach you.\""
+   },
+   {
+    "label": "…",
+    "outcome": "\"Talkative one, aren't you. Good. Loud ones end up on the news.\""
+   }
+  ]
+ },
+ "a1d3": {
+  "speaker": "delroy",
+  "text": "Your dad brought me a Cosworth once, gorgeous thing, and I told him — same as I'm telling you — the money's never in the car. It's in not getting caught with the car. — Learn the difference.",
+  "options": [
+   {
+    "label": "What happened to him?",
+    "outcome": "He doesn't answer that. He picks up a socket wrench and finds something to tighten that didn't need it."
+   },
+   {
+    "label": "I'll learn.",
+    "outcome": "\"They all say that. Some of them even do.\"",
+    "effects": {
+     "trust": {
+      "delroy": 1
+     }
+    }
+   }
+  ]
+ },
+ "a1d4": {
+  "speaker": "delroy",
+  "text": "Go on then. — And when you bring the first one, reverse it into the bay. Nose-out. — No reason I'll explain. Just do it, and one day you'll be glad of the habit.",
+  "options": [
+   {
+    "label": "Nose-out. Got it.",
+    "outcome": "\"Good lad. Your dad never learned that one. Make of that what you like.\""
+   },
+   {
+    "label": "…",
+    "outcome": "He's already back under the bonnet, talking to the engine instead of you."
+   }
+  ]
+ },
+ "a1s1a": {
+  "speaker": "silas",
+  "location": "The office above the dry cleaner's. A ledger open, a pen resting in the gutter.",
+  "text": "Sit down. — You've taken four thousand in three weeks. Two of it clean. — I'm not here to congratulate you. I'm here to review. There is a difference and you should learn it.",
+  "options": [
+   {
+    "label": "How do you know my takings?",
+    "outcome": "\"Because knowing is the whole of my job. Yours is earning. Let's both do ours.\""
+   },
+   {
+    "label": "…",
+    "outcome": "He nods, once, as if silence were the correct answer on a form."
+   }
+  ],
+  "scene": "street_night"
+ },
+ "a1s1b": {
+  "speaker": "silas",
+  "text": "Four thousand is behind schedule. — Not alarmingly. Not yet. But I want you to feel the word 'schedule' the way I feel it. Ninety days is not a suggestion. It is an arithmetic.",
+  "options": [
+   {
+    "label": "I'll pick it up.",
+    "outcome": "\"I believe you mean it. Meaning it is the easy part. Sit with that.\""
+   },
+   {
+    "label": "And if I don't?",
+    "outcome": "\"Then we have a different conversation, and I don't enjoy that one either.\""
+   }
+  ]
+ },
+ "a1s1c": {
+  "speaker": "silas",
+  "text": "Go and earn. — Your mother made me a very good cup of tea the day we met. I think about that. — I would prefer this stayed a matter of tea. That is up to you, not me.",
+  "options": [
+   {
+    "label": "It'll stay tea.",
+    "outcome": "\"Good. I'll hold you to a nice word.\" He caps the pen. You're dismissed.",
+    "effects": {
+     "rel": {
+      "silas": 2
+     }
+    }
+   },
+   {
+    "label": "…",
+    "outcome": "He watches you to the door. Reviewing. Always reviewing."
+   }
+  ]
+ },
+ "a1g1": {
+  "speaker": "zeb",
+  "location": "Rimley Market. Two of Zeb's youngers at the mouth of the alley. Then Zeb.",
+  "text": "You're new. — On our market. Selling our numbers to our people. — No. That's the whole sentence. No.",
+  "options": [
+   {
+    "label": "Didn't know it was yours.",
+    "outcome": "\"Now you do. Knowing's free. Second time isn't.\""
+   },
+   {
+    "label": "It's a big market.",
+    "outcome": "\"Not for you it isn't.\" The youngers step closer. Fragments become fists quickly out here."
+   },
+   {
+    "label": "…",
+    "outcome": "Zeb tilts his head. Reads the silence. Doesn't like it or dislike it. Just files it."
+   }
+  ],
+  "effects": {
+   "meet": [
+    "zeb"
+   ]
+  },
+  "scene": "market"
+ },
+ "a1g2": {
+  "speaker": "zeb",
+  "text": "Green Lane. That's us. — This side of the bridge. Everything this side. — You want to eat, eat somewhere else. Or pay in. Two ways. Pick.",
+  "options": [
+   {
+    "label": "How much to pay in?",
+    "outcome": "\"More than you've got. Come back when you've got it. Don't come back before.\""
+   },
+   {
+    "label": "I'll eat somewhere else.",
+    "outcome": "\"Smart. Rare, round here, smart.\" He steps back. The alley opens.",
+    "effects": {
+     "rel": {
+      "zeb": 1
+     }
+    }
+   },
+   {
+    "label": "…",
+    "outcome": "He waits. You wait. One of you has all night and it isn't you."
+   }
+  ]
+ },
+ "a1g3": {
+  "speaker": "nads",
+  "location": "The wall by your block. Nads has heard already — she hears everything.",
+  "text": "You went to Rimley? On your own? — Ash, that's Green Lane, that's Zeb, and Zeb doesn't do warnings twice, he does them once and then he does something else, and I'd quite like there not to be a something else.",
+  "options": [
+   {
+    "label": "He warned me off. That's all.",
+    "outcome": "\"That's not all. That's the polite bit before the un-polite bit. We stay our side.\""
+   },
+   {
+    "label": "We need the market.",
+    "outcome": "\"We need you not stabbed more. Priorities, please, in that order.\""
+   }
+  ],
+  "scene": "corner_block"
+ },
+ "a1g4": {
+  "speaker": "nads",
+  "text": "Promise me you'll leave Green Lane alone for now — for now, I'm not saying forever, I'm saying until we're big enough that Zeb has to have the conversation instead of the youngers — promise me.",
+  "options": [
+   {
+    "label": "I promise. For now.",
+    "outcome": "\"For now. I'll take for now.\" She lets out a breath she's been holding since she heard.",
+    "effects": {
+     "rel": {
+      "nads": 3
+     }
+    }
+   },
+   {
+    "label": "…",
+    "outcome": "She stares at you until you look away, which is her winning."
+   }
+  ]
+ },
+ "a1g5": {
+  "speaker": "nads",
+  "text": "Good. — Because I've got a better idea than fighting Zeb for a corner, and it doesn't involve any of Zeb's corners, and it's the kind of idea that means we never have to stand in an alley being told no again.",
+  "options": [
+   {
+    "label": "What idea?",
+    "outcome": "\"Not yet. It needs you a bit bigger first. Get bigger. Then I'll tell you.\""
+   },
+   {
+    "label": "…",
+    "outcome": "\"You'll like it. It's got maths in it.\" She's already walking, so you follow."
+   }
+  ]
+ },
+ "a1L1": {
+  "speaker": "nads",
+  "location": "A corner that isn't yours, a mistake you're about to make on your own.",
+  "text": "Don't do the corner by the Parade tonight — I mean it, there's a kid been holding it who's younger than you and twice as fast and he's got something to prove and you've got nothing to prove it with.",
+  "options": [
+   {
+    "label": "I can handle a kid.",
+    "outcome": "\"That's the exact sentence people say before they can't. Please.\""
+   },
+   {
+    "label": "I'll be quick.",
+    "outcome": "\"You'll be quick, he'll be quicker. That's the whole problem in one word.\""
+   }
+  ],
+  "scene": "street_night"
+ },
+ "a1L2": {
+  "speaker": "narrator",
+  "location": "The Parade. Nineteen years old, tracksuit, eyes that have already decided.",
+  "text": "He doesn't talk. He doesn't warn you. He watches you set up on his corner and he crosses the road at a pace that isn't quite running, and by the time you understand what's happening it has mostly already happened.",
+  "options": [
+   {
+    "label": "Stand your ground.",
+    "outcome": "You stand. He doesn't. That turns out to be the difference between the two of you tonight."
+   },
+   {
+    "label": "…",
+    "outcome": "There isn't time for silence to be a choice. He's made it a different kind of night."
+   }
+  ],
+  "scene": "street_night"
+ },
+ "a1L3": {
+  "speaker": "narrator",
+  "text": "It's fast and it's ugly and it's over before a single person on the Parade has looked up from their phone. You're on the floor, the bag's gone, and the kid's already back on his corner like you were weather.",
+  "options": [
+   {
+    "label": "Get up.",
+    "outcome": "You get up. Slowly. Everything's a lesson if you let it be, and this one's got your blood on it."
+   },
+   {
+    "label": "…",
+    "outcome": "You lie there a second longer than you need to, because getting up means it was real."
+   }
+  ]
+ },
+ "a1L4": {
+  "speaker": "nads",
+  "text": "I'm not going to say it — I'm not, I'm really not — okay I'm going to say it a bit: you got dropped by a nineteen-year-old and it's because you're weak and untrained and that's fixable, so we fix it, tomorrow, no arguments.",
+  "options": [
+   {
+    "label": "Fix it how?",
+    "outcome": "\"Uncle T knows a place. Under the arches. It's free and it's horrible. Perfect.\"",
+    "effects": {
+     "flags": [
+      "got_dropped"
+     ]
+    }
+   },
+   {
+    "label": "…",
+    "outcome": "She helps you up without another word, which from Nads is a whole apology."
+   }
+  ]
+ },
+ "a1u1": {
+  "speaker": "uncle_t",
+  "location": "Fresh Cutz. He looks at the bruise before he looks at you.",
+  "text": "Sit. — No, not for a cut. Just sit. — Somebody caught you clean. Don't tell me who, I don't want it in my head. — You need to be harder to catch. That's all this is.",
+  "options": [
+   {
+    "label": "I need to get stronger.",
+    "outcome": "\"You need to stop getting hit. Different sentence. Better one.\""
+   },
+   {
+    "label": "…",
+    "outcome": "He dabs something on the bruise that stings more than the punch did."
+   }
+  ],
+  "scene": "street_night"
+ },
+ "a1u2": {
+  "speaker": "uncle_t",
+  "text": "Iron Temple. Under the railway arches on Corve Street. — Ronnie runs it. He doesn't charge, he doesn't talk, and he doesn't care who you are — which is the only gym in this city you can say all three about.",
+  "options": [
+   {
+    "label": "Ronnie won't ask questions?",
+    "outcome": "\"Ronnie asks one question: how many more. That's it. That's the whole gym.\""
+   },
+   {
+    "label": "…",
+    "outcome": "He writes the address on the back of an appointment card, though he's already said it twice."
+   }
+  ]
+ },
+ "a1u3": {
+  "speaker": "uncle_t",
+  "text": "Go and hurt tomorrow instead of tonight. — And come back after, sit in that chair, let me see you're still you. — You keep bringing me the same face, young man, I'll keep believing there's time.",
+  "options": [
+   {
+    "label": "I'll come back.",
+    "outcome": "\"They all say that too.\" But he's already swept the same patch of floor twice.",
+    "effects": {
+     "rel": {
+      "uncle_t": 2
+     }
+    }
+   },
+   {
+    "label": "…",
+    "outcome": "He nods you out. The clippers start again before you've reached the door."
+   }
+  ]
+ },
+ "a1r1": {
+  "speaker": "rico",
+  "location": "Outside the chicken shop. A lad you half-know, trying not to look like he's been waiting.",
+  "text": "So I heard you're — you know. Doing bits. — And I'm not, like, asking for anything, I'm just saying if you ever needed someone to hold something or watch a road or whatever, I'm about, I'm around, I'm — yeah.",
+  "options": [
+   {
+    "label": "You want to run for me.",
+    "outcome": "\"I mean — yeah. Obviously. I just didn't want to say it like that in case you said no like that.\""
+   },
+   {
+    "label": "It's dangerous, Rico.",
+    "outcome": "\"Everything's dangerous. My Saturday job's dangerous, it's just boring-dangerous. I'd rather this.\""
+   },
+   {
+    "label": "…",
+    "outcome": "He fills the silence himself. \"That's a no, isn't it. That's fine. That's completely fine.\""
+   }
+  ],
+  "effects": {
+   "meet": [
+    "rico"
+   ]
+  },
+  "scene": "shop_interior"
+ },
+ "a1r2": {
+  "speaker": "rico",
+  "text": "Look — I'll be honest, right, because you'll find out anyway — I've never done any of this, I've watched a lot of it, I know how it's meant to go, but I've never actually, so I'm not going to pretend I have.",
+  "options": [
+   {
+    "label": "That's why I'd trust you.",
+    "outcome": "\"Wait, really? I thought the lying was the — okay. Okay. I can not-lie. I'm great at not-lying.\""
+   },
+   {
+    "label": "Then why should I use you?",
+    "outcome": "\"Because I'm scared enough to be careful and skint enough to turn up. That's two things.\""
+   }
+  ]
+ },
+ "a1r3": {
+  "speaker": "rico",
+  "text": "I won't touch the product, I won't say your name, and if it ever goes wrong I'll take mine and you'll never hear me say yours — I've thought about it, I've properly thought about it, I'm not just excited, well I am, but also I've thought.",
+  "options": [
+   {
+    "label": "Alright. A trial.",
+    "outcome": "He does a small thing with his fist he immediately regrets. \"A trial. Yeah. Cool. Professional. A trial.\"",
+    "effects": {
+     "rel": {
+      "rico": 3
+     }
+    }
+   },
+   {
+    "label": "…",
+    "outcome": "\"Is that a yes-silence or a no-silence? I can't read your silences yet. I'll learn them.\""
+   }
+  ]
+ },
+ "a1r4": {
+  "speaker": "rico",
+  "text": "You won't regret it — and if you do, tell me, and I'll make it so you don't, I don't know how yet but I'll — okay I'm going to stop talking now, I'm going to walk away while it's still a yes.",
+  "options": [
+   {
+    "label": "See you tomorrow.",
+    "outcome": "He walks off too fast, turns to wave, nearly walks into a bin, recovers, keeps going."
+   },
+   {
+    "label": "…",
+    "outcome": "You watch him go and hope you haven't just signed something you'll have to explain to Uncle T."
+   }
+  ]
+ },
+ "a1c1": {
+  "speaker": "uncle_t",
+  "location": "Fresh Cutz. He doesn't pick up the clippers this time. That's how you know.",
+  "text": "Sit. — I heard you've got a younger now. — Don't. Don't do the face. I've cut this whole postcode's hair for thirty years, I hear everything, and I heard you've got a boy running for you.",
+  "options": [
+   {
+    "label": "He offered. I didn't ask.",
+    "outcome": "\"They always offer. That's what makes it worse, not better. Sit down properly.\""
+   },
+   {
+    "label": "He's careful.",
+    "outcome": "\"Careful.\" He says the word like it's a stain on a good shirt."
+   },
+   {
+    "label": "…",
+    "outcome": "The shop's never been this quiet. Even the radio seems to be listening."
+   }
+  ],
+  "scene": "street_night"
+ },
+ "a1c2": {
+  "speaker": "uncle_t",
+  "text": "You've got a younger. — Do you know what that makes you? — It makes you the man I used to warn boys about. In this chair. Where you're sitting. I'd point at the door and say don't end up like him. And now.",
+  "options": [
+   {
+    "label": "I'll look after him.",
+    "outcome": "\"That's what they all said about you, once. Look how well it's going.\""
+   },
+   {
+    "label": "It's just runs. Small stuff.",
+    "outcome": "\"It's never just. It's a first just, and then a bigger just, and then a funeral.\""
+   }
+  ]
+ },
+ "a1c3": {
+  "speaker": "uncle_t",
+  "text": "I'm not going to stop cutting your hair. — I want to be clear about that, because I've thought about it. — I'll keep the chair. But I'm not going to smile at you the same. That's the price. That's mine to charge.",
+  "options": [
+   {
+    "label": "That's fair.",
+    "outcome": "\"Fair.\" He almost laughs. \"You've learned that word off Silas. It sounds wrong in your mouth.\""
+   },
+   {
+    "label": "…",
+    "outcome": "He finally picks up the clippers, and the ordinary sound of them is almost a mercy."
+   }
+  ]
+ },
+ "a1c4": {
+  "speaker": "uncle_t",
+  "text": "Send the boy to me one day. — Not to talk him out of it, I'm past thinking that works. — Just so I've seen his face. So when I'm cutting his hair in ten years I can say I knew him before. — Go on. You're done.",
+  "options": [
+   {
+    "label": "I'll send him.",
+    "outcome": "\"Good.\" He turns you out of the chair gently. The gentleness is the worst part.",
+    "effects": {
+     "rel": {
+      "uncle_t": -2
+     }
+    }
+   },
+   {
+    "label": "…",
+    "outcome": "You leave with a fresh fade and a feeling you can't shift for a week."
+   }
+  ]
+ },
+ "a1m1": {
+  "speaker": "mum",
+  "location": "Her kitchen. Enough food on the hob for six people who aren't coming.",
+  "text": "You're too thin. — Sit down, it's done, I've made too much again, I don't know why I make too much, I do know why. — Don't tell me about your day. Tell me if you're eating. Those are different questions.",
+  "options": [
+   {
+    "label": "I'm eating, Mum.",
+    "outcome": "\"You're saying it too quickly.\" She puts more on your plate as punishment for the lie."
+   },
+   {
+    "label": "…",
+    "outcome": "She doesn't fill the silence. She just keeps stirring something that's already done."
+   }
+  ],
+  "scene": "shop_interior"
+ },
+ "a1m2": {
+  "speaker": "mum",
+  "text": "Silas came for tea again. — I made him the good cups. — He's very polite, your Mr Rhodes. Politer than the men who used to come for your father. — I don't ask what any of it is. I've learned not to ask. It's the asking that breaks you.",
+  "options": [
+   {
+    "label": "You don't have to feed him.",
+    "outcome": "\"Yes I do. If I stop being polite to him, it stops being about tea. I know how this works.\""
+   },
+   {
+    "label": "…",
+    "outcome": "She turns the tap on and lets it run, washing a cup that's already clean."
+   }
+  ]
+ },
+ "a1m3": {
+  "speaker": "mum",
+  "text": "Take some home. — I've bagged it, don't argue, you'll argue with everyone but not with me about food. — And ring your brother. He asks after you every week and you never ring, and he's got the time, he's got nothing but the time.",
+  "options": [
+   {
+    "label": "I'll ring Kayo.",
+    "outcome": "\"When. Not 'I'll'. When.\" She holds the bag until you say a day.",
+    "effects": {
+     "rel": {
+      "mum": 2
+     }
+    }
+   },
+   {
+    "label": "…",
+    "outcome": "She presses the bag into your hands and holds them a second too long, which says the rest."
+   }
+  ]
+ },
+ "a1h1": {
+  "speaker": "hallam",
+  "location": "A room that is not a cell. A table, two chairs, a recorder that isn't on. Yet.",
+  "text": "Thanks for coming in. Voluntary attendance, so you can leave whenever you like. I'll say that again at the end and I'll mean it both times. My name's Hallam. I have four questions. That's genuinely all this is.",
+  "options": [
+   {
+    "label": "Then ask them.",
+    "outcome": "\"I like that. Straight to it. Most people want to tell me they've done nothing first, which I never asked.\""
+   },
+   {
+    "label": "I want a solicitor.",
+    "outcome": "\"Absolutely your right. I'll note it. It does change the temperature of the room, but it's your right.\""
+   },
+   {
+    "label": "…",
+    "outcome": "He doesn't fill the silence either. He's better at it than you. He's done this longer."
+   }
+  ],
+  "effects": {
+   "meet": [
+    "hallam"
+   ]
+  },
+  "scene": "barbershop"
+ },
+ "a1h2": {
+  "speaker": "hallam",
+  "text": "Question one, and it's easy. Do you know a man called Silas Rhodes? — You don't have to answer. Your face already has, a bit, but you don't have to. I'm not writing your face down.",
+  "options": [
+   {
+    "label": "Never heard of him.",
+    "outcome": "\"See, that's the answer that isn't true, and we both know, and I've made a small note that isn't about Silas.\""
+   },
+   {
+    "label": "No comment.",
+    "outcome": "\"Textbook. Good. Boring, but good. Boring keeps people out of prison, mostly.\""
+   },
+   {
+    "label": "…",
+    "outcome": "He writes one word on a pad you can't see and underlines it once."
+   }
+  ]
+ },
+ "a1h3": {
+  "speaker": "hallam",
+  "text": "I'll be honest, because it costs me nothing: we're not interested in you. — You're a corner. Silas is a building. — I'd trade ten of you for one afternoon of his diary, and I think you know that, and I think you're doing the sums.",
+  "options": [
+   {
+    "label": "What are you offering?",
+    "outcome": "\"Now that's a dangerous question to have asked out loud. I'll pretend it was curiosity. This time.\""
+   },
+   {
+    "label": "I'm not a grass.",
+    "outcome": "\"Nobody is, until the alternative gets specific. I'm not making it specific. Today.\""
+   }
+  ]
+ },
+ "a1h4": {
+  "speaker": "hallam",
+  "text": "Take my card. — Don't make a face, everyone takes the card, taking the card isn't a decision, it's just a card. — You can throw it in the first bin outside. Most do. Some keep it. I'm never sure which is worse for them.",
+  "options": [
+   {
+    "label": "Take the card.",
+    "outcome": "It's in your pocket before you've decided what it means. That's how it always starts, apparently.",
+    "effects": {
+     "flags": [
+      "hallam_card"
+     ]
+    }
+   },
+   {
+    "label": "Keep your card.",
+    "outcome": "\"Fair enough. You know where I am. Everyone ends up knowing where I am.\""
+   }
+  ]
+ },
+ "a1h5": {
+  "speaker": "hallam",
+  "text": "That's the four. — Well, three and a card. — Voluntary attendance, remember, so off you go, no charge, no bail, nothing to sign. — Say hello to your mum. She does a lovely tea, by all accounts.",
+  "options": [
+   {
+    "label": "Leave the room.",
+    "outcome": "The 'say hello to your mum' follows you down the corridor and stays for a week."
+   },
+   {
+    "label": "…",
+    "outcome": "You don't answer the thing about your mum. He watches you not answer it, and writes that down too."
+   }
+  ]
+ },
+ "a1n1": {
+  "speaker": "nads",
+  "location": "Her room. A wall of notes, string, and a printout of a delivery schedule.",
+  "text": "Right, so I've been mapping it — don't look at the wall like that, the wall is good, the wall is two weeks of me watching a warehouse so you didn't have to — and there's a night, one night a week, where the whole floor is basically two blokes and a kettle.",
+  "options": [
+   {
+    "label": "Two weeks? On your own?",
+    "outcome": "\"On my own, yeah, because it's boring and dangerous and I didn't want you doing the boring bit and getting the dangerous bit wrong.\""
+   },
+   {
+    "label": "Which warehouse?",
+    "outcome": "\"Distribution unit off the ring road. Palettes of the good stuff by the bay doors. I've timed the shift change to the minute.\""
+   }
+  ],
+  "scene": "street_night"
+ },
+ "a1n2": {
+  "speaker": "nads",
+  "text": "The problem's the van — we need a van, a proper one, and we can't buy one because that's a paper trail with our names on it, so we need to borrow one, and there's exactly one person we know with a van and no questions.",
+  "options": [
+   {
+    "label": "Delroy.",
+    "outcome": "\"Delroy. Who does not know he's lending us his van, which is a detail I've decided is your job, not mine.\""
+   },
+   {
+    "label": "…",
+    "outcome": "\"You've gone quiet, which means you know it's Delroy and you know it's you who has to ask.\""
+   }
+  ]
+ },
+ "a1n3": {
+  "speaker": "nads",
+  "text": "If we get this right it's more in one night than a month of corners, and it's off a company that'll claim it on insurance and never miss it, and nobody gets hurt because there's nobody there to hurt — I've checked, I've checked twice, I've checked so many times.",
+  "options": [
+   {
+    "label": "And if we get it wrong?",
+    "outcome": "\"Then it's a lot of years for a lot of fridges. I'm not going to pretend it isn't. But we won't.\""
+   },
+   {
+    "label": "Then let's do it.",
+    "outcome": "\"Yes. Good. Okay. I've been waiting two weeks for you to say that in that voice.\"",
+    "effects": {
+     "rel": {
+      "nads": 4
+     }
+    }
+   }
+  ]
+ },
+ "a1n4": {
+  "speaker": "nads",
+  "text": "Get the van off Delroy, get Rico to watch the road, and let me handle the timing, because the timing is the whole job and I've done the timing — you do the doors, I do the clock, Rico does the panic. Everyone's got a thing.",
+  "options": [
+   {
+    "label": "What's my thing again?",
+    "outcome": "\"The doors and the nerve. Mostly the nerve. Don't lose the nerve and it's just heavy lifting.\""
+   },
+   {
+    "label": "…",
+    "outcome": "She's already rolling up the wall of string, because the plan's out of her head and into yours now."
+   }
+  ]
+ },
+ "a1v1": {
+  "speaker": "delroy",
+  "location": "The arches. He's listening to an engine idle like it's telling him something.",
+  "text": "You want to borrow the van. — For a night. And you're not going to tell me what for. — And you want me to be fine with that. — Hear that miss? Fuel pump. Everything tells you something if you listen. You're telling me plenty.",
+  "options": [
+   {
+    "label": "You don't want the details.",
+    "outcome": "\"No. I don't. That's the one true thing you've said. Keep it up.\""
+   },
+   {
+    "label": "It's a one-off.",
+    "outcome": "\"It's never a one-off. But the van's insured to a name that isn't a person, so. Bring it back clean.\""
+   },
+   {
+    "label": "…",
+    "outcome": "He wipes his hands, looks at you a long moment, and something in it is almost fond."
+   }
+  ],
+  "scene": "street_night"
+ },
+ "a1v2": {
+  "speaker": "delroy",
+  "text": "He says yes before you finish the sentence, which worries you — a man that quick to lend a van has either done a lot of favours or a lot of setting-up, and you realise you don't actually know which Delroy is, and it's too late to ask.",
+  "options": [
+   {
+    "label": "Why are you helping me?",
+    "outcome": "\"Because I owed your dad one and he's not here to collect. So you'll do. Don't read more into it.\""
+   },
+   {
+    "label": "…",
+    "outcome": "\"You're wondering if I'm setting you up. Good. Keep wondering. It'll keep you alive longer than trust would.\""
+   }
+  ]
+ },
+ "a1v3": {
+  "speaker": "delroy",
+  "text": "Keys. — Nose-out in the bay when you bring it back, remember, and don't you dare fill it with anything that leaks. — And whatever it is tonight — I know it's a something — come back from it. Your dad didn't, from his something. Come back from yours.",
+  "options": [
+   {
+    "label": "I'll come back.",
+    "outcome": "He holds the keys a second before he lets go. \"They all say that. You keep saying it and one day it'll be a habit worth having.\"",
+    "effects": {
+     "trust": {
+      "delroy": 2
+     }
+    }
+   },
+   {
+    "label": "…",
+    "outcome": "He drops the keys in your hand and turns back to the engine before you can see his face."
+   }
+  ]
+ },
+ "a1w1": {
+  "speaker": "nads",
+  "location": "The van, lights off, across the road from the loading bay. 2:40am. The clock's running in her head.",
+  "text": "Shift change is 2:50 to 3:05 — fifteen minutes, that's the whole window, that's everything — Rico's on the corner, you're on the doors, I'm on the clock, and if I say out we go out, no arguing, no 'one more', out means out.",
+  "options": [
+   {
+    "label": "Out means out.",
+    "outcome": "\"Say it like you mean it.\" You do. She nods. \"Okay. Okay. Go on then.\""
+   },
+   {
+    "label": "…",
+    "outcome": "She squeezes your arm once, hard, which is Nads terrified and Nads certain at the same time."
+   }
+  ],
+  "scene": "street_night"
+ },
+ "a1w2": {
+  "speaker": "rico",
+  "location": "The corner. Rico's voice, too fast, in your ear.",
+  "text": "Road's clear, road's clear, there's a cat, ignore the cat, the cat's not a lookout, I checked, the road's clear — I'm doing it, I'm actually doing it, I'm being useful — go, go, it's clear, go.",
+  "options": [
+   {
+    "label": "Good lad. Hold it.",
+    "outcome": "\"Holding it. Holding the corner. This is the best worst night of my life.\""
+   },
+   {
+    "label": "…",
+    "outcome": "You let him talk. It's how he holds his nerve, and holding his nerve holds the road."
+   }
+  ],
+  "scene": "street_night"
+ },
+ "a1w3": {
+  "speaker": "narrator",
+  "location": "Bay six. Off the latch, exactly like Nads said. The good pallets, exactly where she said.",
+  "text": "The door's open. The floor's empty. Two mugs of tea going cold on a desk on the far side and nobody near them. It's all exactly as she promised, which is somehow more frightening than if it had gone wrong.",
+  "options": [
+   {
+    "label": "Start loading.",
+    "outcome": "You load fast and quiet and the plan is just heavy lifting now, exactly like she said it would be."
+   },
+   {
+    "label": "…",
+    "outcome": "For one second you just stand in it — the working of it, the being right — then you move."
+   }
+  ],
+  "scene": "street_night"
+ },
+ "a1w4": {
+  "speaker": "nads",
+  "text": "Four minutes gone, you've got the first pallet, you're doing brilliantly, don't tell Rico I said brilliantly he'll never recover — six minutes — there's a pallet by the office worth double, I can see it on the plan, but that's your call not mine, the clock says maybe.",
+  "options": [
+   {
+    "label": "Go for the double.",
+    "outcome": "\"Maybe. I said maybe. Fast, then. Very fast. I'm counting out loud in my head and it's rude.\""
+   },
+   {
+    "label": "Leave it. Stick to the plan.",
+    "outcome": "\"Good. That's the answer that gets old. Greed's a lovely way to meet the night shift.\""
+   }
+  ]
+ },
+ "a1w5": {
+  "speaker": "rico",
+  "text": "Car — there's a car — no, it's a taxi, it's dropping someone at the flats, it's fine, it's — okay my heart, okay — it's gone, it's fine, but you should probably, like, be finishing, if finishing's a thing that's near happening, please.",
+  "options": [
+   {
+    "label": "Nearly done. Hold on.",
+    "outcome": "\"Holding. Barely holding. Definitely holding. Please be nearly done for real.\""
+   },
+   {
+    "label": "…",
+    "outcome": "You get the last of it on the van as his voice climbs an octave and stays there."
+   }
+  ]
+ },
+ "a1w6": {
+  "speaker": "nads",
+  "text": "OUT — that's out, that's twelve minutes, that's the doors shutting in three, OUT — get in, get in, Rico get off the corner, nobody run, we walk, we're a delivery, we're the most boring delivery in the world, drive normal, drive like your nan's watching.",
+  "options": [
+   {
+    "label": "Drive like nan's watching.",
+    "outcome": "You pull away at exactly the speed limit. In the mirror the bay doors close on an empty floor and two cold teas.",
+    "effects": {
+     "flags": [
+      "warehouse_done"
+     ],
+     "rel": {
+      "nads": 3
+     }
+    }
+   },
+   {
+    "label": "…",
+    "outcome": "Nobody speaks until you're two miles clear. Then all three of you exhale at once, and it turns into something like laughing."
+   }
+  ]
+ },
+ "a1aw1": {
+  "speaker": "rico",
+  "location": "The chicken shop. 4am. The van parked round the back. Three cartons, one of them barely touched because nobody's actually hungry.",
+  "text": "We did that. — Did you see me on the corner? I held the corner. There was a cat and I held the corner. — I'm never going to sleep again, I don't want to sleep, I want it to be 3am forever, is that mad, that's mad isn't it.",
+  "options": [
+   {
+    "label": "You held it, Rico.",
+    "outcome": "He goes quiet and pleased in a way you've not seen, like nobody's told him he held anything before."
+   },
+   {
+    "label": "…",
+    "outcome": "He beams at the silence like it's the best thing anyone's ever not said to him."
+   }
+  ],
+  "scene": "shop_interior"
+ },
+ "a1aw2": {
+  "speaker": "nads",
+  "text": "I keep doing the maths and it keeps being right — that's more than three months of corners, in one night, off a company that'll never miss it — and I know I should be scared and I am scared but mostly I just want to do the maths again because the maths is beautiful.",
+  "options": [
+   {
+    "label": "You planned it perfectly.",
+    "outcome": "\"I did, didn't I. Two weeks of watching and it went exactly. Don't let it go to my head. Let it go to my head a bit.\""
+   },
+   {
+    "label": "…",
+    "outcome": "She lets herself smile properly for once, and it changes her whole face, and you look away so she can keep it."
+   }
+  ]
+ },
+ "a1aw3": {
+  "speaker": "narrator",
+  "text": "For a minute — one real minute, in the strip light and the smell of the fryer — the three of you are just kids who pulled off something impossible and got away, and nobody's a criminal, and nobody owes anybody, and it's the best you've felt since it all started.",
+  "options": [
+   {
+    "label": "Hold onto this.",
+    "outcome": "You try to memorise it — the exact colour of it — because some part of you already knows it doesn't last."
+   },
+   {
+    "label": "…",
+    "outcome": "Nobody says anything. Rico's got sauce on his chin. It's perfect and it's 4am and it's already ending."
+   }
+  ]
+ },
+ "a1aw4": {
+  "speaker": "nads",
+  "text": "Right — I'm going to ruin it, sorry, I always ruin it — this pays Silas a big chunk and it puts us on someone's radar, both at once, so tomorrow we're careful, tomorrow we're small, tonight we were big and tonight's over. — But tonight was good. Say it was good.",
+  "options": [
+   {
+    "label": "It was good.",
+    "outcome": "\"It was good.\" She lets herself have it for exactly one more second, then she's Nads again, checking the road.",
+    "effects": {
+     "flags": [
+      "act1_high_point"
+     ]
+    }
+   },
+   {
+    "label": "…",
+    "outcome": "You don't say it. You just nod. She takes the nod and folds it away somewhere she keeps things."
+   }
+  ]
+ },
+ "a1s2a": {
+  "speaker": "silas",
+  "location": "The office. The ledger's open to a page with a very healthy number on it.",
+  "text": "Sit. — You had a good week. — A very good week. The kind of week that doesn't come from corners. — I'm not asking how. I'm noting that I noticed. Those are different, and you should learn which one this is.",
+  "options": [
+   {
+    "label": "You said you don't ask.",
+    "outcome": "\"I don't ask. I said I noticed. A man in my position who stopped noticing would not keep his position, or his health.\""
+   },
+   {
+    "label": "…",
+    "outcome": "He turns the ledger a fraction, so you can see he's already written this week down."
+   }
+  ],
+  "scene": "street_night"
+ },
+ "a1s2b": {
+  "speaker": "silas",
+  "text": "There was a distribution unit off the ring road. — I read the local paper. Everyone in my line reads the local paper. — I'm not saying it was you. I'm saying it was someone with your new numbers and your old nerve. Congratulations. Quietly.",
+  "options": [
+   {
+    "label": "I never told you about a warehouse.",
+    "outcome": "\"No. You didn't. That's rather my whole point, and I'd like you to sit with how completely it isn't a comfort.\""
+   },
+   {
+    "label": "…",
+    "outcome": "He lets the silence do the work. He's very good at letting silence do the work."
+   }
+  ]
+ },
+ "a1s2c": {
+  "speaker": "silas",
+  "text": "Keep earning like this and the ninety days becomes easy. — And 'easy' is where I start to worry about you, because easy is when boys get big ideas, and big ideas are how a manageable arrangement becomes a tragedy. — Stay frightened. It suits you. Go.",
+  "options": [
+   {
+    "label": "I'll stay frightened.",
+    "outcome": "\"Good. Fear's the cheapest insurance either of us can buy.\" He caps the pen.",
+    "effects": {
+     "rel": {
+      "silas": 3
+     }
+    }
+   },
+   {
+    "label": "…",
+    "outcome": "He watches you leave, and you feel the noticing on your back all the way down the stairs."
+   }
+  ]
+ },
+ "a1kc1": {
+  "speaker": "kayo",
+  "location": "The phone. Belmarsh. A clock somewhere counting down your nine minutes.",
+  "text": "You rang. — Mum said you would and I said you wouldn't and I've never been happier to lose a bet. — You sound different. Older. Which either means you're doing well or you're doing badly, and there's only two ways in there and I can't tell which.",
+  "options": [
+   {
+    "label": "I'm doing alright.",
+    "outcome": "\"'Alright.' From you that's either fine or a disaster, and I've got eight minutes to work out which.\""
+   },
+   {
+    "label": "I'm handling the debt.",
+    "outcome": "\"Handling it. — Handling Silas's forty grand. Ash. What does 'handling' involve, exactly.\""
+   },
+   {
+    "label": "…",
+    "outcome": "\"Yeah. That silence. I know that silence. I invented that silence. Talk to me.\""
+   }
+  ],
+  "scene": "precinct_night"
+ },
+ "a1kc2": {
+  "speaker": "kayo",
+  "text": "Whatever you're doing — and I'm not asking, because these calls aren't private and I'm not stupid — just tell me one thing. Tell me you haven't got a younger. Tell me you're not somebody's older now. Tell me that one thing.",
+  "options": [
+   {
+    "label": "I haven't.",
+    "outcome": "He's quiet a second too long. \"You're my brother, so I'm going to choose to believe the words and not the pause.\""
+   },
+   {
+    "label": "…",
+    "outcome": "The silence goes on and on, and down the line you hear him understand it completely."
+   }
+  ]
+ },
+ "a1kc3": {
+  "speaker": "kayo",
+  "text": "I've got the time to think in here, that's all there is, time and thinking — and I've thought about how it went for me, every step, and every step felt small, and I'd give anything to go back and see one of them as big. You're in the small steps now.",
+  "options": [
+   {
+    "label": "I'll be careful.",
+    "outcome": "\"Careful's not a plan, it's a wish. But I'll take your wish. It's more than I gave anyone.\""
+   },
+   {
+    "label": "I'm not going to end up in there.",
+    "outcome": "\"Nobody plans to. That's the whole design of it. It doesn't ask permission.\""
+   }
+  ]
+ },
+ "a1kc4": {
+  "speaker": "kayo",
+  "text": "Time's nearly up — it always is, that's the cruelty of it, they give you just enough to start a sentence — ring Mum more, ring me when you can, and Ash — the jacket looks better on you. It does. Keep it. — Go on. Before it cuts us off.",
+  "options": [
+   {
+    "label": "I'll ring you next week.",
+    "outcome": "\"You'd better. I've got nothing but next weeks.\" The line goes before you can answer.",
+    "effects": {
+     "rel": {
+      "kayo": 3
+     }
+    }
+   },
+   {
+    "label": "…",
+    "outcome": "The dead tone comes and you hold the phone to your ear a while longer anyway."
+   }
+  ]
+ },
+ "a1rs1": {
+  "speaker": "rico",
+  "location": "Behind the chicken shop. Rico won't quite meet your eye, which he always does, which is how you know.",
+  "text": "So the count's — it's a bit — okay it's six hundred light and I know how that sounds and I swear on everything it's not what it sounds like, I didn't take it, I would never take it, I need you to believe I didn't take it before I tell you what actually.",
+  "options": [
+   {
+    "label": "What actually happened?",
+    "outcome": "He looks at the floor. \"I got taxed. On the way back. Two of them. And I didn't say because — because I should've stopped it and I didn't.\""
+   },
+   {
+    "label": "Six hundred, Rico.",
+    "outcome": "\"I know. I know the number. I've been the number all week. I'll make it back, I'll work it off, I'll—\""
+   },
+   {
+    "label": "…",
+    "outcome": "The silence undoes him faster than shouting would. \"Don't. Don't do the quiet. Shout. I can take shouting.\""
+   }
+  ],
+  "scene": "shop_interior"
+ },
+ "a1rs2": {
+  "speaker": "rico",
+  "text": "They were older and there were two and I froze — I just froze — and I was too ashamed to say it, so I said the count was funny, and lying about it was worse, I know it was worse, it made it mine instead of ours.",
+  "options": [
+   {
+    "label": "You should've told me straight away.",
+    "outcome": "\"Yeah. I know. Lying about it made it mine instead of ours. I get that now. Bit late.\""
+   },
+   {
+    "label": "Who taxed you?",
+    "outcome": "He hesitates. \"...Green Lane. One of Zeb's. I didn't want to tell you because I know what you'll want to do.\""
+   }
+  ]
+ },
+ "a1rs3": {
+  "speaker": "rico",
+  "text": "I'll pay it back off my end, every week, however long — I'm not asking you to eat it, I did the stupid thing so I'll wear it — I just didn't want you finding out from someone else and thinking I'm a thief, because I'm a coward, which is different, which is somehow the thing I can live with.",
+  "options": [
+   {
+    "label": "You're not a thief. Forget the debt.",
+    "outcome": "He nearly cries and hates himself for it. \"Don't be nice, that's worse than shouting, that's the worst one.\"",
+    "effects": {
+     "rel": {
+      "rico": 4
+     }
+    }
+   },
+   {
+    "label": "Pay it back. And never lie again.",
+    "outcome": "\"Never. On my life. The freezing I can't promise. The lying I can.\"",
+    "effects": {
+     "trust": {
+      "rico": 2
+     }
+    }
+   }
+  ]
+ },
+ "a1rs4": {
+  "speaker": "rico",
+  "text": "It was Zeb's lot though — I keep thinking that — and I know you promised Nads you'd leave Green Lane alone, and I'm not saying don't, I'm just saying it was them, and now it's not just a market thing, now it's a me thing, now it's a us thing.",
+  "options": [
+   {
+    "label": "Leave Zeb to me.",
+    "outcome": "\"That's the exact voice Nads told me to watch for. I'm telling her you did the voice.\""
+   },
+   {
+    "label": "…",
+    "outcome": "You file it. Green Lane, again. It's becoming a name that keeps arriving whether you go looking or not."
+   }
+  ]
+ },
+ "a1se1": {
+  "speaker": "sess",
+  "location": "Outside the studio. Sess, phone already filming, always filming.",
+  "text": "Bro — bro — you're the one from the warehouse. Don't deny it, everyone knows, that's not a diss that's a compliment. — I want you in the video. Trust. Big visuals, block behind us, it'll do numbers, it'll do stupid numbers, you'll be famous by Friday.",
+  "options": [
+   {
+    "label": "Famous is the last thing I need.",
+    "outcome": "\"Famous is the only thing anyone needs! You sound like my dad. Come on, one verse, one background, nothing mad.\""
+   },
+   {
+    "label": "Turn the camera off.",
+    "outcome": "He turns it off, then films you from a second phone. \"Off. It's off. This one's just for me.\""
+   },
+   {
+    "label": "…",
+    "outcome": "\"Ah, the mysterious thing, yeah, I can work with the mysterious thing, mysterious does numbers too.\""
+   }
+  ],
+  "scene": "street_night"
+ },
+ "a1se2": {
+  "speaker": "sess",
+  "text": "The tune's hard though, I'll play it — it's about the ends, it names names, it's got the warehouse in it, metaphorically, mostly — and that's the thing innit, it's a banger and it's a liability, same tune, same three minutes, and you can't have one without.",
+  "options": [
+   {
+    "label": "It names names?",
+    "outcome": "\"Metaphor names. Clever names. A copper couldn't stand it up. A rival could clock it in a second, which is different.\""
+   },
+   {
+    "label": "…",
+    "outcome": "He plays eight bars and it's genuinely good and that's genuinely the problem."
+   }
+  ]
+ },
+ "a1se3": {
+  "speaker": "sess",
+  "text": "Just think about it — that's all — and don't tell Nads I asked because she'll do the face and the speech, and the speech is right, the speech is always right, that's why I don't want to hear it. — One video. Immortal. Or careful. Your ends, your call.",
+  "options": [
+   {
+    "label": "I'll think about it.",
+    "outcome": "\"That's a no in a nice coat, but I'll take the coat.\" He's already filming the sunset for something else."
+   },
+   {
+    "label": "…",
+    "outcome": "He nods like the silence was the smart answer, which, this once, it might be."
+   }
+  ]
+ },
+ "a1p1": {
+  "speaker": "silas",
+  "location": "The office above the dry cleaner's. He's already made the tea. Two cups. The good ones.",
+  "text": "Sit. — Is that it? — Don't tell me the number, put it on the desk, I'll tell you the number. I always know the number before it's counted. It's a small skill and it's kept me alive.",
+  "options": [
+   {
+    "label": "That's the forty.",
+    "outcome": "\"We'll see. Sit while I count. Drink your tea, it goes cold while I do the tens.\""
+   },
+   {
+    "label": "…",
+    "outcome": "You put the bag down. He looks at it, then at you, and starts counting without touching the tea."
+   }
+  ],
+  "scene": "street_night"
+ },
+ "a1p2": {
+  "speaker": "silas",
+  "text": "Thirty-eight. Thirty-nine. — Forty. — There. On time, or near enough that I'm choosing to call it on time, and I don't do generous, so notice it. — You've paid your father's debt. I want you to hear that sentence properly before I ruin it.",
+  "options": [
+   {
+    "label": "Then it's done.",
+    "outcome": "\"You said 'done' like a man who's read the front of the contract and not the back. There's always a back.\""
+   },
+   {
+    "label": "…",
+    "outcome": "He squares the notes into a pile, slow, and you understand the slowness is the point."
+   }
+  ]
+ },
+ "a1p3": {
+  "speaker": "silas",
+  "text": "Your father borrowed forty and paid nothing, and then he was gone, and the debt didn't go with him. — Debts don't die when people do. They get inherited. You've just cleared an inheritance. That's rarer and sadder than you'll understand for years.",
+  "options": [
+   {
+    "label": "How did he die?",
+    "outcome": "\"Not from me. I want that on the record between us. Not from me. From the same life, but not from me.\""
+   },
+   {
+    "label": "…",
+    "outcome": "He lets it sit. For once the silence seems to cost him something too."
+   }
+  ]
+ },
+ "a1p4": {
+  "speaker": "silas",
+  "text": "Your mother made me tea the day I came to explain the debt to her. — She knew what I was and she made me tea and asked after my health. — I have thought about that cup of tea more than you'd believe. It's why you're alive, if we're being accurate.",
+  "options": [
+   {
+    "label": "Leave my mother out of it.",
+    "outcome": "\"I intend to. I'm telling you she's the reason I've been patient. Take it as the compliment it costs me to give.\""
+   },
+   {
+    "label": "…",
+    "outcome": "He looks, briefly, like a much older and tireder man than the one who started the meeting."
+   }
+  ]
+ },
+ "a1p5": {
+  "speaker": "silas",
+  "text": "So. The forty is paid. — And now I have a decision, and so do you, and they're the same decision seen from two chairs. — You could walk out of here clear. It's the right thing. It's what your mother would want. I'll even hold the door.",
+  "options": [
+   {
+    "label": "Then I'll walk.",
+    "outcome": "\"You could. — You won't. But you could, and I want you to have genuinely been able to, so that later you can't say you weren't.\""
+   },
+   {
+    "label": "But?",
+    "outcome": "\"But. There it is. You said 'but' so I don't have to. That's the whole of it, really. That's you deciding.\""
+   }
+  ]
+ },
+ "a1p6": {
+  "speaker": "silas",
+  "text": "Now. The interest.",
+  "options": [
+   {
+    "label": "You never said interest.",
+    "outcome": "\"No. I didn't. — I want you to notice that I'm not pretending I did.\""
+   },
+   {
+    "label": "How much.",
+    "outcome": "\"That's the right question and it's the wrong question. Sit down.\""
+   },
+   {
+    "label": "…",
+    "outcome": "He nods slowly, like you've passed something. That's worse.",
+    "effects": {
+     "rel": {
+      "silas": 6
+     }
+    }
+   }
+  ]
+ },
+ "a1o1": {
+  "speaker": "silas",
+  "location": "The office. The tea's gone cold in both cups. Neither of you touched it.",
+  "text": "The interest isn't money. — I have enough money. Money is boring, money is what I use to buy the thing I actually want, which is people who owe me and are good at things. — You are good at things. You've just proven it across a desk. That's the interest.",
+  "options": [
+   {
+    "label": "You want me to work for you.",
+    "outcome": "\"'Work for' is ugly. 'With.' You'll do jobs. Bigger ones. Mine. And I'll make problems disappear, including the ones with a warrant card.\""
+   },
+   {
+    "label": "…",
+    "outcome": "He waits. The offer sits in the room like a fourth person."
+   }
+  ],
+  "scene": "street_night"
+ },
+ "a1o2": {
+  "speaker": "silas",
+  "text": "There's a policeman who's been to see you. — Hallam. Careful man. Patient. — I know because knowing is my job, and I can make his interest in you evaporate, or I can let it bloom. That's not a threat. It's a menu. I'm showing you the menu.",
+  "options": [
+   {
+    "label": "You'd protect me from Hallam?",
+    "outcome": "\"I'd protect my investment from Hallam. You're the investment. Try not to be flattered; it's just accurate.\""
+   },
+   {
+    "label": "How do you know about Hallam?",
+    "outcome": "\"The same way I knew the warehouse. The same way I knew the forty was in the bag. Stop asking how. Start asking whether.\""
+   }
+  ]
+ },
+ "a1o3": {
+  "speaker": "silas",
+  "text": "Here's what I like about you, and it's rare, so listen. — You could have run tonight and you weighed it. Properly weighed it. — Most boys don't weigh, they just want. A boy who weighs is worth a firm. A boy who wants is worth a funeral.",
+  "options": [
+   {
+    "label": "And if I say no?",
+    "outcome": "\"Then you walk clear, as promised, and you find out how cold the world gets when nobody's warming it for you. No hard feelings. Genuinely.\""
+   },
+   {
+    "label": "…",
+    "outcome": "He almost smiles. \"You're weighing it right now. Look at you. Good.\""
+   }
+  ]
+ },
+ "a1o4": {
+  "speaker": "silas",
+  "text": "Take a day. — I'm not a man who needs an answer in a room; a man who needs it in the room is a man who knows his offer's bad. — Sleep on it. Talk to that clever girl of yours, she'll tell you no and she'll be right and you'll come back anyway.",
+  "options": [
+   {
+    "label": "Nads would tell me to run.",
+    "outcome": "\"She would. She's cleverer than both of us. That's precisely why you won't listen to her, and precisely why you should.\""
+   },
+   {
+    "label": "…",
+    "outcome": "You say nothing. He reads the nothing and, for the first time, looks almost sorry for you."
+   }
+  ]
+ },
+ "a1o5": {
+  "speaker": "silas",
+  "text": "Whatever you decide — and I think we both know — you should understand it was a real choice. — I gave you the open door. I held it. That matters to me, that you saw it open. It won't be open again. Doors like that open once.",
+  "options": [
+   {
+    "label": "I saw it.",
+    "outcome": "\"Good. Then whatever comes, it's yours, not mine. I find that important. You will too, eventually. Probably too late.\""
+   },
+   {
+    "label": "…",
+    "outcome": "He stands, which means it's over, which means the deciding starts the second you're through the door."
+   }
+  ]
+ },
+ "a1o6": {
+  "speaker": "silas",
+  "text": "Go home. — Eat your mother's food. Ring your brother. — And tomorrow, come back and tell me you're mine, or don't come back at all. Both are answers. Only one of them has a future in it, and we both already know which. Goodnight.",
+  "options": [
+   {
+    "label": "…",
+    "outcome": "He nods slowly, like you've passed something. The door's still open behind you. It won't be tomorrow.",
+    "effects": {
+     "flags": [
+      "act1_complete"
+     ],
+     "rel": {
+      "silas": 10
+     }
+    }
+   },
+   {
+    "label": "I'll be here tomorrow.",
+    "outcome": "\"I know. — I wish, for your mother's sake, that I didn't. Goodnight.\"",
+    "effects": {
+     "flags": [
+      "act1_complete"
+     ],
+     "rel": {
+      "silas": 10
+     }
+    }
+   }
+  ]
+ }
+}

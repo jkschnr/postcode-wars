@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>01-map — Postcode Wars</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<style>
+  html, body { margin:0; background:#0C0E10; }
+  body { display:flex; justify-content:center; }
+  a { color:#FFA94D; text-decoration:none; }
+  a:hover { color:#FFC97A; }
+  #frame { position:relative; width:1080px; height:1920px; flex:none; overflow:hidden;
+    background:#121417; color:#EDEFF2; font-family:Inter, system-ui, sans-serif; transform-origin:top center; }
+  .mono { font-family:'IBM Plex Mono', monospace; }
+  .disp { font-family:Anton, Impact, sans-serif; text-transform:uppercase; }
+  .tab { font-variant-numeric:tabular-nums; }
+  #leaf { position:absolute; inset:0; z-index:0; isolation:isolate; background:#0E1013; }
+  /* grimy night grade over real OSM tiles: desaturate, darken, push to sodium */
+  .leaflet-tile-pane { filter:grayscale(1) brightness(0.44) contrast(1.4) sepia(0.34) hue-rotate(-12deg) saturate(1.5); }
+  .leaflet-container { background:#0E1013; font-family:'IBM Plex Mono', monospace; }
+  .leaflet-control-attribution { background:rgba(12,14,16,0.72) !important; color:#5A6068 !important; font-size:11px !important; }
+  .leaflet-control-attribution a { color:#9AA0A6 !important; }
+  .node { position:absolute; transform:translate(-50%,-50%); }
+  .label { position:absolute; white-space:nowrap; display:flex; flex-direction:column; gap:4px; }
+  .tooth { position:absolute; inset:0; pointer-events:none; z-index:1; opacity:0.22; mix-blend-mode:soft-light;
+    background-image:url("art/tex-concrete.png"); background-size:512px 512px; }
+  .grain { position:absolute; inset:0; pointer-events:none; opacity:0.045; mix-blend-mode:screen; z-index:60;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
+    background-size:280px 280px; }
+</style>
+<script src="anim.js"></script>
+</head>
+<body>
+<div id="frame">
+
+  <div id="leaf"></div>
+  <!-- night grade + vignette + streetlamp pool over the real map -->
+  <div style="position:absolute; inset:0; pointer-events:none; z-index:20; background:
+      radial-gradient(48% 34% at 72% 66%, rgba(255,169,77,0.30) 0%, rgba(255,169,77,0.10) 40%, rgba(255,169,77,0) 70%),
+      radial-gradient(120% 80% at 50% 0%, rgba(18,20,23,0.72) 0%, rgba(18,20,23,0.18) 34%, rgba(18,20,23,0) 55%),
+      radial-gradient(120% 60% at 50% 100%, rgba(12,14,16,0.9) 0%, rgba(12,14,16,0) 46%),
+      linear-gradient(90deg, rgba(12,14,16,0.55) 0%, rgba(12,14,16,0) 20%, rgba(12,14,16,0) 80%, rgba(12,14,16,0.55) 100%);"></div>
+  <div id="overlay" style="position:absolute; inset:0; z-index:30; pointer-events:none;"></div>
+
+  <!-- TOP HUD -->
+  <div style="position:absolute; left:0; top:0; width:1080px; height:140px; box-sizing:border-box; padding:0 32px 14px; display:flex; flex-direction:column; justify-content:flex-end; background:linear-gradient(180deg, #2A2E33 0%, #2A2E33 82%, rgba(42,46,51,0.94) 100%); border-bottom:1px solid #3A3F45; z-index:40;">
+    <div class="tab" style="display:flex; align-items:center; gap:16px;">
+      <div style="display:flex; align-items:center; gap:10px; height:56px; padding:0 16px; border:1px solid #C9A227; border-radius:12px; background:rgba(201,162,39,0.10);">
+        <span style="width:20px; height:20px; border-radius:4px; border:2px solid #C9A227;"></span>
+        <span class="disp" style="font-size:32px; color:#C9A227;">£12,480</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; height:56px; padding:0 16px; border:1px solid #57C785; border-radius:12px; background:rgba(87,199,133,0.10);">
+        <span style="width:20px; height:20px; border-radius:4px; border:2px solid #57C785;"></span>
+        <span class="disp" style="font-size:32px; color:#57C785;">£3,050</span>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:8px; padding-left:8px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="mono" style="font-size:16px; color:#FFA94D; width:26px;">EN</span>
+          <div style="flex:1; height:12px; border-radius:6px; background:#0C0E10; overflow:hidden; display:flex;"><div style="width:62%; background:#FFA94D;"></div></div>
+          <span class="mono" style="font-size:16px; color:#9AA0A6;">62/100</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="mono" style="font-size:16px; color:#B06CF0; width:26px;">NV</span>
+          <div style="flex:1; height:12px; border-radius:6px; background:#0C0E10; overflow:hidden; display:flex;"><div style="width:35%; background:#B06CF0;"></div></div>
+          <span class="mono" style="font-size:16px; color:#9AA0A6;">7/20</span>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+        <div style="display:flex; gap:6px;">
+          <span style="width:14px; height:14px; border-radius:7px; background:#D63B3B;"></span>
+          <span style="width:14px; height:14px; border-radius:7px; background:#D63B3B;"></span>
+          <span style="width:14px; height:14px; border-radius:7px; background:#D63B3B;"></span>
+          <span style="width:14px; height:14px; border-radius:7px; background:#3A3F45;"></span>
+          <span style="width:14px; height:14px; border-radius:7px; background:#3A3F45;"></span>
+        </div>
+        <span class="mono" style="font-size:16px; letter-spacing:0.1em; color:#9AA0A6;">HEAT</span>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px; padding-left:20px; border-left:1px solid #3A3F45;">
+        <span class="disp" style="font-size:40px; line-height:1;">37</span>
+        <div style="width:96px; height:6px; border-radius:3px; background:#0C0E10; overflow:hidden; display:flex;"><div style="width:48%; background:#FFC97A;"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:absolute; left:32px; top:172px; z-index:35; display:flex; flex-direction:column; gap:12px;">
+    <div class="disp" style="font-size:64px; line-height:0.9; text-shadow:0 4px 24px rgba(0,0,0,0.9);">The<br>Manor</div>
+    <div class="mono" style="font-size:20px; letter-spacing:0.14em; color:#FFA94D;">TAP A CITY TO TRAVEL</div>
+  </div>
+  <div class="tab" style="position:absolute; right:32px; top:180px; z-index:35; border:1px solid #D63B3B; border-radius:16px; background:rgba(20,14,14,0.86); padding:18px 24px; display:flex; flex-direction:column; align-items:flex-end; gap:4px;">
+    <span class="mono" style="font-size:18px; letter-spacing:0.12em; color:#D63B3B;">OWED TO RHODES</span>
+    <span class="disp" style="font-size:44px; line-height:1;">£27,520</span>
+    <span class="mono" style="font-size:18px; color:#9AA0A6;">61 DAYS LEFT</span>
+  </div>
+
+  <!-- CURRENT LOCATION STRIP -->
+  <div style="position:absolute; left:32px; right:32px; bottom:216px; z-index:45; border:1px solid #2A2E33; border-left:8px solid #FFA94D; border-radius:16px; background:rgba(30,33,38,0.96); padding:24px 28px; display:flex; align-items:center; gap:24px;">
+    <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:6px;">
+      <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#FFA94D;">CURRENTLY IN</span>
+      <span class="disp" style="font-size:48px; line-height:1;">London — Hackney</span>
+      <span class="mono" style="font-size:20px; color:#9AA0A6;">HEAT 3/5 · 2 JOBS READY · CONTRACT EXPIRES 01:12</span>
+    </div>
+    <a href="02-city.html" class="disp" style="height:96px; padding:0 36px; border-radius:16px; background:#D9E021; color:#121417; font-size:32px; letter-spacing:0.04em; display:flex; align-items:center;">Enter city</a>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div style="position:absolute; left:0; bottom:0; width:1080px; background:#2A2E33; border-top:1px solid #3A3F45; z-index:50;">
+    <div style="height:120px; display:grid; grid-template-columns:repeat(5, 1fr);">
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; border-top:4px solid #FFA94D; background:linear-gradient(180deg, rgba(255,169,77,0.14), rgba(255,169,77,0));">
+        <span style="width:36px; height:36px; border:2px solid #FFA94D; border-radius:50% 50% 50% 4px; transform:rotate(-45deg);"></span>
+        <span class="mono" style="font-size:18px; letter-spacing:0.1em; color:#FFA94D;">MAP</span>
+      </div>
+      <a href="02-city.html" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;">
+        <span style="width:36px; height:36px; border:2px solid #9AA0A6; border-radius:4px;"></span>
+        <span class="mono" style="font-size:18px; letter-spacing:0.1em; color:#9AA0A6;">CITY</span>
+      </a>
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; position:relative;">
+        <span style="width:36px; height:36px; border:2px solid #9AA0A6; border-radius:50%;"></span>
+        <span style="position:absolute; top:24px; right:calc(50% - 34px); width:16px; height:16px; border-radius:8px; background:#D9E021;"></span>
+        <span class="mono" style="font-size:18px; letter-spacing:0.1em; color:#9AA0A6;">CHAR</span>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;">
+        <span style="width:36px; height:36px; border:2px solid #9AA0A6; border-radius:4px 4px 18px 18px;"></span>
+        <span class="mono" style="font-size:18px; letter-spacing:0.1em; color:#9AA0A6;">CREW</span>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;">
+        <span style="width:36px; height:36px; border:2px solid #5A6068; border-radius:4px; transform:rotate(45deg);"></span>
+        <span class="mono" style="font-size:18px; letter-spacing:0.1em; color:#5A6068;">FIRM</span>
+      </div>
+    </div>
+    <div style="height:40px; display:flex; align-items:center; justify-content:center;">
+      <span style="width:200px; height:6px; border-radius:3px; background:#5A6068;"></span>
+    </div>
+  </div>
+
+  <div class="tooth"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+const W = 1080, H = 1920;
+const CITIES = [
+  { name:'Glasgow',    lat:55.861, lon:-4.250, danger:4, state:'locked',  req:'LVL 40' },
+  { name:'Newcastle',  lat:54.978, lon:-1.618, danger:3, state:'open',    req:'LVL 24 · 9 MIN' },
+  { name:'Liverpool',  lat:53.408, lon:-2.991, danger:3, state:'open',    req:'LVL 18 · 7 MIN' },
+  { name:'Leeds',      lat:53.800, lon:-1.549, danger:3, state:'open',    req:'LVL 20 · 8 MIN' },
+  { name:'Manchester', lat:53.480, lon:-2.242, danger:3, state:'ready',   req:'JOB READY' },
+  { name:'Grimsby',    lat:53.567, lon:-0.081, danger:2, state:'town',    req:'TOWN' },
+  { name:'Nottingham', lat:52.954, lon:-1.158, danger:2, state:'open',    req:'LVL 14 · 6 MIN' },
+  { name:'Birmingham', lat:52.486, lon:-1.890, danger:3, state:'open',    req:'LVL 16 · 5 MIN' },
+  { name:'Swindon',    lat:51.559, lon:-1.781, danger:1, state:'town',    req:'TOWN' },
+  { name:'Bristol',    lat:51.454, lon:-2.588, danger:2, state:'ready',   req:'JOB READY' },
+  { name:'Luton',      lat:51.879, lon:-0.417, danger:1, state:'town',    req:'TOWN' },
+  { name:'Margate',    lat:51.385, lon:1.386,  danger:1, state:'town',    req:'TOWN' },
+  { name:'London',     lat:51.507, lon:-0.128, danger:5, state:'current', req:'YOU ARE HERE' }
+];
+const ROUTES = [
+  ['London','Luton'],['Luton','Birmingham'],['Birmingham','Manchester'],['Manchester','Liverpool'],
+  ['Manchester','Leeds'],['Leeds','Newcastle'],['Newcastle','Glasgow'],['Birmingham','Nottingham'],
+  ['Nottingham','Grimsby'],['Birmingham','Swindon'],['Swindon','Bristol'],['London','Bristol'],
+  ['London','Margate'],['Leeds','Nottingham'],['London','Birmingham']
+];
+const TINT = { current:'#FFA94D', ready:'#D9E021', open:'#9AA0A6', town:'#5A6068', locked:'#5A6068' };
+const byName = Object.fromEntries(CITIES.map(c => [c.name, c]));
+
+function scaleFrame() {
+  const f = document.getElementById('frame');
+  const s = Math.min(1, window.innerHeight / H, window.innerWidth / W);
+  f.style.transform = 'scale(' + s + ')';
+  document.body.style.height = (H * s) + 'px';
+}
+window.addEventListener('resize', scaleFrame);
+scaleFrame();
+
+const map = L.map('leaf', {
+  dragging:false, touchZoom:false, scrollWheelZoom:false, doubleClickZoom:false,
+  boxZoom:false, keyboard:false, zoomControl:false, zoomSnap:0.1, attributionControl:true
+});
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution:'© OpenStreetMap contributors', maxZoom:19
+}).addTo(map);
+map.fitBounds([[50.1, -6.2], [56.1, 1.9]], { padding:[0, 0] });
+
+// travel routes over the real geography
+ROUTES.forEach(([a, b]) => {
+  const hot = a === 'London' || b === 'London';
+  L.polyline([[byName[a].lat, byName[a].lon], [byName[b].lat, byName[b].lon]], {
+    color: hot ? '#FFA94D' : '#8A9299',
+    weight: hot ? 3 : 2,
+    opacity: hot ? 0.5 : 0.28,
+    dashArray: hot ? null : '10 12',
+    interactive:false
+  }).addTo(map);
+});
+
+const overlay = document.getElementById('overlay');
+const radius = c => c.state === 'current' ? 58 : c.state === 'town' ? 26 : 42;
+
+function dotHTML(c) {
+  const town = c.state === 'town';
+  const size = radius(c) * 2 - 8;
+  if (c.state === 'current') {
+    return `<div style="width:${size}px;height:${size}px;border-radius:50%;border:3px solid #FFA94D;
+      background:radial-gradient(circle, rgba(255,169,77,0.6), rgba(255,169,77,0.05) 72%);
+      box-shadow:0 0 60px 20px rgba(255,169,77,0.22);
+      display:flex;align-items:center;justify-content:center;">
+      <span style="width:24px;height:24px;border-radius:50%;background:#FFC97A;"></span></div>`;
+  }
+  if (c.state === 'ready') {
+    return `<div style="position:relative;width:${size}px;height:${size}px;">
+      <div style="width:100%;height:100%;border-radius:50%;border:2px solid #EDEFF2;background:rgba(18,20,23,0.82);"></div>
+      <span style="position:absolute;top:-5px;right:-5px;width:26px;height:26px;border-radius:13px;background:#D9E021;border:3px solid #121417;"></span></div>`;
+  }
+  if (c.state === 'locked') {
+    return `<div style="width:${size}px;height:${size}px;border-radius:50%;border:2px dashed #5A6068;background:rgba(18,20,23,0.8);
+      display:flex;align-items:center;justify-content:center;">
+      <span style="width:20px;height:20px;border:2px solid #5A6068;border-radius:6px 6px 3px 3px;"></span></div>`;
+  }
+  if (town) {
+    return `<div style="width:${size}px;height:${size}px;border-radius:50%;border:2px solid #9AA0A6;background:rgba(18,20,23,0.85);
+      display:flex;align-items:center;justify-content:center;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#9AA0A6;"></span></div>`;
+  }
+  return `<div style="width:${size}px;height:${size}px;border-radius:50%;border:2px solid #EDEFF2;background:rgba(18,20,23,0.82);"></div>`;
+}
+
+function labelHTML(c) {
+  const town = c.state === 'town';
+  const pips = Array.from({ length:5 }, (_, i) =>
+    `<span style="width:${town ? 11 : 14}px;height:${town ? 11 : 14}px;border-radius:3px;background:${
+      i < c.danger ? (c.state === 'locked' || town ? '#5A6068' : '#D63B3B') : 'rgba(90,96,104,0.4)'};"></span>`).join('');
+  return `
+    <div class="disp" style="font-size:${c.state === 'current' ? 50 : town ? 24 : 36}px; line-height:0.95;
+      color:${c.state === 'locked' ? '#5A6068' : town ? '#C3C9CF' : '#EDEFF2'};
+      text-shadow:0 2px 14px rgba(0,0,0,0.95), 0 0 4px rgba(0,0,0,0.8);">${c.name}</div>
+    <div style="display:flex; gap:5px;">${pips}</div>
+    <div class="mono" style="font-size:${town ? 15 : 18}px; letter-spacing:0.12em; color:${TINT[c.state]};
+      text-shadow:0 2px 10px rgba(0,0,0,0.95);">${c.req}</div>`;
+}
+
+// nodes + measured, collision-free label placement (recomputed whenever the view changes)
+const rank = { current:0, ready:1, open:2, locked:3, town:4 };
+const order = CITIES.slice().sort((a, b) => rank[a.state] - rank[b.state]);
+const nodeEls = {}, labelEls = {};
+CITIES.forEach(c => {
+  const n = document.createElement('div');
+  n.className = 'node';
+  n.innerHTML = dotHTML(c);
+  overlay.appendChild(n);
+  nodeEls[c.name] = n;
+  const l = document.createElement('div');
+  l.className = 'label';
+  l.innerHTML = labelHTML(c);
+  overlay.appendChild(l);
+  labelEls[c.name] = l;
+});
+
+const PAD = 14;
+const BOUNDS = { x0:32, y0:300, x1:1048, y1:1600 };
+const hitsRect = (a, b) => a.x < b.x + b.w + PAD && a.x + a.w + PAD > b.x && a.y < b.y + b.h + PAD && a.y + a.h + PAD > b.y;
+const hitsCircle = (r, c) => {
+  const cx = Math.max(r.x, Math.min(c.x, r.x + r.w));
+  const cy = Math.max(r.y, Math.min(c.y, r.y + r.h));
+  return (c.x - cx) ** 2 + (c.y - cy) ** 2 < (c.r + 10) ** 2;
+};
+
+function place() {
+  const scale = overlay.getBoundingClientRect().width / W;
+  const pt = {};
+  CITIES.forEach(c => {
+    const p = map.latLngToContainerPoint([c.lat, c.lon]);
+    pt[c.name] = p;
+    nodeEls[c.name].style.left = p.x + 'px';
+    nodeEls[c.name].style.top = p.y + 'px';
+  });
+  const circles = CITIES.map(c => ({ x:pt[c.name].x, y:pt[c.name].y, r:radius(c) }));
+  const placed = [];
+  order.forEach(c => {
+    const el = labelEls[c.name];
+    el.style.left = '0px'; el.style.top = '0px';
+    const box = el.getBoundingClientRect();
+    const w = box.width / scale, h = box.height / scale;
+    const { x, y } = pt[c.name];
+    const g = radius(c) + 18;
+    const slots = [
+      { x:x + g,             y:y - h / 2,        a:'flex-start' },
+      { x:x - g - w,         y:y - h / 2,        a:'flex-end'   },
+      { x:x - w / 2,         y:y + g,            a:'center'     },
+      { x:x - w / 2,         y:y - g - h,        a:'center'     },
+      { x:x + g * 0.7,       y:y + g * 0.6,      a:'flex-start' },
+      { x:x - g * 0.7 - w,   y:y + g * 0.6,      a:'flex-end'   },
+      { x:x + g * 0.7,       y:y - g * 0.6 - h,  a:'flex-start' },
+      { x:x - g * 0.7 - w,   y:y - g * 0.6 - h,  a:'flex-end'   }
+    ];
+    let pick = null;
+    for (const s of slots) {
+      const r = { x:s.x, y:s.y, w, h };
+      if (r.x < BOUNDS.x0 || r.y < BOUNDS.y0 || r.x + r.w > BOUNDS.x1 || r.y + r.h > BOUNDS.y1) continue;
+      if (placed.some(p => hitsRect(r, p))) continue;
+      if (circles.some(ci => hitsCircle(r, ci))) continue;
+      pick = s; break;
+    }
+    if (!pick) {
+      pick = slots.reduce((best, s) => {
+        const r = { x:s.x, y:s.y, w, h };
+        const cost = placed.filter(p => hitsRect(r, p)).length * 10 + circles.filter(ci => hitsCircle(r, ci)).length;
+        return cost < best.cost ? { cost, s } : best;
+      }, { cost:Infinity, s:slots[0] }).s;
+    }
+    el.style.left = pick.x + 'px';
+    el.style.top = pick.y + 'px';
+    el.style.alignItems = pick.a;
+    placed.push({ x:pick.x, y:pick.y, w, h });
+  });
+}
+
+map.whenReady(() => { place(); setTimeout(place, 400); });
+map.on('move zoom', place);
+document.fonts && document.fonts.ready.then(place);
+</script>
+</body>
+</html>

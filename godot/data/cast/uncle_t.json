@@ -1,0 +1,14 @@
+{
+  "id": "uncle_t",
+  "display_name": "Uncle T",
+  "full_name": "Terence Okonjo",
+  "role": "The barber. The conscience.",
+  "where": "Fresh Cutz, Marlow Fields",
+  "portrait": "uncle_t",
+  "start": { "relationship": 20, "trust": 20 },
+  "reactions": {
+    "up": "Uncle T holds the clippers still for a second, then carries on.",
+    "down": "Uncle T doesn't look up from the clippers.",
+    "lost": "The shutter's down. A note taped to it, in biro. You don't read it twice."
+  }
+}

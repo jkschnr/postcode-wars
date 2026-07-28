@@ -1,0 +1,14 @@
+{
+  "id": "kayo",
+  "display_name": "Kayo",
+  "full_name": "Kaydon \"Kayo\" Blake",
+  "role": "Your brother. Inside.",
+  "where": "HMP Belmarsh, Category A remand",
+  "portrait": "kayo",
+  "start": { "relationship": 40, "trust": 30 },
+  "reactions": {
+    "up": "Down the line, Kayo lets a breath out. \"Alright. Alright.\"",
+    "down": "The line goes quiet. \"Right,\" Kayo says, and it isn't.",
+    "lost": "The prison number stops connecting. You don't get told why."
+  }
+}

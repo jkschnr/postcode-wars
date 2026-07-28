@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>21-leaderboards — Postcode Wars</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ui.css">
+<script src="art.js"></script>
+<script src="cast.js"></script>
+<script src="chrome.js"></script>
+<script src="anim.js"></script>
+</head>
+<body>
+<div id="frame">
+  <div style="position:absolute; inset:0; background:
+      radial-gradient(52% 26% at 78% 12%, rgba(255,169,77,0.16), rgba(255,169,77,0) 70%),
+      linear-gradient(180deg, #15181C 0%, #121417 50%, #0E1013 100%);"></div>
+  <div class="disp" style="position:absolute; left:-24px; bottom:300px; z-index:0; font-size:300px; line-height:0.78; color:#EDEFF2; opacity:0.05;">TOP 100</div>
+  <div id="hud"></div>
+
+  <div style="position:absolute; left:32px; right:32px; top:180px; z-index:35; display:flex; flex-direction:column; gap:18px;">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px;">
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <span class="mono" style="font-size:22px; letter-spacing:0.18em; color:#FFA94D;">WHO'S EATING, WHO ISN'T</span>
+        <span class="disp" style="font-size:80px; line-height:0.9;">Standings</span>
+      </div>
+      <div id="season" class="mono tab" style="font-size:20px; color:#5A6068; text-align:right; line-height:1.5;">SEASON 3<br>RESETS IN 21D 04H</div>
+    </div>
+    <div id="scope" style="display:grid; grid-template-columns:1fr 1fr; gap:14px;"></div>
+    <div id="cats" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:14px;"></div>
+  </div>
+
+  <div id="list" class="scroll" style="top:520px; bottom:180px; padding:0 32px 40px; box-sizing:border-box; display:flex; flex-direction:column; gap:12px;"></div>
+
+  <div id="nav"></div>
+  <div class="tooth"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+mountChrome('firm', {});
+
+const SCOPES = ['WEEKLY', 'SEASONAL'];
+const CATS = [
+  { k:'LEVEL', fmt:v => 'LVL ' + v, tint:'#FFA94D', base:[97,94,91,88,86,83,81,78,76,74,71,69] },
+  { k:'MONEY', fmt:v => '£' + v + 'k', tint:'#C9A227', base:[812,704,689,610,588,540,502,466,441,410,388,362] },
+  { k:'TERRITORY', fmt:v => v + ' BLOCKS', tint:'#57C785', base:[46,41,38,34,31,29,26,24,22,19,17,15] }
+];
+const HANDLES = ['Nunn', 'Rida', 'Bex', 'Trell', 'Coop', 'Mensa', 'Skepz', 'Dola', 'Kayo', 'Nel', 'Fitz', 'Oz'];
+let scope = 0, cat = 0;
+
+function draw() {
+  document.getElementById('scope').innerHTML = SCOPES.map((s, i) => `
+    <div data-s="${i}" class="panel" style="min-height:96px; display:flex; align-items:center; justify-content:center; cursor:pointer;
+      ${i === scope ? 'border-color:#FFA94D; background:rgba(255,169,77,0.10);' : ''}">
+      <span class="disp" style="font-size:34px; color:${i === scope ? '#FFA94D' : '#9AA0A6'};">${s}</span>
+    </div>`).join('');
+  document.getElementById('cats').innerHTML = CATS.map((c, i) => `
+    <div data-c="${i}" class="panel" style="min-height:96px; display:flex; align-items:center; justify-content:center; cursor:pointer;
+      ${i === cat ? `border-color:${c.tint}; background:${c.tint}14;` : ''}">
+      <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:${i === cat ? c.tint : '#9AA0A6'};">${c.k}</span>
+    </div>`).join('');
+  document.querySelectorAll('#scope [data-s]').forEach(el => el.addEventListener('click', () => { scope = +el.dataset.s; draw(); }));
+  document.querySelectorAll('#cats [data-c]').forEach(el => el.addEventListener('click', () => { cat = +el.dataset.c; draw(); }));
+
+  const c = CATS[cat];
+  const mult = scope === 0 ? 0.42 : 1;
+  const cast = pickCast(12);
+  const rows = c.base.map((v, i) => ({
+    rank:i + 1, name:HANDLES[i], firm:['Hollow Nine','The Latimer','Redcross','Ninefold','Ashen Row'][i % 5],
+    val:Math.round(v * mult) || 1, plate:plateFor(cast[i])
+  }));
+  const you = { rank:37, name:'Kess', firm:'Hollow Nine', val:Math.round((cat === 0 ? 37 : cat === 1 ? 15 : 3) * (scope === 0 ? 1 : 1)), plate:'art/plate-carpark.png', me:true };
+
+  document.getElementById('list').innerHTML = rows.slice(0, 8).map(r => row(r, c)).join('')
+    + `<div class="mono" style="padding:8px 0; text-align:center; font-size:22px; letter-spacing:0.3em; color:#3A3F45;">· · ·</div>`
+    + row(you, c) + rows.slice(8, 11).map(r => row({ ...r, rank:r.rank + 30 }, c)).join('');
+  document.getElementById('season').innerHTML = scope === 0 ? 'THIS WEEK<br>RESETS SUNDAY 00:00' : 'SEASON 3<br>RESETS IN 21D 04H';
+}
+
+function row(r, c) {
+  const medal = r.rank === 1 ? '#F2C14E' : r.rank === 2 ? '#B9C0C7' : r.rank === 3 ? '#C9A227' : null;
+  return `<div class="panel" style="padding:16px 22px; display:flex; align-items:center; gap:20px;
+    ${r.me ? 'border-color:#FFA94D; background:rgba(255,169,77,0.10);' : medal ? `border-color:${medal};` : ''}">
+    <span class="mono tab" style="width:64px; flex:none; font-size:26px; color:${r.me ? '#FFA94D' : medal || '#5A6068'};">${String(r.rank).padStart(2, '0')}</span>
+    <div style="width:76px; height:76px; flex:none; border-radius:50%; overflow:hidden; border:2px solid ${r.me ? '#FFA94D' : '#2A2E33'};
+      background-image:url(${r.plate}); background-size:cover; background-position:50% 28%;"></div>
+    <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:4px;">
+      <span class="disp" style="font-size:34px; line-height:1;">${r.name}${r.me ? ' <span class="mono" style="font-size:20px; color:#FFA94D;">YOU</span>' : ''}</span>
+      <span class="mono" style="font-size:20px; letter-spacing:0.1em; color:#9AA0A6;">${r.firm.toUpperCase()}</span>
+    </div>
+    <span class="disp tab" style="font-size:38px; color:${c.tint};">${c.fmt(r.val)}</span>
+  </div>`;
+}
+draw();
+</script>
+</body>
+</html>

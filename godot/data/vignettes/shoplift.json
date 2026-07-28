@@ -1,0 +1,102 @@
+[
+  {
+    "id": "shoplift_bored_bossman",
+    "job": "shoplift",
+    "conditions": { "max_heat": 8 },
+    "target": { "name": "the bossman", "detail": "watching the football, not the door" },
+    "setup": "Corner shop, one bored bossman with the football on the little telly behind the counter, blind spot by the fridges.",
+    "on_success": "Half-time whistle, you're out the door. He never looks up from the replay.",
+    "on_fail": "Turns out he watches the mirror during the ads. 'Oi — pockets.' Bag search energy. You bounce.",
+    "on_crit": "You clear the top shelf by the fridges. Whole armful. He'd have caught it if City weren't two-nil down."
+  },
+  {
+    "id": "shoplift_self_checkout",
+    "job": "shoplift",
+    "conditions": { "max_heat": 7 },
+    "target": { "name": null, "detail": "unexpected item in bagging area" },
+    "setup": "Big supermarket, self-checkout, one tired member of staff covering eight machines and a queue of beeping.",
+    "on_success": "Half of it scanned, half of it not. The machine trusts you. That's its whole problem.",
+    "on_fail": "'Unexpected item in the bagging area' — and this time she comes over, and this time she checks.",
+    "on_crit": "You weigh a bag of loose sweets as onions and the machine agrees enthusiastically. Trolley's worth, paid for pennies."
+  },
+  {
+    "id": "shoplift_pharmacy",
+    "job": "shoplift",
+    "conditions": { "max_heat": 6 },
+    "target": { "name": null, "detail": "everything behind a security tag" },
+    "setup": "Chemist, half the good stuff behind those magnetic tags, one security guard on his phone by the exit.",
+    "on_success": "Tags off in the aisle, product in the coat, out past the guard as he laughs at something on his screen.",
+    "on_fail": "You miss a tag. The gate screams. The guard finally has a reason to exist and he's thrilled about it.",
+    "on_crit": "Whole basket of the pricey stuff. Perfume, razors, the lot. The tag machine was in the same unlocked drawer as the tags."
+  },
+  {
+    "id": "shoplift_clothes_rail",
+    "job": "shoplift",
+    "conditions": { "max_heat": 8 },
+    "target": { "name": null, "detail": "changing room, four items in, two out" },
+    "setup": "High street clothes shop, changing rooms with a bored attendant counting hangers, not counting closely.",
+    "on_success": "Four in, two out, two on under your own coat. The maths only works if someone's checking. Nobody's checking.",
+    "on_fail": "The attendant counts hangers for a living and today she's decided to be good at it. 'That's four you took in.'",
+    "on_crit": "You layer up in the cubicle like it's winter. Walk out padded, walk home rich, peel it all off at the fence."
+  },
+  {
+    "id": "shoplift_market_stall",
+    "job": "shoplift",
+    "conditions": { "time": "day", "max_heat": 8 },
+    "target": { "name": "the stall man", "detail": "serving three people at once" },
+    "setup": "Market stall, phones and chargers and knock-off everything, one man serving three customers and losing.",
+    "on_success": "In the chaos of change and 'have you got it in black,' a handful walks. He's still counting coins wrong.",
+    "on_fail": "The man beside him — the one you didn't clock — is the one who actually watches the goods. And he's watching you.",
+    "on_crit": "You lift a boxed set while he argues a refund. Sealed, sellable, straight to Keisha. Beautiful timing."
+  },
+  {
+    "id": "shoplift_offlicence",
+    "job": "shoplift",
+    "conditions": { "time": "night", "max_heat": 7 },
+    "target": { "name": null, "detail": "buzzer on the door, camera that maybe works" },
+    "setup": "Off-licence, late, buzzer door, one camera in the corner that may or may not be plugged into anything.",
+    "on_success": "You test the camera theory. The camera theory holds. Out the buzzer door with a full coat.",
+    "on_fail": "The camera was real and so was the panic button. Shutters start coming down. You just make the gap.",
+    "on_crit": "Whole shelf of the good spirits. The camera was a dummy. You knew it. You could tell. You got lucky, is what."
+  },
+  {
+    "id": "shoplift_diy_warehouse",
+    "job": "shoplift",
+    "conditions": { "max_heat": 8 },
+    "target": { "name": null, "detail": "power tools, orange aprons, acres of aisle" },
+    "setup": "Big orange DIY warehouse, power tools worth proper money, staff spread thin across aisles the size of streets.",
+    "on_success": "Drill in the trolley, drill out to the car park like you own a house. Nobody stops a man who looks busy.",
+    "on_fail": "The tool aisles are exactly where they put the cameras and the one keen lad on his first week.",
+    "on_crit": "Two cordless sets and a nail gun. You wheel it out with a receipt for a bag of screws. Confidence is a tool too."
+  },
+  {
+    "id": "shoplift_petrol_shop",
+    "job": "shoplift",
+    "conditions": { "max_heat": 7 },
+    "target": { "name": "Sanjay", "detail": "watching pump four, not the aisles" },
+    "setup": "Petrol station shop, one man watching for drive-offs on the forecourt, back turned to the aisles behind him.",
+    "on_success": "While he's squinting at a car on pump four, the meal deals and the energy drinks migrate into your bag.",
+    "on_fail": "He's got eyes in the back of his head and a mate on the forecourt. Both of them clock you at once.",
+    "on_crit": "Forecourt kicks off — someone actually does drive off — and in the chaos you clear a whole shelf. Terrible day for Sanjay."
+  },
+  {
+    "id": "shoplift_book_shop",
+    "job": "shoplift",
+    "conditions": { "max_heat": 8 },
+    "target": { "name": null, "detail": "quiet, carpeted, nobody rushes" },
+    "setup": "Quiet bookshop, carpet that eats sound, one member of staff shelving at the far end, lost in the alphabet.",
+    "on_success": "You browse honestly for ten minutes, then not honestly for ten seconds. Coat's heavier on the way out.",
+    "on_fail": "The quiet cuts both ways — she hears the tag-strip tear from three aisles over and knows exactly what it means.",
+    "on_crit": "Nice hardbacks, the collectable kind. Keisha'll know someone. Even the crime does crime in here, apparently."
+  },
+  {
+    "id": "shoplift_sale_crush",
+    "job": "shoplift",
+    "conditions": { "time": "day", "max_heat": 8 },
+    "target": { "name": null, "detail": "a sale sign and a scrum" },
+    "setup": "Sale on, shop rammed, a scrum round the discount bins, staff drowning, alarms half-ignored from all the false ones.",
+    "on_success": "You go with the crowd, take with the crowd, leave before the crowd. Nobody remembers one more elbow.",
+    "on_fail": "A store detective works exactly this kind of chaos, and she's been doing it since before you were born.",
+    "on_crit": "In the crush you fill a bag they'd normally search, and walk out past a queue too long for anyone to check."
+  }
+]

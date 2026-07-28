@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>16-prison-call — Postcode Wars</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="ui.css">
+<script src="cast.js"></script>
+<script src="chrome.js"></script>
+<script src="anim.js"></script>
+<script src="atmos.js"></script>
+<style>
+  #frame { background:#101215; }
+  @keyframes pulse { 0%,100% { opacity:0.5; } 50% { opacity:1; } }
+</style>
+</head>
+<body>
+<div id="frame">
+  <div style="position:absolute; inset:0; z-index:1; background:
+      radial-gradient(60% 40% at 50% 26%, rgba(46,94,170,0.22), rgba(46,94,170,0) 68%),
+      linear-gradient(180deg, rgba(20,23,27,0.86) 0%, rgba(16,18,21,0.92) 60%, rgba(12,14,16,0.96) 100%);"></div>
+  <div class="disp" style="position:absolute; left:-30px; top:1180px; z-index:2; font-size:280px; line-height:0.8; color:#4DA3FF; opacity:0.06; pointer-events:none;">WING C</div>
+
+  <div id="hud"></div>
+
+  <div style="position:absolute; left:32px; right:32px; top:180px; z-index:35; display:flex; align-items:center; justify-content:space-between; gap:20px;">
+    <div id="back"></div>
+    <span class="mono" style="font-size:20px; letter-spacing:0.16em; color:#4DA3FF; animation:pulse 2s infinite;">● CALL CONNECTED · MONITORED</span>
+  </div>
+
+  <!-- caller -->
+  <div style="position:absolute; left:0; right:0; top:280px; z-index:35; display:flex; flex-direction:column; align-items:center; gap:18px;">
+    <div id="portrait"></div>
+    <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+      <span class="disp" style="font-size:64px; line-height:1;">Jerome</span>
+      <span class="mono" style="font-size:22px; letter-spacing:0.14em; color:#4DA3FF;">YOUR BROTHER · HMP THAXTED · WING C</span>
+    </div>
+  </div>
+
+  <!-- the clock that makes it hurt -->
+  <div style="position:absolute; left:32px; right:32px; top:700px; z-index:35; display:flex; flex-direction:column; align-items:center; gap:14px;">
+    <span class="mono" style="font-size:22px; letter-spacing:0.2em; color:#9AA0A6;">CREDIT REMAINING</span>
+    <span id="clock" class="disp tab" style="font-size:132px; line-height:0.9; color:#EDEFF2;">08:00</span>
+    <div style="width:100%; height:20px; border-radius:10px; background:#0C0E10; border:1px solid #2A2E33; overflow:hidden; display:flex;">
+      <div id="bar" style="width:100%; background:#4DA3FF; transition:width 400ms linear;"></div>
+    </div>
+    <span id="warn" class="mono" style="font-size:22px; letter-spacing:0.14em; color:#5A6068;">EVERY TOPIC COSTS MINUTES. THE LINE CUTS AT ZERO.</span>
+  </div>
+
+  <!-- transcript + topics: one flow, bottom-anchored -->
+  <div style="position:absolute; left:32px; right:32px; bottom:196px; z-index:40; display:flex; flex-direction:column; gap:18px;">
+  <div class="panel" id="says" style="padding:26px 30px; display:flex; flex-direction:column; gap:10px;">
+    <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#4DA3FF;">JEROME</span>
+    <span id="line" style="font-size:30px; line-height:1.4;">“Two minutes in and you haven’t asked me anything. Go on then. What do you actually want to know?”</span>
+  </div>
+
+    <div class="sechead">
+      <span class="mono" style="font-size:20px; letter-spacing:0.18em; color:#5A6068;">WHAT DO YOU SPEND IT ON</span>
+      <span class="rule"></span>
+    </div>
+    <div id="topics" style="display:flex; flex-direction:column; gap:14px;"></div>
+  </div>
+
+  <div id="nav"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+document.getElementById('back').innerHTML = backLink('MESSAGES', '15-messages.html');
+mountBackdrop({ lat:51.9560, lon:0.3300, zoom:14.6,
+  grade:'grayscale(1) brightness(0.24) contrast(1.5) sepia(0.10) hue-rotate(170deg) saturate(1.6) blur(2px)' });
+mountChrome('char', {});
+
+const jerome = { name:'Jerome', role:'YOUR BROTHER', city:'HMP Thaxted', lines:[] };
+document.getElementById('portrait').innerHTML = portraitSlot(jerome, 220, '#2E5EAA');
+
+const TOPICS = [
+  { label:'Ask about the appeal', cost:120, tint:'#4DA3FF',
+    say:'“Brief reckons there\u2019s a date in March. He also reckons a lot of things when he\u2019s being paid.”' },
+  { label:'Tell him about the money', cost:90, tint:'#C9A227',
+    say:'“Don\u2019t tell me where it came from. Just tell me it\u2019s not from someone I know.”' },
+  { label:'Ask what he needs inside', cost:60, tint:'#57C785',
+    say:'“Phone credit and trainers. Size ten. And stop sending stamps, nobody writes.”' },
+  { label:'Ask about Silas Rhodes', cost:150, tint:'#D63B3B',
+    say:'“Don\u2019t say that name on this phone. I mean it. They log every second of this.”' },
+  { label:'Just talk', cost:180, tint:'#9AA0A6',
+    say:'“Mum\u2019s knee is bad again. Tell her I called. Tell her I sounded alright.”' }
+];
+
+let left = 480; // seconds
+const clock = document.getElementById('clock'), bar = document.getElementById('bar'), warn = document.getElementById('warn');
+function draw() {
+  const m = String(Math.floor(left / 60)).padStart(2, '0'), s = String(left % 60).padStart(2, '0');
+  clock.textContent = m + ':' + s;
+  const pct = (left / 480) * 100;
+  bar.style.width = pct + '%';
+  const low = left <= 120, dead = left <= 0;
+  clock.style.color = dead ? '#5A6068' : low ? '#D63B3B' : '#EDEFF2';
+  bar.style.background = low ? '#D63B3B' : '#4DA3FF';
+  warn.style.color = low ? '#D63B3B' : '#5A6068';
+  warn.textContent = dead ? 'LINE CUT. HE DIDN\u2019T GET TO FINISH.'
+    : low ? 'UNDER TWO MINUTES. PICK ONE THING.'
+    : 'EVERY TOPIC COSTS MINUTES. THE LINE CUTS AT ZERO.';
+  document.getElementById('topics').innerHTML = TOPICS.map((t, i) => {
+    const off = dead || t.cost > left;
+    return `<button data-i="${i}" class="btn ${off ? 'btn-off' : 'btn-secondary'}" style="justify-content:space-between; padding:0 28px;
+      font-family:Inter, sans-serif; font-size:28px; text-transform:none; letter-spacing:0; min-height:96px;">
+      <span>${t.label}</span>
+      <span class="mono tab" style="font-size:22px; color:${off ? '#5A6068' : t.tint};">−${Math.floor(t.cost / 60)}:${String(t.cost % 60).padStart(2, '0')}</span>
+    </button>`;
+  }).join('');
+  document.querySelectorAll('#topics [data-i]').forEach(b => b.addEventListener('click', () => {
+    const t = TOPICS[+b.dataset.i];
+    if (left < t.cost) return;
+    left -= t.cost;
+    document.getElementById('line').textContent = t.say;
+    draw();
+  }));
+}
+draw();
+setInterval(() => { if (left > 0) { left--; draw(); } }, 1000);
+</script>
+</body>
+</html>

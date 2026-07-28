@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>17-board — Postcode Wars</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ui.css">
+<script src="art.js"></script>
+<script src="cast.js"></script>
+<script src="chrome.js"></script>
+<script src="anim.js"></script>
+<style>
+  #board { position:absolute; left:0; top:140px; width:1080px; bottom:160px; overflow:hidden; z-index:10;
+    background-image:url(art/tex-brick.png), linear-gradient(180deg, #1a1614 0%, #141110 100%);
+    background-size:512px 512px, cover; }
+  .lead { position:absolute; width:300px; border:1px solid #2A2E33; background:#1E2126; border-radius:8px;
+    box-sizing:border-box; overflow:hidden; cursor:pointer; z-index:3; }
+  .lead.on { border-color:#FFA94D; }
+  .pin { position:absolute; left:50%; top:-11px; transform:translateX(-50%); width:22px; height:22px;
+    border-radius:50%; background:#D63B3B; border:2px solid #7d2020; z-index:4; }
+</style>
+</head>
+<body>
+<div id="frame">
+  <div id="hud"></div>
+
+  <div id="board">
+    <div style="position:absolute; inset:0; background:
+        radial-gradient(40% 30% at 24% 8%, rgba(255,201,122,0.22), rgba(255,169,77,0) 70%),
+        linear-gradient(180deg, rgba(12,14,16,0.55) 0%, rgba(12,14,16,0.12) 26%, rgba(12,14,16,0.72) 100%); z-index:2;"></div>
+    <svg id="string" width="1080" height="1620" style="position:absolute; left:0; top:0; z-index:2; pointer-events:none;"></svg>
+    <div id="cards"></div>
+    <div style="position:absolute; left:32px; top:26px; z-index:5; display:flex; flex-direction:column; gap:8px;">
+      <span class="mono" style="font-size:22px; letter-spacing:0.18em; color:#FFA94D;">WHAT YOU'VE WORKED OUT SO FAR</span>
+      <span class="disp" style="font-size:76px; line-height:0.9; text-shadow:0 6px 26px rgba(0,0,0,0.95);">The board</span>
+    </div>
+  </div>
+
+  <!-- selection footer -->
+  <div style="position:absolute; left:32px; right:32px; bottom:196px; z-index:45; display:flex; align-items:center; gap:20px;">
+    <div id="status" class="panel" style="flex:1; min-width:0; padding:20px 26px; background:rgba(30,33,38,0.96); display:flex; flex-direction:column; gap:6px;">
+      <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#FFA94D;">TAP TWO LEADS TO RUN A STRING BETWEEN THEM</span>
+      <span id="stat" style="font-size:26px; color:#9AA0A6;">Nothing selected. Four strings run so far.</span>
+    </div>
+    <button id="clear" class="btn btn-secondary" style="padding:0 30px; font-size:28px;">Clear</button>
+  </div>
+
+  <div id="nav"></div>
+  <div class="tooth"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+mountChrome('char', {});
+
+const LEADS = [
+  { id:'l1', x:60,  y:200, kind:'photo', who:'silas',  title:'Silas Rhodes', note:'Pays in favours. Never in front of a witness.' },
+  { id:'l2', x:400, y:150, kind:'photo', who:'delroy', title:'Delroy', note:'Takes German plates only. Somebody supplies him.' },
+  { id:'l3', x:730, y:250, kind:'note',  title:'Betfrenz, Dalston', note:'Same three transfers every Friday, 18:40. Always £4,000.' },
+  { id:'l4', x:120, y:640, kind:'note',  title:'The Bow yard', note:'Gate code changes monthly. Somebody inside sells it on.' },
+  { id:'l5', x:480, y:600, kind:'photo', who:'hallow', title:'DC Hallow', note:'Knew about the moped before it was reported.' },
+  { id:'l6', x:760, y:700, kind:'note',  title:'Custody 4471', note:'Your record was pulled twice the week before the arrest.' },
+  { id:'l7', x:260, y:1060, kind:'photo', who:'nads', title:'Nads', note:'Only person who knew both the yard and the time.' },
+  { id:'l8', x:640, y:1100, kind:'note', title:"Brother's file", note:'Sealed, then unsealed, then sealed again. Same fortnight.' }
+];
+let links = [['l1','l3'],['l2','l4'],['l5','l6'],['l1','l8']];
+let sel = [];
+
+function draw() {
+  const cards = LEADS.map(l => `
+    <div class="lead ${sel.includes(l.id) ? 'on' : ''}" data-id="${l.id}" style="left:${l.x}px; top:${l.y}px; transform:rotate(${(l.x % 5) - 2}deg);">
+      <div class="pin"></div>
+      ${l.kind === 'photo'
+        ? `<div style="height:200px; background-image:url(${plateFor({ id:l.who })}); background-size:cover; background-position:50% 26%;"></div>`
+        : `<div style="height:120px; background-image:url(art/tex-paper.png); background-size:cover;"></div>`}
+      <div style="padding:16px 18px; display:flex; flex-direction:column; gap:8px;">
+        <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:${l.kind === 'photo' ? '#FFA94D' : '#9AA0A6'};">${l.kind === 'photo' ? 'PERSON' : 'NOTE'}</span>
+        <span class="disp" style="font-size:30px; line-height:1;">${l.title}</span>
+        <span style="font-size:22px; line-height:1.35; color:#9AA0A6;">${l.note}</span>
+      </div>
+    </div>`).join('');
+  document.getElementById('cards').innerHTML = cards;
+
+  const pos = {};
+  LEADS.forEach(l => { pos[l.id] = { x:l.x + 150, y:l.y + (l.kind === 'photo' ? 150 : 110) }; });
+  document.getElementById('string').innerHTML = links.map(([a, b]) => {
+    const p = pos[a], q = pos[b];
+    const mx = (p.x + q.x) / 2, my = (p.y + q.y) / 2 + 60;
+    return `<path d="M${p.x},${p.y} Q${mx},${my} ${q.x},${q.y}" fill="none" stroke="#D63B3B" stroke-opacity="0.75" stroke-width="3"/>`;
+  }).join('');
+
+  document.getElementById('stat').textContent = sel.length === 0
+    ? 'Nothing selected. ' + links.length + ' strings run so far.'
+    : sel.length === 1
+      ? 'Holding ' + LEADS.find(l => l.id === sel[0]).title + '. Pick a second lead.'
+      : 'Strung together.';
+
+  document.querySelectorAll('.lead').forEach(el => el.addEventListener('click', () => {
+    const id = el.dataset.id;
+    if (sel.includes(id)) { sel = sel.filter(s => s !== id); draw(); return; }
+    sel.push(id);
+    if (sel.length === 2) {
+      const [a, b] = sel;
+      if (!links.some(([x, y]) => (x === a && y === b) || (x === b && y === a))) links.push([a, b]);
+      sel = [];
+    }
+    draw();
+  }));
+}
+document.getElementById('clear').addEventListener('click', () => { links = []; sel = []; draw(); });
+draw();
+</script>
+</body>
+</html>

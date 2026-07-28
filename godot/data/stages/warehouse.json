@@ -1,0 +1,70 @@
+{
+ "job": "warehouse",
+ "stages": [
+  {
+   "name": "The loading bay",
+   "text": [
+    "Pallets by the door. Boring stuff. Boring stuff sells.",
+    "A ramp, a stack shrink-wrapped and ready to ship, and a bay door somebody left on the latch for a smoke break they're still on.",
+    "Cages of returns waiting to be checked back in — half of it never faulty, all of it already paid for once by somebody else."
+   ],
+   "fail_text": [
+    "Headlights swing across the yard. You're behind a pallet before you've decided to be.",
+    "The bay door drops on its timer and the crash brings a torch round the corner of the building.",
+    "The smoke break ends early and there's a hi-vis stood between you and the ramp asking who you're with."
+   ]
+  },
+  {
+   "name": "The floor",
+   "text": [
+    "Rows of it. You could be here all night. You've got eleven minutes.",
+    "Aisles taller than the forklift, a scanner gun on a charging dock, and a system that won't miss any of this until a rep reorders next month.",
+    "The good aisle's the one with the anti-theft tape on the shelf edges, which is the warehouse telling you exactly where to look."
+   ],
+   "fail_text": [
+    "A forklift you didn't clock has a driver you didn't clock. You leave the trolley.",
+    "You take the wrong aisle and it's the one under the only working camera on the night rotation.",
+    "The scanner gun you moved was logged in, and a supervisor's tablet is now asking why it's walking to the door."
+   ]
+  },
+  {
+   "name": "The cage",
+   "text": [
+    "Locked mesh. Whatever's in a cage in a warehouse is worth caging.",
+    "A steel cage inside the building, its own padlock, the small dear stock kept where the agency staff can't reach — which is nearly where you can't either.",
+    "The cage is where the phones and the perfume live, and there's a key card reader on it, and a lad on nights whose card it is and whose nerve it isn't."
+   ],
+   "fail_text": [
+    "The bolt cutters slip and the noise carries. Somewhere a dog decides it cares.",
+    "The mesh is alarmed on a contact you cut, and cutting it is the same as ringing a bell.",
+    "The lad's card was deactivated this afternoon because his nerve turned into a confession, and the cage doesn't open."
+   ]
+  },
+  {
+   "name": "The office",
+   "text": [
+    "Petty cash tin, a laptop, and the shift rota — which tells you when to come back.",
+    "A mezzanine office over the floor, a safe under the desk, and a whiteboard with the delivery schedule that's worth more than the cash to a man who plans.",
+    "Manager's office, a fob on a hook, a monitor still logged in, and the loss-prevention reports open on it telling you exactly what they've noticed and haven't."
+   ],
+   "fail_text": [
+    "Silent alarm. You learn it was silent when the yard lights all come on at once.",
+    "The office window looks straight down the floor and a nightshift picker looks straight back up at it.",
+    "The logged-in monitor was logged in because someone's still on shift, and they've just come back for their brew."
+   ]
+  },
+  {
+   "name": "The cold store",
+   "text": [
+    "Nobody puts a padlock on a fridge for fun.",
+    "A walk-in chiller stacked with premium meat that's worth a caterer's fortune and worth nothing at all if you're slow enough to let it thaw.",
+    "The cold store hums louder than the rest of the building, which is the sound of something being kept at exactly the temperature that means it's dear."
+   ],
+   "fail_text": [
+    "The door swings shut behind you and the handle's the kind that only opens from outside.",
+    "Propping the chiller door tells a monitoring firm the freezer's failing, and a monitoring firm tells someone with keys.",
+    "The cold slows you down more than you costed for, and your breath's fogging on the camera by the time you find the good pallet."
+   ]
+  }
+ ]
+}

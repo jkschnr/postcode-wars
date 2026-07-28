@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#0C0E10; }
+  a { color:#FFA94D; text-decoration:none; }
+  a:hover { color:#FFC97A; }
+</style>
+</helmet>
+<div style="position:relative; background:#121417; padding:80px 0 200px; width:max-content; min-width:100%; box-sizing:border-box; font-family:Inter, system-ui, sans-serif; color:#EDEFF2;">
+  <div style="position:absolute; inset:0; pointer-events:none; opacity:0.035; background-image:url(&quot;data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>&quot;); background-size:280px 280px; mix-blend-mode:screen;"></div>
+
+  <div style="position:relative; width:2600px; margin:0 auto; display:flex; flex-direction:column; gap:100px;">
+
+    <header style="display:flex; flex-direction:column; gap:20px;">
+      <div style="display:flex; align-items:baseline; gap:24px;">
+        <span style="font-family:'IBM Plex Mono', monospace; font-size:14px; letter-spacing:0.18em; color:#FFA94D;">02 — COMPONENTS</span>
+        <span style="flex:1; height:1px; background:#2A2E33;"></span>
+        <span style="font-family:'IBM Plex Mono', monospace; font-size:14px; letter-spacing:0.18em; color:#5A6068;">TRUE SCALE · 1080 PX FRAME WIDTH · TOUCH ≥ 96</span>
+      </div>
+      <h1 style="margin:0; font-family:Anton, Impact, sans-serif; font-size:96px; line-height:0.9; text-transform:uppercase;">Component sheet</h1>
+      <p style="margin:0; max-width:900px; font-size:20px; line-height:1.5; color:#9AA0A6; text-wrap:pretty;">All ten core components at design resolution, every state. Every block is a vertical container stack — no free positioning. Export notes sit to the right of each component.</p>
+    </header>
+
+    <section style="display:flex; gap:64px; align-items:flex-start;">
+      <div style="width:1080px; flex:none; display:flex; flex-direction:column; gap:20px;">
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.18em; color:#FFA94D;">01 · TOP HUD BAR — PERSISTENT · 140 PX INC. 60 PX SAFE INSET</div>
+        <div style="width:1080px; height:140px; background:#2A2E33; border-bottom:1px solid #3A3F45; display:flex; flex-direction:column; justify-content:flex-end; padding:0 32px 14px; box-sizing:border-box; font-variant-numeric:tabular-nums;">
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div style="display:flex; align-items:center; gap:10px; height:56px; padding:0 16px; border:1px solid #C9A227; border-radius:12px; background:rgba(201,162,39,0.10);">
+              <span style="width:20px; height:20px; border-radius:4px; border:2px solid #C9A227;"></span>
+              <span style="font-family:Anton, Impact, sans-serif; font-size:32px; color:#C9A227;">£12,480</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px; height:56px; padding:0 16px; border:1px solid #57C785; border-radius:12px; background:rgba(87,199,133,0.10);">
+              <span style="width:20px; height:20px; border-radius:4px; border:2px solid #57C785;"></span>
+              <span style="font-family:Anton, Impact, sans-serif; font-size:32px; color:#57C785;">£3,050</span>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; gap:8px; padding-left:8px;">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span style="font-family:'IBM Plex Mono', monospace; font-size:16px; color:#FFA94D; width:26px;">EN</span>
+                <div style="flex:1; height:12px; border-radius:6px; background:#0C0E10; overflow:hidden; display:flex;"><div style="width:62%; background:#FFA94D;"></div></div>
+                <span style="font-family:'IBM Plex Mono', monospace; font-size:16px; color:#9AA0A6;">62/100</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span style="font-family:'IBM Plex Mono', monospace; font-size:16px; color:#B06CF0; width:26px;">NV</span>
+                <div style="flex:1; height:12px; border-radius:6px; background:#0C0E10; overflow:hidden; display:flex;"><div style="width:35%; background:#B06CF0;"></div></div>
+                <span style="font-family:'IBM Plex Mono', monospace; font-size:16px; color:#9AA0A6;">7/20</span>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+              <div style="display:flex; gap:6px;">
+                <span style="width:14px; height:14px; border-radius:7px; background:#D63B3B;"></span>
+                <span style="width:14px; height:14px; border-radius:7px; background:#D63B3B;"></span>
+                <span style="width:14px; height:14px; border-radius:7px; background:#D63B3B;"></span>
+                <span style="width:14px; height:14px; border-radius:7px; background:#3A3F45;"></span>
+                <span style="width:14px; height:14px; border-radius:7px; background:#3A3F45;"></span>
+              </div>
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:16px; letter-spacing:0.1em; color:#9AA0A6;">HEAT</span>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px; padding-left:8px; border-left:1px solid #3A3F45; padding-left:20px;">
+              <span style="font-family:Anton, Impact, sans-serif; font-size:40px; line-height:1; color:#EDEFF2;">37</span>
+              <div style="width:96px; height:6px; border-radius:3px; background:#0C0E10; overflow:hidden; display:flex;"><div style="width:48%; background:#FFC97A;"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="flex:1; min-width:0; border:1px solid #2A2E33; border-radius:16px; background:#0C0E10; padding:28px; display:flex; flex-direction:column; gap:14px;">
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.16em; color:#FFA94D;">EXPORT NOTE</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:15px; line-height:1.75; color:#9AA0A6;">
+          <div>BAR BG · single asset, stretched horizontally</div>
+          <div>CASH CHIP · 9-slice, tint per money type</div>
+          <div>METER · 9-slice fill + inset track</div>
+          <div>HEAT PIP · single 14 px asset ×5, tinted</div>
+          <div>LEVEL BLOCK · single asset group, right-anchored</div>
+          <div>Top 60 px is safe inset — never place content there.</div>
+        </div>
+      </div>
+    </section>
+
+    <section style="display:flex; gap:64px; align-items:flex-start;">
+      <div style="width:1080px; flex:none; display:flex; flex-direction:column; gap:20px;">
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.18em; color:#FFA94D;">02 · BOTTOM NAV — 120 PX + 40 PX SAFE INSET</div>
+        <div style="width:1080px; background:#2A2E33; border-top:1px solid #3A3F45; box-sizing:border-box;">
+          <div style="height:120px; display:grid; grid-template-columns:repeat(5, 1fr);">
+            <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; border-top:4px solid #FFA94D; background:linear-gradient(180deg, rgba(255,169,77,0.14) 0%, rgba(255,169,77,0) 100%);">
+              <span style="width:36px; height:36px; border:2px solid #FFA94D; border-radius:50% 50% 50% 4px; transform:rotate(-45deg);"></span>
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:18px; letter-spacing:0.1em; color:#FFA94D;">MAP</span>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;">
+              <span style="width:36px; height:36px; border:2px solid #9AA0A6; border-radius:4px;"></span>
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:18px; letter-spacing:0.1em; color:#9AA0A6;">CITY</span>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; position:relative;">
+              <span style="width:36px; height:36px; border:2px solid #9AA0A6; border-radius:50%;"></span>
+              <span style="position:absolute; top:24px; right:calc(50% - 34px); width:16px; height:16px; border-radius:8px; background:#D9E021;"></span>
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:18px; letter-spacing:0.1em; color:#9AA0A6;">CHAR</span>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;">
+              <span style="width:36px; height:36px; border:2px solid #9AA0A6; border-radius:4px 4px 18px 18px;"></span>
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:18px; letter-spacing:0.1em; color:#9AA0A6;">CREW</span>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;">
+              <span style="width:36px; height:36px; border:2px solid #5A6068; border-radius:4px; transform:rotate(45deg);"></span>
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:18px; letter-spacing:0.1em; color:#5A6068;">FIRM</span>
+            </div>
+          </div>
+          <div style="height:40px; background:#2A2E33; display:flex; align-items:center; justify-content:center;">
+            <span style="width:200px; height:6px; border-radius:3px; background:#5A6068;"></span>
+          </div>
+        </div>
+      </div>
+      <div style="flex:1; min-width:0; border:1px solid #2A2E33; border-radius:16px; background:#0C0E10; padding:28px; display:flex; flex-direction:column; gap:14px;">
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.16em; color:#FFA94D;">EXPORT NOTE</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:15px; line-height:1.75; color:#9AA0A6;">
+          <div>NAV BG · single asset, stretched</div>
+          <div>TAB · repeating item ×5, 216 px each</div>
+          <div>ACTIVE INDICATOR · 4 px top rule + soft gradient wash, single asset</div>
+          <div>ICONS · 36 px, 2 px stroke, marker-rough edge, single assets (placeholders here)</div>
+          <div>BADGE DOT · single 16 px asset, hi-vis</div>
+        </div>
+      </div>
+    </section>
+
+    <section style="display:flex; flex-direction:column; gap:24px;">
+      <div style="display:flex; align-items:baseline; gap:24px;">
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.18em; color:#FFA94D;">03 · JOB CARD — AVAILABLE / LOCKED / STORY</div>
+        <span style="flex:1; height:1px; background:#2A2E33;"></span>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:32px; align-items:flex-start;">
+
+        <div style="width:1016px; flex:none; border:1px solid #2A2E33; border-radius:16px; background:#1E2126; overflow:hidden;">
+          <div style="padding:28px 32px 22px; display:flex; flex-direction:column; gap:18px;">
+            <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:24px;">
+              <div style="display:flex; flex-direction:column; gap:12px;">
+                <div style="display:flex; gap:12px; align-items:center;">
+                  <span style="font-family:'IBM Plex Mono', monospace; font-size:20px; letter-spacing:0.14em; color:#FFA94D; border:1px solid #FFA94D; border-radius:8px; padding:6px 12px;">TIER II</span>
+                  <span style="font-family:'IBM Plex Mono', monospace; font-size:20px; letter-spacing:0.14em; color:#9AA0A6;">AVAILABLE</span>
+                </div>
+                <div style="font-family:Anton, Impact, sans-serif; font-size:56px; line-height:0.95; text-transform:uppercase;">Snatch a moped</div>
+              </div>
+              <div style="display:flex; flex-direction:column; align-items:flex-end; gap:10px;">
+                <span style="font-family:'IBM Plex Mono', monospace; font-size:18px; letter-spacing:0.12em; color:#5A6068;">DANGER</span>
+                <div style="display:flex; gap:8px;">
+                  <span style="width:22px; height:22px; border-radius:4px; background:#D63B3B;"></span>
+                  <span style="width:22px; height:22px; border-radius:4px; background:#D63B3B;"></span>
+                  <span style="width:22px; height:22px; border-radius:4px; background:#2A2E33;"></span>
+                  <span style="width:22px; height:22px; border-radius:4px; background:#2A2E33;"></span>
+                  <span style="width:22px; height:22px; border-radius:4px; background:#2A2E33;"></span>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex; gap:12px; flex-wrap:wrap; font-variant-numeric:tabular-nums;">
+              <span style="display:flex; align-items:center; gap:8px; height:52px; padding:0 16px; border-radius:10px; background:#0C0E10; border:1px solid #2A2E33; font-family:'IBM Plex Mono', monospace; font-size:22px; color:#FFA94D;">EN 12</span>
+              <span style="display:flex; align-items:center; gap:8px; height:52px; padding:0 16px; border-radius:10px; background:#0C0E10; border:1px solid #2A2E33; font-family:'IBM Plex Mono', monospace; font-size:22px; color:#B06CF0;">NV 4</span>
+              <span style="display:flex; align-items:center; gap:8px; height:52px; padding:0 16px; border-radius:10px; background:#0C0E10; border:1px solid #2A2E33; font-family:'IBM Plex Mono', monospace; font-size:22px; color:#C9A227;">£240–£610</span>
+              <span style="display:flex; align-items:center; gap:8px; height:52px; padding:0 16px; border-radius:10px; background:#0C0E10; border:1px solid #2A2E33; font-family:'IBM Plex Mono', monospace; font-size:22px; color:#EDEFF2;">XP +85</span>
+              <span style="display:flex; align-items:center; gap:8px; height:52px; padding:0 16px; border-radius:10px; background:rgba(87,199,133,0.10); border:1px solid #57C785; font-family:'IBM Plex Mono', monospace; font-size:22px; color:#57C785;">74%</span>
+            </div>
+          </div>
+          <div style="height:16px; background:#0C0E10; display:flex;"><div style="width:74%; background:linear-gradient(90deg, #FFA94D, #57C785);"></div></div>
+        </div>
+
+        <div style="width:1016px; flex:none; border:1px solid #2A2E33; border-radius:16px; background:#191B1F; overflow:hidden; opacity:0.72;">
+          <div style="padding:28px 32px 22px; display:flex; flex-direction:column; gap:18px;">
+            <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:24px;">
+              <div style="display:flex; flex-direction:column; gap:12px;">
+                <div style="display:flex; gap:12px; align-items:center;">
+                  <span style="font-family:'IBM Plex Mono', monospace; font-size:20px; letter-spacing:0.14em; color:#5A6068; border:1px solid #2A2E33; border-radius:8px; padding:6px 12px;">TIER IV</span>
+                  <span style="font-family:'IBM Plex Mono', monospace; font-size:20px; letter-spacing:0.14em; color:#5A6068;">LOCKED</span>
+                </div>
+                <div style="font-family:Anton, Impact, sans-serif; font-size:56px; line-height:0.95; text-transform:uppercase; color:#5A6068;">Warehouse tap</div>
+              </div>
+              <div style="display:flex; flex-direction:column; align-items:flex-end; gap:10px;">
+                <span style="width:44px; height:44px; border:2px solid #5A6068; border-radius:8px 8px 4px 4px;"></span>
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:16px; height:72px; padding:0 24px; border-radius:12px; background:#0C0E10; border:1px solid #2A2E33;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:22px; letter-spacing:0.12em; color:#9AA0A6;">REQUIRES LEVEL</span>
+              <span style="font-family:Anton, Impact, sans-serif; font-size:40px; color:#9AA0A6; font-variant-numeric:tabular-nums;">44</span>
+              <span style="flex:1;"></span>
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:20px; color:#5A6068;">7 LEVELS OFF</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="width:1016px; flex:none; border:1px solid #2A2E33; border-left:8px solid #FFA94D; border-radius:16px; background:#1E2126; overflow:hidden;">
+          <div style="padding:28px 32px 22px; display:flex; gap:24px; background:radial-gradient(80% 120% at 0% 0%, rgba(255,169,77,0.14), rgba(255,169,77,0) 70%);">
+            <div style="width:140px; height:140px; flex:none; border-radius:12px; border:1px solid #2A2E33; background-color:#0C0E10; background-image:repeating-linear-gradient(135deg, #16191D 0 8px, #0C0E10 8px 16px); display:flex; align-items:center; justify-content:center; text-align:center;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:13px; line-height:1.4; color:#5A6068;">PORTRAIT<br>UNCLE T</span>
+            </div>
+            <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:14px;">
+              <div style="display:flex; gap:12px; align-items:center;">
+                <span style="font-family:'IBM Plex Mono', monospace; font-size:20px; letter-spacing:0.14em; color:#FFA94D;">STORY · CH.2</span>
+                <span style="font-family:'IBM Plex Mono', monospace; font-size:20px; letter-spacing:0.14em; color:#9AA0A6;">UNCLE T</span>
+              </div>
+              <div style="font-family:Anton, Impact, sans-serif; font-size:56px; line-height:0.95; text-transform:uppercase;">The barber's favour</div>
+              <div style="font-size:26px; line-height:1.4; color:#9AA0A6;">He's not asking twice, and he's not asking anyone else.</div>
+            </div>
+          </div>
+          <div style="padding:0 32px 28px; display:flex; gap:12px; font-variant-numeric:tabular-nums;">
+            <span style="display:flex; align-items:center; height:52px; padding:0 16px; border-radius:10px; background:#0C0E10; border:1px solid #2A2E33; font-family:'IBM Plex Mono', monospace; font-size:22px; color:#FFA94D;">EN 20</span>
+            <span style="display:flex; align-items:center; height:52px; padding:0 16px; border-radius:10px; background:#0C0E10; border:1px solid #2A2E33; font-family:'IBM Plex Mono', monospace; font-size:22px; color:#B06CF0;">NV 12</span>
+            <span style="display:flex; align-items:center; height:52px; padding:0 16px; border-radius:10px; background:rgba(255,169,77,0.10); border:1px solid #FFA94D; font-family:'IBM Plex Mono', monospace; font-size:22px; color:#FFA94D;">STORY — NO FAIL</span>
+          </div>
+        </div>
+
+        <div style="flex:1; min-width:340px; border:1px solid #2A2E33; border-radius:16px; background:#0C0E10; padding:28px; display:flex; flex-direction:column; gap:14px;">
+          <div style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.16em; color:#FFA94D;">EXPORT NOTE</div>
+          <div style="font-family:'IBM Plex Mono', monospace; font-size:15px; line-height:1.75; color:#9AA0A6;">
+            <div>CARD · 9-slice, one asset, three tints</div>
+            <div>LIST ITEM · this whole card repeats in Job List</div>
+            <div>COST CHIP · 9-slice, repeating item</div>
+            <div>STORY EDGE · 8 px left rule, single asset</div>
+            <div>PORTRAIT · 140 px single asset, 12 px mask</div>
+            <div>LOCKED · same scene, 0.72 modulate + muted text</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="display:flex; flex-direction:column; gap:24px;">
+      <div style="display:flex; align-items:baseline; gap:24px;">
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.18em; color:#FFA94D;">04 · CHOICE CARD OVERLAY — NORMAL / STAT CHECK / COSTLY</div>
+        <span style="flex:1; height:1px; background:#2A2E33;"></span>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:32px; align-items:flex-start;">
+
+        <div style="width:1080px; flex:none; background:rgba(12,14,16,0.86); padding:60px 32px 40px; box-sizing:border-box; display:flex; flex-direction:column;">
+          <div style="border:1px solid #2A2E33; border-radius:16px; background:#1E2126; padding:40px 32px 32px; display:flex; flex-direction:column; align-items:center; gap:24px;">
+            <div style="width:200px; height:200px; border-radius:50%; border:2px solid #FFA94D; background-color:#0C0E10; background-image:repeating-linear-gradient(135deg, #16191D 0 8px, #0C0E10 8px 16px); display:flex; align-items:center; justify-content:center;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:13px; color:#5A6068; text-align:center;">PORTRAIT<br>NADS</span>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+              <div style="font-family:Anton, Impact, sans-serif; font-size:48px; text-transform:uppercase;">Nads</div>
+              <div style="font-family:'IBM Plex Mono', monospace; font-size:20px; letter-spacing:0.14em; color:#FFA94D;">CARPARK, LEVEL 3 · 23:40</div>
+            </div>
+            <div style="font-size:30px; line-height:1.45; color:#EDEFF2; text-align:center; text-wrap:pretty;">"Two options, yeah. Either we take the van tonight while the yard's quiet, or you go home and pretend you never heard about it. I'm easy either way — but I'm not standing in this rain much longer."</div>
+            <div style="width:100%; display:flex; flex-direction:column; gap:16px; padding-top:8px;">
+              <button style="min-height:96px; width:100%; border:1px solid #2A2E33; border-radius:16px; background:#2A2E33; color:#EDEFF2; font-family:Inter, sans-serif; font-size:28px; text-align:left; padding:0 28px; display:flex; align-items:center; justify-content:space-between; gap:20px;" style-active="transform:scale(0.98)"><span>Take the van tonight</span><span style="font-family:'IBM Plex Mono', monospace; font-size:20px; color:#9AA0A6;">NV 8</span></button>
+              <button style="min-height:96px; width:100%; border:1px solid #2A2E33; border-radius:16px; background:#2A2E33; color:#EDEFF2; font-family:Inter, sans-serif; font-size:28px; text-align:left; padding:0 28px; display:flex; align-items:center; justify-content:space-between; gap:20px;" style-active="transform:scale(0.98)"><span>Ask who the yard belongs to</span><span style="font-family:'IBM Plex Mono', monospace; font-size:20px; color:#9AA0A6;">FREE</span></button>
+              <button style="min-height:96px; width:100%; border:1px solid #2A2E33; border-radius:16px; background:#1E2126; color:#9AA0A6; font-family:Inter, sans-serif; font-size:28px; text-align:left; padding:0 28px; display:flex; align-items:center;" style-active="transform:scale(0.98)">Walk away</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="width:1080px; flex:none; background:rgba(12,14,16,0.86); padding:60px 32px 40px; box-sizing:border-box;">
+          <div style="border:1px solid #2A2E33; border-radius:16px; background:#1E2126; padding:40px 32px 32px; display:flex; flex-direction:column; align-items:center; gap:24px;">
+            <div style="width:200px; height:200px; border-radius:50%; border:2px solid #2E5EAA; background-color:#0C0E10; background-image:repeating-linear-gradient(135deg, #16191D 0 8px, #0C0E10 8px 16px); display:flex; align-items:center; justify-content:center;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:13px; color:#5A6068; text-align:center;">PORTRAIT<br>DC HALLOW</span>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+              <div style="font-family:Anton, Impact, sans-serif; font-size:48px; text-transform:uppercase;">DC Hallow</div>
+              <div style="font-family:'IBM Plex Mono', monospace; font-size:20px; letter-spacing:0.14em; color:#2E5EAA;">HIGH ROAD, OUTSIDE POUNDZONE</div>
+            </div>
+            <div style="font-size:30px; line-height:1.45; text-align:center; text-wrap:pretty;">"Funny. Description I've got matches you almost exactly. Same jacket, same walk. So talk to me, and make it good — I've got all evening and you clearly haven't."</div>
+            <div style="width:100%; display:flex; flex-direction:column; gap:16px; padding-top:8px;">
+              <button style="min-height:96px; width:100%; border:1px solid #FFA94D; border-radius:16px; background:rgba(255,169,77,0.10); color:#EDEFF2; font-family:Inter, sans-serif; font-size:28px; text-align:left; padding:0 28px; display:flex; align-items:center; justify-content:space-between; gap:20px;" style-active="transform:scale(0.98)"><span>Talk your way out of it</span><span style="font-family:'IBM Plex Mono', monospace; font-size:20px; color:#FFA94D;">CHARM 14 · 68%</span></button>
+              <button style="min-height:96px; width:100%; border:1px solid #2A2E33; border-radius:16px; background:#2A2E33; color:#5A6068; font-family:Inter, sans-serif; font-size:28px; text-align:left; padding:0 28px; display:flex; align-items:center; justify-content:space-between; gap:20px;"><span>Outrun him down the alley</span><span style="font-family:'IBM Plex Mono', monospace; font-size:20px; color:#5A6068;">SPEED 20 — LOCKED</span></button>
+              <button style="min-height:96px; width:100%; border:1px solid #2A2E33; border-radius:16px; background:#1E2126; color:#9AA0A6; font-family:Inter, sans-serif; font-size:28px; text-align:left; padding:0 28px; display:flex; align-items:center; justify-content:space-between; gap:20px;" style-active="transform:scale(0.98)"><span>Say nothing</span><span style="font-family:'IBM Plex Mono', monospace; font-size:20px; color:#D63B3B;">HEAT +1</span></button>
+            </div>
+          </div>
+        </div>
+
+        <div style="width:1080px; flex:none; background:rgba(12,14,16,0.86); padding:60px 32px 40px; box-sizing:border-box;">
+          <div style="border:1px solid #2A2E33; border-radius:16px; background:#1E2126; padding:40px 32px 32px; display:flex; flex-direction:column; align-items:center; gap:24px;">
+            <div style="width:200px; height:200px; border-radius:50%; border:2px solid #C9A227; background-color:#0C0E10; background-image:repeating-linear-gradient(135deg, #16191D 0 8px, #0C0E10 8px 16px); display:flex; align-items:center; justify-content:center;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:13px; color:#5A6068; text-align:center;">PORTRAIT<br>SILAS RHODES</span>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+              <div style="font-family:Anton, Impact, sans-serif; font-size:48px; text-transform:uppercase;">Silas Rhodes</div>
+              <div style="font-family:'IBM Plex Mono', monospace; font-size:20px; letter-spacing:0.14em; color:#C9A227;">SMALL OFFICE ABOVE BETFRENZ</div>
+            </div>
+            <div style="font-size:30px; line-height:1.45; text-align:center; text-wrap:pretty;">"I've had a look at your brother's file. Nothing that can't be tidied. The tidying isn't free, mind, and I don't take instalments. Kettle's on if you need a minute to think."</div>
+            <div style="width:100%; display:flex; flex-direction:column; gap:16px; padding-top:8px;">
+              <button style="min-height:96px; width:100%; border:1px solid #C9A227; border-radius:16px; background:rgba(201,162,39,0.10); color:#EDEFF2; font-family:Inter, sans-serif; font-size:28px; text-align:left; padding:0 28px; display:flex; align-items:center; justify-content:space-between; gap:20px;" style-active="transform:scale(0.98)"><span>Pay him what he's asking</span><span style="font-family:'IBM Plex Mono', monospace; font-size:20px; color:#C9A227;">−£8,000 DIRTY</span></button>
+              <button style="min-height:96px; width:100%; border:1px solid #D63B3B; border-radius:16px; background:rgba(214,59,59,0.10); color:#EDEFF2; font-family:Inter, sans-serif; font-size:28px; text-align:left; padding:0 28px; display:flex; align-items:center; justify-content:space-between; gap:20px;" style-active="transform:scale(0.98)"><span>Owe him the favour instead</span><span style="font-family:'IBM Plex Mono', monospace; font-size:20px; color:#D63B3B;">DEBT · LEDGER</span></button>
+              <button style="min-height:96px; width:100%; border:1px solid #2A2E33; border-radius:16px; background:#1E2126; color:#9AA0A6; font-family:Inter, sans-serif; font-size:28px; text-align:left; padding:0 28px; display:flex; align-items:center;" style-active="transform:scale(0.98)">Come back later</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="flex:1; min-width:340px; border:1px solid #2A2E33; border-radius:16px; background:#0C0E10; padding:28px; display:flex; flex-direction:column; gap:14px;">
+          <div style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.16em; color:#FFA94D;">EXPORT NOTE</div>
+          <div style="font-family:'IBM Plex Mono', monospace; font-size:15px; line-height:1.75; color:#9AA0A6;">
+            <div>SCRIM · full-screen colour rect, 86% opacity</div>
+            <div>CARD · 9-slice, expands with text length</div>
+            <div>PORTRAIT · 200 px single asset, circle mask, ring tinted by speaker faction</div>
+            <div>OPTION · repeating item, 2–4, min 96 px, grows for 2-line labels</div>
+            <div>HINT · right-anchored label, tinted by consequence type</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="display:flex; gap:64px; align-items:flex-start;">
+      <div style="width:1080px; flex:none; display:flex; flex-direction:column; gap:20px;">
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.18em; color:#FFA94D;">05 · BUTTONS — 96 PX, FULL WIDTH BY DEFAULT</div>
+        <div style="display:flex; flex-direction:column; gap:16px; padding:32px; border:1px solid #2A2E33; border-radius:16px; background:#1E2126; box-sizing:border-box;">
+          <button style="height:96px; width:100%; border:none; border-radius:16px; background:#D9E021; color:#121417; font-family:Anton, Impact, sans-serif; font-size:36px; text-transform:uppercase; letter-spacing:0.04em;" style-active="transform:scale(0.98)">Primary — do the job</button>
+          <button style="height:96px; width:100%; border:1px solid #3A3F45; border-radius:16px; background:#2A2E33; color:#EDEFF2; font-family:Anton, Impact, sans-serif; font-size:36px; text-transform:uppercase; letter-spacing:0.04em;" style-active="transform:scale(0.98)">Secondary — back</button>
+          <button style="height:96px; width:100%; border:1px solid #D63B3B; border-radius:16px; background:rgba(214,59,59,0.14); color:#D63B3B; font-family:Anton, Impact, sans-serif; font-size:36px; text-transform:uppercase; letter-spacing:0.04em;" style-active="transform:scale(0.98)">Danger — grass him up</button>
+          <button style="height:96px; width:100%; border:1px solid #2A2E33; border-radius:16px; background:#191B1F; color:#5A6068; font-family:Anton, Impact, sans-serif; font-size:36px; text-transform:uppercase; letter-spacing:0.04em;">Disabled — not enough nerve</button>
+          <div style="display:flex; gap:16px;">
+            <button style="height:96px; flex:1; border:none; border-radius:16px; background:#D9E021; color:#121417; font-family:Anton, Impact, sans-serif; font-size:32px; text-transform:uppercase;" style-active="transform:scale(0.98)">Confirm</button>
+            <button style="height:96px; flex:1; border:1px solid #3A3F45; border-radius:16px; background:#2A2E33; color:#EDEFF2; font-family:Anton, Impact, sans-serif; font-size:32px; text-transform:uppercase;" style-active="transform:scale(0.98)">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:32px;">
+        <div style="border:1px solid #2A2E33; border-radius:16px; background:#0C0E10; padding:28px; display:flex; flex-direction:column; gap:14px;">
+          <div style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.16em; color:#FFA94D;">EXPORT NOTE</div>
+          <div style="font-family:'IBM Plex Mono', monospace; font-size:15px; line-height:1.75; color:#9AA0A6;">
+            <div>ALL BUTTONS · one 9-slice asset, 16 px corners, tint + border per variant</div>
+            <div>PRESSED · scale 0.98, 80 ms — no colour change needed</div>
+            <div>Hi-vis primary appears once per screen, maximum</div>
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <div style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.18em; color:#FFA94D;">07 · TIMER CHIP</div>
+          <div style="display:flex; flex-wrap:wrap; gap:16px;">
+            <div style="display:flex; align-items:center; gap:16px; height:96px; padding:0 24px; border:1px solid #2A2E33; border-radius:16px; background:#1E2126; font-variant-numeric:tabular-nums;">
+              <div style="width:56px; height:56px; border-radius:50%; background:conic-gradient(#FFA94D 0% 62%, #2A2E33 62% 100%); display:flex; align-items:center; justify-content:center;"><div style="width:40px; height:40px; border-radius:50%; background:#1E2126;"></div></div>
+              <div style="display:flex; flex-direction:column;">
+                <span style="font-family:'IBM Plex Mono', monospace; font-size:18px; letter-spacing:0.12em; color:#5A6068;">TRAVEL · MANCHESTER</span>
+                <span style="font-family:Anton, Impact, sans-serif; font-size:36px; color:#EDEFF2;">04:12</span>
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:16px; height:96px; padding:0 24px; border:1px solid #C9A227; border-radius:16px; background:rgba(201,162,39,0.08); font-variant-numeric:tabular-nums;">
+              <div style="width:56px; height:56px; border-radius:50%; background:conic-gradient(#C9A227 0% 88%, #2A2E33 88% 100%); display:flex; align-items:center; justify-content:center;"><div style="width:40px; height:40px; border-radius:50%; background:#1E2126;"></div></div>
+              <div style="display:flex; flex-direction:column;">
+                <span style="font-family:'IBM Plex Mono', monospace; font-size:18px; letter-spacing:0.12em; color:#C9A227;">LAUNDERING</span>
+                <span style="font-family:Anton, Impact, sans-serif; font-size:36px; color:#EDEFF2;">00:48</span>
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:16px; height:96px; padding:0 24px; border:1px solid #D63B3B; border-radius:16px; background:rgba(214,59,59,0.08); font-variant-numeric:tabular-nums;">
+              <div style="width:56px; height:56px; border-radius:50%; background:conic-gradient(#D63B3B 0% 21%, #2A2E33 21% 100%); display:flex; align-items:center; justify-content:center;"><div style="width:40px; height:40px; border-radius:50%; background:#1E2126;"></div></div>
+              <div style="display:flex; flex-direction:column;">
+                <span style="font-family:'IBM Plex Mono', monospace; font-size:18px; letter-spacing:0.12em; color:#D63B3B;">HELD · WOOD GREEN</span>
+                <span style="font-family:Anton, Impact, sans-serif; font-size:36px; color:#EDEFF2;">11:02:39</span>
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:16px; height:96px; padding:0 24px; border:1px solid #D9E021; border-radius:16px; background:rgba(217,224,33,0.10);">
+              <div style="width:56px; height:56px; border-radius:50%; background:#D9E021;"></div>
+              <div style="display:flex; flex-direction:column;">
+                <span style="font-family:'IBM Plex Mono', monospace; font-size:18px; letter-spacing:0.12em; color:#121417; background:#D9E021; padding:2px 6px; border-radius:4px;">READY</span>
+                <span style="font-family:Anton, Impact, sans-serif; font-size:36px; color:#EDEFF2;">COLLECT</span>
+              </div>
+            </div>
+          </div>
+          <div style="border:1px solid #2A2E33; border-radius:16px; background:#0C0E10; padding:24px; font-family:'IBM Plex Mono', monospace; font-size:15px; line-height:1.75; color:#9AA0A6;">RING · single 56 px asset + shader arc fill, tinted per context · CHIP · 9-slice · digits tabular, never re-flow</div>
+        </div>
+      </div>
+    </section>
+
+    <section style="display:flex; gap:64px; align-items:flex-start;">
+      <div style="width:1080px; flex:none; display:flex; flex-direction:column; gap:20px;">
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.18em; color:#FFA94D;">06 · STAT ROW — DEFAULT / POINTS AVAILABLE / MAXED</div>
+        <div style="display:flex; flex-direction:column; gap:16px; padding:32px; border:1px solid #2A2E33; border-radius:16px; background:#1E2126; box-sizing:border-box; font-variant-numeric:tabular-nums;">
+          <div style="display:flex; align-items:center; gap:24px; height:96px;">
+            <span style="width:200px; flex:none; font-family:'IBM Plex Mono', monospace; font-size:24px; letter-spacing:0.12em; color:#9AA0A6;">STRENGTH</span>
+            <span style="width:80px; flex:none; font-family:Anton, Impact, sans-serif; font-size:44px;">18</span>
+            <div style="flex:1; height:20px; border-radius:10px; background:#0C0E10; border:1px solid #2A2E33; overflow:hidden; display:flex;"><div style="width:36%; background:#FFA94D;"></div></div>
+            <button style="width:96px; height:96px; flex:none; border:1px solid #3A3F45; border-radius:16px; background:#2A2E33; color:#5A6068; font-family:Anton, Impact, sans-serif; font-size:44px;">+</button>
+          </div>
+          <div style="display:flex; align-items:center; gap:24px; height:96px;">
+            <span style="width:200px; flex:none; font-family:'IBM Plex Mono', monospace; font-size:24px; letter-spacing:0.12em; color:#EDEFF2;">NERVE</span>
+            <span style="width:80px; flex:none; font-family:Anton, Impact, sans-serif; font-size:44px;">24</span>
+            <div style="flex:1; height:20px; border-radius:10px; background:#0C0E10; border:1px solid #2A2E33; overflow:hidden; display:flex;"><div style="width:48%; background:#FFA94D;"></div><div style="width:4%; background:#FFC97A;"></div></div>
+            <button style="width:96px; height:96px; flex:none; border:none; border-radius:16px; background:#D9E021; color:#121417; font-family:Anton, Impact, sans-serif; font-size:44px;" style-active="transform:scale(0.98)">+</button>
+          </div>
+          <div style="display:flex; align-items:center; gap:24px; height:96px;">
+            <span style="width:200px; flex:none; font-family:'IBM Plex Mono', monospace; font-size:24px; letter-spacing:0.12em; color:#5A6068;">CHARM</span>
+            <span style="width:80px; flex:none; font-family:Anton, Impact, sans-serif; font-size:44px; color:#F2C14E;">50</span>
+            <div style="flex:1; height:20px; border-radius:10px; background:#0C0E10; border:1px solid #F2C14E; overflow:hidden; display:flex;"><div style="width:100%; background:#F2C14E;"></div></div>
+            <span style="width:96px; height:96px; flex:none; border:1px solid #2A2E33; border-radius:16px; background:#191B1F; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono', monospace; font-size:18px; color:#5A6068;">MAX</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding-top:8px; border-top:1px solid #2A2E33;">
+            <span style="font-family:'IBM Plex Mono', monospace; font-size:22px; letter-spacing:0.12em; color:#9AA0A6;">POINTS TO SPEND</span>
+            <span style="font-family:Anton, Impact, sans-serif; font-size:40px; color:#D9E021;">3</span>
+          </div>
+        </div>
+      </div>
+      <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:32px;">
+        <div style="border:1px solid #2A2E33; border-radius:16px; background:#0C0E10; padding:28px; font-family:'IBM Plex Mono', monospace; font-size:15px; line-height:1.75; color:#9AA0A6;">
+          <div style="letter-spacing:0.16em; color:#FFA94D; margin-bottom:10px;">EXPORT NOTE</div>
+          <div>ROW · repeating list item ×4</div>
+          <div>BAR · 9-slice track + fill; ghost segment shows pending point</div>
+          <div>+ BUTTON · 96×96 single asset, hi-vis only when points available</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <div style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.18em; color:#FFA94D;">08 · TOAST — SLIDES FROM TOP, 3 S</div>
+          <div style="width:1016px; max-width:100%; display:flex; align-items:center; gap:20px; padding:24px 28px; border:1px solid #2A2E33; border-left:6px solid #FFA94D; border-radius:16px; background:#2A2E33;">
+            <div style="width:64px; height:64px; flex:none; border-radius:50%; background-color:#0C0E10; background-image:repeating-linear-gradient(135deg, #16191D 0 6px, #0C0E10 6px 12px);"></div>
+            <div style="flex:1; min-width:0;">
+              <div style="font-family:'IBM Plex Mono', monospace; font-size:18px; letter-spacing:0.12em; color:#FFA94D;">NADS · NOW</div>
+              <div style="font-size:26px; line-height:1.35; color:#EDEFF2;">"Yard's empty. You coming or what?"</div>
+            </div>
+          </div>
+          <div style="width:1016px; max-width:100%; display:flex; align-items:center; gap:20px; padding:24px 28px; border:1px solid #2A2E33; border-left:6px solid #D63B3B; border-radius:16px; background:#2A2E33;">
+            <span style="width:48px; height:48px; flex:none; border:2px solid #D63B3B; border-radius:8px;"></span>
+            <div style="flex:1;"><div style="font-family:'IBM Plex Mono', monospace; font-size:18px; letter-spacing:0.12em; color:#D63B3B;">HEAT UP</div><div style="font-size:26px; color:#EDEFF2;">Hackney heat is now 3 of 5.</div></div>
+          </div>
+          <div style="width:1016px; max-width:100%; display:flex; align-items:center; gap:20px; padding:24px 28px; border:1px solid #2A2E33; border-left:6px solid #57C785; border-radius:16px; background:#2A2E33;">
+            <span style="width:48px; height:48px; flex:none; border:2px solid #57C785; border-radius:8px;"></span>
+            <div style="flex:1; display:flex; justify-content:space-between; align-items:center;"><div><div style="font-family:'IBM Plex Mono', monospace; font-size:18px; letter-spacing:0.12em; color:#57C785;">LAUNDERED</div><div style="font-size:26px; color:#EDEFF2;">Bung cleared your batch.</div></div><span style="font-family:Anton, Impact, sans-serif; font-size:36px; color:#57C785; font-variant-numeric:tabular-nums;">+£2,400</span></div>
+          </div>
+          <div style="border:1px solid #2A2E33; border-radius:16px; background:#0C0E10; padding:24px; font-family:'IBM Plex Mono', monospace; font-size:15px; line-height:1.75; color:#9AA0A6;">TOAST · 9-slice, one asset, 6 px left rule tinted by type · stack max 2 · slides in from y −140, out after 3 s</div>
+        </div>
+      </div>
+    </section>
+
+    <section style="display:flex; gap:64px; align-items:flex-start;">
+      <div style="flex:none; display:flex; flex-direction:column; gap:20px;">
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.18em; color:#FFA94D;">09 · CITY NODE — CURRENT / AVAILABLE / ACTIVITY / LOCKED</div>
+        <div style="display:flex; gap:24px; align-items:flex-start; padding:40px; border:1px solid #2A2E33; border-radius:16px; background:radial-gradient(70% 90% at 30% 20%, rgba(255,169,77,0.10), rgba(255,169,77,0) 70%), #16181C;">
+          <div style="width:300px; display:flex; flex-direction:column; align-items:center; gap:12px;">
+            <div style="width:96px; height:96px; border-radius:50%; border:3px solid #FFA94D; background:radial-gradient(circle, rgba(255,169,77,0.45), rgba(255,169,77,0.05) 70%); display:flex; align-items:center; justify-content:center;"><span style="width:24px; height:24px; border-radius:50%; background:#FFC97A;"></span></div>
+            <div style="font-family:Anton, Impact, sans-serif; font-size:40px; text-transform:uppercase; color:#EDEFF2;">London</div>
+            <div style="display:flex; gap:6px;"><span style="width:18px; height:18px; background:#D63B3B; border-radius:3px;"></span><span style="width:18px; height:18px; background:#D63B3B; border-radius:3px;"></span><span style="width:18px; height:18px; background:#D63B3B; border-radius:3px;"></span><span style="width:18px; height:18px; background:#D63B3B; border-radius:3px;"></span><span style="width:18px; height:18px; background:#D63B3B; border-radius:3px;"></span></div>
+            <div style="font-family:'IBM Plex Mono', monospace; font-size:18px; letter-spacing:0.12em; color:#FFA94D;">YOU ARE HERE</div>
+          </div>
+          <div style="width:300px; display:flex; flex-direction:column; align-items:center; gap:12px;">
+            <div style="width:96px; height:96px; border-radius:50%; border:2px solid #9AA0A6; background:#1E2126;"></div>
+            <div style="font-family:Anton, Impact, sans-serif; font-size:40px; text-transform:uppercase; color:#EDEFF2;">Manchester</div>
+            <div style="display:flex; gap:6px;"><span style="width:18px; height:18px; background:#D63B3B; border-radius:3px;"></span><span style="width:18px; height:18px; background:#D63B3B; border-radius:3px;"></span><span style="width:18px; height:18px; background:#D63B3B; border-radius:3px;"></span><span style="width:18px; height:18px; background:#2A2E33; border-radius:3px;"></span><span style="width:18px; height:18px; background:#2A2E33; border-radius:3px;"></span></div>
+            <div style="font-family:'IBM Plex Mono', monospace; font-size:18px; letter-spacing:0.12em; color:#9AA0A6;">LVL 12 · 4 MIN</div>
+          </div>
+          <div style="width:300px; display:flex; flex-direction:column; align-items:center; gap:12px;">
+            <div style="position:relative; width:96px; height:96px;">
+              <div style="width:96px; height:96px; border-radius:50%; border:2px solid #9AA0A6; background:#1E2126;"></div>
+              <span style="position:absolute; top:-4px; right:-4px; width:28px; height:28px; border-radius:14px; background:#D9E021; border:3px solid #16181C;"></span>
+            </div>
+            <div style="font-family:Anton, Impact, sans-serif; font-size:40px; text-transform:uppercase; color:#EDEFF2;">Bristol</div>
+            <div style="display:flex; gap:6px;"><span style="width:18px; height:18px; background:#D63B3B; border-radius:3px;"></span><span style="width:18px; height:18px; background:#D63B3B; border-radius:3px;"></span><span style="width:18px; height:18px; background:#2A2E33; border-radius:3px;"></span><span style="width:18px; height:18px; background:#2A2E33; border-radius:3px;"></span><span style="width:18px; height:18px; background:#2A2E33; border-radius:3px;"></span></div>
+            <div style="font-family:'IBM Plex Mono', monospace; font-size:18px; letter-spacing:0.12em; color:#D9E021;">JOB READY</div>
+          </div>
+          <div style="width:300px; display:flex; flex-direction:column; align-items:center; gap:12px; opacity:0.6;">
+            <div style="width:96px; height:96px; border-radius:50%; border:2px dashed #5A6068; background:#16181C; display:flex; align-items:center; justify-content:center;"><span style="width:26px; height:26px; border:2px solid #5A6068; border-radius:6px 6px 3px 3px;"></span></div>
+            <div style="font-family:Anton, Impact, sans-serif; font-size:40px; text-transform:uppercase; color:#5A6068;">Glasgow</div>
+            <div style="display:flex; gap:6px;"><span style="width:18px; height:18px; background:#5A6068; border-radius:3px;"></span><span style="width:18px; height:18px; background:#5A6068; border-radius:3px;"></span><span style="width:18px; height:18px; background:#5A6068; border-radius:3px;"></span><span style="width:18px; height:18px; background:#5A6068; border-radius:3px;"></span><span style="width:18px; height:18px; background:#2A2E33; border-radius:3px;"></span></div>
+            <div style="font-family:'IBM Plex Mono', monospace; font-size:18px; letter-spacing:0.12em; color:#5A6068;">LVL 40 REQUIRED</div>
+          </div>
+        </div>
+      </div>
+      <div style="flex:1; min-width:0; border:1px solid #2A2E33; border-radius:16px; background:#0C0E10; padding:28px; font-family:'IBM Plex Mono', monospace; font-size:15px; line-height:1.75; color:#9AA0A6;">
+        <div style="letter-spacing:0.16em; color:#FFA94D; margin-bottom:10px;">EXPORT NOTE</div>
+        <div>NODE · single 96 px asset + separate glow sprite for current city</div>
+        <div>DANGER PIP · single 18 px asset ×5, tinted</div>
+        <div>BADGE · single 28 px asset, hi-vis, top-right anchor</div>
+        <div>Node group is one repeating scene placed on the map by coordinate.</div>
+      </div>
+    </section>
+
+    <section style="display:flex; flex-direction:column; gap:24px;">
+      <div style="display:flex; align-items:baseline; gap:24px;">
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.18em; color:#FFA94D;">10 · REVEAL CARD — FIVE RARITIES + CASH VARIANT</div>
+        <span style="flex:1; height:1px; background:#2A2E33;"></span>
+      </div>
+      <div style="display:flex; gap:24px; flex-wrap:wrap; padding:48px; border:1px solid #2A2E33; border-radius:16px; background:#0C0E10;">
+        <div style="width:340px; border:2px solid #B9C0C7; border-radius:16px; background:linear-gradient(180deg, rgba(185,192,199,0.16) 0%, #1E2126 55%); overflow:hidden; display:flex; flex-direction:column;">
+          <div style="height:280px; background-color:#16191D; background-image:repeating-linear-gradient(135deg, #1B1E22 0 8px, #16191D 8px 16px); display:flex; align-items:center; justify-content:center;"><span style="font-family:'IBM Plex Mono', monospace; font-size:13px; color:#5A6068;">ITEM ART</span></div>
+          <div style="padding:20px; display:flex; flex-direction:column; gap:8px;">
+            <span style="font-family:'IBM Plex Mono', monospace; font-size:16px; letter-spacing:0.16em; color:#B9C0C7;">BASIC</span>
+            <span style="font-family:Anton, Impact, sans-serif; font-size:32px; text-transform:uppercase; line-height:1;">Burner handset</span>
+          </div>
+        </div>
+        <div style="width:340px; border:2px solid #6FCF6F; border-radius:16px; background:linear-gradient(180deg, rgba(111,207,111,0.16) 0%, #1E2126 55%); overflow:hidden; display:flex; flex-direction:column;">
+          <div style="height:280px; background-color:#16191D; background-image:repeating-linear-gradient(135deg, #1B1E22 0 8px, #16191D 8px 16px); display:flex; align-items:center; justify-content:center;"><span style="font-family:'IBM Plex Mono', monospace; font-size:13px; color:#5A6068;">ITEM ART</span></div>
+          <div style="padding:20px; display:flex; flex-direction:column; gap:8px;">
+            <span style="font-family:'IBM Plex Mono', monospace; font-size:16px; letter-spacing:0.16em; color:#6FCF6F;">DECENT</span>
+            <span style="font-family:Anton, Impact, sans-serif; font-size:32px; text-transform:uppercase; line-height:1;">Scuffed trainers</span>
+          </div>
+        </div>
+        <div style="width:340px; border:2px solid #4DA3FF; border-radius:16px; background:linear-gradient(180deg, rgba(77,163,255,0.16) 0%, #1E2126 55%); overflow:hidden; display:flex; flex-direction:column;">
+          <div style="height:280px; background-color:#16191D; background-image:repeating-linear-gradient(135deg, #1B1E22 0 8px, #16191D 8px 16px); display:flex; align-items:center; justify-content:center;"><span style="font-family:'IBM Plex Mono', monospace; font-size:13px; color:#5A6068;">ITEM ART</span></div>
+          <div style="padding:20px; display:flex; flex-direction:column; gap:8px;">
+            <span style="font-family:'IBM Plex Mono', monospace; font-size:16px; letter-spacing:0.16em; color:#4DA3FF;">PENG</span>
+            <span style="font-family:Anton, Impact, sans-serif; font-size:32px; text-transform:uppercase; line-height:1;">Cloned card reader</span>
+          </div>
+        </div>
+        <div style="width:340px; border:2px solid #B06CF0; border-radius:16px; background:linear-gradient(180deg, rgba(176,108,240,0.18) 0%, #1E2126 55%); overflow:hidden; display:flex; flex-direction:column;">
+          <div style="height:280px; background-color:#16191D; background-image:repeating-linear-gradient(135deg, #1B1E22 0 8px, #16191D 8px 16px); display:flex; align-items:center; justify-content:center;"><span style="font-family:'IBM Plex Mono', monospace; font-size:13px; color:#5A6068;">ITEM ART</span></div>
+          <div style="padding:20px; display:flex; flex-direction:column; gap:8px;">
+            <span style="font-family:'IBM Plex Mono', monospace; font-size:16px; letter-spacing:0.16em; color:#B06CF0;">CERTI</span>
+            <span style="font-family:Anton, Impact, sans-serif; font-size:32px; text-transform:uppercase; line-height:1;">Yard keys, copied</span>
+          </div>
+        </div>
+        <div style="width:340px; border:2px solid #F2C14E; border-radius:16px; background:linear-gradient(180deg, rgba(242,193,78,0.22) 0%, #1E2126 55%); overflow:hidden; display:flex; flex-direction:column;">
+          <div style="height:280px; background-color:#16191D; background-image:radial-gradient(60% 60% at 50% 50%, rgba(242,193,78,0.18), rgba(242,193,78,0) 70%), repeating-linear-gradient(135deg, #1B1E22 0 8px, #16191D 8px 16px); display:flex; align-items:center; justify-content:center;"><span style="font-family:'IBM Plex Mono', monospace; font-size:13px; color:#5A6068;">ITEM ART</span></div>
+          <div style="padding:20px; display:flex; flex-direction:column; gap:8px;">
+            <span style="font-family:'IBM Plex Mono', monospace; font-size:16px; letter-spacing:0.16em; color:#F2C14E;">ICONIC</span>
+            <span style="font-family:Anton, Impact, sans-serif; font-size:32px; text-transform:uppercase; line-height:1;">Rhodes' ledger page</span>
+          </div>
+        </div>
+        <div style="width:340px; border:2px solid #C9A227; border-radius:16px; background:linear-gradient(180deg, rgba(201,162,39,0.18) 0%, #1E2126 55%); overflow:hidden; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:12px; padding:40px 20px;">
+          <span style="font-family:'IBM Plex Mono', monospace; font-size:16px; letter-spacing:0.16em; color:#C9A227;">DIRTY CASH</span>
+          <span style="font-family:Anton, Impact, sans-serif; font-size:80px; color:#C9A227; font-variant-numeric:tabular-nums; line-height:1;">£610</span>
+          <span style="font-family:'IBM Plex Mono', monospace; font-size:16px; color:#5A6068;">COUNTS UP FROM £0</span>
+        </div>
+        <div style="width:340px; border:1px solid #2A2E33; border-radius:16px; background:#121417; padding:24px; font-family:'IBM Plex Mono', monospace; font-size:15px; line-height:1.75; color:#9AA0A6;">
+          <div style="letter-spacing:0.16em; color:#FFA94D; margin-bottom:10px;">EXPORT NOTE</div>
+          <div>CARD · one 9-slice asset; border + top wash tinted per rarity</div>
+          <div>ART WELL · 340×280 single asset per item</div>
+          <div>Flip: rotate Y 180°→0°, 220 ms, staggered 90 ms per card</div>
+          <div>Cash variant has no art well — number is the hero</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

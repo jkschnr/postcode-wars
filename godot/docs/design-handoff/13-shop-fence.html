@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>13-shop-fence — Postcode Wars</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="ui.css">
+<script src="art.js"></script>
+<script src="cast.js"></script>
+<script src="chrome.js"></script>
+<script src="anim.js"></script>
+<script src="atmos.js"></script>
+</head>
+<body>
+<div id="frame">
+  <div id="hud"></div>
+
+  <div class="scroll" style="top:140px; bottom:160px; padding:28px 32px 48px; box-sizing:border-box; display:flex; flex-direction:column; gap:24px;">
+
+    <div id="hero"></div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+      <button id="tab-buy" class="btn btn-secondary" style="font-size:32px;">Buy</button>
+      <button id="tab-sell" class="btn btn-secondary" style="font-size:32px;">Sell</button>
+    </div>
+
+    <div id="grid" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;"></div>
+
+    <div id="fencer" class="panel" style="border-left:6px solid #FFA94D; background:#2A2E33; padding:22px 26px; display:flex; align-items:center; gap:20px;"></div>
+  </div>
+
+  <div id="nav"></div>
+  <div class="tooth"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+mountChrome('city', {});
+mountHero({ lat:51.5375, lon:-0.0555, zoom:16.8, ghost:'FENCE',
+  kicker:'DELROY BUYS, DELROY SELLS', title:'The fence', meta:'HACKNEY ARCHES · CASH ONLY · NO RECEIPTS',
+  back:{ label:'LONDON', href:'02-city.html' } });
+document.getElementById('sub2') && null;
+
+const R = { basic:'#B9C0C7', decent:'#6FCF6F', peng:'#4DA3FF', certi:'#B06CF0', iconic:'#F2C14E' };
+const BUY = [
+  ['decent','Hi-vis and a clipboard', 340, 'NOBODY QUESTIONS A CLIPBOARD'],
+  ['decent','Spare plate set', 480, '−1 HEAT ON WHEELS JOBS'],
+  ['peng','Signal jammer, boxed', 1850, 'CAMERAS MISS THE FIRST 20s'],
+  ['peng','Keys to a white Transit', 2400, 'CARRY FOUR CRATES, NOT ONE'],
+  ['certi','Yard keys, copied', 5200, 'OPENS THE BOW CONTRACT LINE'],
+  ['basic','Bolt cutters, blunt', 90, 'WORKS. SLOWLY.']
+];
+const SELL = [
+  ['peng','Cloned card reader', 1200, 'HE OFFERS 62% OF STREET'],
+  ['basic','Burner handset', 40, 'HE\u2019LL TAKE IT, BARELY'],
+  ['decent','Scuffed trainers', 110, 'SELLS ON BY SATURDAY'],
+  ['certi','Betfrenz till codes', 3100, 'HE WANTS THESE BADLY'],
+  ['iconic','Rhodes\u2019 ledger page', 0, 'HE WON\u2019T TOUCH IT'],
+  ['basic','Half-empty jerry can', 15, 'PRICE OF THE CAN, NOT THE PETROL']
+];
+
+function cell([r, name, price, note], selling) {
+  const dead = price === 0;
+  return `<div class="panel" style="border-color:${R[r]}; padding:20px; display:flex; flex-direction:column; gap:14px; ${dead ? 'opacity:0.6;' : ''}">
+    ${itemArt(name, 200, 'border:1px solid ' + R[r] + '33;')}
+    <span class="mono" style="font-size:20px; letter-spacing:0.16em; color:${R[r]};">${r.toUpperCase()}</span>
+    <span class="disp" style="font-size:32px; line-height:0.98;">${name}</span>
+    <span class="mono" style="font-size:20px; color:#5A6068;">${note}</span>
+    <div class="tab" style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+      <span class="disp" style="font-size:40px; color:${dead ? '#5A6068' : selling ? '#57C785' : '#C9A227'};">${dead ? 'NO SALE' : (selling ? '+' : '') + '£' + price.toLocaleString('en-GB')}</span>
+      <button class="btn ${dead ? 'btn-off' : 'btn-secondary'}" style="height:96px; padding:0 26px; font-size:28px; ${dead ? '' : 'border-color:#FFA94D; color:#FFA94D;'}">${dead ? '—' : selling ? 'Sell' : 'Buy'}</button>
+    </div>
+  </div>`;
+}
+
+const fencer = CAST.find(c => c.id === 'delroy');
+document.getElementById('fencer').innerHTML = `
+  ${portraitSlot(fencer, 96, '#FFA94D')}
+  <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:8px;">
+    <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#FFA94D;">${fencer.name.toUpperCase()} · ${fencer.role} · ${fencer.place.toUpperCase()}</span>
+    <span style="font-size:26px; line-height:1.35;">“${pick(fencer.lines)}”</span>
+  </div>`;
+
+function show(selling) {
+  document.getElementById('grid').innerHTML = (selling ? SELL : BUY).map(i => cell(i, selling)).join('');
+
+  const b = document.getElementById('tab-buy'), sl = document.getElementById('tab-sell');
+  const onCss = 'font-size:32px; background:rgba(255,169,77,0.14); border-color:#FFA94D; color:#FFA94D;';
+  b.style.cssText = selling ? 'font-size:32px;' : onCss;
+  sl.style.cssText = selling ? onCss : 'font-size:32px;';
+}
+document.getElementById('tab-buy').addEventListener('click', () => show(false));
+document.getElementById('tab-sell').addEventListener('click', () => show(true));
+show(false);
+</script>
+</body>
+</html>

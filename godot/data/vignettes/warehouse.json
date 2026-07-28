@@ -1,0 +1,162 @@
+[
+ {
+  "id": "wh_inside_man",
+  "target": {
+   "name": null,
+   "detail": "the loading bay and a door left open"
+  },
+  "setup": "Distribution unit, night shift skeleton crew, a lad on the inside who leaves bay six unlatched for a cut. Pallets of the good stuff by the door.",
+  "on_success": "In on the inside man's window, load the van off the ramp like staff, out on the shift change. Invoiced to nobody.",
+  "on_fail": "The inside man bottled it and locked bay six after all, and the one he left open has a guard behind it having his tea.",
+  "on_crit": "Wrong pallet in the best way — a run of something small and dear that wasn't on the plan.",
+  "job": "warehouse",
+  "conditions": {
+   "max_heat": 12
+  }
+ },
+ {
+  "id": "wh_container",
+  "conditions": {
+   "cities": [
+    "liverpool"
+   ],
+   "max_heat": 12
+  },
+  "target": {
+   "name": "the yard",
+   "detail": "the container that skipped its check"
+  },
+  "setup": "Dock yard, one container walked off the manifest for a fee, sat in a corner of the lot waiting for a lorry that's technically yours for the night.",
+  "on_success": "Hook it, haul it, and it's twenty miles inland before the paperwork it never had gets missed.",
+  "on_fail": "Border Force picked this week to be thorough and the corner of the lot you wanted has a new floodlight and a dog.",
+  "on_crit": "Manifest said white goods. Manifest lied, in your favour, considerably.",
+  "job": "warehouse"
+ },
+ {
+  "id": "wh_inside_man_bay",
+  "conditions": {
+   "max_heat": 6
+  },
+  "target": {
+   "name": "—",
+   "detail": "bay six, left unlatched for a cut"
+  },
+  "setup": "Distribution unit, night-shift skeleton crew, a lad on the inside who leaves bay six off the latch for a percentage. Pallets of the good stuff sit by the door because that's where they were dropped this afternoon.",
+  "on_success": "In on the inside man's window, load the van off the ramp like staff on a shift, out on the changeover. Invoiced to nobody, missed until stock-take.",
+  "on_fail": "The inside man bottled it and locked bay six after all, and the one door he did leave open has a guard behind it having his tea.",
+  "on_crit": "Wrong pallet in the best possible way — a run of something small and dear that wasn't on tonight's plan and won't be on any list you signed.",
+  "job": "warehouse"
+ },
+ {
+  "id": "wh_container_yard",
+  "conditions": {
+   "cities": [
+    "liverpool"
+   ],
+   "time": "night",
+   "min_level": 15,
+   "max_heat": 12
+  },
+  "target": {
+   "name": "—",
+   "detail": "the container that skipped its check for a fee"
+  },
+  "setup": "Dock yard, one container quietly walked off the manifest, sat in a corner of the lot waiting for a lorry that's technically yours for the night, and a gate man whose weekly bonus is your best security.",
+  "on_success": "Hook it, haul it, and it's twenty miles inland before the paperwork it never had gets missed by a system that assumes everything's where it says.",
+  "on_fail": "Border Force picked this week to be thorough, and the corner of the lot you wanted now has a new floodlight and a very awake dog.",
+  "on_crit": "The manifest said white goods. The manifest was lying, in your favour, by a considerable margin.",
+  "job": "warehouse"
+ },
+ {
+  "id": "wh_returns_depot",
+  "conditions": {
+   "time": "night",
+   "max_heat": 7
+  },
+  "target": {
+   "name": "Lorraine",
+   "detail": "the returns depot where everything's already been paid for once"
+  },
+  "setup": "An online-returns depot, aisles of sent-back electronics waiting to be refurbished, a manager on nights who's underpaid enough to point at the good aisle, and stock that's a nightmare to trace because it's already been through the system.",
+  "on_success": "Straight to the aisle she pointed at, cages of barely-used tech into the van, and it resells clean because half of it was never really faulty.",
+  "on_fail": "There's a stock-loss investigator embedded on nights this week precisely because the numbers stopped adding up, and he's watching that aisle.",
+  "job": "warehouse"
+ },
+ {
+  "id": "wh_frozen_food",
+  "conditions": {
+   "time": "night",
+   "max_heat": 8
+  },
+  "target": {
+   "name": "—",
+   "detail": "the cold store where the meat's worth more than the electronics next door"
+  },
+  "setup": "A frozen-food cold store, pallets of premium meat that's worth a fortune to the right caterer and rots to nothing if you're slow, a chiller lorry idling, and a two-hour window before the morning shift.",
+  "on_success": "Reefer to reefer, pallet by pallet, still frozen solid when it reaches a cash-and-carry that asks no questions and pays by the box.",
+  "on_fail": "The cold-store alarm isn't for thieves, it's for temperature, and propping the door has just told a monitoring firm the freezer's failing.",
+  "job": "warehouse"
+ },
+ {
+  "id": "wh_pharma_distribution",
+  "conditions": {
+   "min_level": 15,
+   "max_heat": 9
+  },
+  "target": {
+   "name": "—",
+   "detail": "the pharma warehouse aisle that's kept behind its own cage"
+  },
+  "setup": "A medical distribution warehouse, most of it worthless, one caged aisle worth more than the rest of the building, an inside contact with a key card and cold feet, and cameras that actually get watched.",
+  "on_success": "The card opens the cage, the cage gives up a shelf, and it's off the loading bay before the live-monitored cameras cut to your aisle on their rotation.",
+  "on_fail": "The card's already been deactivated because your contact's cold feet turned into a confession this afternoon, and the cage doesn't open.",
+  "job": "warehouse"
+ },
+ {
+  "id": "wh_amazon_seasonal",
+  "conditions": {
+   "time": "night",
+   "cities": [
+    "swindon"
+   ],
+   "max_heat": 7
+  },
+  "target": {
+   "name": "—",
+   "detail": "the seasonal overflow unit rented just for the Christmas rush"
+  },
+  "setup": "A temporary overflow unit rented for the Christmas peak, agency staff who don't know each other, a stock system straining under the volume, and pallets of the year's must-have toy stacked where anyone in a hi-vis could reach.",
+  "on_success": "In a borrowed hi-vis, you're just another agency face moving a cage. Out the goods door with the toy every parent's overpaying for, straight to a market that'll double it.",
+  "on_fail": "The agency does a headcount and a bag-check on the way out this shift, because last shift somebody tried exactly this and wasn't as calm.",
+  "job": "warehouse"
+ },
+ {
+  "id": "wh_builders_merchant",
+  "conditions": {
+   "time": "night",
+   "max_heat": 6
+  },
+  "target": {
+   "name": "Dean",
+   "detail": "the builders' merchant yard with the copper and the loose gate"
+  },
+  "setup": "A builders' merchant yard, copper pipe and power tools and boilers, a gate with a padlock a bolt-cropper laughs at, and a trade counter that won't notice the shortfall till the reps start reordering.",
+  "on_success": "Gate off, van backed to the copper, boilers and cable and a rack of power tools loaded and gone. It's on a site two towns over, being fitted, by Monday.",
+  "on_fail": "The 'loose' gate's been alarmed since the last raid, and the silent kind means the first you know is the headlights coming into the yard.",
+  "job": "warehouse"
+ },
+ {
+  "id": "wh_first_job_greedy",
+  "conditions": {
+   "max_heat": 7
+  },
+  "target": {
+   "name": "—",
+   "detail": "the extra pallet you go back for when you should've left"
+  },
+  "setup": "A clean in, a clean load, the van nearly full and the window nearly closed — and one more pallet by the door that would make the whole night worth twice as much if you had the ninety seconds you don't have.",
+  "on_success": "You take the ninety seconds, and they're the best ninety seconds of the week. The van sits low on its springs all the way home.",
+  "on_fail": "The extra pallet is the one that takes you past the shift change, and the morning crew's earliest keen bean is walking to the door as you reach it.",
+  "job": "warehouse"
+ }
+]

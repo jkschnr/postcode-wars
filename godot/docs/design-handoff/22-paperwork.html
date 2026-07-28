@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>22-paperwork — Postcode Wars</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ui.css">
+<script src="art.js"></script>
+<script src="cast.js"></script>
+<script src="chrome.js"></script>
+<script src="anim.js"></script>
+<style>
+  #frame { background:#14161a; }
+  .doc { position:relative; padding:24px 26px; display:flex; flex-direction:column; gap:12px; color:#221f1a;
+    border:1px solid rgba(0,0,0,0.55); }
+  .paper { background:#dcd6c2; }
+  .paper-pink { background:#e4d8de; }
+  .paper-buff { background:#d9cfae; }
+  .paper-blue { background:#cdd6dd; }
+  .paper-grey { background:#d2d2cc; }
+  .row { display:flex; align-items:baseline; gap:14px; }
+  .k { font-family:'IBM Plex Mono', monospace; font-size:20px; letter-spacing:0.08em; color:#6b6558; width:200px; flex:none; }
+  .v { font-family:'IBM Plex Mono', monospace; font-size:24px; color:#1e1b16; }
+  .hand { font-family:'IBM Plex Mono', monospace; font-size:26px; color:#243a5c; letter-spacing:0.02em; }
+  .doctitle { font-family:Anton, sans-serif; font-size:38px; text-transform:uppercase; letter-spacing:0.02em; }
+  .sub { font-family:'IBM Plex Mono', monospace; font-size:20px; letter-spacing:0.12em; color:#6b6558; }
+  .hr { height:2px; background:rgba(0,0,0,0.22); }
+  .stamp { position:absolute; font-family:Anton, sans-serif; text-transform:uppercase; letter-spacing:0.06em;
+    border:4px solid currentColor; border-radius:6px; padding:6px 16px; font-size:34px; transform:rotate(-7deg); opacity:0.85; }
+  .px { image-rendering:pixelated; background-size:cover; }
+  .sheetlabel { font-family:'IBM Plex Mono', monospace; font-size:20px; letter-spacing:0.2em; color:#FFA94D; }
+</style>
+</head>
+<body>
+<div id="frame">
+  <div style="position:absolute; inset:0; background:
+      radial-gradient(42% 22% at 22% 6%, rgba(255,169,77,0.18), rgba(255,169,77,0) 68%),
+      linear-gradient(180deg, #1a1d21 0%, #14161a 44%, #0E1013 100%);"></div>
+  <div class="disp" style="position:absolute; right:-16px; top:980px; z-index:0; font-size:280px; line-height:0.8; color:#EDEFF2; opacity:0.05;">PAPERS</div>
+  <div id="hud"></div>
+
+  <div class="scroll" style="top:140px; bottom:160px; padding:28px 32px 56px; box-sizing:border-box; display:flex; flex-direction:column; gap:30px;">
+
+    <div style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
+      <div id="back"></div>
+      <span class="mono" style="font-size:20px; letter-spacing:0.16em; color:#5A6068;">ART & PAPERWORK SHEET · 2026</span>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      <span class="sheetlabel">PIXEL ART DIRECTION · PORTRAITS, ITEMS, DOCUMENTS</span>
+      <span class="disp" style="font-size:80px; line-height:0.9;">Paperwork</span>
+      <span style="font-size:26px; line-height:1.4; color:#9AA0A6; max-width:900px;">Everything a character can hand you, put your name on, or hold over you. Present-day British forms, printed and photographed badly.</span>
+    </div>
+
+    <!-- PORTRAIT SHEET -->
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div class="sechead"><span class="sheetlabel">CAST · PIXEL PORTRAITS</span><span class="rule"></span>
+        <span class="mono" style="font-size:20px; color:#5A6068;">96 × 120 · 4× NEAREST</span></div>
+      <div id="cast-grid" style="display:grid; grid-template-columns:repeat(4, 1fr); gap:16px;"></div>
+    </div>
+
+    <!-- ITEM SHEET -->
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div class="sechead"><span class="sheetlabel">ITEMS · PIXEL SPRITES</span><span class="rule"></span>
+        <span class="mono" style="font-size:20px; color:#5A6068;">48 × 48 · 4× NEAREST</span></div>
+      <div id="item-grid" style="display:grid; grid-template-columns:repeat(6, 1fr); gap:14px;"></div>
+    </div>
+
+    <!-- DOCUMENTS -->
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div class="sechead"><span class="sheetlabel">DOCUMENTS</span><span class="rule"></span>
+        <span class="mono" style="font-size:20px; color:#5A6068;">DRAWN AS PAPER, NEVER AS UI PANELS</span></div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px;">
+
+        <div class="doc paper" style="border-left:10px solid #2E5EAA;">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px;">
+            <span class="doctitle">Digital ID</span><span class="sub">ONELOGIN · CROWN VERIFIED</span>
+          </div>
+          <div class="hr"></div>
+          <div style="display:flex; gap:18px;">
+            <div class="px" style="width:120px; height:150px; flex:none; border:2px solid #6b6558; background-image:url(art/px-nads.png); background-position:50% 12%;"></div>
+            <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:8px;">
+              <div class="row"><span class="k">HOLDER</span><span class="v">Kess Adeyemi</span></div>
+              <div class="row"><span class="k">ID NUMBER</span><span class="v">GB-4K7719-ZR</span></div>
+              <div class="row"><span class="k">BORN</span><span class="v">11.09.2001</span></div>
+              <div class="row"><span class="k">VERIFIED UNTIL</span><span class="v">14.03.2027</span></div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:16px;">
+            <span class="sub">HELD ON DEVICE · PRINTOUT NOT OFFICIAL</span>
+            <div style="display:grid; grid-template-columns:repeat(6, 8px); grid-auto-rows:8px; gap:2px;">
+              <span style="background:#1e1b16;"></span><span></span><span style="background:#1e1b16;"></span><span style="background:#1e1b16;"></span><span></span><span style="background:#1e1b16;"></span>
+              <span></span><span style="background:#1e1b16;"></span><span style="background:#1e1b16;"></span><span></span><span style="background:#1e1b16;"></span><span></span>
+              <span style="background:#1e1b16;"></span><span style="background:#1e1b16;"></span><span></span><span style="background:#1e1b16;"></span><span></span><span style="background:#1e1b16;"></span>
+              <span></span><span style="background:#1e1b16;"></span><span></span><span style="background:#1e1b16;"></span><span style="background:#1e1b16;"></span><span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="doc paper-pink" style="border-left:10px solid #7a2f5e;">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px;">
+            <span class="doctitle">Right to work</span><span class="sub">SHARE CODE · 90 DAYS</span>
+          </div>
+          <div class="hr"></div>
+          <div class="row"><span class="k">NAME ON RECORD</span><span class="v">Adeyemi, K.</span></div>
+          <div class="row"><span class="k">SHARE CODE</span><span class="v">W418 220 706</span></div>
+          <div class="row"><span class="k">STATUS</span><span class="v">CLEARED · CASH WORK</span></div>
+          <div class="row"><span class="k">ISSUED</span><span class="v">09.04.2026</span></div>
+          <div class="hr"></div>
+          <span class="sub" style="line-height:1.5;">Employers must check this code before the first shift. Codes are logged. So are the checks.</span>
+          <div class="stamp" style="right:20px; bottom:18px; color:#2f7a45;">Checked</div>
+        </div>
+
+        <div class="doc paper-grey" style="border-left:10px solid #b3261e;">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px;">
+            <span class="doctitle">Bail notice</span><span class="sub">CUSTODY 4471 · WOOD GREEN</span>
+          </div>
+          <div class="hr"></div>
+          <div class="row"><span class="k">RELEASED</span><span class="v">26.06.2026 · 04:12</span></div>
+          <div class="row"><span class="k">CONDITIONS</span><span class="v">CURFEW 21:00–07:00</span></div>
+          <div class="row"><span class="k">EXCLUSION</span><span class="v">E8 · MARE ST</span></div>
+          <div class="row"><span class="k">ANSWER TO</span><span class="v">14.08.2026 · 09:30</span></div>
+          <div class="hr"></div>
+          <span class="sub" style="line-height:1.5;">Breach of any condition is an arrestable offence. Your address of record is the flat, not the shop.</span>
+          <div class="stamp" style="right:20px; bottom:18px; color:#b3261e;">Bailed</div>
+        </div>
+
+        <div class="doc paper-blue" style="border-left:10px solid #2E5EAA;">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px;">
+            <span class="doctitle">Visiting order</span><span class="sub">HMP THAXTED · WING C</span>
+          </div>
+          <div class="hr"></div>
+          <div class="row"><span class="k">PRISONER</span><span class="v">ADEYEMI, J. · A2214DW</span></div>
+          <div class="row"><span class="k">VISITOR</span><span class="v">ADEYEMI, K. · BROTHER</span></div>
+          <div class="row"><span class="k">SLOT</span><span class="v">THU 30.07.2026 · 14:20</span></div>
+          <div class="row"><span class="k">BRING</span><span class="v">PHOTO ID · NO PHONE</span></div>
+          <div class="hr"></div>
+          <span class="sub" style="line-height:1.5;">One visit per fortnight. Late arrivals lose the slot and the fortnight.</span>
+        </div>
+
+        <div class="doc paper-buff" style="border-left:10px solid #7a5a20;">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px;">
+            <span class="doctitle">Betfrenz payout</span><span class="sub">SLIP 88214 · DALSTON</span>
+          </div>
+          <div class="hr"></div>
+          <div class="row"><span class="k">STAKE</span><span class="v">£40.00</span></div>
+          <div class="row"><span class="k">RETURN</span><span class="v">£2,410.00</span></div>
+          <div class="row"><span class="k">PAID</span><span class="v">CASH · OVER COUNTER</span></div>
+          <div class="row"><span class="k">TIME</span><span class="v">18:41 · 24.07.2026</span></div>
+          <div class="hr"></div>
+          <span class="sub" style="line-height:1.5;">Keep this slip. It is the only story you have for where the money came from.</span>
+          <div class="stamp" style="right:20px; bottom:18px; color:#7a5a20;">Paid</div>
+        </div>
+
+        <div class="doc paper-buff" style="border-left:10px solid #3d4a3a;">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px;">
+            <span class="doctitle">Vouch note</span><span class="sub">HANDWRITTEN · NOT OFFICIAL</span>
+          </div>
+          <div class="hr"></div>
+          <span class="hand" style="line-height:1.5;">He's alright. Grew up two doors down from my sister.<br>Door work only — don't put him near the money.</span>
+          <div class="row" style="padding-top:6px;"><span class="k">POSTCODE</span><span class="v">E8</span></div>
+          <div class="row"><span class="k">SIGNED</span><span class="hand">Uncle T</span></div>
+        </div>
+
+        <div class="doc paper" style="border-left:10px solid #5c5f4a;">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px;">
+            <span class="doctitle">SIM registration</span><span class="sub">PAY-AS-YOU-GO · MANDATORY SINCE 2025</span>
+          </div>
+          <div class="hr"></div>
+          <div class="row"><span class="k">NUMBER</span><span class="v">07-4412 998 210</span></div>
+          <div class="row"><span class="k">REGISTERED TO</span><span class="v">M. HOLLOWAY</span></div>
+          <div class="row"><span class="k">ID SHOWN</span><span class="v">NONE · SHOP DID NOT ASK</span></div>
+          <div class="hr"></div>
+          <span class="sub" style="line-height:1.5;">Unregistered SIMs are disconnected within 30 days. Registered ones are searchable for six years.</span>
+        </div>
+
+        <div class="doc paper-grey" style="border-left:10px solid #2a2f35;">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px;">
+            <span class="doctitle">Bung statement</span><span class="sub">MARE ST · ACCOUNT 0042</span>
+          </div>
+          <div class="hr"></div>
+          <div class="row"><span class="k">IN · WAGES</span><span class="v">£1,240.00</span></div>
+          <div class="row"><span class="k">IN · CAR WASH</span><span class="v">£900.00</span></div>
+          <div class="row"><span class="k">OUT · TRANSFER</span><span class="v">£2,000.00</span></div>
+          <div class="row"><span class="k">CLEARED</span><span class="v">£3,050.00</span></div>
+          <div class="hr"></div>
+          <span class="sub" style="line-height:1.5;">Anything over £8,000 in one week gets a form. Forms get read.</span>
+          <div class="stamp" style="right:20px; bottom:18px; color:#2f7a45;">Cleared</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="panel" style="padding:24px 26px; display:flex; flex-direction:column; gap:10px;">
+      <span class="sheetlabel">NOTE ON USE</span>
+      <span style="font-size:24px; line-height:1.5; color:#9AA0A6;">Documents appear as objects, never as chrome: paper colour, one coloured edge, mono fields, a stamp if somebody official touched it. They can arrive in Messages, be handed over in a Choice card, or sit in the Codex. If you want the club-door minigame — hold the paper, let them in or send them away — say so and I'll design that screen next.</span>
+    </div>
+
+  </div>
+
+  <div id="nav"></div>
+  <div class="tooth"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+document.getElementById('back').innerHTML = backLink('SCREENS', '00-index.html');
+mountChrome('char', {});
+
+document.getElementById('cast-grid').innerHTML = CAST.map(c => `
+  <div class="panel" style="padding:0; overflow:hidden; display:flex; flex-direction:column;">
+    <div class="px" style="height:250px; background-image:url(${pxPortrait(c)}); background-position:50% 14%;"></div>
+    <div style="padding:14px 16px; display:flex; flex-direction:column; gap:4px;">
+      <span class="disp" style="font-size:28px; line-height:1;">${c.name}</span>
+      <span class="mono" style="font-size:20px; letter-spacing:0.1em; color:#FFA94D;">${c.age} · ${c.role}</span>
+    </div>
+  </div>`).join('');
+
+const ITEMS = [['phone','Burner handset'],['reader','Cloned reader'],['jammer','Signal jammer'],['ledger','Ledger page'],
+  ['codes','Till codes'],['keys','Yard keys'],['trainers','Trainers'],['jerry','Jerry can'],['plates','Plate set'],
+  ['cutters','Bolt cutters'],['van','Transit keys'],['hivis','Hi-vis']];
+document.getElementById('item-grid').innerHTML = ITEMS.map(([id, name]) => `
+  <div class="panel" style="padding:0; overflow:hidden; display:flex; flex-direction:column;">
+    <div class="px" style="height:140px; background-image:url(art/px-item-${id}.png);"></div>
+    <div style="padding:12px 14px;"><span class="mono" style="font-size:20px; color:#C3C9CF;">${name}</span></div>
+  </div>`).join('');
+</script>
+</body>
+</html>

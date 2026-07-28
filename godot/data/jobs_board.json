@@ -1,0 +1,66 @@
+{
+ "story": [
+  {
+   "speaker": "uncle_t",
+   "tag": "UNCLE T · MARE ST",
+   "title": "THE BARBER'S FAVOUR",
+   "scene": "Shop shuts at eight. He wants you there at ten past, on your own. It's the start of something bigger than a haircut.",
+   "en": 20,
+   "nv": 12,
+   "note": "STORY · CH.2",
+   "beat": "a2_barber",
+   "min_level": 6,
+   "after": ""
+  },
+  {
+   "speaker": "nads",
+   "tag": "NADS · EUSTON",
+   "title": "THE PLUG",
+   "scene": "Two tickets north and a napkin with two columns on it. She's decided you're going. You get to decide who you are when you get there.",
+   "en": 24,
+   "nv": 14,
+   "note": "STORY · CH.2",
+   "beat": "a2_plug",
+   "min_level": 8,
+   "after": "a2_barber"
+  },
+  {
+   "speaker": "silas",
+   "tag": "SILAS · THE RING ROAD",
+   "title": "YOUR OWN LINE",
+   "scene": "A members' bar with no members. Silas Rhodes wants to hand you the keys to nine cities — and tell you what they cost.",
+   "en": 28,
+   "nv": 16,
+   "note": "STORY · CH.2",
+   "beat": "a2_line",
+   "min_level": 12,
+   "after": "a2_plug"
+  }
+ ],
+ "contracts": [
+  {
+   "speaker": "nads",
+   "tag": "NADS · CONTRACT",
+   "title": "CLEAR THE YARD VAN",
+   "scene": "Bow. Transit full of copper, gate code good until midnight.",
+   "en": 18,
+   "nv": 9,
+   "pay": "£1,400–£2,200",
+   "xp": 240,
+   "chance": 61,
+   "expires": "01:12"
+  },
+  {
+   "speaker": "delroy",
+   "tag": "DELROY · CONTRACT",
+   "title": "TWO KEEPERS, NO QUESTIONS",
+   "scene": "Anything German, anything after 2019. Bring it to the arches.",
+   "en": 26,
+   "nv": 14,
+   "pay": "£2,600–£4,100",
+   "xp": 410,
+   "chance": 44,
+   "expires": "04:48"
+  }
+ ]
+}

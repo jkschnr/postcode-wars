@@ -1,0 +1,30 @@
+{
+ "job": "card_fraud",
+ "stages": [
+  {
+   "name": "The first machine",
+   "text": "Cloned card, quiet cashpoint, the daily limit in one withdrawal. Clean and simple. Take the limit and walk, or keep feeding cards into the same slot and pushing the same luck.",
+   "fail_text": "The machine keeps the card, flashes a number to ring, and holds your face on camera while it thinks."
+  },
+  {
+   "name": "The next card",
+   "text": "Stack of cloned cards, each good for a withdrawal before it trips. A second machine down the road, a second limit. Every card's a coin toss and you're calling them all heads.",
+   "fail_text": "This card's already been reported, and reporting a card these days lights up the machine that eats it."
+  },
+  {
+   "name": "The contactless run",
+   "text": "Cards that won't stand a withdrawal will stand one tap each. A high street of tills that don't ask twice — coffee, phones, gift cards. Bin each one before it can say no and keep walking.",
+   "fail_text": "Third shop, the card beeps the wrong colour and the girl's finger's already under the counter."
+  },
+  {
+   "name": "The retail park",
+   "text": "Gift cards convert to clean money fastest, and the big-box store sells them by the rack. Load up on plastic that spends like cash — but a rack of gift cards on a dying card is a pattern a system loves to spot.",
+   "fail_text": "The till freezes mid-transaction and the manager appears with the specific calm of someone who's pressed the button."
+  },
+  {
+   "name": "The no-limit one",
+   "text": "One card in the stack just keeps working — a business account with no ceiling anyone's found. Ride it as far as it goes and it's the week of your life, until the second it's the reason they know your face.",
+   "fail_text": "The no-limit card was no-limit because it was bait, and the account's been watched by people who are patient."
+  }
+ ]
+}

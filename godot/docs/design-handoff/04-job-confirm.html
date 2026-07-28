@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>04-job-confirm — Postcode Wars</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<script src="cast.js"></script>
+<style>
+  html, body { margin:0; background:#0C0E10; }
+  body { display:flex; justify-content:center; }
+  a { color:#FFA94D; text-decoration:none; }
+  a:hover { color:#FFC97A; }
+  #frame { position:relative; width:1080px; height:1920px; flex:none; overflow:hidden;
+    background:#121417; color:#EDEFF2; font-family:Inter, system-ui, sans-serif; transform-origin:top center; }
+  .mono { font-family:'IBM Plex Mono', monospace; }
+  .disp { font-family:Anton, Impact, sans-serif; text-transform:uppercase; }
+  .tab { font-variant-numeric:tabular-nums; }
+  #leaf { position:absolute; left:0; top:140px; width:1080px; height:520px; z-index:0; isolation:isolate; background:#0E1013; }
+  .leaflet-tile-pane { filter:grayscale(1) brightness(0.44) contrast(1.42) sepia(0.32) hue-rotate(-12deg) saturate(1.5); }
+  .leaflet-container { background:#0E1013; font-family:'IBM Plex Mono', monospace; }
+  .leaflet-control-attribution { background:rgba(12,14,16,0.72) !important; color:#5A6068 !important; font-size:11px !important; }
+  .leaflet-control-attribution a { color:#9AA0A6 !important; }
+  .chipm { display:flex; align-items:center; height:52px; padding:0 16px; border-radius:10px;
+    background:#0C0E10; border:1px solid #2A2E33; font-family:'IBM Plex Mono', monospace; font-size:22px; }
+  .tooth { position:absolute; inset:0; pointer-events:none; z-index:1; opacity:0.22; mix-blend-mode:soft-light;
+    background-image:url("art/tex-concrete.png"); background-size:512px 512px; }
+  .grain { position:absolute; inset:0; pointer-events:none; opacity:0.045; mix-blend-mode:screen; z-index:60;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
+    background-size:280px 280px; }
+</style>
+<script src="anim.js"></script>
+</head>
+<body>
+<div id="frame">
+
+  <div id="leaf"></div>
+  <div style="position:absolute; left:0; top:140px; width:1080px; height:520px; z-index:20; pointer-events:none; background:
+      radial-gradient(46% 46% at 52% 44%, rgba(255,169,77,0.28), rgba(255,169,77,0) 70%),
+      linear-gradient(180deg, rgba(18,20,23,0.6) 0%, rgba(18,20,23,0.06) 26%, rgba(12,14,16,0.6) 74%, #121417 100%);"></div>
+
+  <!-- TOP HUD -->
+  <div style="position:absolute; left:0; top:0; width:1080px; height:140px; box-sizing:border-box; padding:0 32px 14px; display:flex; flex-direction:column; justify-content:flex-end; background:#2A2E33; border-bottom:1px solid #3A3F45; z-index:40;">
+    <div class="tab" style="display:flex; align-items:center; gap:16px;">
+      <div style="display:flex; align-items:center; gap:10px; height:56px; padding:0 16px; border:1px solid #C9A227; border-radius:12px; background:rgba(201,162,39,0.10);">
+        <span style="width:20px; height:20px; border-radius:4px; border:2px solid #C9A227;"></span>
+        <span class="disp" style="font-size:32px; color:#C9A227;">£12,480</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; height:56px; padding:0 16px; border:1px solid #57C785; border-radius:12px; background:rgba(87,199,133,0.10);">
+        <span style="width:20px; height:20px; border-radius:4px; border:2px solid #57C785;"></span>
+        <span class="disp" style="font-size:32px; color:#57C785;">£3,050</span>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:8px; padding-left:8px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="mono" style="font-size:16px; color:#FFA94D; width:26px;">EN</span>
+          <div style="flex:1; height:12px; border-radius:6px; background:#0C0E10; overflow:hidden; display:flex;"><div style="width:62%; background:#FFA94D;"></div><div style="width:12%; background:rgba(255,169,77,0.28);"></div></div>
+          <span class="mono" style="font-size:16px; color:#9AA0A6;">62/100</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="mono" style="font-size:16px; color:#B06CF0; width:26px;">NV</span>
+          <div style="flex:1; height:12px; border-radius:6px; background:#0C0E10; overflow:hidden; display:flex;"><div style="width:35%; background:#B06CF0;"></div><div style="width:20%; background:rgba(176,108,240,0.3);"></div></div>
+          <span class="mono" style="font-size:16px; color:#9AA0A6;">7/20</span>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+        <div style="display:flex; gap:6px;">
+          <span style="width:14px; height:14px; border-radius:7px; background:#D63B3B;"></span>
+          <span style="width:14px; height:14px; border-radius:7px; background:#D63B3B;"></span>
+          <span style="width:14px; height:14px; border-radius:7px; background:#D63B3B;"></span>
+          <span style="width:14px; height:14px; border-radius:7px; background:#3A3F45;"></span>
+          <span style="width:14px; height:14px; border-radius:7px; background:#3A3F45;"></span>
+        </div>
+        <span class="mono" style="font-size:16px; letter-spacing:0.1em; color:#9AA0A6;">HEAT</span>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px; padding-left:20px; border-left:1px solid #3A3F45;">
+        <span class="disp" style="font-size:40px; line-height:1;">37</span>
+        <div style="width:96px; height:6px; border-radius:3px; background:#0C0E10; overflow:hidden; display:flex;"><div style="width:48%; background:#FFC97A;"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:absolute; left:32px; right:32px; top:172px; z-index:35; display:flex; align-items:center; justify-content:space-between; gap:20px;">
+    <a href="03-jobs.html" class="mono" style="height:72px; padding:0 24px; border:1px solid #2A2E33; border-radius:14px; background:rgba(18,20,23,0.82); display:flex; align-items:center; font-size:20px; letter-spacing:0.14em; color:#9AA0A6;">← THE BOARD</a>
+    <div id="shuffle" class="mono" style="height:72px; padding:0 22px; border:1px solid #2A2E33; border-radius:14px; background:rgba(18,20,23,0.82); display:flex; align-items:center; font-size:20px; letter-spacing:0.14em; color:#FFA94D; cursor:pointer;">⟳ SHUFFLE CAST</div>
+  </div>
+
+  <!-- LOCATION PIN -->
+  <div style="position:absolute; left:0; right:0; top:392px; z-index:30; display:flex; justify-content:center;">
+    <div style="width:34px; height:34px; border-radius:50%; border:3px solid #FFA94D; background:radial-gradient(circle, rgba(255,169,77,0.7), rgba(255,169,77,0.05) 72%); box-shadow:0 0 50px 16px rgba(255,169,77,0.18);"></div>
+  </div>
+  <div style="position:absolute; left:32px; top:470px; z-index:35; display:flex; flex-direction:column; gap:6px;">
+    <span class="mono" style="font-size:20px; letter-spacing:0.16em; color:#FFA94D;">MARE STREET · E8 · 23:14</span>
+    <span class="disp" style="font-size:80px; line-height:0.9; text-shadow:0 6px 28px rgba(0,0,0,0.95);">Snatch a moped</span>
+  </div>
+
+  <!-- JOB PANEL -->
+  <div style="position:absolute; left:32px; right:32px; top:640px; z-index:35; display:flex; flex-direction:column; gap:18px;">
+
+    <div style="display:flex; gap:14px; align-items:center;">
+      <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#FFA94D; border:1px solid #FFA94D; border-radius:8px; padding:6px 14px;">TIER II</span>
+      <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#9AA0A6;">GRAFT · REPEATABLE</span>
+      <span style="flex:1;"></span>
+      <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#5A6068;">DANGER</span>
+      <div style="display:flex; gap:8px;">
+        <span style="width:22px; height:22px; border-radius:4px; background:#D63B3B;"></span>
+        <span style="width:22px; height:22px; border-radius:4px; background:#D63B3B;"></span>
+        <span style="width:22px; height:22px; border-radius:4px; background:#2A2E33;"></span>
+        <span style="width:22px; height:22px; border-radius:4px; background:#2A2E33;"></span>
+        <span style="width:22px; height:22px; border-radius:4px; background:#2A2E33;"></span>
+      </div>
+    </div>
+
+    <div style="border:1px solid #2A2E33; border-radius:16px; background:#1E2126; padding:28px 30px;">
+      <p id="scene" style="margin:0; font-size:30px; line-height:1.45; color:#EDEFF2; text-wrap:pretty;"></p>
+    </div>
+
+    <div class="tab" style="border:1px solid #2A2E33; border-radius:16px; background:#0C0E10; overflow:hidden;">
+      <div style="display:grid; grid-template-columns:repeat(4, 1fr);">
+        <div style="padding:22px 26px; display:flex; flex-direction:column; gap:6px; border-right:1px solid #2A2E33;">
+          <span class="mono" style="font-size:19px; letter-spacing:0.12em; color:#5A6068;">ENERGY</span>
+          <span class="disp" style="font-size:42px; color:#FFA94D;">12</span>
+        </div>
+        <div style="padding:22px 26px; display:flex; flex-direction:column; gap:6px; border-right:1px solid #2A2E33;">
+          <span class="mono" style="font-size:19px; letter-spacing:0.12em; color:#5A6068;">NERVE</span>
+          <span class="disp" style="font-size:42px; color:#B06CF0;">4</span>
+        </div>
+        <div style="padding:22px 26px; display:flex; flex-direction:column; gap:6px; border-right:1px solid #2A2E33;">
+          <span class="mono" style="font-size:19px; letter-spacing:0.12em; color:#5A6068;">PAYOUT</span>
+          <span class="disp" style="font-size:42px; color:#C9A227;">£240–£610</span>
+        </div>
+        <div style="padding:22px 26px; display:flex; flex-direction:column; gap:6px;">
+          <span class="mono" style="font-size:19px; letter-spacing:0.12em; color:#5A6068;">XP</span>
+          <span class="disp" style="font-size:42px;">+85</span>
+        </div>
+      </div>
+      <div style="border-top:1px solid #2A2E33; padding:24px 30px; display:flex; flex-direction:column; gap:14px;">
+        <div style="display:flex; justify-content:space-between; align-items:baseline;">
+          <span class="mono" style="font-size:20px; letter-spacing:0.12em; color:#9AA0A6;">SUCCESS CHANCE</span>
+          <span class="disp" style="font-size:36px; color:#57C785;">74%</span>
+        </div>
+        <div style="height:16px; border-radius:8px; background:#121417; border:1px solid #2A2E33; overflow:hidden; display:flex;">
+          <div style="width:74%; background:linear-gradient(90deg, #FFA94D, #57C785);"></div>
+        </div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <span class="chipm" style="border-color:#D63B3B; background:rgba(214,59,59,0.08); color:#D63B3B;">FAIL: HEAT +1</span>
+          <span class="chipm" style="border-color:#2E5EAA; background:rgba(46,94,170,0.10); color:#4DA3FF;">FAIL: 12% NICKED</span>
+          <span class="chipm" style="color:#9AA0A6;">CREW: NONE ASSIGNED</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RANDOM CAST WARNING POP-UP -->
+    <div id="advice" style="border:1px solid #2A2E33; border-left:6px solid #FFA94D; border-radius:16px; background:#2A2E33; padding:22px 26px; display:flex; align-items:center; gap:20px;"></div>
+
+  </div>
+
+  <!-- ACTIONS -->
+  <div style="position:absolute; left:32px; right:32px; bottom:196px; z-index:45; display:flex; flex-direction:column; gap:16px;">
+    <a href="05-reveal.html" class="disp" style="height:96px; border-radius:16px; background:#D9E021; color:#121417; font-size:36px; letter-spacing:0.04em; display:flex; align-items:center; justify-content:center;">Go on then</a>
+    <a href="03-jobs.html" class="disp" style="height:96px; border:1px solid #3A3F45; border-radius:16px; background:#2A2E33; color:#EDEFF2; font-size:36px; letter-spacing:0.04em; display:flex; align-items:center; justify-content:center;">Back</a>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div style="position:absolute; left:0; bottom:0; width:1080px; background:#2A2E33; border-top:1px solid #3A3F45; z-index:50;">
+    <div style="height:120px; display:grid; grid-template-columns:repeat(5, 1fr);">
+      <a href="01-map.html" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;">
+        <span style="width:36px; height:36px; border:2px solid #9AA0A6; border-radius:50% 50% 50% 4px; transform:rotate(-45deg);"></span>
+        <span class="mono" style="font-size:18px; letter-spacing:0.1em; color:#9AA0A6;">MAP</span>
+      </a>
+      <a href="02-city.html" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; border-top:4px solid #FFA94D; background:linear-gradient(180deg, rgba(255,169,77,0.14), rgba(255,169,77,0));">
+        <span style="width:36px; height:36px; border:2px solid #FFA94D; border-radius:4px;"></span>
+        <span class="mono" style="font-size:18px; letter-spacing:0.1em; color:#FFA94D;">CITY</span>
+      </a>
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; position:relative;">
+        <span style="width:36px; height:36px; border:2px solid #9AA0A6; border-radius:50%;"></span>
+        <span style="position:absolute; top:24px; right:calc(50% - 34px); width:16px; height:16px; border-radius:8px; background:#D9E021;"></span>
+        <span class="mono" style="font-size:18px; letter-spacing:0.1em; color:#9AA0A6;">CHAR</span>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;">
+        <span style="width:36px; height:36px; border:2px solid #9AA0A6; border-radius:4px 4px 18px 18px;"></span>
+        <span class="mono" style="font-size:18px; letter-spacing:0.1em; color:#9AA0A6;">CREW</span>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;">
+        <span style="width:36px; height:36px; border:2px solid #5A6068; border-radius:4px; transform:rotate(45deg);"></span>
+        <span class="mono" style="font-size:18px; letter-spacing:0.1em; color:#5A6068;">FIRM</span>
+      </div>
+    </div>
+    <div style="height:40px; display:flex; align-items:center; justify-content:center;">
+      <span style="width:200px; height:6px; border-radius:3px; background:#5A6068;"></span>
+    </div>
+  </div>
+
+  <div class="tooth"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+const W = 1080, H = 1920;
+function scaleFrame() {
+  const f = document.getElementById('frame');
+  const s = Math.min(1, window.innerHeight / H, window.innerWidth / W);
+  f.style.transform = 'scale(' + s + ')';
+  document.body.style.height = (H * s) + 'px';
+}
+window.addEventListener('resize', scaleFrame);
+scaleFrame();
+
+const map = L.map('leaf', {
+  dragging:false, touchZoom:false, scrollWheelZoom:false, doubleClickZoom:false,
+  boxZoom:false, keyboard:false, zoomControl:false, zoomSnap:0.1, attributionControl:true
+});
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution:'© OpenStreetMap contributors', maxZoom:19
+}).addTo(map);
+map.setView([51.5395, -0.0565], 16.6);
+
+// Scene text and the person warning you both re-roll — the cast is never the same twice.
+const SCENES = [
+  "Delivery lad idles outside ChickenLix with the engine running, phone wedged under his helmet. Two minutes of work if the road stays empty, and the road has been empty since the rain started at four.",
+  "The bike's been on the same kerb since ten, indicator still blinking. Nobody's come out for it. Somebody will, eventually, and they'll shout, and shouting is the only real risk here.",
+  "Two lads swapping bags outside the bookies, keys still in the ignition. Nine seconds of nerve, a wet corner at the lights, and it's yours before either of them turns round."
+];
+
+function reroll() {
+  document.getElementById('scene').textContent = pick(SCENES);
+  const c = pick(CAST);
+  const tint = c.id === 'hallow' ? '#2E5EAA' : c.role === 'THE BRIEF' ? '#C9A227' : '#FFA94D';
+  const adv = document.getElementById('advice');
+  adv.style.borderLeftColor = tint;
+  adv.innerHTML = `
+    ${portraitSlot(c, 96, tint)}
+    <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:8px;">
+      <span class="mono" style="font-size:19px; letter-spacing:0.14em; color:${tint};">${c.name.toUpperCase()} · ${c.role} · ${c.place.toUpperCase()}</span>
+      <span style="font-size:27px; line-height:1.35;">“${pick(c.lines)}”</span>
+    </div>`;
+}
+document.getElementById('shuffle').addEventListener('click', reroll);
+reroll();
+</script>
+</body>
+</html>

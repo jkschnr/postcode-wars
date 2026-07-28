@@ -1,0 +1,14 @@
+{
+  "id": "nads",
+  "display_name": "Nads",
+  "full_name": "Nadia \"Nads\" Osei",
+  "role": "Best friend. Day one.",
+  "where": "Wherever you are, usually before you get there",
+  "portrait": "nads",
+  "start": { "relationship": 30, "trust": 30 },
+  "reactions": {
+    "up": "Nads bumps your shoulder and calls you something rude and fond.",
+    "down": "Nads goes quiet, which from Nads is louder than shouting.",
+    "lost": "Nads stops turning up. The wall outside your block is just a wall now."
+  }
+}

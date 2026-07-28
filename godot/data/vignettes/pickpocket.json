@@ -1,0 +1,102 @@
+[
+  {
+    "id": "pickpocket_boiler_man",
+    "job": "pickpocket",
+    "conditions": { "max_heat": 6 },
+    "target": { "name": "Gerald", "detail": "still on hold to the boiler people" },
+    "setup": "Older bloke, tan coat, phone in the back pocket like an invitation. Arguing with someone about a boiler that's been broken three weeks.",
+    "on_success": "Two streets away before he notices. He'll blame the boiler people.",
+    "on_fail": "His hand closes on your wrist. He doesn't shout — he just looks at you, disappointed, like a teacher. Worse than shouting.",
+    "on_crit": "Wallet and phone. There's a photo of a dog in the wallet. You leave the photo on a bus seat where someone'll hand it in."
+  },
+  {
+    "id": "pickpocket_interview_suit",
+    "job": "pickpocket",
+    "conditions": { "max_heat": 7 },
+    "target": { "name": "Dami", "detail": "first interview in two years" },
+    "setup": "A lad in a suit a size too big, CV in a plastic wallet, mouthing answers at the bus stop. Phone face-up on his knee. He's early.",
+    "on_success": "Gone before his bus comes. He'll be halfway through telling them he's reliable before he notices.",
+    "on_fail": "He grabs your wrist, the CV goes everywhere, and he's apologising to you while he picks pages off the wet pavement.",
+    "on_crit": "Phone and a folded twenty — his lunch. The CV says he volunteers at a food bank Saturdays."
+  },
+  {
+    "id": "pickpocket_live",
+    "job": "pickpocket",
+    "conditions": { "time": "day", "max_heat": 8 },
+    "target": { "name": null, "detail": "forty people watching live" },
+    "setup": "Girl filming herself walking, talking to a camera on a stick, spare phone held loose behind her for the 'candid' angle.",
+    "on_success": "You're a blur in the corner of someone's Story. Fourteen viewers. None of them you.",
+    "on_fail": "She spins, still filming, and now you're content. 'Guys. GUYS. Did you see that.' You did not sign a release.",
+    "on_crit": "Two phones — hers and the spare. The live keeps streaming from your pocket for a while."
+  },
+  {
+    "id": "pickpocket_night_shift",
+    "job": "pickpocket",
+    "conditions": { "time": "night" },
+    "target": { "name": "Marek", "detail": "three sites this week" },
+    "setup": "Bloke asleep against the window on the last train, hi-vis still on, phone loose in a lap rising and falling slow. Empty carriage.",
+    "on_success": "You lift it clean and he doesn't stir. His alarm's set for 5:40. It'll ring in an empty seat.",
+    "on_fail": "His hand closes over yours without his eyes opening. 'Not tonight, mate.' Too tired to be angry. He just holds on.",
+    "on_crit": "Phone and a lanyard — agency work. You take the phone. You leave the lanyard where he'll find it."
+  },
+  {
+    "id": "pickpocket_tourists",
+    "job": "pickpocket",
+    "conditions": { "time": "day", "max_heat": 8 },
+    "target": { "name": null, "detail": "a paper map, in this year" },
+    "setup": "Couple with an actual paper map, turning it the wrong way up. Bag unzipped six inches. Either brave or a trap.",
+    "on_success": "They ask you for directions right after. You give them good ones. Least you can do.",
+    "on_fail": "The 'lost tourist' has very fast hands and a very calm voice. Off-duty something. You leave with nothing but a warning.",
+    "on_crit": "Phone, cash, and a little camera. The camera's full of the two of them, grinning, everywhere but here."
+  },
+  {
+    "id": "pickpocket_suit_four_pints",
+    "job": "pickpocket",
+    "conditions": { "max_heat": 7 },
+    "target": { "name": "Rupert", "detail": "basically running the desk now" },
+    "setup": "City boy, three pints deep at four in the afternoon, telling the phone he's 'basically running the desk now.'",
+    "on_success": "He won't notice till the card machine says no. He'll assume it's the bank's fault. It always is, for him.",
+    "on_fail": "Turns out four pints makes some men slow and some men loud. This one's loud. Very.",
+    "on_crit": "Phone and a money clip — actual metal. Who has a money clip. He does. Did."
+  },
+  {
+    "id": "pickpocket_dad_buggy",
+    "job": "pickpocket",
+    "conditions": { "time": "day", "max_heat": 5 },
+    "target": { "name": null, "detail": "one hand on a toddler" },
+    "setup": "Buggy, shopping bags, phone balanced on the handle, one hand on a toddler pointing at everything.",
+    "on_success": "You take the phone. The kid watches you do it and waves. You do not wave back.",
+    "on_fail": "The toddler says 'that man' very clearly and the dad turns round very fast. You're already not there.",
+    "on_crit": "Phone and the loose cash in the buggy pocket. You feel this one in your chest most of the way home."
+  },
+  {
+    "id": "pickpocket_headphones_runner",
+    "job": "pickpocket",
+    "conditions": { "max_heat": 8 },
+    "target": { "name": null, "detail": "phone strapped to the arm" },
+    "setup": "Headphones, armband, phone strapped on, running the same loop of the park he runs every day.",
+    "on_success": "He runs the rest of the loop before he understands. You could hear the playlist skip.",
+    "on_fail": "Turns out a man who runs 10k can also catch you over 40 metres. Who knew. He knew.",
+    "on_crit": "The whole armband comes with it. There's a house key tucked in the back. You post it through his door two streets on."
+  },
+  {
+    "id": "pickpocket_bus_queue",
+    "job": "pickpocket",
+    "conditions": { "max_heat": 6 },
+    "target": { "name": null, "detail": "everyone facing the same way" },
+    "setup": "Bus stop, six people, everyone staring the same direction willing the bus to come. Easy. Also six witnesses.",
+    "on_success": "The bus comes. Everyone gets on. One of them a phone lighter. Nobody looks at anybody.",
+    "on_fail": "The old dear at the front misses nothing. 'OI.' The whole queue turns as one. You go.",
+    "on_crit": "You time it with the bus doors. Phone and a purse, gone in the shuffle of everyone boarding at once."
+  },
+  {
+    "id": "pickpocket_drunk_mate",
+    "job": "pickpocket",
+    "conditions": { "time": "night", "max_heat": 7 },
+    "target": { "name": "someone's mate", "detail": "being left behind" },
+    "setup": "Someone's friend, propped against a wall, being slowly left behind by his group. Somebody's robbing him tonight.",
+    "on_success": "Might as well be you. Might as well not be. You decide it's you. That's the job.",
+    "on_fail": "He's more awake than he's letting on. 'The fuck?' — and his mates are closer than they looked.",
+    "on_crit": "Phone, watch, and a taxi already booked on the app. You cancel the taxi. Small mercy, big walk for him."
+  }
+]

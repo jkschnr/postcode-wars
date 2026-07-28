@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#0C0E10; }
+  a { color:#FFA94D; text-decoration:none; }
+  a:hover { color:#FFC97A; }
+</style>
+</helmet>
+<div style="position:relative; background:#121417; width:max-content; min-width:100%; box-sizing:border-box; padding:80px 0 160px; font-family:Inter, system-ui, sans-serif; color:#EDEFF2;">
+  <div style="position:relative; width:2200px; margin:0 auto; display:flex; flex-direction:column; gap:64px;">
+
+    <header style="display:flex; flex-direction:column; gap:20px;">
+      <div style="display:flex; align-items:baseline; gap:24px;">
+        <span style="font-family:'IBM Plex Mono', monospace; font-size:14px; letter-spacing:0.18em; color:#FFA94D;">05 — HANDOFF</span>
+        <span style="flex:1; height:1px; background:#2A2E33;"></span>
+        <span style="font-family:'IBM Plex Mono', monospace; font-size:14px; letter-spacing:0.18em; color:#5A6068;">GODOT 4 · CONTROL NODES · 1080 × 1920</span>
+      </div>
+      <h1 style="margin:0; font-family:Anton, Impact, sans-serif; font-size:96px; line-height:0.9; text-transform:uppercase;">Export notes</h1>
+      <p style="margin:0; max-width:1000px; font-size:20px; line-height:1.55; color:#9AA0A6; text-wrap:pretty;">One block per screen: the container stack to build, which panels are 9-slice, which rows repeat, and which pieces ship as single assets. Global rules first — they apply to every screen and are not repeated below.</p>
+    </header>
+
+    <section style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;">
+      <div style="border:1px solid #2A2E33; border-radius:16px; background:#0C0E10; padding:28px; display:flex; flex-direction:column; gap:12px;">
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.16em; color:#FFA94D;">GLOBAL · GEOMETRY</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:15px; line-height:1.8; color:#9AA0A6;">
+          <div>Portrait only, 1080 × 1920, 2× export</div>
+          <div>Side gutters 32 · top inset 60 · bottom inset 40</div>
+          <div>Touch targets ≥ 96 px tall, full width by default</div>
+          <div>Every screen is a VBoxContainer of rows — no free placement except THE BOARD</div>
+          <div>Text never below 20 px</div>
+        </div>
+      </div>
+      <div style="border:1px solid #2A2E33; border-radius:16px; background:#0C0E10; padding:28px; display:flex; flex-direction:column; gap:12px;">
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.16em; color:#FFA94D;">GLOBAL · SHARED ASSETS</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:15px; line-height:1.8; color:#9AA0A6;">
+          <div>PANEL · one 9-slice, 16 px corners, 1 px #2A2E33 border, tinted per use</div>
+          <div>BUTTON · one 9-slice, four tints (hi-vis / secondary / danger / disabled)</div>
+          <div>BAR · 9-slice track + fill, chunked steps</div>
+          <div>PIP · 14–24 px single asset, tinted (heat, danger, rarity)</div>
+          <div>TIMER RING · 56–64 px asset + shader arc</div>
+          <div>GRAIN · full-screen tiling noise at 4%, plus concrete tooth at 22% soft-light</div>
+        </div>
+      </div>
+      <div style="border:1px solid #2A2E33; border-radius:16px; background:#0C0E10; padding:28px; display:flex; flex-direction:column; gap:12px;">
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.16em; color:#FFA94D;">GLOBAL · PERSISTENT CHROME</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:15px; line-height:1.8; color:#9AA0A6;">
+          <div>TOP HUD · 140 px incl. safe inset, one scene, instanced on every screen</div>
+          <div>BOTTOM NAV · 120 px + 40 px inset, five repeating tabs of 216 px</div>
+          <div>Both live in the HTML as chrome.js — port once, instance everywhere</div>
+          <div>Street imagery in the prototype is live OSM tiles; bake each one to a flat 1080-wide PNG for the build</div>
+        </div>
+      </div>
+    </section>
+
+    <section style="display:flex; flex-direction:column; gap:24px;">
+      <div style="display:flex; align-items:baseline; gap:24px;">
+        <h2 style="margin:0; font-family:Anton, Impact, sans-serif; font-size:48px; text-transform:uppercase;">Per screen</h2>
+        <span style="flex:1; height:1px; background:#2A2E33;"></span>
+        <span style="font-family:'IBM Plex Mono', monospace; font-size:14px; color:#5A6068;">21 SCREENS · P0 · P1 · P2</span>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;">
+        <sc-for list="{{ screens }}" as="s" hint-placeholder-count="6">
+          <div style="border:1px solid #2A2E33; border-radius:16px; background:#1E2126; padding:28px; display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; align-items:baseline; gap:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.16em; color:#FFA94D;">{{ s.file }}</span>
+              <span style="flex:1; height:1px; background:#2A2E33;"></span>
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.14em; color:#5A6068;">{{ s.tier }}</span>
+            </div>
+            <div style="font-family:Anton, Impact, sans-serif; font-size:36px; line-height:0.98; text-transform:uppercase;">{{ s.name }}</div>
+            <div style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.14em; color:#5A6068;">STACK</div>
+            <div style="font-family:'IBM Plex Mono', monospace; font-size:15px; line-height:1.7; color:#C3C9CF;">{{ s.stack }}</div>
+            <div style="height:1px; background:#2A2E33;"></div>
+            <div style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.14em; color:#5A6068;">9-SLICE</div>
+            <div style="font-family:'IBM Plex Mono', monospace; font-size:15px; line-height:1.7; color:#9AA0A6;">{{ s.nine }}</div>
+            <div style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.14em; color:#5A6068;">REPEATING</div>
+            <div style="font-family:'IBM Plex Mono', monospace; font-size:15px; line-height:1.7; color:#9AA0A6;">{{ s.repeat }}</div>
+            <div style="font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.14em; color:#5A6068;">SINGLE ASSETS</div>
+            <div style="font-family:'IBM Plex Mono', monospace; font-size:15px; line-height:1.7; color:#9AA0A6;">{{ s.single }}</div>
+            <div style="height:1px; background:#2A2E33;"></div>
+            <div style="font-size:18px; line-height:1.5; color:#FFC97A;">{{ s.note }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const S = (file, tier, name, stack, nine, repeat, single, note) =>
+      ({ file, tier, name, stack, nine, repeat, single, note });
+    return {
+      screens: [
+        S('01-map.html', 'P0', 'UK map', 'HUD · map viewport (full-bleed) · location strip · nav',
+          'Location strip panel; debt clock panel',
+          'City node scene ×13, placed by coordinate; travel route line',
+          'Baked UK basemap PNG (2160 wide); sodium glow sprite; current-city glow; badge dot; danger pip',
+          'Labels are auto-placed at runtime in the prototype — in Godot, bake the label offsets from this build and keep the 14 px collision pad.'),
+        S('02-city.html', 'P0', 'City screen', 'HUD · street banner 820 px · city header over banner · city switcher · venue grid · nav',
+          'Venue tile; switcher chip',
+          'Venue tile ×8 (2 cols); switcher chip ×6 (6 cols, shrink to fit)',
+          'Baked street PNG per city; danger pip; heat pip; venue portrait mask 88 px',
+          'One baked banner per city, named by city key. Switcher chips must shrink, never clip a city name.'),
+        S('03-jobs.html', 'P0', 'Job list', 'HUD · street strip 260 px · header · scroll (STORY / CONTRACTS / GRAFT) · nav',
+          'Job card (3 tints: available / locked / story); cost chip',
+          'Job card ×8–12 inside three fixed-order sections; cost chip per card',
+          'Story left edge 8 px; portrait 132 px and 96 px; expiry timer label',
+          'Section order never changes. Locked card = same scene at 0.72 modulate.'),
+        S('04-job-confirm.html', 'P0', 'Job confirm', 'HUD · street 520 px with pin · title · scene panel · numbers grid · advice pop-up · GO / BACK · nav',
+          'Scene panel; numbers panel; advice pop-up',
+          'Stat cell ×4 (equal width); consequence chip ×3',
+          'Location pin + glow; portrait 96 px',
+          'Scene paragraph is ~35 words and re-rolls with the speaker; keep the panel height elastic.'),
+        S('05-reveal.html', 'P0', 'Reveal ceremony', 'Scrim · stinger · outcome line · bag · loot row · character toast · XP bar',
+          'Loot card (5 rarity tints + cash variant); toast',
+          'Loot card ×1–3, flip staggered 90 ms',
+          'Duffel canvas 480×280; rarity glow pool; item art 520×400 per item',
+          'Most-seen screen — cash counts up, never cuts. Glow pool and bag rim take the best rarity colour.'),
+        S('06-choice.html', 'P0', 'Choice card', 'Blurred street · scrim 74% · choice card (portrait / speaker / dialogue / options) · state rail',
+          'Card; option row',
+          'Option row ×2–4, min 96 px, grows to two lines',
+          'Portrait 200 px circle, ring tinted by faction',
+          'Three states share one scene: conversation, stat check, costly. Hints are right-anchored and tinted by consequence.'),
+        S('07-character.html', 'P0', 'Character', 'HUD · street band 340 px · level block · stat rows · skill tracks · gear grid · nav',
+          'Level block; stat row; skill panel; gear tile',
+          'Stat row ×4; skill panel ×4 (2 cols); gear tile ×4 (4 cols); track segment ×8',
+          'Player portrait 260×340; level numeral at 220 px; item art per equipped slot',
+          'The level numeral is the largest element on the screen at every level from 1 to 100 — reserve 4 digits of width.'),
+        S('08-levelup.html', 'P0', 'Level up', 'Night street · rain sheets ×2 · figure · rank stamp · gains grid · XP bar · CTA',
+          'Gains card; stamp frame',
+          'Gains card ×4 (2 cols); rain sheet ×2 (scrolling, different speeds)',
+          'Figure-under-streetlight plate 420×700; lamp glow; tarmac sheen',
+          'Stamp lands at scale 1.5 → 1.0 with −2° rotation, 480 ms. Rank word must fit 12 characters.'),
+        S('09-creation.html', 'P1', 'Character creation', 'Step rail · live preview · step body · BACK / NEXT',
+          'Preview panel; preset tile; origin card; fake input',
+          'Preset tile ×6 (3 cols); origin card ×3; name chip ×6; tag chip ×5',
+          'Look plate ×6 (300×400); step progress segment ×3',
+          'Preview updates on every tap. NEXT is disabled until an origin is chosen.'),
+        S('10-bank.html', 'P1', 'Bank (Bung)', 'HUD · street hero 420 px · dirty/clean pair · deposit panel · wash queue · teller · nav',
+          'Balance panel (gold / green); deposit panel; queue row; teller strip',
+          'Queue row ×4 slots; risk segment ×4',
+          'Slider thumb 64 px; timer ring 64 px; teller portrait 96 px',
+          'Dirty and clean must never share a colour, a border or a panel. Fee and duration scale with the slider.'),
+        S('11-crew.html', 'P1', 'Crew', 'HUD · street hero 420 px · roster · recruit grid · nav',
+          'Roster row; candidate card',
+          'Roster row ×4–6; candidate card ×4 (2 cols)',
+          'Portrait 96 px and 88 px; loyalty bar; class label tint per class',
+          'Idle crew get a gold border — it is the only prompt that they are costing wages for nothing.'),
+        S('12-gym.html', 'P1', 'Gym', 'HUD · street hero 420 px · stat tiles · session panel · queue · trainer · nav',
+          'Stat tile; session button; queue row',
+          'Stat tile ×4 (2 cols); session button ×3; queue row ×3 slots',
+          'Timer ring 64 px; trainer portrait 96 px',
+          'Maxed stat locks to rarity gold and drops out of selection. Energy is spent up front, not on collect.'),
+        S('13-shop-fence.html', 'P1', 'Shop / fence', 'HUD · street hero 420 px · BUY / SELL tabs · item grid · fencer strip · nav',
+          'Item card; tab button',
+          'Item card ×6+ (2 cols), same scene for both tabs',
+          'Item art 520×400 per item; rarity border tint',
+          'Sell tab reuses the buy card with a green price and a "no sale" state for story items.'),
+        S('14-jail.html', 'P1', 'Jail / hospital', 'Bleached street backdrop · bars overlay · header · big ring timer · consequence row · options · brief pop-up · nav',
+          'Consequence tile; option row; pop-up',
+          'Consequence tile ×3; option row ×4',
+          'Ring 520 px; bar overlay (tiling); ghost word "HELD"',
+          'No sodium on this screen — grey only. The timer is the largest element; everything else is subordinate.'),
+        S('15-messages.html', 'P1', 'Messages', 'HUD · thread header · inbox strip · thread scroll · reply panel · nav',
+          'Bubble (in / out); inbox tile; reply row',
+          'Bubble ×n; inbox tile ×4; reply row ×3',
+          'Portrait 88 px; typing dots ×3; unread dot',
+          'Must read as a real messaging app, not a quest log — timestamps under every bubble, replies carry consequence hints.'),
+        S('16-prison-call.html', 'P1', 'Prison call', 'Blue-graded backdrop · caller · credit clock · transcript + topics (one bottom-anchored flow) · nav',
+          'Transcript panel; topic row',
+          'Topic row ×5, disabled when cost exceeds credit',
+          'Portrait 220 px; credit bar; ghost word "WING C"',
+          'The clock ticks in real time and turns red under two minutes. Transcript sits above the topics — never behind them.'),
+        S('17-board.html', 'P0+', 'The board', 'HUD · brick board viewport (free placement, the one exception) · selection footer · nav',
+          'Lead card (photo / note)',
+          'Lead card ×8; string path ×n',
+          'Brick wall tile; pin 22 px; work-lamp glow; character plate per photo lead',
+          'Strings are curved paths between card centres — recompute on any card move. Tap two leads to connect.'),
+        S('18-codex.html', 'P2', 'Codex', 'HUD · header · three tabs · scroll body · nav',
+          'Tab; entry card; place row; ledger row',
+          'Entry card ×15 (2 cols); place row ×6; ledger row ×6',
+          'Character plate per met entry; unknown state uses a dashed slot',
+          'Ledger of Consequences rows are never removable and never payable — they only accumulate.'),
+        S('19-trapline.html', 'P2', 'Trapline', 'HUD · header · schematic diagram 1016×880 · legend · stop detail · summary · nav',
+          'Legend tile; detail panel; summary tile',
+          'Stop node ×8; line ×3; legend tile ×3; summary tile ×3',
+          'Node ring; hub node 34 px radius; line colour per branch',
+          'Schematic, not geography — 90° elbows only, spacing fixed. Health colour drives node ring and take label.'),
+        S('20-firm.html', 'P2', 'Firm', 'HUD · street hero 420 px · bank + territory pair · war room · roster · nav',
+          'Bank panel; war-room panel; roster row',
+          'Roster row ×9–12; territory segment ×5',
+          'Portrait 84 px; contested tint; ghost word "FIRM"',
+          'War room is the only place danger red is used as a panel fill. Rank 1 gets the iconic gold border.'),
+        S('21-leaderboards.html', 'P2', 'Leaderboards', 'HUD · header · scope tabs · category tabs · list · nav',
+          'Scope tab; category tab; standing row',
+          'Standing row ×12 + pinned player row; tabs ×2 and ×3',
+          'Portrait 76 px; medal border for top 3; ghost word "TOP 100"',
+          'Player row is always visible — pin it after the break, even at rank 4,000.')
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

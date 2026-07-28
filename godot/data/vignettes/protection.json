@@ -1,0 +1,152 @@
+[
+ {
+  "id": "prot_market",
+  "target": {
+   "name": null,
+   "detail": "the market stalls, Saturday rush"
+  },
+  "setup": "Saturday market, cash everywhere, stalls that'd fold if a wrong crowd 'accidentally' turned up at closing. You keep the wrong crowd away. That's the service.",
+  "on_success": "Walk the row, nod to the ones paid up, linger by the one who isn't until he remembers his manners. Peaceful market. Good for trade.",
+  "on_fail": "The stallholders had a WhatsApp group and a plan and today they all say no at once. Solidarity. Annoying.",
+  "on_crit": "A stall gets bothered by outsiders while you're stood there. You handle it in front of everyone. Rates go up by consensus.",
+  "job": "protection",
+  "conditions": {
+   "max_heat": 12
+  }
+ },
+ {
+  "id": "prot_market_saturday",
+  "conditions": {
+   "max_heat": 6
+  },
+  "target": {
+   "name": "—",
+   "detail": "the market row on the busy Saturday"
+  },
+  "setup": "Saturday market, cash everywhere, stalls that'd fold if a wrong crowd 'accidentally' turned up at closing. You keep the wrong crowd away. That's the whole of the service and everyone here understands it.",
+  "on_success": "Walk the row, nod to the paid-up, linger by the one who isn't until he remembers his manners. A peaceful market. Good for trade, good for you.",
+  "on_fail": "The stallholders had a meeting you weren't at and today they all say no at once. Solidarity. Genuinely inconvenient.",
+  "job": "protection"
+ },
+ {
+  "id": "prot_offie_late",
+  "conditions": {
+   "time": "night",
+   "max_heat": 7
+  },
+  "target": {
+   "name": "Raj",
+   "detail": "the off-licence that keeps getting done over on Fridays"
+  },
+  "setup": "Corner offie, robbed twice this month, a shutter that doesn't come down fast enough and a man behind the counter who's stopped sleeping. A weekly envelope buys him a quiet Friday for the first time since spring.",
+  "on_success": "You have a word with the lads who've been doing him over — a firmer word than they're used to — and the Fridays go quiet. Raj pays gladly.",
+  "on_fail": "He's fitted a panic button and a camera and decided that the police are cheaper than you, which, for now, they are.",
+  "on_crit": "Word gets round that you sorted Raj's Fridays, and by Monday three more shops on the parade have found your number.",
+  "job": "protection"
+ },
+ {
+  "id": "prot_barbers_new",
+  "conditions": {
+   "max_heat": 5
+  },
+  "target": {
+   "name": "—",
+   "detail": "the new barber's that's doing suspiciously well"
+  },
+  "setup": "Barbers doing fades all day cash-in-hand, back room busier than the chairs, takings that don't match the haircuts. Everyone pays somebody round here; the man's just new enough not to know that yet.",
+  "on_success": "You become the somebody. A clean cut, a clean arrangement, and a free trim thrown in while you're explaining how things work.",
+  "on_fail": "He's already paying the firm you'd rather not mention, and now they know you've been sniffing round their earner.",
+  "job": "protection"
+ },
+ {
+  "id": "prot_food_van_pitch",
+  "conditions": {
+   "time": "night",
+   "max_heat": 6
+  },
+  "target": {
+   "name": "Gaz",
+   "detail": "the burger van that's parked on a pitch that isn't free"
+  },
+  "setup": "A burger van doing the late trade outside the clubs, on a pitch that's been somebody's for years, run by a bloke from out of town who doesn't know the ground rent isn't optional.",
+  "on_success": "You explain the pitch, the history, the arithmetic. He pays the ground rent because the alternative is finding out what happens to vans that don't.",
+  "on_fail": "He's got a licence, a permit, and a cousin on the council, and he reads you the lot before you've finished your sentence.",
+  "job": "protection",
+  "on_crit": "Turns out he clears more in a weekend than you guessed. The ground rent gets renegotiated upward on the spot, amicably."
+ },
+ {
+  "id": "prot_arcade_machines",
+  "conditions": {
+   "max_heat": 7
+  },
+  "target": {
+   "name": "—",
+   "detail": "the seafront arcade full of cash boxes"
+  },
+  "setup": "A seafront amusement arcade, machines fat with pound coins, a manager who empties them into a bag twice a day and walks it to the bank alone, which is either brave or an invitation.",
+  "on_success": "A quiet arrangement means the walk to the bank stays uneventful and the machines stay unbothered. He decides the peace of mind is worth the cut.",
+  "on_fail": "The arcade's part of a chain with its own security firm, and the manager's just a man who follows the policy, and the policy is to say no.",
+  "on_crit": "He's so relieved it's only you and not the other lot that he rounds the payment up and throws in a bag of tokens for the kids you don't have.",
+  "job": "protection"
+ },
+ {
+  "id": "prot_builder_site",
+  "conditions": {
+   "time": "day",
+   "min_level": 6,
+   "max_heat": 8
+  },
+  "target": {
+   "name": "—",
+   "detail": "the building site that keeps losing copper overnight"
+  },
+  "setup": "A site haemorrhaging copper and tools every night, a foreman sick of the insurance excess, and a fence with a hole in it that a weekly payment could persuade to stay whole.",
+  "on_success": "You guarantee the fence stays up and the copper stays put — because you're the reason it was going missing — and the foreman pays for the miracle.",
+  "on_fail": "The developer's brought in a proper security firm with dogs and floodlights, and your arrangement's just been made redundant.",
+  "job": "protection"
+ },
+ {
+  "id": "prot_chicken_shop_kids",
+  "conditions": {
+   "time": "night",
+   "max_heat": 6
+  },
+  "target": {
+   "name": "Kemi",
+   "detail": "the chicken shop the youngers won't stop robbing"
+  },
+  "setup": "A chicken shop plagued by kids who dip the till and leg it, staff too young to stop them, an owner who can't be there every shift. A word from you and the youngers find somewhere else to be a nuisance.",
+  "on_success": "You know the kids by name and they know yours, and one conversation puts the shop off-limits. Kemi pays for a peace only you can sell.",
+  "on_fail": "The youngers are somebody's youngers, and that somebody takes the hint you're muscling in and sends a firmer one back.",
+  "job": "protection"
+ },
+ {
+  "id": "prot_pub_doorman",
+  "conditions": {
+   "time": "night",
+   "max_heat": 8
+  },
+  "target": {
+   "name": "—",
+   "detail": "the pub that sacked its door firm to save money"
+  },
+  "setup": "A boozer that let its licensed doormen go to cut costs and now can't handle its own Friday nights, a landlord nursing a black eye and a broken optic shelf and a growing understanding of value.",
+  "on_success": "You put a couple of faces on the door — off the books, no badges, all reputation — and the trouble evaporates. The landlord pays double what the firm cost and thanks you.",
+  "on_fail": "The brewery's area manager turns up mid-negotiation and starts talking about licences and legal doorstaff and things you'd rather not be near.",
+  "job": "protection"
+ },
+ {
+  "id": "prot_mosque_ramadan",
+  "conditions": {
+   "max_heat": 4
+  },
+  "target": {
+   "name": "—",
+   "detail": "the community fundraiser holding more cash than it should"
+  },
+  "setup": "A community centre running a big cash fundraiser, more money in one room than the place sees all year, organised by people who trust everyone and have never once thought about who might be watching them carry it out.",
+  "on_success": "You appoint yourself unofficial security, walk the takings safely to the night safe, and take a donation that everyone assumes is going the same place as theirs. Some jobs sit with you afterwards.",
+  "on_fail": "The organiser's son is the one who spotted you clocking the cash box, and he's the type who'd rather make a scene than a payment.",
+  "job": "protection"
+ }
+]

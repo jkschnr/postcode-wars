@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>23-motion — Postcode Wars</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ui.css">
+<script src="art.js"></script>
+<script src="cast.js"></script>
+<script src="chrome.js"></script>
+<script src="anim.js"></script>
+<style>
+  #frame { background:#14161a; }
+  .tile { border:1px solid #2A2E33; border-radius:16px; background:#1E2126; overflow:hidden; display:flex; flex-direction:column; }
+  .tilehead { padding:16px 20px; display:flex; align-items:baseline; justify-content:space-between; gap:12px; border-bottom:1px solid #2A2E33; }
+  .stage { position:relative; overflow:hidden; background:#0E1013; }
+  .replay { margin:0 20px 18px; }
+  @keyframes slideInR { from { transform:translateX(100%); } to { transform:none; } }
+  @keyframes slideOutR { from { transform:none; } to { transform:translateX(100%); } }
+  @keyframes cardUp { from { transform:scale(0.96); opacity:0; } to { transform:none; opacity:1; } }
+  @keyframes toastIn { 0% { transform:translateY(-140%); } 70% { transform:translateY(6%); } 100% { transform:none; } }
+  @keyframes bagDrop { 0% { transform:translateY(-120px) scale(0.96); opacity:0; } 70% { transform:translateY(8px) scale(1.01); opacity:1; } 100% { transform:none; opacity:1; } }
+  @keyframes stampIn { 0% { transform:scale(1.5) rotate(-5deg); opacity:0; } 60% { transform:scale(1) rotate(-2deg); opacity:1; } 100% { transform:scale(1) rotate(-2deg); opacity:1; } }
+  @keyframes flip { from { transform:perspective(900px) rotateY(90deg) scale(0.94); opacity:0; } to { transform:none; opacity:1; } }
+  @keyframes rainA { to { transform:translate(-60px, 300px); } }
+</style>
+</head>
+<body>
+<div id="frame">
+  <div style="position:absolute; inset:0; background:
+      radial-gradient(42% 22% at 76% 8%, rgba(255,169,77,0.16), rgba(255,169,77,0) 68%),
+      linear-gradient(180deg, #1a1d21 0%, #14161a 44%, #0E1013 100%);"></div>
+  <div class="disp" style="position:absolute; left:-20px; bottom:300px; z-index:0; font-size:280px; line-height:0.8; color:#EDEFF2; opacity:0.05;">MOTION</div>
+  <div id="hud"></div>
+
+  <div class="scroll" style="top:140px; bottom:160px; padding:28px 32px 56px; box-sizing:border-box; display:flex; flex-direction:column; gap:28px;">
+
+    <div style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
+      <div id="back"></div>
+      <span class="mono" style="font-size:20px; letter-spacing:0.16em; color:#5A6068;">SPRITE STRIPS · UI MOTION · TRANSITIONS</span>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      <span class="mono" style="font-size:22px; letter-spacing:0.18em; color:#FFA94D;">EVERY MOVING PART, IN ONE PLACE</span>
+      <span class="disp" style="font-size:80px; line-height:0.9;">Motion</span>
+      <span style="font-size:26px; line-height:1.4; color:#9AA0A6; max-width:900px;">Pixel strips play frame-by-frame at fixed fps and export straight to AnimatedSprite2D. UI motion is easing only — no sprite work needed in engine.</span>
+    </div>
+
+    <!-- TALKING HEAD -->
+    <div class="tile">
+      <div class="tilehead">
+        <span class="disp" style="font-size:34px;">Talking head</span>
+        <span class="mono" style="font-size:20px; color:#FFA94D;">4 FRAMES · IDLE / BLINK / MOUTH ×2 · 9 FPS</span>
+      </div>
+      <div style="padding:22px; display:flex; gap:22px; align-items:flex-start;">
+        <div id="head" style="width:240px; height:300px; flex:none; border:2px solid #FFA94D; border-radius:8px; background-color:#0C0E10;"></div>
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:16px;">
+          <div>
+            <div id="head-name" class="disp" style="font-size:40px; line-height:1;">—</div>
+            <div id="head-place" class="mono" style="font-size:20px; letter-spacing:0.12em; color:#FFA94D;">—</div>
+          </div>
+          <div class="inset" style="padding:20px 22px; min-height:150px;">
+            <span id="head-line" style="font-size:28px; line-height:1.4;"></span><span class="mono" style="color:#FFA94D;">▌</span>
+          </div>
+          <div style="display:flex; gap:14px;">
+            <button id="head-again" class="btn btn-secondary" style="flex:1; font-size:26px;">Another line</button>
+            <button id="head-swap" class="btn btn-secondary" style="flex:1; font-size:26px; border-color:#FFA94D; color:#FFA94D;">Swap speaker</button>
+          </div>
+          <span class="mono" style="font-size:20px; color:#5A6068;">Blinks on a 1.8–5 s random timer. Mouth flaps only while the line types.</span>
+        </div>
+      </div>
+      <div style="padding:0 22px 22px;">
+        <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#5A6068;">STRIP · art/anim-&lt;id&gt;.png</span>
+        <div id="stripview" style="margin-top:12px; height:120px; border:1px solid #2A2E33; border-radius:8px; image-rendering:pixelated; background-size:contain; background-repeat:no-repeat; background-position:left center; background-color:#0C0E10;"></div>
+      </div>
+    </div>
+
+    <!-- PROP STRIPS -->
+    <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:16px;">
+      <div class="tile">
+        <div class="tilehead"><span class="disp" style="font-size:28px;">Shutter</span><span class="mono" style="font-size:20px; color:#5A6068;">6F · 10FPS</span></div>
+        <div class="stage" style="height:200px;"><div id="sp-shutter" style="position:absolute; inset:0;"></div></div>
+        <button class="btn btn-secondary replay" data-play="shutter" style="height:96px; font-size:24px; margin-top:18px;">Roll up</button>
+      </div>
+      <div class="tile">
+        <div class="tilehead"><span class="disp" style="font-size:28px;">Stamp</span><span class="mono" style="font-size:20px; color:#5A6068;">5F · 14FPS</span></div>
+        <div class="stage" style="height:200px;"><div id="sp-stamp" style="position:absolute; inset:0;"></div></div>
+        <button class="btn btn-secondary replay" data-play="stamp" style="height:96px; font-size:24px; margin-top:18px;">Thud</button>
+      </div>
+      <div class="tile">
+        <div class="tilehead"><span class="disp" style="font-size:28px;">Moped</span><span class="mono" style="font-size:20px; color:#5A6068;">4F · LOOP</span></div>
+        <div class="stage" style="height:200px;"><div id="sp-moped" style="position:absolute; inset:0;"></div></div>
+        <button class="btn btn-secondary replay" data-play="moped" style="height:96px; font-size:24px; margin-top:18px;">Pull off</button>
+      </div>
+      <div class="tile">
+        <div class="tilehead"><span class="disp" style="font-size:28px;">Streetlamp</span><span class="mono" style="font-size:20px; color:#5A6068;">4F · LOOP</span></div>
+        <div class="stage" style="height:200px;"><div id="sp-lamp" style="position:absolute; inset:0;"></div></div>
+        <button class="btn btn-secondary replay" data-play="lamp" style="height:96px; font-size:24px; margin-top:18px;">Flicker</button>
+      </div>
+    </div>
+
+    <!-- UI MOTION -->
+    <div class="tile">
+      <div class="tilehead">
+        <span class="disp" style="font-size:34px;">UI motion</span>
+        <span class="mono" style="font-size:20px; color:#FFA94D;">EASING ONLY · NO SPRITES</span>
+      </div>
+      <div style="padding:22px; display:grid; grid-template-columns:1fr 1fr; gap:18px;">
+
+        <div class="inset" style="padding:22px; display:flex; flex-direction:column; gap:14px;">
+          <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#5A6068;">CASH COUNTS UP · 900 MS EASE-OUT</span>
+          <span id="m-cash" class="disp tab" style="font-size:64px; line-height:1; color:#C9A227;">£0</span>
+          <button class="btn btn-secondary" data-ui="cash" style="font-size:24px;">Replay</button>
+        </div>
+
+        <div class="inset" style="padding:22px; display:flex; flex-direction:column; gap:14px;">
+          <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#5A6068;">XP BAR CHUNKS · OVERSHOOT BOUNCE</span>
+          <div style="height:24px; border-radius:12px; background:#121417; border:1px solid #2A2E33; overflow:hidden; display:flex;">
+            <div id="m-xp" style="width:20%; background:linear-gradient(90deg,#FFA94D,#FFC97A); transition:width 520ms cubic-bezier(.2,1.5,.3,1);"></div>
+          </div>
+          <button class="btn btn-secondary" data-ui="xp" style="font-size:24px;">Replay</button>
+        </div>
+
+        <div class="inset" style="padding:22px; display:flex; flex-direction:column; gap:14px;">
+          <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#5A6068;">BAG DROPS · 420 MS · LANDS HEAVY</span>
+          <div class="stage" style="height:160px; border-radius:12px;">
+            <div id="m-bag" style="position:absolute; left:50%; top:24px; transform:translateX(-50%); width:200px; height:110px; border-radius:56px 56px 12px 12px; border:1px solid #C9A227; image-rendering:pixelated; background-image:url(art/tex-canvasbag.png); background-size:cover;"></div>
+          </div>
+          <button class="btn btn-secondary" data-ui="bag" style="font-size:24px;">Replay</button>
+        </div>
+
+        <div class="inset" style="padding:22px; display:flex; flex-direction:column; gap:14px;">
+          <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#5A6068;">LOOT CARDS FLIP · STAGGER 90 MS</span>
+          <div id="m-loot" style="display:flex; gap:12px;"></div>
+          <button class="btn btn-secondary" data-ui="loot" style="font-size:24px;">Replay</button>
+        </div>
+
+        <div class="inset" style="padding:22px; display:flex; flex-direction:column; gap:14px;">
+          <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#5A6068;">TOAST ARRIVES LIKE A TEXT · 3 S</span>
+          <div class="stage" style="height:160px; border-radius:12px;">
+            <div id="m-toast" style="position:absolute; left:16px; right:16px; top:20px; border:1px solid #2A2E33; border-left:6px solid #FFA94D; border-radius:12px; background:#2A2E33; padding:16px 18px; opacity:0;">
+              <div class="mono" style="font-size:20px; color:#FFA94D;">NADS · NOW</div>
+              <div style="font-size:24px;">“Yard's empty. You coming or what?”</div>
+            </div>
+          </div>
+          <button class="btn btn-secondary" data-ui="toast" style="font-size:24px;">Replay</button>
+        </div>
+
+        <div class="inset" style="padding:22px; display:flex; flex-direction:column; gap:14px;">
+          <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#5A6068;">RANK STAMP · 480 MS · RAIN BEHIND</span>
+          <div class="stage" style="height:160px; border-radius:12px; display:flex; align-items:center; justify-content:center;">
+            <div style="position:absolute; inset:-20%; background-image:repeating-linear-gradient(102deg, rgba(255,201,122,0.16) 0 1px, rgba(255,201,122,0) 1px 9px); animation:rainA 700ms linear infinite;"></div>
+            <div id="m-stamp" style="border:4px solid #FFA94D; border-radius:8px; padding:8px 26px; background:rgba(255,169,77,0.06);">
+              <span class="disp" style="font-size:52px; color:#FFC97A;">Shotter</span>
+            </div>
+          </div>
+          <button class="btn btn-secondary" data-ui="stamp" style="font-size:24px;">Replay</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRANSITIONS -->
+    <div class="tile">
+      <div class="tilehead">
+        <span class="disp" style="font-size:34px;">Screen transitions</span>
+        <span class="mono" style="font-size:20px; color:#FFA94D;">IN FROM RIGHT · BACK OUT RIGHT · 240 MS</span>
+      </div>
+      <div style="padding:22px; display:flex; gap:20px; align-items:stretch;">
+        <div class="stage" style="flex:1; height:420px; border-radius:12px;">
+          <div style="position:absolute; inset:0; padding:20px; display:flex; flex-direction:column; gap:12px;">
+            <span class="mono" style="font-size:20px; color:#5A6068;">CITY</span>
+            <span class="disp" style="font-size:44px;">London</span>
+            <div class="panel" style="height:80px;"></div>
+            <div class="panel" style="height:80px;"></div>
+          </div>
+          <div id="t-screen" style="position:absolute; inset:0; background:#121417; border-left:1px solid #2A2E33; padding:20px; display:none; flex-direction:column; gap:12px;">
+            <span class="mono" style="font-size:20px; color:#5A6068;">JOBS</span>
+            <span class="disp" style="font-size:44px;">The board</span>
+            <div class="panel" style="height:80px; border-color:#FFA94D;"></div>
+            <div class="panel" style="height:80px;"></div>
+            <div class="panel" style="height:80px;"></div>
+          </div>
+        </div>
+        <div style="width:300px; flex:none; display:flex; flex-direction:column; gap:14px;">
+          <button class="btn btn-secondary" data-ui="tin" style="font-size:26px; border-color:#FFA94D; color:#FFA94D;">Push job list</button>
+          <button class="btn btn-secondary" data-ui="tout" style="font-size:26px;">Go back</button>
+          <span class="mono" style="font-size:20px; line-height:1.6; color:#5A6068;">FORWARD · slide in from right, 240 ms ease-out<br><br>BACK · slide out right, 200 ms ease-in<br><br>Cards inside enter at 0.96 → 1.00, 120 ms, staggered</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="nav"></div>
+  <div class="tooth"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+document.getElementById('back').innerHTML = backLink('SCREENS', '00-index.html');
+mountChrome('char', {});
+
+// ---- talking head
+let head = null, who = null;
+function newSpeaker() {
+  who = pick(CAST);
+  document.getElementById('head-name').textContent = who.name;
+  document.getElementById('head-place').textContent = who.role + ' · ' + who.place.toUpperCase();
+  const src = 'art/anim-' + (window.PX_ID[who.id] ? who.id : 'nads') + '.png';
+  if (head) head.stop();
+  head = talkingHead(document.getElementById('head'), src, {});
+  document.getElementById('stripview').style.backgroundImage = 'url(' + src + ')';
+  say();
+}
+function say() {
+  const line = '“' + pick(who.lines) + '”';
+  const ms = line.length * (1000 / 42) + 300;
+  head.say(ms);
+  typeOut(document.getElementById('head-line'), line, 42);
+}
+document.getElementById('head-again').addEventListener('click', say);
+document.getElementById('head-swap').addEventListener('click', newSpeaker);
+newSpeaker();
+
+// ---- prop strips
+const PROPS = {
+  shutter: { fw:64, fh:64, frames:6, fps:10, loop:false },
+  stamp:   { fw:64, fh:64, frames:5, fps:14, loop:false },
+  moped:   { fw:64, fh:48, frames:4, fps:9,  loop:true },
+  lamp:    { fw:64, fh:64, frames:4, fps:6,  loop:true }
+};
+const props = {};
+Object.entries(PROPS).forEach(([k, cfg]) => {
+  const el = document.getElementById('sp-' + k);
+  el.style.backgroundRepeat = 'no-repeat';
+  props[k] = sprite(el, { src:'art/anim-' + k + '.png', ...cfg });
+  if (cfg.loop) props[k].play(cfg.fps, true);
+});
+document.querySelectorAll('[data-play]').forEach(b => b.addEventListener('click', () => {
+  const k = b.dataset.play, cfg = PROPS[k];
+  cfg.loop ? props[k].play(cfg.fps, true) : props[k].once(cfg.fps);
+}));
+
+// ---- UI motion
+const R = { basic:'#B9C0C7', decent:'#6FCF6F', peng:'#4DA3FF', certi:'#B06CF0', iconic:'#F2C14E' };
+function lootRow() {
+  const el = document.getElementById('m-loot');
+  const set = [['peng','reader'], ['decent','trainers'], ['iconic','ledger']];
+  el.innerHTML = set.map(([r, art], i) => `
+    <div style="flex:1; border:2px solid ${R[r]}; border-radius:12px; overflow:hidden; animation:flip 260ms cubic-bezier(.2,.8,.3,1) both; animation-delay:${i * 90}ms;">
+      <div style="height:110px; image-rendering:pixelated; background-image:url(art/px-item-${art}.png); background-size:cover;"></div>
+      <div style="padding:10px 12px;"><span class="mono" style="font-size:20px; color:${R[r]};">${r.toUpperCase()}</span></div>
+    </div>`).join('');
+}
+function replay(el, anim) { el.style.animation = 'none'; void el.offsetWidth; el.style.animation = anim; }
+const UI = {
+  cash: () => countTo(document.getElementById('m-cash'), 2410, 900, v => '£' + v.toLocaleString('en-GB')),
+  xp: () => { const b = document.getElementById('m-xp'); b.style.width = '20%'; setTimeout(() => b.style.width = '68%', 60); },
+  bag: () => replay(document.getElementById('m-bag'), 'bagDrop 420ms cubic-bezier(.2,.8,.3,1) both'),
+  loot: lootRow,
+  toast: () => { const t = document.getElementById('m-toast'); t.style.opacity = 1; replay(t, 'toastIn 420ms cubic-bezier(.2,.9,.3,1) both'); setTimeout(() => t.style.opacity = 0, 3000); },
+  stamp: () => replay(document.getElementById('m-stamp'), 'stampIn 480ms cubic-bezier(.2,.9,.3,1) both'),
+  tin: () => { const s = document.getElementById('t-screen'); s.style.display = 'flex'; replay(s, 'slideInR 240ms cubic-bezier(.2,.8,.3,1) both'); },
+  tout: () => { const s = document.getElementById('t-screen'); replay(s, 'slideOutR 200ms ease-in both'); setTimeout(() => s.style.display = 'none', 200); }
+};
+document.querySelectorAll('[data-ui]').forEach(b => b.addEventListener('click', () => UI[b.dataset.ui]()));
+UI.cash(); UI.loot(); UI.stamp();
+</script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+[
+ {
+  "id": "burg_side_return",
+  "target": {
+   "name": null,
+   "detail": "the side return, gate on the latch"
+  },
+  "setup": "Side gate on the latch, recycling not taken in, three days of post fanning under the letterbox. Nobody home and the house knows it.",
+  "on_success": "Patio door lifts off the runner like it was asking. In, sweep the usual drawers, out before the security light even decides.",
+  "on_fail": "Motion light, then a dog you didn't hear about, then a neighbour at their window in a dressing gown filming you. Three strikes in four seconds.",
+  "on_crit": "Jewellery box under the socks, exactly where everyone hides it, exactly why everyone looks there. Somebody's nan's gold, and now it's yours.",
+  "job": "burglary",
+  "conditions": {
+   "max_heat": 12
+  }
+ },
+ {
+  "id": "burg_show_home",
+  "conditions": {
+   "time": "night",
+   "max_heat": 12
+  },
+  "target": {
+   "name": null,
+   "detail": "the one lit window on a dark street"
+  },
+  "setup": "Whole terrace dark except one — telly flicker upstairs, keys and a watch on the hall table you can see through the glass.",
+  "on_success": "Letterbox, fishing rod, keys off the table. You never even open a window. They rebooked the whole street's trust for this.",
+  "on_fail": "The telly-flicker was a plug timer. Real them was in the kitchen the whole time and now they're between you and the door.",
+  "on_crit": "Car keys too. There's a nice German thing on the drive and you've suddenly got a way home.",
+  "job": "burglary"
+ },
+ {
+  "id": "burg_scaffold",
+  "target": {
+   "name": "the scaffold job",
+   "detail": "loft conversion, ladder still up"
+  },
+  "setup": "Half-done loft conversion, scaffold up the front, first-floor window on the latch because the builders can't be bothered either.",
+  "on_success": "Up the boards, in the window, out with the tools and whatever the owners left in the 'safe' room. The builders get blamed. Everyone wins except them.",
+  "on_fail": "Scaffold board was loose and so was your footing. You come down the quick way, ankle first, into the skip.",
+  "on_crit": "They'd moved the good stuff up here to keep it from the builders. Kept it lovely for you instead.",
+  "job": "burglary",
+  "conditions": {
+   "max_heat": 12
+  }
+ },
+ {
+  "id": "burg_show_home_dog",
+  "conditions": {
+   "max_heat": 6
+  },
+  "target": {
+   "name": "—",
+   "detail": "the one with the dog bowl by the back step"
+  },
+  "setup": "Full bowl of water on the step, no dog barking. Either it's out with them or it's the quiet kind that waits. The kitchen window's on the latch either way.",
+  "on_success": "In and out through the kitchen. The dog watches from a basket and decides you're not worth the effort. Sensible dog.",
+  "on_fail": "Not the quiet kind. It comes round the side of the house already committed and you leave a trainer behind.",
+  "job": "burglary"
+ },
+ {
+  "id": "burg_scaffold_flat",
+  "conditions": {
+   "time": "night",
+   "max_heat": 7
+  },
+  "target": {
+   "name": "Priya",
+   "detail": "top-floor flat, scaffolding up the front all month"
+  },
+  "setup": "Refurb job, scaffold to the third floor, boards wet from the afternoon. One window without a sticker on it, which means one flat the alarm firm didn't finish.",
+  "on_success": "Up the boards, in the unstickered window, out the same way with a laptop and a jar of pound coins somebody was saving for something.",
+  "on_fail": "The board you trusted wasn't clipped in. You come down faster than you went up and land in the skip, which is the only lucky part.",
+  "on_crit": "Whoever lives here doesn't trust banks. You find out exactly how much in a shoebox on top of the wardrobe.",
+  "job": "burglary"
+ },
+ {
+  "id": "burg_keys_letterbox",
+  "conditions": {
+   "max_heat": 5
+  },
+  "target": {
+   "name": "—",
+   "detail": "keys you can see on the hall table through the glass"
+  },
+  "setup": "Bungalow, single glazing, and a set of keys on the hall table catching the streetlight. There's a car on the drive those keys almost certainly open.",
+  "on_success": "Letterbox, a length of wire, patience. Keys off the table without touching the door. The car's yours before they've turned over in bed.",
+  "on_fail": "The wire slips and the keys go on the floor with a sound the whole quiet street can hear. A landing light comes on upstairs.",
+  "on_crit": "House keys, car keys, and a fob for a lock-up you'll be looking into on Thursday.",
+  "job": "burglary"
+ },
+ {
+  "id": "burg_probate_empty",
+  "conditions": {
+   "max_heat": 12
+  },
+  "target": {
+   "name": "—",
+   "detail": "the house that's been empty since the funeral"
+  },
+  "setup": "Curtains half-drawn the same way for six weeks, a wheelie bin nobody's put out, a small pile of condolence cards fanned under the letterbox that nobody's come to read.",
+  "on_success": "A quiet house that doesn't fight you. You take the telly and the tools and leave the photographs, which is the one line you keep.",
+  "on_fail": "A neighbour's been keeping an eye out of respect and there's nothing more dangerous than a respectful neighbour with a phone.",
+  "job": "burglary"
+ },
+ {
+  "id": "burg_new_build_site",
+  "conditions": {
+   "time": "night",
+   "min_level": 4,
+   "max_heat": 12
+  },
+  "target": {
+   "name": "—",
+   "detail": "the show home nobody actually lives in"
+  },
+  "setup": "Estate half-built, one house done up perfect to sell the rest. Staged furniture, a fruit bowl that's plastic, and appliances still in the film they came wrapped in.",
+  "on_success": "Everything's boxed-fresh and nothing's been registered. You clear the white goods into the van like a delivery running backwards.",
+  "on_fail": "The show home's the one thing on site with a live alarm and a camera, because it's the one thing they're trying to sell.",
+  "on_crit": "The sales office next door was never locked. There's a safe in it and a very bad four-digit code.",
+  "job": "burglary"
+ },
+ {
+  "id": "burg_landlord_hmo",
+  "conditions": {
+   "max_heat": 8
+  },
+  "target": {
+   "name": "Aaron",
+   "detail": "the shared house where nobody owns the front door"
+  },
+  "setup": "Six locks on six bedroom doors and a communal hallway anyone can walk into. Bikes in the corridor, a whiteboard about the bins, and nobody who'd stop a stranger.",
+  "on_success": "You walk in like you're viewing a room. One bedroom door's been left on the latch by a lad running for the bus. That's his lesson, not yours.",
+  "on_fail": "Turns out one of them works nights and sleeps days, and you've just woken him up standing in his doorway.",
+  "job": "burglary"
+ },
+ {
+  "id": "burg_open_window_hot",
+  "conditions": {
+   "time": "day",
+   "max_heat": 12
+  },
+  "target": {
+   "name": "—",
+   "detail": "the ground-floor window somebody opened for the heat and forgot"
+  },
+  "setup": "First proper warm day of the year and half the street's opened up. One window swung wide onto an empty front room, curtains breathing in and out with the wind.",
+  "on_success": "You don't even climb in fully — arm through, bag off the sofa, handbag off the hook, gone before the curtain's finished its next breath.",
+  "on_fail": "There's a baby asleep in that front room and a mum in the kitchen who hears the wrong kind of quiet.",
+  "job": "burglary"
+ }
+]

@@ -1,0 +1,30 @@
+{
+ "job": "ram_raid",
+ "stages": [
+  {
+   "name": "The shutter",
+   "text": "Van at the top of the road, engine up, shutter that's jammed half-open since Christmas. Through it in one and the first thirty seconds are yours before any alarm decides you're real.",
+   "fail_text": "They replaced the bollard Tuesday. The van's front end is now evidence and you're on foot."
+  },
+  {
+   "name": "The counter",
+   "text": "Stockroom's behind the till, sealed boxes still on the delivery pallet. Every second inside is another handset in the bag — and every second is one the response car's already been told about.",
+   "fail_text": "The stockroom door's a fire door that only opens the wrong way, and you've spent the thirty seconds finding that out."
+  },
+  {
+   "name": "The window tray",
+   "text": "They load the display for the Saturday and the tray's still out. Grabbing it doubles the take and costs you ten seconds bent over glass with the alarm screaming in your ears.",
+   "fail_text": "The tray's alarmed separately and lifting it drops a second shutter behind you, between you and the van."
+  },
+  {
+   "name": "The next unit",
+   "text": "The unit next door's the same chain and the van's still got its nose in the first one. Two shops for one raid — if you can reverse out and ram again before the ninety seconds you've spent becomes three minutes.",
+   "fail_text": "The second ram wakes the flat above the parade, and a bedroom light means a phone means a description."
+  },
+  {
+   "name": "The safe",
+   "text": "Manager's office at the back has the weekend's float in a safe you could chain to the van and drag out whole. Loud, slow, and the single greediest thing you could do with the seconds you don't have.",
+   "fail_text": "The safe's bolted to the slab and the chain snaps taut and stalls the van dead as the first blue light hits the shutter."
+  }
+ ]
+}

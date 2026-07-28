@@ -1,0 +1,37 @@
+{
+  "manor": {
+    "label": "THE MANOR",
+    "ring": "#FFA94D",
+    "note": "Yours. Owes you, or is owed."
+  },
+  "rhodes": {
+    "label": "RHODES",
+    "ring": "#C9A227",
+    "note": "The debt. Suits and ledgers."
+  },
+  "vale": {
+    "label": "THE VALE",
+    "ring": "#B06CF0",
+    "note": "Rival firm, three postcodes north."
+  },
+  "trade": {
+    "label": "TRADE",
+    "ring": "#4DA3FF",
+    "note": "Neutral. Sells to anyone."
+  },
+  "police": {
+    "label": "POLICE",
+    "ring": "#2E5EAA",
+    "note": "Building a case."
+  },
+  "civil": {
+    "label": "CIVILIAN",
+    "ring": "#6FCF6F",
+    "note": "Not in it. Affected by it."
+  },
+  "prison": {
+    "label": "INSIDE",
+    "ring": "#B9C0C7",
+    "note": "Reachable only on a call."
+  }
+}

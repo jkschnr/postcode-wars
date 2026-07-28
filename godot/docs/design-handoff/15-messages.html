@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>15-messages — Postcode Wars</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ui.css">
+<script src="cast.js"></script>
+<script src="chrome.js"></script>
+<script src="anim.js"></script>
+<style>
+  .bub { max-width:720px; padding:20px 24px; border-radius:18px; font-size:28px; line-height:1.35; }
+  .in  { background:#2A2E33; border:1px solid #3A3F45; border-bottom-left-radius:6px; }
+  .out { background:rgba(255,169,77,0.14); border:1px solid #FFA94D; border-bottom-right-radius:6px; align-self:flex-end; }
+  .dots span { display:inline-block; width:10px; height:10px; border-radius:50%; background:#9AA0A6; margin-right:6px;
+    animation:blink 1s infinite; }
+  .dots span:nth-child(2) { animation-delay:.15s; } .dots span:nth-child(3) { animation-delay:.3s; }
+  @keyframes blink { 0%,100% { opacity:0.25; } 50% { opacity:1; } }
+</style>
+</head>
+<body>
+<div id="frame">
+  <div style="position:absolute; inset:0; z-index:0; background:
+      radial-gradient(52% 28% at 76% 16%, rgba(255,169,77,0.16), rgba(255,169,77,0) 70%),
+      linear-gradient(180deg, #15181C 0%, #121417 46%, #0E1013 100%);"></div>
+  <div class="disp" style="position:absolute; left:-24px; bottom:420px; z-index:0; font-size:300px; line-height:0.78; color:#EDEFF2; opacity:0.05; pointer-events:none;">SEEN</div>
+  <div id="hud"></div>
+
+  <!-- thread header -->
+  <div style="position:absolute; left:0; top:140px; width:1080px; z-index:38; background:#2A2E33; border-bottom:1px solid #3A3F45; padding:20px 32px; box-sizing:border-box; display:flex; align-items:center; gap:20px;">
+    <div id="back"></div>
+    <div id="whoblock" style="flex:1; min-width:0; display:flex; align-items:center; gap:18px;"></div>
+    <div id="shuffle" class="mono" style="height:72px; padding:0 20px; border:1px solid #3A3F45; border-radius:14px; display:flex; align-items:center; font-size:20px; letter-spacing:0.14em; color:#FFA94D; cursor:pointer;">⟳</div>
+  </div>
+
+  <!-- inbox strip -->
+  <div id="inbox" style="position:absolute; left:0; top:296px; width:1080px; z-index:37; padding:16px 32px; box-sizing:border-box; background:#191B1F; border-bottom:1px solid #2A2E33; display:flex; gap:12px; overflow:hidden;"></div>
+
+  <!-- thread -->
+  <div id="thread" class="scroll" style="top:412px; bottom:412px; padding:28px 32px; box-sizing:border-box; display:flex; flex-direction:column; gap:18px;"></div>
+
+  <!-- composer -->
+  <div style="position:absolute; left:0; bottom:160px; width:1080px; z-index:40; background:#191B1F; border-top:1px solid #2A2E33; padding:22px 32px 26px; box-sizing:border-box; display:flex; flex-direction:column; gap:16px;">
+    <div class="sechead">
+      <span class="mono" style="font-size:20px; letter-spacing:0.18em; color:#5A6068;">HOW YOU REPLY MATTERS</span>
+      <span class="rule"></span>
+    </div>
+    <div id="replies" style="display:flex; flex-direction:column; gap:14px;"></div>
+  </div>
+
+  <div id="nav"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+document.getElementById('back').innerHTML = backLink('', '02-city.html');
+mountChrome('char', {});
+
+const THREADS = [
+  { lines:[
+      ['in','Yard\u2019s empty. You coming or what?','23:38'],
+      ['in','Gate code\u2019s good till midnight. After that it\u2019s someone else\u2019s problem.','23:38'],
+      ['out','Give me twenty minutes.','23:41'],
+      ['in','Twenty. Not thirty. I\u2019m not standing in this rain much longer.','23:41']
+    ],
+    replies:[['On my way now','FREE'],['Who else knows about the yard?','NV 4'],['Not tonight','LOYALTY −1']] },
+  { lines:[
+      ['in','Shop\u2019s shut. Come round the back, I\u2019ll put the kettle on.','22:10'],
+      ['in','And bring that jacket. It\u2019s got someone else\u2019s trouble all over it.','22:11'],
+      ['out','Everything alright?','22:14'],
+      ['in','No. Sit down when you get here.','22:14']
+    ],
+    replies:[['I\u2019ll come now','FREE'],['Tell me over the phone','CHARM 12'],['Tomorrow','STORY DELAYED']] },
+  { lines:[
+      ['in','Your brother\u2019s file is on my desk. Thursday, four o\u2019clock.','19:02'],
+      ['out','How much?','19:20'],
+      ['in','We\u2019ll talk about what, not how much. Bring nothing and tell nobody.','19:21']
+    ],
+    replies:[['Thursday, four','FREE'],['Say the number now','NV 6'],['I\u2019ll find another brief','−RELATION']] }
+];
+
+let ti = 0;
+function render() {
+  const t = THREADS[ti % THREADS.length];
+  const c = pick(CAST);
+  const tint = c.id === 'hallow' ? '#2E5EAA' : '#FFA94D';
+
+  document.getElementById('whoblock').innerHTML = `
+    ${portraitSlot(c, 88, tint)}
+    <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:4px;">
+      <span class="disp" style="font-size:40px; line-height:1;">${c.name}</span>
+      <span class="mono" style="font-size:20px; letter-spacing:0.12em; color:${tint};">${c.role} · ${c.city.toUpperCase()} · TYPING…</span>
+    </div>`;
+
+  const others = pickCast(4, x => x !== c);
+  document.getElementById('inbox').innerHTML = others.map((o, i) => `
+    <div class="panel" style="flex:1; min-width:0; padding:14px 16px; display:flex; align-items:center; gap:12px; background:#1E2126;">
+      <span style="width:14px; height:14px; border-radius:7px; flex:none; background:${i < 2 ? '#D9E021' : '#3A3F45'};"></span>
+      <div style="min-width:0; display:flex; flex-direction:column;">
+        <span class="mono" style="font-size:20px; color:#EDEFF2; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${o.name.toUpperCase()}</span>
+        <span class="mono" style="font-size:20px; color:#5A6068; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${o.city.toUpperCase()}</span>
+      </div>
+    </div>`).join('');
+
+  document.getElementById('thread').innerHTML = t.lines.map(([dir, text, time]) => `
+    <div style="display:flex; flex-direction:column; gap:6px; ${dir === 'out' ? 'align-items:flex-end;' : ''}">
+      <div class="bub ${dir}">${text}</div>
+      <span class="mono" style="font-size:20px; color:#5A6068;">${time}</span>
+    </div>`).join('') + `
+    <div class="bub in dots" style="width:120px; display:flex; align-items:center;"><span></span><span></span><span></span></div>`;
+
+  document.getElementById('replies').innerHTML = t.replies.map(([label, hint], i) => `
+    <button class="btn ${i === 0 ? 'btn-secondary' : 'btn-secondary'}" style="justify-content:space-between; padding:0 28px; font-family:Inter, sans-serif; font-size:28px; text-transform:none; letter-spacing:0;">
+      <span>${label}</span><span class="mono" style="font-size:22px; color:${hint === 'FREE' ? '#9AA0A6' : hint.startsWith('−') || hint.startsWith('-') ? '#D63B3B' : '#FFA94D'};">${hint}</span>
+    </button>`).join('');
+  ti++;
+}
+document.getElementById('shuffle').addEventListener('click', render);
+render();
+</script>
+</body>
+</html>

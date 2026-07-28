@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>03-jobs — Postcode Wars</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<style>
+  html, body { margin:0; background:#0C0E10; }
+  body { display:flex; justify-content:center; }
+  a { color:#FFA94D; text-decoration:none; }
+  a:hover { color:#FFC97A; }
+  #frame { position:relative; width:1080px; height:1920px; flex:none; overflow:hidden;
+    background:#121417; color:#EDEFF2; font-family:Inter, system-ui, sans-serif; transform-origin:top center; }
+  .mono { font-family:'IBM Plex Mono', monospace; }
+  .disp { font-family:Anton, Impact, sans-serif; text-transform:uppercase; }
+  .tab { font-variant-numeric:tabular-nums; }
+  #leaf { position:absolute; left:0; top:140px; width:1080px; height:260px; z-index:0; isolation:isolate; background:#0E1013; }
+  .leaflet-tile-pane { filter:grayscale(1) brightness(0.44) contrast(1.42) sepia(0.32) hue-rotate(-12deg) saturate(1.5); }
+  .leaflet-container { background:#0E1013; font-family:'IBM Plex Mono', monospace; }
+  .leaflet-control-attribution { background:rgba(12,14,16,0.72) !important; color:#5A6068 !important; font-size:11px !important; }
+  .leaflet-control-attribution a { color:#9AA0A6 !important; }
+  #scroll { position:absolute; left:0; top:400px; width:1080px; bottom:160px; overflow-y:auto; z-index:35;
+    padding:24px 32px 40px; box-sizing:border-box; display:flex; flex-direction:column; gap:32px;
+    scrollbar-width:none; }
+  #scroll::-webkit-scrollbar { display:none; }
+  .sechead { display:flex; align-items:center; gap:16px; }
+  .card { border:1px solid #2A2E33; border-radius:16px; background:#1E2126; overflow:hidden; }
+  .card:active { transform:scale(0.995); }
+  .chipm { display:flex; align-items:center; height:52px; padding:0 16px; border-radius:10px;
+    background:#0C0E10; border:1px solid #2A2E33; font-family:'IBM Plex Mono', monospace; font-size:22px; }
+  .tooth { position:absolute; inset:0; pointer-events:none; z-index:1; opacity:0.22; mix-blend-mode:soft-light;
+    background-image:url("art/tex-concrete.png"); background-size:512px 512px; }
+  .grain { position:absolute; inset:0; pointer-events:none; opacity:0.045; mix-blend-mode:screen; z-index:60;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
+    background-size:280px 280px; }
+</style>
+<script src="anim.js"></script>
+</head>
+<body>
+<div id="frame">
+
+  <div id="leaf"></div>
+  <div style="position:absolute; left:0; top:140px; width:1080px; height:260px; z-index:20; pointer-events:none; background:
+      radial-gradient(60% 90% at 78% 20%, rgba(255,169,77,0.22), rgba(255,169,77,0) 70%),
+      linear-gradient(180deg, rgba(18,20,23,0.55) 0%, rgba(18,20,23,0.1) 30%, #121417 100%);"></div>
+
+  <!-- TOP HUD -->
+  <div style="position:absolute; left:0; top:0; width:1080px; height:140px; box-sizing:border-box; padding:0 32px 14px; display:flex; flex-direction:column; justify-content:flex-end; background:#2A2E33; border-bottom:1px solid #3A3F45; z-index:40;">
+    <div class="tab" style="display:flex; align-items:center; gap:16px;">
+      <div style="display:flex; align-items:center; gap:10px; height:56px; padding:0 16px; border:1px solid #C9A227; border-radius:12px; background:rgba(201,162,39,0.10);">
+        <span style="width:20px; height:20px; border-radius:4px; border:2px solid #C9A227;"></span>
+        <span class="disp" style="font-size:32px; color:#C9A227;">£12,480</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; height:56px; padding:0 16px; border:1px solid #57C785; border-radius:12px; background:rgba(87,199,133,0.10);">
+        <span style="width:20px; height:20px; border-radius:4px; border:2px solid #57C785;"></span>
+        <span class="disp" style="font-size:32px; color:#57C785;">£3,050</span>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:8px; padding-left:8px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="mono" style="font-size:16px; color:#FFA94D; width:26px;">EN</span>
+          <div style="flex:1; height:12px; border-radius:6px; background:#0C0E10; overflow:hidden; display:flex;"><div style="width:62%; background:#FFA94D;"></div></div>
+          <span class="mono" style="font-size:16px; color:#9AA0A6;">62/100</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="mono" style="font-size:16px; color:#B06CF0; width:26px;">NV</span>
+          <div style="flex:1; height:12px; border-radius:6px; background:#0C0E10; overflow:hidden; display:flex;"><div style="width:35%; background:#B06CF0;"></div></div>
+          <span class="mono" style="font-size:16px; color:#9AA0A6;">7/20</span>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+        <div style="display:flex; gap:6px;">
+          <span style="width:14px; height:14px; border-radius:7px; background:#D63B3B;"></span>
+          <span style="width:14px; height:14px; border-radius:7px; background:#D63B3B;"></span>
+          <span style="width:14px; height:14px; border-radius:7px; background:#D63B3B;"></span>
+          <span style="width:14px; height:14px; border-radius:7px; background:#3A3F45;"></span>
+          <span style="width:14px; height:14px; border-radius:7px; background:#3A3F45;"></span>
+        </div>
+        <span class="mono" style="font-size:16px; letter-spacing:0.1em; color:#9AA0A6;">HEAT</span>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px; padding-left:20px; border-left:1px solid #3A3F45;">
+        <span class="disp" style="font-size:40px; line-height:1;">37</span>
+        <div style="width:96px; height:6px; border-radius:3px; background:#0C0E10; overflow:hidden; display:flex;"><div style="width:48%; background:#FFC97A;"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOCATION HEADER over the street strip -->
+  <div style="position:absolute; left:32px; right:32px; top:172px; z-index:35; display:flex; align-items:flex-start; justify-content:space-between; gap:24px;">
+    <a href="02-city.html" class="mono" style="height:72px; padding:0 24px; border:1px solid #2A2E33; border-radius:14px; background:rgba(18,20,23,0.82); display:flex; align-items:center; font-size:20px; letter-spacing:0.14em; color:#9AA0A6;">← LONDON</a>
+    <div class="tab" style="display:flex; align-items:center; gap:12px;">
+      <span class="mono" style="height:72px; padding:0 20px; border:1px solid #2A2E33; border-radius:14px; background:rgba(18,20,23,0.82); display:flex; align-items:center; font-size:20px; letter-spacing:0.1em; color:#D63B3B;">HEAT 3/5</span>
+      <span class="mono" style="height:72px; padding:0 20px; border:1px solid #2A2E33; border-radius:14px; background:rgba(18,20,23,0.82); display:flex; align-items:center; font-size:20px; letter-spacing:0.1em; color:#9AA0A6;">12 JOBS</span>
+    </div>
+  </div>
+  <div style="position:absolute; left:32px; top:288px; z-index:35; display:flex; flex-direction:column; gap:6px;">
+    <span class="disp" style="font-size:76px; line-height:0.9; text-shadow:0 6px 26px rgba(0,0,0,0.95);">The board</span>
+    <span class="mono" style="font-size:22px; letter-spacing:0.12em; color:#FFA94D;">HACKNEY · E8 · WHAT'S GOING TONIGHT</span>
+  </div>
+
+  <!-- JOB LIST -->
+  <div id="scroll">
+
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div class="sechead">
+        <span class="mono" style="font-size:20px; letter-spacing:0.2em; color:#FFA94D;">STORY</span>
+        <span style="flex:1; height:1px; background:#2A2E33;"></span>
+        <span class="mono" style="font-size:18px; letter-spacing:0.12em; color:#5A6068;">CH.2</span>
+      </div>
+
+      <div class="card" style="border-left:8px solid #FFA94D;">
+        <div style="padding:26px 30px 20px; display:flex; gap:22px; background:radial-gradient(80% 120% at 0% 0%, rgba(255,169,77,0.14), rgba(255,169,77,0) 70%);">
+          <div style="width:132px; height:132px; flex:none; border-radius:12px; border:1px solid #2A2E33; background-color:#0C0E10; background-image:repeating-linear-gradient(135deg, #16191D 0 8px, #0C0E10 8px 16px); display:flex; align-items:center; justify-content:center; text-align:center;">
+            <span class="mono" style="font-size:20px; line-height:1.4; color:#5A6068;">PORTRAIT<br>UNCLE T</span>
+          </div>
+          <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; gap:12px; align-items:center;">
+              <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#FFA94D;">STORY</span>
+              <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#9AA0A6;">UNCLE T · MARE ST</span>
+            </div>
+            <div class="disp" style="font-size:52px; line-height:0.95;">The barber's favour</div>
+            <div style="font-size:26px; line-height:1.4; color:#9AA0A6;">Shop shuts at eight. He wants you there at ten past, and he wants you on your own.</div>
+          </div>
+        </div>
+        <div style="padding:0 30px 26px; display:flex; gap:12px; flex-wrap:wrap;">
+          <span class="chipm" style="color:#FFA94D;">EN 20</span>
+          <span class="chipm" style="color:#B06CF0;">NV 12</span>
+          <span class="chipm" style="border-color:#FFA94D; background:rgba(255,169,77,0.10); color:#FFA94D;">STORY — NO FAIL</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div class="sechead">
+        <span class="mono" style="font-size:20px; letter-spacing:0.2em; color:#C9A227;">CONTRACTS</span>
+        <span style="flex:1; height:1px; background:#2A2E33;"></span>
+        <span class="mono tab" style="font-size:18px; letter-spacing:0.12em; color:#5A6068;">3 OPEN</span>
+      </div>
+
+      <div class="card">
+        <div style="padding:24px 30px; display:flex; gap:22px; align-items:flex-start;">
+          <div style="width:96px; height:96px; flex:none; border-radius:50%; border:2px solid #C9A227; background-color:#0C0E10; background-image:repeating-linear-gradient(135deg, #16191D 0 7px, #0C0E10 7px 14px); display:flex; align-items:center; justify-content:center;">
+            <span class="mono" style="font-size:20px; color:#5A6068;">NADS</span>
+          </div>
+          <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:16px;">
+              <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#C9A227;">NADS · CONTRACT</span>
+              <span class="mono tab" style="font-size:20px; letter-spacing:0.1em; color:#D63B3B;">EXPIRES 01:12</span>
+            </div>
+            <div class="disp" style="font-size:44px; line-height:0.98;">Clear the yard van</div>
+            <div style="font-size:24px; line-height:1.35; color:#9AA0A6;">Bow. Transit full of copper, gate code good until midnight.</div>
+          </div>
+        </div>
+        <div style="padding:0 30px 24px; display:flex; gap:12px; flex-wrap:wrap;">
+          <span class="chipm" style="color:#FFA94D;">EN 18</span>
+          <span class="chipm" style="color:#B06CF0;">NV 9</span>
+          <span class="chipm" style="color:#C9A227;">£1,400–£2,200</span>
+          <span class="chipm">XP +240</span>
+          <span class="chipm" style="border-color:#57C785; background:rgba(87,199,133,0.10); color:#57C785;">61%</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="padding:24px 30px; display:flex; gap:22px; align-items:flex-start;">
+          <div style="width:96px; height:96px; flex:none; border-radius:50%; border:2px solid #C9A227; background-color:#0C0E10; background-image:repeating-linear-gradient(135deg, #16191D 0 7px, #0C0E10 7px 14px); display:flex; align-items:center; justify-content:center;">
+            <span class="mono" style="font-size:20px; color:#5A6068;">DELROY</span>
+          </div>
+          <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:16px;">
+              <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#C9A227;">DELROY · CONTRACT</span>
+              <span class="mono tab" style="font-size:20px; letter-spacing:0.1em; color:#9AA0A6;">EXPIRES 04:48</span>
+            </div>
+            <div class="disp" style="font-size:44px; line-height:0.98;">Two keepers, no questions</div>
+            <div style="font-size:24px; line-height:1.35; color:#9AA0A6;">Anything German, anything after 2019. Bring it to the arches.</div>
+          </div>
+        </div>
+        <div style="padding:0 30px 24px; display:flex; gap:12px; flex-wrap:wrap;">
+          <span class="chipm" style="color:#FFA94D;">EN 26</span>
+          <span class="chipm" style="color:#B06CF0;">NV 14</span>
+          <span class="chipm" style="color:#C9A227;">£2,600–£4,100</span>
+          <span class="chipm">XP +410</span>
+          <span class="chipm" style="border-color:#D63B3B; background:rgba(214,59,59,0.10); color:#D63B3B;">44%</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div class="sechead">
+        <span class="mono" style="font-size:20px; letter-spacing:0.2em; color:#9AA0A6;">GRAFT</span>
+        <span style="flex:1; height:1px; background:#2A2E33;"></span>
+        <span class="mono" style="font-size:18px; letter-spacing:0.12em; color:#5A6068;">REPEATABLE</span>
+      </div>
+
+      <a href="04-job-confirm.html" class="card" style="display:block; color:inherit;">
+        <div style="padding:24px 30px 18px; display:flex; align-items:flex-start; justify-content:space-between; gap:20px;">
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; gap:12px; align-items:center;">
+              <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#FFA94D; border:1px solid #FFA94D; border-radius:8px; padding:5px 12px;">TIER II</span>
+              <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#9AA0A6;">MARE ST</span>
+            </div>
+            <div class="disp" style="font-size:48px; line-height:0.95;">Snatch a moped</div>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
+            <span class="mono" style="font-size:18px; letter-spacing:0.12em; color:#5A6068;">DANGER</span>
+            <div style="display:flex; gap:8px;">
+              <span style="width:22px; height:22px; border-radius:4px; background:#D63B3B;"></span>
+              <span style="width:22px; height:22px; border-radius:4px; background:#D63B3B;"></span>
+              <span style="width:22px; height:22px; border-radius:4px; background:#2A2E33;"></span>
+              <span style="width:22px; height:22px; border-radius:4px; background:#2A2E33;"></span>
+              <span style="width:22px; height:22px; border-radius:4px; background:#2A2E33;"></span>
+            </div>
+          </div>
+        </div>
+        <div style="padding:0 30px 22px; display:flex; gap:12px; flex-wrap:wrap;">
+          <span class="chipm" style="color:#FFA94D;">EN 12</span>
+          <span class="chipm" style="color:#B06CF0;">NV 4</span>
+          <span class="chipm" style="color:#C9A227;">£240–£610</span>
+          <span class="chipm">XP +85</span>
+          <span class="chipm" style="border-color:#57C785; background:rgba(87,199,133,0.10); color:#57C785;">74%</span>
+        </div>
+        <div style="height:14px; background:#0C0E10; display:flex;"><div style="width:74%; background:linear-gradient(90deg, #FFA94D, #57C785);"></div></div>
+      </a>
+
+      <div class="card">
+        <div style="padding:24px 30px 18px; display:flex; align-items:flex-start; justify-content:space-between; gap:20px;">
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; gap:12px; align-items:center;">
+              <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#FFA94D; border:1px solid #FFA94D; border-radius:8px; padding:5px 12px;">TIER I</span>
+              <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#9AA0A6;">LONDON FIELDS</span>
+            </div>
+            <div class="disp" style="font-size:48px; line-height:0.95;">Run a parcel</div>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
+            <span class="mono" style="font-size:18px; letter-spacing:0.12em; color:#5A6068;">DANGER</span>
+            <div style="display:flex; gap:8px;">
+              <span style="width:22px; height:22px; border-radius:4px; background:#D63B3B;"></span>
+              <span style="width:22px; height:22px; border-radius:4px; background:#2A2E33;"></span>
+              <span style="width:22px; height:22px; border-radius:4px; background:#2A2E33;"></span>
+              <span style="width:22px; height:22px; border-radius:4px; background:#2A2E33;"></span>
+              <span style="width:22px; height:22px; border-radius:4px; background:#2A2E33;"></span>
+            </div>
+          </div>
+        </div>
+        <div style="padding:0 30px 22px; display:flex; gap:12px; flex-wrap:wrap;">
+          <span class="chipm" style="color:#FFA94D;">EN 6</span>
+          <span class="chipm" style="color:#B06CF0;">NV 2</span>
+          <span class="chipm" style="color:#C9A227;">£90–£180</span>
+          <span class="chipm">XP +30</span>
+          <span class="chipm" style="border-color:#57C785; background:rgba(87,199,133,0.10); color:#57C785;">92%</span>
+        </div>
+        <div style="height:14px; background:#0C0E10; display:flex;"><div style="width:92%; background:linear-gradient(90deg, #FFA94D, #57C785);"></div></div>
+      </div>
+
+      <div class="card">
+        <div style="padding:24px 30px 18px; display:flex; align-items:flex-start; justify-content:space-between; gap:20px;">
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; gap:12px; align-items:center;">
+              <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#FFA94D; border:1px solid #FFA94D; border-radius:8px; padding:5px 12px;">TIER III</span>
+              <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#9AA0A6;">DALSTON</span>
+            </div>
+            <div class="disp" style="font-size:48px; line-height:0.95;">Tap the till at Betfrenz</div>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
+            <span class="mono" style="font-size:18px; letter-spacing:0.12em; color:#5A6068;">DANGER</span>
+            <div style="display:flex; gap:8px;">
+              <span style="width:22px; height:22px; border-radius:4px; background:#D63B3B;"></span>
+              <span style="width:22px; height:22px; border-radius:4px; background:#D63B3B;"></span>
+              <span style="width:22px; height:22px; border-radius:4px; background:#D63B3B;"></span>
+              <span style="width:22px; height:22px; border-radius:4px; background:#2A2E33;"></span>
+              <span style="width:22px; height:22px; border-radius:4px; background:#2A2E33;"></span>
+            </div>
+          </div>
+        </div>
+        <div style="padding:0 30px 22px; display:flex; gap:12px; flex-wrap:wrap;">
+          <span class="chipm" style="color:#FFA94D;">EN 22</span>
+          <span class="chipm" style="color:#B06CF0;">NV 11</span>
+          <span class="chipm" style="color:#C9A227;">£700–£1,500</span>
+          <span class="chipm">XP +190</span>
+          <span class="chipm" style="border-color:#C9A227; background:rgba(201,162,39,0.10); color:#C9A227;">58%</span>
+        </div>
+        <div style="height:14px; background:#0C0E10; display:flex;"><div style="width:58%; background:linear-gradient(90deg, #FFA94D, #57C785);"></div></div>
+      </div>
+
+      <div class="card" style="opacity:0.72; background:#191B1F;">
+        <div style="padding:24px 30px 18px; display:flex; align-items:flex-start; justify-content:space-between; gap:20px;">
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; gap:12px; align-items:center;">
+              <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#5A6068; border:1px solid #2A2E33; border-radius:8px; padding:5px 12px;">TIER IV</span>
+              <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#5A6068;">LOCKED</span>
+            </div>
+            <div class="disp" style="font-size:48px; line-height:0.95; color:#5A6068;">Warehouse tap</div>
+          </div>
+          <span style="width:44px; height:44px; border:2px solid #5A6068; border-radius:8px 8px 4px 4px;"></span>
+        </div>
+        <div style="padding:0 30px 24px;">
+          <div class="tab" style="display:flex; align-items:center; gap:16px; height:72px; padding:0 24px; border-radius:12px; background:#0C0E10; border:1px solid #2A2E33;">
+            <span class="mono" style="font-size:22px; letter-spacing:0.12em; color:#9AA0A6;">REQUIRES LEVEL</span>
+            <span class="disp" style="font-size:40px; color:#9AA0A6;">44</span>
+            <span style="flex:1;"></span>
+            <span class="mono" style="font-size:20px; color:#5A6068;">7 LEVELS OFF</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div style="position:absolute; left:0; bottom:0; width:1080px; background:#2A2E33; border-top:1px solid #3A3F45; z-index:50;">
+    <div style="height:120px; display:grid; grid-template-columns:repeat(5, 1fr);">
+      <a href="01-map.html" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;">
+        <span style="width:36px; height:36px; border:2px solid #9AA0A6; border-radius:50% 50% 50% 4px; transform:rotate(-45deg);"></span>
+        <span class="mono" style="font-size:18px; letter-spacing:0.1em; color:#9AA0A6;">MAP</span>
+      </a>
+      <a href="02-city.html" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; border-top:4px solid #FFA94D; background:linear-gradient(180deg, rgba(255,169,77,0.14), rgba(255,169,77,0));">
+        <span style="width:36px; height:36px; border:2px solid #FFA94D; border-radius:4px;"></span>
+        <span class="mono" style="font-size:18px; letter-spacing:0.1em; color:#FFA94D;">CITY</span>
+      </a>
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; position:relative;">
+        <span style="width:36px; height:36px; border:2px solid #9AA0A6; border-radius:50%;"></span>
+        <span style="position:absolute; top:24px; right:calc(50% - 34px); width:16px; height:16px; border-radius:8px; background:#D9E021;"></span>
+        <span class="mono" style="font-size:18px; letter-spacing:0.1em; color:#9AA0A6;">CHAR</span>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;">
+        <span style="width:36px; height:36px; border:2px solid #9AA0A6; border-radius:4px 4px 18px 18px;"></span>
+        <span class="mono" style="font-size:18px; letter-spacing:0.1em; color:#9AA0A6;">CREW</span>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;">
+        <span style="width:36px; height:36px; border:2px solid #5A6068; border-radius:4px; transform:rotate(45deg);"></span>
+        <span class="mono" style="font-size:18px; letter-spacing:0.1em; color:#5A6068;">FIRM</span>
+      </div>
+    </div>
+    <div style="height:40px; display:flex; align-items:center; justify-content:center;">
+      <span style="width:200px; height:6px; border-radius:3px; background:#5A6068;"></span>
+    </div>
+  </div>
+
+  <div class="tooth"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+const W = 1080, H = 1920;
+function scaleFrame() {
+  const f = document.getElementById('frame');
+  const s = Math.min(1, window.innerHeight / H, window.innerWidth / W);
+  f.style.transform = 'scale(' + s + ')';
+  document.body.style.height = (H * s) + 'px';
+}
+window.addEventListener('resize', scaleFrame);
+scaleFrame();
+
+const map = L.map('leaf', {
+  dragging:false, touchZoom:false, scrollWheelZoom:false, doubleClickZoom:false,
+  boxZoom:false, keyboard:false, zoomControl:false, zoomSnap:0.1, attributionControl:true
+});
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution:'© OpenStreetMap contributors', maxZoom:19
+}).addTo(map);
+map.setView([51.5455, -0.0553], 16.2);
+</script>
+</body>
+</html>

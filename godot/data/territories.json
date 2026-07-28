@@ -1,0 +1,148 @@
+{
+  "_note": "x/y are normalized 0..1, projected from real lon/lat (lon -8.6..2.2, lat 59.0..49.7). Keep in sync with tools/generate_art.py PROJ.",
+  "bases": [
+    {
+      "id": "highlands",
+      "city": null,
+      "name": "The Highlands",
+      "region": "Highlands",
+      "owner": "neutral",
+      "x": 0.4178,
+      "y": 0.4181,
+      "garrison": 2
+    },
+    {
+      "id": "glasgow",
+      "city": "glasgow",
+      "name": "Glasgow",
+      "region": "Strathclyde",
+      "owner": "purple",
+      "x": 0.4148,
+      "y": 0.4956,
+      "garrison": 5
+    },
+    {
+      "id": "newcastle",
+      "city": "newcastle",
+      "name": "Newcastle",
+      "region": "North East",
+      "owner": "neutral",
+      "x": 0.5713,
+      "y": 0.5421,
+      "garrison": 3
+    },
+    {
+      "id": "leeds",
+      "city": "leeds",
+      "name": "Leeds",
+      "region": "Yorkshire",
+      "owner": "neutral",
+      "x": 0.5748,
+      "y": 0.6016,
+      "garrison": 3
+    },
+    {
+      "id": "manchester",
+      "city": "manchester",
+      "name": "Manchester",
+      "region": "Greater Manchester",
+      "owner": "blue",
+      "x": 0.5339,
+      "y": 0.6176,
+      "garrison": 6
+    },
+    {
+      "id": "liverpool",
+      "city": "liverpool",
+      "name": "Liverpool",
+      "region": "Merseyside",
+      "owner": "neutral",
+      "x": 0.4895,
+      "y": 0.6211,
+      "garrison": 4,
+      "lside": "L"
+    },
+    {
+      "id": "wales",
+      "city": null,
+      "name": "Cymru",
+      "region": "Wales",
+      "owner": "neutral",
+      "x": 0.4415,
+      "y": 0.6707,
+      "garrison": 2
+    },
+    {
+      "id": "nottingham",
+      "city": "nottingham",
+      "name": "Nottingham",
+      "region": "East Midlands",
+      "owner": "neutral",
+      "x": 0.5985,
+      "y": 0.6438,
+      "garrison": 4,
+      "lside": "L"
+    },
+    {
+      "id": "birmingham",
+      "city": "birmingham",
+      "name": "Birmingham",
+      "region": "West Midlands",
+      "owner": "red",
+      "x": 0.5541,
+      "y": 0.6668,
+      "garrison": 6
+    },
+    {
+      "id": "eastanglia",
+      "city": null,
+      "name": "East Anglia",
+      "region": "East of England",
+      "owner": "neutral",
+      "x": 0.7437,
+      "y": 0.6595,
+      "garrison": 2
+    },
+    {
+      "id": "bristol",
+      "city": "bristol",
+      "name": "Bristol",
+      "region": "South West",
+      "owner": "neutral",
+      "x": 0.5132,
+      "y": 0.7163,
+      "garrison": 3,
+      "lside": "L"
+    },
+    {
+      "id": "london",
+      "city": "london",
+      "name": "London",
+      "region": "Greater London",
+      "owner": "player",
+      "x": 0.659,
+      "y": 0.7135,
+      "garrison": 4
+    },
+    {
+      "id": "kent",
+      "city": null,
+      "name": "Kent",
+      "region": "South East",
+      "owner": "neutral",
+      "x": 0.72,
+      "y": 0.7244,
+      "garrison": 2
+    },
+    {
+      "id": "cornwall",
+      "city": null,
+      "name": "Cornwall",
+      "region": "West Country",
+      "owner": "neutral",
+      "x": 0.3674,
+      "y": 0.7722,
+      "garrison": 1
+    }
+  ]
+}

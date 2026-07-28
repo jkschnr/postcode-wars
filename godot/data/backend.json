@@ -1,0 +1,5 @@
+{
+  "_comment": "PUBLIC Supabase values only (publishable key + project URL). Safe to embed; protected by row-level security. NEVER put the service_role secret here.",
+  "supabase_url": "https://kojgztuvhrphhnzxjqws.supabase.co",
+  "anon_key": "sb_publishable_ESau-YjgOXOAIjHo6WwVrA_m9VeqZ0f"
+}

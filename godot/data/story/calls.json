@@ -1,0 +1,313 @@
+{
+ "kayo": {
+  "name": "Kayo",
+  "rel": "YOUR BROTHER",
+  "place": "HMP BELMARSH · CAT A REMAND",
+  "portrait": "kayo",
+  "greeting": "You sound tired. — Nah, don't do the pause. I know the pause. What have you done?",
+  "topics": [
+   {
+    "id": "case",
+    "label": "Ask about the trial",
+    "cost": 180,
+    "act_lines": [
+     "Solicitor reckons it hinges on what they can prove was mine. Which is nothing, if everyone keeps their mouth shut. — You hearing me?",
+     "Trial's set now. They've got less than they think and more than I'd like. — Keep your head down out there, it reflects on me in here.",
+     "It's going better. Somebody upstairs lost interest, and I've got a horrible feeling I know who arranged that, and I've got a worse feeling it was you.",
+     "They're talking about dropping the big one. — Don't celebrate. Men who get me off cheap always want paying somewhere I can't see yet."
+    ]
+   },
+   {
+    "id": "truth",
+    "label": "Tell him what you're doing",
+    "cost": 300,
+    "once": true,
+    "effects": {
+     "trust": {
+      "kayo": 5
+     }
+    },
+    "line": "…You're WHAT. — No. No, you don't get to do the thing I went inside to stop you doing. — Right. Okay. Then you do it careful, and you ring me before anything stupid. Promise me."
+   },
+   {
+    "id": "advice",
+    "label": "Ask him for advice",
+    "cost": 120,
+    "act_lines": [
+     "Trust nobody who's nice to you for free. Everything's got a price and the free stuff has the worst one.",
+     "You're getting known. Known's good for the ego and bad for the lifespan. Stay a rumour as long as you can.",
+     "You've got people under you now, I can hear it. That's the moment it stops being about you. Look after them or it eats you.",
+     "You're near the top of something. Nobody tells you the top's just a bigger target with a nicer view. Watch the people closest."
+    ]
+   },
+   {
+    "id": "mum",
+    "label": "Ask about Mum",
+    "cost": 120,
+    "line": "She writes every week. Same paper, same pen. — She never asks how I am, she tells me the weather and what she's cooked, and that's her way of not crying down a phone. Look after her. That's the actual job. All the rest is noise."
+   },
+   {
+    "id": "football",
+    "label": "Just talk",
+    "cost": 120,
+    "repeatable": true,
+    "effects": {
+     "trust": {
+      "kayo": 1
+     }
+    },
+    "line": "Did you watch it? — Don't tell me. Don't. They're showing the highlights Sunday if we're good. — He was offside though, wasn't he. Go on. He was miles off. — Yeah. Course he was. — This is nice, this. Talking about nothing. I don't get much nothing in here. Nothing's the dearest thing they sell."
+   },
+   {
+    "id": "jacket",
+    "label": "The jacket",
+    "cost": 60,
+    "repeatable": true,
+    "line": "You still wearing it? — Good. Keep it. — I'll want it back the day I'm out and not a day before, so don't get sentimental, it's a loan not a gift. — It suits you. Don't tell anyone I said that."
+   },
+   {
+    "id": "lead",
+    "label": "He's got a name for you",
+    "cost": 180,
+    "effects": {
+     "trust": {
+      "kayo": 2
+     },
+     "flags": [
+      "kayo_lead"
+     ]
+    },
+    "line": "Bloke in here, doing a five, used to run cars out of Bordesley. — He owes me for keeping something quiet. — There's a lock-up address, it's yours if you want it, and if you use it you never heard it off me. Clear? Never off me."
+   },
+   {
+    "id": "warning",
+    "label": "He's heard something",
+    "cost": 180,
+    "effects": {
+     "flags": [
+      "kayo_warned"
+     ]
+    },
+    "line": "Word travels backwards in here, from the street to the cells, don't ask how. — Somebody's asking about you. Not police. Worse. — I don't have the name yet but I've got the shape of it, and the shape of it is Green Lane. Watch your back that side of the bridge."
+   },
+   {
+    "id": "promise",
+    "label": "Promise you'll get out",
+    "cost": 240,
+    "once": true,
+    "effects": {
+     "trust": {
+      "kayo": 4
+     }
+    },
+    "line": "Say it. — Say you won't end up in a place like this. — I don't care if it's a lie, I've told myself worse ones to get to sleep. Just say it in your voice so I've got it to play back. — …Good. I've got it now. That'll do me a month."
+   },
+   {
+    "id": "dad",
+    "label": "Ask about Dad",
+    "cost": 180,
+    "once": true,
+    "effects": {
+     "trust": {
+      "kayo": 3
+     }
+    },
+    "line": "You want to know about Dad. — He was funny. Everyone forgets that, they only remember the end. He was properly funny. — And he was in exactly this life, and it took him, and here I am in a version of the same room. — Don't make it three of us. That's all I've got on Dad."
+   },
+   {
+    "id": "release",
+    "label": "When are you out",
+    "cost": 120,
+    "act_lines": [
+     "Don't ask me that yet. It's bad luck and I've got enough. Ask me when the trial's done.",
+     "If it goes right, eighteen months. If it goes wrong, don't ask what wrong is. — Plan for the wrong number, hope for the right.",
+     "Sooner than it was, and I'm trying not to think about why. — When I'm out, we talk properly. Not down a phone somebody's listening to.",
+     "Soon. — And I'm scared of soon, which nobody warns you about. In here I know the rules. Out there you've changed all of them while I was gone."
+    ]
+   },
+   {
+    "id": "inside",
+    "label": "How's it in there",
+    "cost": 120,
+    "act_lines": [
+     "It's boredom with the odd bit of terror, and the boredom's worse. — I've read more books this month than my whole life. Turns out I like reading. Who knew.",
+     "Same as last time you asked. The trick is routine. You build a tiny life out of nothing and you defend it like it's everything, because it is.",
+     "Quieter now. I've got a rep in here, which is funny, because out there I'm nobody and in here I'm somebody. Wrong way round, that.",
+     "Getting through it. — I'm alright, actually. Don't sound so surprised. A man can be alright in a bad place. That's most of the skill of it."
+    ]
+   },
+   {
+    "id": "books",
+    "label": "What are you reading",
+    "cost": 60,
+    "repeatable": true,
+    "line": "History, mostly. — Empires. How they get big and how they get stupid and how the getting big is what makes them stupid. — You'd hate it. You'd also learn something. — Bloke two cells down gets me them off the trolley. Everyone's got a hustle, even the library."
+   },
+   {
+    "id": "protect",
+    "label": "Tell him about the younger",
+    "cost": 180,
+    "line": "You've got a boy running for you. — Don't. Don't defend it, I can hear you loading it up. — I was somebody's younger once and look at the phone I'm holding. — If you keep him, keep him for real. The half-in ones are the ones it kills."
+   },
+   {
+    "id": "silence",
+    "label": "Just sit on the line",
+    "cost": 60,
+    "repeatable": true,
+    "line": "You don't have to say anything. — We can just be on the line. — I can hear the ends behind you, a bus, somebody's music. — That's worth minutes to me, that is. The sound of out there. Don't hang up yet. — …Yeah. Alright. Go on."
+   },
+   {
+    "id": "cut",
+    "label": "Let him go",
+    "cost": 0,
+    "line": "Go on, save your credit. — Ring Mum with what's left, she'll get more out of it than me. — Love you. Don't do the thing where you don't say it back, just — yeah. Go on. Before it cuts us."
+   }
+  ]
+ },
+ "denz": {
+  "name": "Denz",
+  "rel": "YOUR OLD CELLMATE",
+  "place": "HMP BELMARSH · B WING",
+  "portrait": "denz",
+  "greeting": "They actually let you ring me? — Must've put money on your books. Alright. What d'you want, you don't ring for nothing.",
+  "topics": [
+   {
+    "id": "survive",
+    "label": "Ask how he's coping",
+    "cost": 120,
+    "line": "You survive by being boring. — Boring's a skill. Boring's the whole skill. The interesting ones are the ones in the hospital wing. — I do my push-ups, I keep my head down, I owe nobody. Owe nobody, that's the one rule. You're already worse at it than me."
+   },
+   {
+    "id": "contacts",
+    "label": "Ask who's worth knowing",
+    "cost": 180,
+    "effects": {
+     "flags": [
+      "denz_contact"
+     ]
+    },
+    "line": "There's a fella out now, Mikey, did the wing next to mine. — Fences anything, no questions, pays fair, which is rare. — Tell him Denz says alright and he'll take a meeting. Don't tell him more than that. He's fair, not soft."
+   },
+   {
+    "id": "grass",
+    "label": "Ask who to avoid",
+    "cost": 180,
+    "effects": {
+     "flags": [
+      "denz_warned"
+     ]
+    },
+    "line": "You want the list of wrong'uns. — Alright. There's a lad works your ends, drives a grey Audi, calls himself connected. — He's connected to the police is what he's connected to. Everyone he stands next to goes down. Stand somewhere else."
+   },
+   {
+    "id": "canteen",
+    "label": "Ask about the food",
+    "cost": 60,
+    "repeatable": true,
+    "line": "The food. — Mate. — There's a curry on a Thursday that's either the best or worst thing that happens all week and I genuinely can't tell which anymore, and that's what this place does to you. — Send me a proper takeaway menu. I just want to read it. That's not a joke."
+   },
+   {
+    "id": "respect",
+    "label": "Thank him for having your back",
+    "cost": 240,
+    "once": true,
+    "effects": {
+     "trust": {
+      "denz": 4
+     }
+    },
+    "line": "You don't have to say it. — I know you don't have to say it, which is why it lands. — I had your back because you didn't ask me to. That's the only reason worth having. — Alright. Enough. We're not doing feelings down a prison phone, someone'll hear."
+   },
+   {
+    "id": "out",
+    "label": "Ask when he's out",
+    "cost": 120,
+    "line": "Four months, if I don't do anything stupid, and in here stupid finds you. — When I'm out I'm going straight, I mean it, I've said it before and meant it less, but I mean it now. — Might need a couch a week. Might need a job that isn't this. Might need a mate. See how you're fixed."
+   },
+   {
+    "id": "favour",
+    "label": "Ask if he needs anything",
+    "cost": 120,
+    "effects": {
+     "trust": {
+      "denz": 2
+     }
+    },
+    "line": "Put a bit on my books if you're flush, I won't say no. — And there's a lad, Tommo, gets out next week, no family, nowhere. — If he turns up saying my name, he's sound, give him a day's work. Not because I'm nice. Because he'll owe you, and owed is better than paid."
+   }
+  ]
+ },
+ "frankie": {
+  "name": "Frankie \"The Brief\"",
+  "rel": "THE SOLICITOR",
+  "place": "CHAMBERS · CALL RECORDED",
+  "portrait": "frankie",
+  "greeting": "This line's recorded, so we speak in hypotheticals and we speak carefully. — Now. Hypothetically. How can I help.",
+  "topics": [
+   {
+    "id": "case_review",
+    "label": "Ask where you stand",
+    "cost": 180,
+    "line": "Hypothetically, a man in your position is fine as long as three things stay true, and I'm not going to say them on a recorded line. — Come to chambers. — What I'll say here is: you're not the name on anyone's whiteboard yet. 'Yet' is a word we can work with."
+   },
+   {
+    "id": "loophole",
+    "label": "Ask about the paperwork",
+    "cost": 180,
+    "effects": {
+     "flags": [
+      "frankie_loophole"
+     ]
+    },
+    "line": "There's a way to hold assets that a court finds very boring to unpick. — Boring is good. Boring is a defence. — I'll set up a structure, it costs what it costs, and it means that if it ever comes to it, they're chasing a company that owns a company that owns a headache."
+   },
+   {
+    "id": "fees",
+    "label": "Ask about his fees",
+    "cost": 60,
+    "repeatable": true,
+    "line": "Expensive. — Next question. — No, I'll elaborate: I'm expensive because I'm worth it, and the men who found me cheap are the men I visit in places like the one you're ringing me from. Pay the fee. It's the cheapest thing you'll ever buy."
+   },
+   {
+    "id": "advice_legal",
+    "label": "Ask what to do if stopped",
+    "cost": 120,
+    "line": "If they stop you: name, address, nothing else, and my number. — 'No comment' isn't rude, it's professional, and the ones who explain themselves are the ones who talk their way inside. — You are never as clever as you feel in that room. Say the number. Say nothing else."
+   },
+   {
+    "id": "off_record",
+    "label": "Ask him what he really thinks",
+    "cost": 300,
+    "once": true,
+    "effects": {
+     "trust": {
+      "frankie": 3
+     }
+    },
+    "line": "Off the record — and there's no such thing, but off it anyway — you're bright, and bright is what gets people like you the longest sentences, because bright men think the rules are for the slow ones. — Get out while it's still a choice. I say that to everyone. Nobody listens. Bill's the same."
+   },
+   {
+    "id": "deal",
+    "label": "Ask about doing a deal",
+    "cost": 180,
+    "effects": {
+     "flags": [
+      "frankie_deal_warned"
+     ]
+    },
+    "line": "A deal means giving them someone. — Think very hard about who, and harder about what the someone does when they're out. — I can get you a deal. I can't get you a new life in a new city with a new face, and that's what a deal with the wrong someone actually costs."
+   },
+   {
+    "id": "retainer",
+    "label": "Put him on a retainer",
+    "cost": 240,
+    "effects": {
+     "trust": {
+      "frankie": 2
+     }
+    },
+    "line": "A retainer's sensible. — It means I answer the phone at three in the morning without checking if you can afford three in the morning. — Most of my clients only call me after it's gone wrong. The clever ones call me before. Be a before. Befores stay out."
+   }
+  ]
+ }
+}

@@ -1,0 +1,331 @@
+{
+ "cities": [
+  {
+   "name": "Glasgow",
+   "lat": 55.861,
+   "lon": -4.25,
+   "danger": 4,
+   "tier": "city",
+   "state": "locked",
+   "req": "LVL 40",
+   "hold": {
+    "rhodes": 64,
+    "vale": 22
+   },
+   "jobs": 5,
+   "take": "£0",
+   "heat": 1,
+   "x": 0.2869,
+   "y": 0.1905,
+   "city": "glasgow"
+  },
+  {
+   "name": "Newcastle",
+   "lat": 54.978,
+   "lon": -1.618,
+   "danger": 3,
+   "tier": "city",
+   "state": "open",
+   "req": "LVL 24",
+   "hold": {
+    "vale": 58,
+    "trade": 30,
+    "manor": 12
+   },
+   "jobs": 6,
+   "take": "£1.2k",
+   "heat": 2,
+   "x": 0.6083,
+   "y": 0.2965,
+   "city": "newcastle"
+  },
+  {
+   "name": "Liverpool",
+   "lat": 53.408,
+   "lon": -2.991,
+   "danger": 3,
+   "tier": "city",
+   "state": "open",
+   "req": "LVL 18",
+   "hold": {
+    "trade": 52,
+    "manor": 28,
+    "vale": 20
+   },
+   "jobs": 6,
+   "take": "£2.4k",
+   "heat": 2,
+   "x": 0.4407,
+   "y": 0.4792,
+   "city": "liverpool"
+  },
+  {
+   "name": "Leeds",
+   "lat": 53.8,
+   "lon": -1.549,
+   "danger": 3,
+   "tier": "city",
+   "state": "open",
+   "req": "LVL 20",
+   "hold": {
+    "trade": 46,
+    "manor": 34,
+    "rhodes": 20
+   },
+   "jobs": 5,
+   "take": "£1.9k",
+   "heat": 3,
+   "x": 0.6167,
+   "y": 0.4342,
+   "city": "leeds"
+  },
+  {
+   "name": "Manchester",
+   "lat": 53.48,
+   "lon": -2.242,
+   "danger": 3,
+   "tier": "city",
+   "state": "ready",
+   "req": "JOB READY",
+   "hold": {
+    "vale": 61,
+    "manor": 24,
+    "trade": 15
+   },
+   "jobs": 6,
+   "take": "£3.6k",
+   "heat": 4,
+   "x": 0.5321,
+   "y": 0.471,
+   "city": "manchester"
+  },
+  {
+   "name": "Grimsby",
+   "lat": 53.567,
+   "lon": -0.081,
+   "danger": 2,
+   "tier": "town",
+   "state": "open",
+   "req": "LVL 15",
+   "hold": {
+    "trade": 70,
+    "manor": 12
+   },
+   "jobs": 5,
+   "take": "£420",
+   "heat": 1,
+   "x": 0.796,
+   "y": 0.461,
+   "city": "grimsby"
+  },
+  {
+   "name": "Nottingham",
+   "lat": 52.954,
+   "lon": -1.158,
+   "danger": 2,
+   "tier": "city",
+   "state": "open",
+   "req": "LVL 14",
+   "hold": {
+    "vale": 55,
+    "trade": 28,
+    "manor": 17
+   },
+   "jobs": 6,
+   "take": "£1.1k",
+   "heat": 2,
+   "x": 0.6645,
+   "y": 0.5308,
+   "city": "nottingham"
+  },
+  {
+   "name": "Birmingham",
+   "lat": 52.486,
+   "lon": -1.89,
+   "danger": 3,
+   "tier": "city",
+   "state": "open",
+   "req": "LVL 16",
+   "hold": {
+    "trade": 44,
+    "manor": 38,
+    "vale": 18
+   },
+   "jobs": 6,
+   "take": "£2.8k",
+   "heat": 3,
+   "x": 0.5751,
+   "y": 0.5834,
+   "city": "birmingham"
+  },
+  {
+   "name": "Swindon",
+   "lat": 51.559,
+   "lon": -1.781,
+   "danger": 1,
+   "tier": "town",
+   "state": "open",
+   "req": "LVL 12",
+   "hold": {
+    "rhodes": 66,
+    "trade": 20
+   },
+   "jobs": 5,
+   "take": "£380",
+   "heat": 1,
+   "x": 0.5884,
+   "y": 0.6859,
+   "city": "swindon"
+  },
+  {
+   "name": "Bristol",
+   "lat": 51.454,
+   "lon": -2.588,
+   "danger": 2,
+   "tier": "city",
+   "state": "ready",
+   "req": "JOB READY",
+   "hold": {
+    "manor": 57,
+    "trade": 29,
+    "vale": 14
+   },
+   "jobs": 7,
+   "take": "£2.2k",
+   "heat": 2,
+   "x": 0.4899,
+   "y": 0.6974,
+   "city": "bristol"
+  },
+  {
+   "name": "Luton",
+   "lat": 51.879,
+   "lon": -0.417,
+   "danger": 1,
+   "tier": "town",
+   "state": "open",
+   "req": "LVL 8",
+   "hold": {
+    "rhodes": 72,
+    "manor": 14
+   },
+   "jobs": 5,
+   "take": "£510",
+   "heat": 2,
+   "x": 0.7549,
+   "y": 0.6508,
+   "city": "luton"
+  },
+  {
+   "name": "Margate",
+   "lat": 51.385,
+   "lon": 1.386,
+   "danger": 1,
+   "tier": "town",
+   "state": "open",
+   "req": "LVL 10",
+   "hold": {
+    "manor": 48,
+    "trade": 34
+   },
+   "jobs": 5,
+   "take": "£690",
+   "heat": 1,
+   "x": 0.9751,
+   "y": 0.705,
+   "city": "margate"
+  },
+  {
+   "name": "London",
+   "lat": 51.507,
+   "lon": -0.128,
+   "danger": 5,
+   "tier": "city",
+   "state": "current",
+   "req": "YOU ARE HERE",
+   "hold": {
+    "manor": 62,
+    "vale": 22,
+    "rhodes": 16
+   },
+   "jobs": 10,
+   "take": "£8.4k",
+   "heat": 3,
+   "city": "london",
+   "x": 0.7902,
+   "y": 0.6916
+  }
+ ],
+ "lines": [
+  [
+   "London",
+   "Luton",
+   "money"
+  ],
+  [
+   "Luton",
+   "Birmingham",
+   "money"
+  ],
+  [
+   "Birmingham",
+   "Manchester",
+   "supply"
+  ],
+  [
+   "Manchester",
+   "Liverpool",
+   "supply"
+  ],
+  [
+   "Manchester",
+   "Leeds",
+   "supply"
+  ],
+  [
+   "Leeds",
+   "Newcastle",
+   "heat"
+  ],
+  [
+   "Newcastle",
+   "Glasgow",
+   "heat"
+  ],
+  [
+   "Birmingham",
+   "Nottingham",
+   "supply"
+  ],
+  [
+   "Nottingham",
+   "Grimsby",
+   "supply"
+  ],
+  [
+   "Birmingham",
+   "Swindon",
+   "money"
+  ],
+  [
+   "Swindon",
+   "Bristol",
+   "money"
+  ],
+  [
+   "London",
+   "Bristol",
+   "supply"
+  ],
+  [
+   "London",
+   "Margate",
+   "money"
+  ],
+  [
+   "London",
+   "Birmingham",
+   "heat"
+  ]
+ ]
+}

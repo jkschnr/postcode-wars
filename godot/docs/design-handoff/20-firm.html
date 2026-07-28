@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>20-firm — Postcode Wars</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="ui.css">
+<script src="art.js"></script>
+<script src="cast.js"></script>
+<script src="chrome.js"></script>
+<script src="anim.js"></script>
+<script src="atmos.js"></script>
+</head>
+<body>
+<div id="frame">
+  <div id="hud"></div>
+
+  <div class="scroll" style="top:140px; bottom:160px; padding:28px 32px 48px; box-sizing:border-box; display:flex; flex-direction:column; gap:24px;">
+    <div id="hero"></div>
+
+    <!-- firm bank + territory -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+      <div class="panel tab" style="border-color:#C9A227; background:linear-gradient(180deg, rgba(201,162,39,0.12), #1E2126 60%); padding:26px; display:flex; flex-direction:column; gap:10px;">
+        <span class="mono" style="font-size:22px; letter-spacing:0.16em; color:#C9A227;">FIRM BANK</span>
+        <span class="disp" style="font-size:64px; line-height:0.95; color:#C9A227;">£184.2k</span>
+        <span class="mono" style="font-size:20px; color:#9AA0A6;">YOUR CUT THIS WEEK · £2,140</span>
+      </div>
+      <div class="panel tab" style="padding:26px; display:flex; flex-direction:column; gap:10px;">
+        <span class="mono" style="font-size:22px; letter-spacing:0.16em; color:#FFA94D;">TERRITORY</span>
+        <span class="disp" style="font-size:64px; line-height:0.95;">14 <span style="font-size:32px; color:#5A6068;">/ 32 BLOCKS</span></span>
+        <div style="display:flex; gap:6px;">
+          <span style="flex:1; height:12px; border-radius:6px; background:#FFA94D;"></span>
+          <span style="flex:1; height:12px; border-radius:6px; background:#FFA94D;"></span>
+          <span style="flex:1; height:12px; border-radius:6px; background:#D63B3B;"></span>
+          <span style="flex:1; height:12px; border-radius:6px; background:#2A2E33;"></span>
+          <span style="flex:1; height:12px; border-radius:6px; background:#2A2E33;"></span>
+        </div>
+        <span class="mono" style="font-size:20px; color:#D63B3B;">2 CONTESTED IN DALSTON</span>
+      </div>
+    </div>
+
+    <!-- war room -->
+    <div class="panel" style="border-color:#D63B3B; background:linear-gradient(180deg, rgba(214,59,59,0.10), #1E2126 60%); padding:26px; display:flex; flex-direction:column; gap:18px;">
+      <div class="sechead">
+        <span class="mono" style="font-size:20px; letter-spacing:0.2em; color:#D63B3B;">WAR ROOM</span>
+        <span class="rule"></span>
+        <span class="mono tab" style="font-size:20px; color:#D63B3B;">ENDS IN 06:41:22</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:22px;">
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:8px;">
+          <span class="disp" style="font-size:44px; line-height:1;">Dalston, against The Latimer</span>
+          <span style="font-size:26px; line-height:1.35; color:#9AA0A6;">Four blocks in play. They've put nineteen bodies on it; you've got eleven and a better fence.</span>
+        </div>
+        <div class="tab" style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
+          <span class="disp" style="font-size:52px; color:#57C785;">61%</span>
+          <span class="mono" style="font-size:20px; color:#5A6068;">HOLDING</span>
+        </div>
+      </div>
+      <div style="height:20px; border-radius:10px; background:#0C0E10; border:1px solid #2A2E33; overflow:hidden; display:flex;">
+        <div style="width:61%; background:#57C785;"></div><div style="width:39%; background:#D63B3B;"></div>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+        <button class="btn btn-primary" style="font-size:30px;">Send the crew in</button>
+        <button class="btn btn-secondary" style="font-size:30px;">Pull back and pay</button>
+      </div>
+    </div>
+
+    <!-- roster -->
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div class="sechead">
+        <span class="mono" style="font-size:20px; letter-spacing:0.2em; color:#FFA94D;">THE FIRM</span>
+        <span class="rule"></span>
+        <span class="mono" style="font-size:20px; color:#5A6068;">9 OF 12 · RANKED</span>
+      </div>
+      <div id="roster" style="display:flex; flex-direction:column; gap:14px;"></div>
+    </div>
+  </div>
+
+  <div id="nav"></div>
+  <div class="tooth"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+mountChrome('firm', {});
+mountHero({ lat:51.5460, lon:-0.0750, zoom:15.4, ghost:'FIRM',
+  kicker:'THE MANOR, SPLIT NINE WAYS', title:'Hollow Nine', titleSize:76,
+  meta:'FOUNDED IN E8 · 14 BLOCKS HELD · RANK 7 NATIONALLY',
+  back:{ label:'LONDON', href:'02-city.html' },
+  right:'<span class="mono" style="height:72px; padding:0 20px; border:1px solid #2A2E33; border-radius:14px; background:rgba(18,20,23,0.82); display:flex; align-items:center; font-size:20px; letter-spacing:0.12em; color:#D63B3B;">AT WAR</span>' });
+
+const RANKS = ['BOSS', 'FIXER', 'FIXER', 'SOLDIER', 'SOLDIER', 'SOLDIER', 'RUNNER', 'RUNNER', 'RUNNER'];
+document.getElementById('roster').innerHTML = pickCast(9).map((c, i) => {
+  const rank = RANKS[i], tint = i === 0 ? '#F2C14E' : i < 3 ? '#FFA94D' : '#9AA0A6';
+  return `<div class="panel" style="padding:18px 22px; display:flex; align-items:center; gap:20px; ${i === 0 ? 'border-color:#F2C14E;' : ''}">
+    <span class="mono tab" style="width:56px; flex:none; font-size:24px; color:#5A6068;">${String(i + 1).padStart(2, '0')}</span>
+    ${portraitSlot(c, 84, tint)}
+    <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:6px;">
+      <span class="disp" style="font-size:36px; line-height:1;">${c.name}</span>
+      <span class="mono" style="font-size:20px; letter-spacing:0.12em; color:${tint};">${rank} · ${c.city.toUpperCase()}</span>
+    </div>
+    <div class="tab" style="display:flex; flex-direction:column; align-items:flex-end; gap:4px;">
+      <span class="disp" style="font-size:34px;">LVL ${62 - i * 5}</span>
+      <span class="mono" style="font-size:20px; color:#C9A227;">£${(48 - i * 4)}.${i}k IN</span>
+    </div>
+  </div>`;
+}).join('');
+</script>
+</body>
+</html>

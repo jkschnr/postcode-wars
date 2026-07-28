@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Postcode Wars — screens</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ui.css">
+<style>
+  body { display:block; }
+  /* the index is a page, not a 1080 artboard — fluid so nothing overflows off-screen */
+  #frame { position:relative; width:min(1080px, 100%); max-width:100%; height:auto; min-height:100vh;
+    overflow:visible; margin:0 auto; transform:none; box-sizing:border-box; }
+  .tile { border:1px solid #2A2E33; border-radius:16px; background:#1E2126; padding:22px 24px;
+    display:flex; align-items:center; gap:18px; color:#EDEFF2; min-height:110px; }
+  .tile:hover { border-color:#FFA94D; }
+</style>
+</head>
+<body>
+<div id="frame">
+  <div style="position:absolute; inset:0; background:
+      radial-gradient(50% 24% at 76% 8%, rgba(255,169,77,0.16), rgba(255,169,77,0) 70%),
+      linear-gradient(180deg, #15181C 0%, #121417 50%, #0E1013 100%);"></div>
+  <div class="disp" style="position:absolute; right:0; top:1240px; max-width:100%; overflow:hidden; z-index:0; font-size:300px; line-height:0.78; color:#EDEFF2; opacity:0.05;">E8</div>
+
+  <div style="position:relative; z-index:10; padding:64px clamp(20px, 4vw, 32px) 96px; display:flex; flex-direction:column; gap:40px;">
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <span class="mono" style="font-size:clamp(16px, 2vw, 22px); letter-spacing:0.2em; color:#FFA94D;">CLICK-ONLY CRIME RPG · 1080 × 1920 · GODOT 4</span>
+      <span class="disp" style="font-size:clamp(56px, 10vw, 112px); line-height:0.88;">Postcode Wars</span>
+      <span style="font-size:26px; line-height:1.4; color:#9AA0A6; max-width:820px;">Every screen at design resolution. Street imagery is live map data, graded for a wet night; portraits and item art are generated stand-ins at final sizes.</span>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div class="sechead"><span class="mono" style="font-size:20px; letter-spacing:0.2em; color:#FFA94D;">P0 · THE CORE LOOP</span><span class="rule"></span></div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <a class="tile" href="01-map.html"><span class="mono" style="font-size:24px; color:#5A6068;">01</span><span class="disp" style="font-size:36px;">UK map</span></a>
+        <a class="tile" href="02-city.html"><span class="mono" style="font-size:24px; color:#5A6068;">02</span><span class="disp" style="font-size:36px;">City</span></a>
+        <a class="tile" href="03-jobs.html"><span class="mono" style="font-size:24px; color:#5A6068;">03</span><span class="disp" style="font-size:36px;">Job list</span></a>
+        <a class="tile" href="04-job-confirm.html"><span class="mono" style="font-size:24px; color:#5A6068;">04</span><span class="disp" style="font-size:36px;">Job confirm</span></a>
+        <a class="tile" href="05-reveal.html"><span class="mono" style="font-size:24px; color:#5A6068;">05</span><span class="disp" style="font-size:36px;">Reveal ceremony</span></a>
+        <a class="tile" href="06-choice.html"><span class="mono" style="font-size:24px; color:#5A6068;">06</span><span class="disp" style="font-size:36px;">Choice card</span></a>
+        <a class="tile" href="07-character.html"><span class="mono" style="font-size:24px; color:#5A6068;">07</span><span class="disp" style="font-size:36px;">Character</span></a>
+        <a class="tile" href="08-levelup.html"><span class="mono" style="font-size:24px; color:#5A6068;">08</span><span class="disp" style="font-size:36px;">Level up</span></a>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div class="sechead"><span class="mono" style="font-size:20px; letter-spacing:0.2em; color:#C9A227;">P1 · THE META</span><span class="rule"></span></div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <a class="tile" href="09-creation.html"><span class="mono" style="font-size:24px; color:#5A6068;">09</span><span class="disp" style="font-size:36px;">Creation</span></a>
+        <a class="tile" href="10-bank.html"><span class="mono" style="font-size:24px; color:#5A6068;">10</span><span class="disp" style="font-size:36px;">Bank · Bung</span></a>
+        <a class="tile" href="11-crew.html"><span class="mono" style="font-size:24px; color:#5A6068;">11</span><span class="disp" style="font-size:36px;">Crew</span></a>
+        <a class="tile" href="12-gym.html"><span class="mono" style="font-size:24px; color:#5A6068;">12</span><span class="disp" style="font-size:36px;">Gym</span></a>
+        <a class="tile" href="13-shop-fence.html"><span class="mono" style="font-size:24px; color:#5A6068;">13</span><span class="disp" style="font-size:36px;">Shop · fence</span></a>
+        <a class="tile" href="14-jail.html"><span class="mono" style="font-size:24px; color:#5A6068;">14</span><span class="disp" style="font-size:36px;">Jail</span></a>
+        <a class="tile" href="15-messages.html"><span class="mono" style="font-size:24px; color:#5A6068;">15</span><span class="disp" style="font-size:36px;">Messages</span></a>
+        <a class="tile" href="16-prison-call.html"><span class="mono" style="font-size:24px; color:#5A6068;">16</span><span class="disp" style="font-size:36px;">Prison call</span></a>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div class="sechead"><span class="mono" style="font-size:20px; letter-spacing:0.2em; color:#B06CF0;">P2 · DEPTH</span><span class="rule"></span></div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <a class="tile" href="17-board.html"><span class="mono" style="font-size:24px; color:#5A6068;">17</span><span class="disp" style="font-size:36px;">The board</span></a>
+        <a class="tile" href="18-codex.html"><span class="mono" style="font-size:24px; color:#5A6068;">18</span><span class="disp" style="font-size:36px;">Codex</span></a>
+        <a class="tile" href="19-trapline.html"><span class="mono" style="font-size:24px; color:#5A6068;">19</span><span class="disp" style="font-size:36px;">Trapline</span></a>
+        <a class="tile" href="20-firm.html"><span class="mono" style="font-size:24px; color:#5A6068;">20</span><span class="disp" style="font-size:36px;">Firm</span></a>
+        <a class="tile" href="21-leaderboards.html"><span class="mono" style="font-size:24px; color:#5A6068;">21</span><span class="disp" style="font-size:36px;">Leaderboards</span></a>
+        <a class="tile" href="22-paperwork.html" style="border-color:#FFA94D;"><span class="mono" style="font-size:24px; color:#5A6068;">22</span><span class="disp" style="font-size:36px;">Paperwork · art</span></a>
+        <a class="tile" href="23-motion.html" style="border-color:#FFA94D;"><span class="mono" style="font-size:24px; color:#5A6068;">23</span><span class="disp" style="font-size:36px;">Motion · animation</span></a>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div class="sechead"><span class="mono" style="font-size:20px; letter-spacing:0.2em; color:#9AA0A6;">SPEC SHEETS</span><span class="rule"></span></div>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px;">
+        <a class="tile" href="Design System.dc.html"><span class="disp" style="font-size:32px;">Design system</span></a>
+        <a class="tile" href="Component Sheet.dc.html"><span class="disp" style="font-size:32px;">Components</span></a>
+        <a class="tile" href="Export Notes.dc.html"><span class="disp" style="font-size:32px;">Export notes</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="tooth"></div>
+  <div class="grain"></div>
+</div>
+</body>
+</html>

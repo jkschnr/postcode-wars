@@ -1,0 +1,20 @@
+{
+ "job": "pickpocket",
+ "stages": [
+  {
+   "name": "The back pocket",
+   "text": "Bloke at the bar, wallet riding up out of his back pocket like it wants to leave. One brush past on the way to the toilets and it's gone before his round's even poured.",
+   "fail_text": "He felt the weight change. Turns round mid-sentence and you're the only one close enough to have done it."
+  },
+  {
+   "name": "Working the queue",
+   "text": "The same queue for the same bus, shoulder to shoulder, everyone's bag half-open and nobody looking at anybody. Work down the line slow and you could clear three before the bus even comes.",
+   "fail_text": "The woman two down felt a hand that wasn't hers and she's the type that grabs it and doesn't let go."
+  },
+  {
+   "name": "The drunk lot",
+   "text": "A stag do spilling out the club, sacks of cash and phones and zero coordination between them. Easy money — but drunk men swing first and ask never, and there's eight of them.",
+   "fail_text": "One of them's less drunk than he's acting and he's got your wrist and a grin that says he's been waiting for this."
+  }
+ ]
+}

@@ -1,0 +1,348 @@
+{
+ "version": 1,
+ "energy": {
+  "cap_base": 100,
+  "regen_per_min": 0.333,
+  "cap_per_house_tier": 5,
+  "cap_per_10_levels": 2,
+  "cap_max": 150
+ },
+ "nerve": {
+  "cap_base": 20,
+  "regen_per_min": 0.111,
+  "cap_per_rank": 2,
+  "cap_max": 40
+ },
+ "costs": {
+  "job_t1": 5,
+  "job_t2": 10,
+  "job_t3": 18,
+  "fight": 12,
+  "raid": 25,
+  "gym": 10
+ },
+ "pushluck": {
+  "stage_risk": [
+   0.08,
+   0.18,
+   0.32,
+   0.5,
+   0.68
+  ],
+  "stage_loot_mult": [
+   1.0,
+   1.6,
+   2.5,
+   4.0,
+   7.0
+  ],
+  "slickness_risk_reduction_per_point": 0.004,
+  "max_risk": 0.85
+ },
+ "approach": {
+  "quiet": {
+   "payout": 0.75,
+   "heat": 0.4,
+   "success": 0.1,
+   "time_cost_h": 0,
+   "label": "GO QUIET",
+   "flavor": "In through the back. Nobody hears a thing. You take what fits in a bag."
+  },
+  "loud": {
+   "payout": 1.2,
+   "heat": 2.0,
+   "success": -0.05,
+   "time_cost_h": 0,
+   "label": "KICK IT IN",
+   "flavor": "Front door, one go. You'll have about ninety seconds before someone rings someone."
+  },
+  "night": {
+   "payout": 1.3,
+   "heat": 0.6,
+   "success": 0.0,
+   "time_cost_h": 2,
+   "label": "COME BACK TONIGHT",
+   "flavor": "Come back at three. Lights off, street empty, nobody looking out of a window."
+  }
+ },
+ "outcomes": {
+  "fail": 0.1,
+  "base": 0.62,
+  "good": 0.2,
+  "crit": 0.06,
+  "jackpot": 0.02,
+  "good_mult": [
+   1.5,
+   2.0
+  ],
+  "crit_mult": [
+   3.0,
+   4.0
+  ]
+ },
+ "pity": {
+  "crit_window": 25,
+  "crit_multiplier": 3.0,
+  "good_window": 8,
+  "fail_streak_cap": 3
+ },
+ "heat": {
+  "decay_per_min": 0.1,
+  "laylow_multiplier": 3.0,
+  "max_pips": 10,
+  "payout_bonus_per_pip": 0.08,
+  "ambush_chance_per_pip": 0.02
+ },
+ "ambush": {
+  "base": {
+   "city_entry_rich": 0.12,
+   "post_job_hot": 0.15,
+   "travel_home": 0.1,
+   "escort": 0.25,
+   "bounty": 0.3
+  },
+  "beef_modifier": 0.1,
+  "cooldown_s": 60,
+  "max_per_session": 2,
+  "rich_threshold_dirty": 1000,
+  "loss_pct_carried_dirty": 0.25
+ },
+ "combat": {
+  "hp_base": 100,
+  "hp_per_toughness": 5,
+  "atk_per_strength": 2,
+  "def_per_toughness": 2,
+  "def_softening": 150,
+  "variance": [
+   0.85,
+   1.15
+  ],
+  "crit_base": 0.05,
+  "crit_per_speed": 0.002,
+  "crit_mult": 1.7,
+  "max_rounds": 10,
+  "flee_base": 40,
+  "flee_per_speed_diff": 2,
+  "flee_shove_bonus": 40,
+  "flee_cap": 0.85,
+  "flee_floor": 0.1,
+  "flee_loss_pct": 0.05,
+  "stamina_max": 100,
+  "stamina_regen_guard": 26,
+  "stamina_regen_idle": 6,
+  "moves": {
+   "jab": {
+    "stamina": 10,
+    "dmg": 1.0,
+    "accuracy": 0.94,
+    "crit_mult": 1.0,
+    "label": "jabs"
+   },
+   "haymaker": {
+    "stamina": 30,
+    "dmg": 1.95,
+    "accuracy": 0.8,
+    "crit_mult": 1.5,
+    "label": "swings"
+   },
+   "guard": {
+    "stamina": 0,
+    "dmg": 0.0,
+    "accuracy": 1.0,
+    "crit_mult": 1.0,
+    "label": "covers up"
+   }
+  },
+  "dodge_base": 0.04,
+  "dodge_per_speed_diff": 0.006,
+  "dodge_vs_heavy": 0.1,
+  "dodge_cap": 0.48,
+  "block_reduction": 0.55,
+  "low_hp_frac": 0.34,
+  "dodge_per_slk": 0.02,
+  "flurry_spd_ratio": 1.35,
+  "flurry_chance": 0.5,
+  "crit_per_slk": 0.004
+ },
+ "casing": {
+  "success_bonus": 0.3,
+  "extra_stages": 1,
+  "expiry_hours": 48,
+  "warn_hours_left": 4
+ },
+ "timers_minutes": {
+  "gym": 45,
+  "gym_queue_max": 3,
+  "crew_train_min": 60,
+  "crew_train_max": 720,
+  "business_cap": 360,
+  "territory_cap": 480,
+  "launder_min": 120,
+  "launder_max": 480,
+  "line_cycle": 480,
+  "runner_min": 180,
+  "runner_max": 360,
+  "travel_min": 25,
+  "travel_max": 45,
+  "jail_min": 10,
+  "jail_max": 45,
+  "hospital_min": 10,
+  "hospital_max": 30,
+  "jitter_pct": 0.08
+ },
+ "world": {
+  "night_start": 20,
+  "night_end": 6,
+  "night_payout": 1.25,
+  "night_camera_id": 0.75,
+  "lunch_start": 12,
+  "lunch_end": 14,
+  "lunch_snatch_bonus": 1.2,
+  "ramraid_window": [
+   3,
+   5
+  ],
+  "weekend_night_payout": 1.35,
+  "weekend_heat": 2.0,
+  "sunday_payout": 0.8,
+  "sunday_heat": 0.6,
+  "payday_friday_cash_bonus": 1.5,
+  "rain_chance": 0.35,
+  "rain_witness": 0.85,
+  "rain_escape": 1.1,
+  "storm_chance": 0.02,
+  "storm_minutes": 20
+ },
+ "shadow": {
+  "power_window": 0.25,
+  "exclude_recent_hours": 24,
+  "snapshot_ttl_hours": 168
+ },
+ "specialisation": {
+  "unlock_level": 20,
+  "job_weight_bonus": 0.3,
+  "reswitch_days": 7
+ },
+ "session": {
+  "exit_bars_threshold": 0.85,
+  "exit_min_bars": 2,
+  "exit_min_timers": 3,
+  "empty_open_grace_s": 30
+ },
+ "notifications": {
+  "max_per_day": 4,
+  "quiet_start": 23,
+  "quiet_end": 8,
+  "min_gap_minutes": 90
+ },
+ "dailies": {
+  "count": 3,
+  "reset_hour": 4,
+  "streak_plateau_day": 7,
+  "freeze_per_week": 1,
+  "grace_hours": 4
+ },
+ "comeback": {
+  "tier1_days": 4,
+  "tier2_days": 8,
+  "tier3_days": 30,
+  "catchup_xp_mult": 2.0,
+  "catchup_hours": 48
+ },
+ "season": {
+  "length_weeks": 8,
+  "soft_reset_pct": 0.5
+ },
+ "tools": {
+  "gloves": {
+   "label": "GLOVES",
+   "benefit": "-50% forensic ID",
+   "success": 0.0,
+   "heat_mult": 0.85,
+   "search_risk": 0.0
+  },
+  "bally": {
+   "label": "BALLY",
+   "benefit": "-60% camera ID",
+   "success": 0.0,
+   "heat_mult": 0.75,
+   "search_risk": 0.1
+  },
+  "shank": {
+   "label": "SHANK",
+   "benefit": "+success on confrontation",
+   "success": 0.06,
+   "heat_mult": 1.1,
+   "search_risk": 0.12
+  },
+  "rambo": {
+   "label": "RAMBO",
+   "benefit": "+success, big charge",
+   "success": 0.1,
+   "heat_mult": 1.25,
+   "search_risk": 0.18
+  },
+  "stab_vest": {
+   "label": "STAB VEST",
+   "benefit": "+escape if it goes wrong",
+   "success": 0.0,
+   "heat_mult": 1.0,
+   "search_risk": 0.05,
+   "escape": 0.2
+  },
+  "burner": {
+   "label": "BURNER",
+   "benefit": "tip-offs, cleaner exit",
+   "success": 0.03,
+   "heat_mult": 0.95,
+   "search_risk": 0.0
+  }
+ },
+ "crew": {
+  "alone": {
+   "label": "ALONE",
+   "note": "No cut, no help.",
+   "cut": 0.0,
+   "success": 0.0,
+   "escape": 0.0,
+   "panic": 0.0,
+   "stages": 0
+  },
+  "rico": {
+   "label": "RICO",
+   "note": "Younger. Cheap, but green — he might bottle it.",
+   "cut": 0.1,
+   "success": 0.0,
+   "escape": 0.0,
+   "panic": 0.08,
+   "stages": 1
+  },
+  "enforcer": {
+   "label": "ENFORCER",
+   "note": "Expensive. Solid when it kicks off. Never panics.",
+   "cut": 0.25,
+   "success": 0.08,
+   "escape": 0.05,
+   "panic": 0.0,
+   "stages": 0
+  },
+  "driver": {
+   "label": "DRIVER",
+   "note": "Motor running. Best odds of getting away clean.",
+   "cut": 0.15,
+   "success": 0.0,
+   "escape": 0.35,
+   "panic": 0.0,
+   "stages": 0
+  }
+ },
+ "heat_arc": {
+  "payout_per_pip": 0.08,
+  "risk_per_pip": 0.02,
+  "warn_at": 6,
+  "lay_low_to": 0.0
+ },
+ "econ": {
+  "stat_divisor": 10.0
+ }
+}

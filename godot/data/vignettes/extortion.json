@@ -1,0 +1,153 @@
+[
+ {
+  "id": "ext_chicken_shop",
+  "target": {
+   "name": null,
+   "detail": "the new chicken shop that didn't ask"
+  },
+  "setup": "New place opened on the strip without a word to anyone. Nice fryers. Nice till. No arrangement. That's an oversight, not a business.",
+  "on_success": "A quiet chat by the drinks fridge about breakages, insurance, the weather. He understands. Envelope every Friday from now.",
+  "on_fail": "Turns out his cousin is exactly who you didn't want his cousin to be. Now you owe the conversation, not him.",
+  "on_crit": "He's so relieved it's only you and not the other lot that he rounds it up himself.",
+  "job": "extortion",
+  "conditions": {
+   "max_heat": 12
+  }
+ },
+ {
+  "id": "ext_barber",
+  "conditions": {
+   "min_heat": 2,
+   "max_heat": 12
+  },
+  "target": {
+   "name": "the barber",
+   "detail": "cash business, no cameras out back"
+  },
+  "setup": "Barbers doing fades all day cash-in-hand, back room busier than the chairs. Everyone pays somebody. Question is just who.",
+  "on_success": "You become the somebody. Clean cut, clean arrangement, and a free trim while you're in.",
+  "on_fail": "He's already paying the firm you don't mention, and now they know you tried to tax their earner.",
+  "on_crit": "He'd been overpaying the last mug for years. Undercut them and he signs up on the spot, loyal as anything.",
+  "job": "extortion"
+ },
+ {
+  "id": "ext_chip_shop_new",
+  "conditions": {
+   "max_heat": 5
+  },
+  "target": {
+   "name": "—",
+   "detail": "the chip shop that opened without a word to anyone"
+  },
+  "setup": "New place on the strip, nice fryers, nice till, no arrangement with anybody. Round here that's not confidence, it's an oversight, and oversights get corrected before somebody less patient does it.",
+  "on_success": "A quiet word by the drinks fridge about breakages, insurance, the price of good relations. He understands. An envelope appears every Friday from then on.",
+  "on_fail": "Turns out his cousin is exactly the cousin you didn't want, and now you owe the conversation, not him.",
+  "job": "extortion"
+ },
+ {
+  "id": "ext_market_stalls",
+  "conditions": {
+   "time": "day",
+   "max_heat": 6
+  },
+  "target": {
+   "name": "Sanjay",
+   "detail": "the fruit-and-veg man who's not paid this month"
+  },
+  "setup": "Saturday market, cash flowing, stalls that'd fold if the wrong crowd 'accidentally' turned up at packing-up time. You keep the wrong crowd away. That's the service you're charging for.",
+  "on_success": "You walk the row, nod to the paid-up, and linger by Sanjay's crates until he remembers his manners and finds the money he swore he didn't have.",
+  "on_fail": "The stallholders have a WhatsApp group and a plan and today they all say no at exactly the same time. Solidarity. Deeply annoying.",
+  "on_crit": "A stall down the row gets bothered by outsiders while you happen to be standing there. You handle it in front of everyone and the rates go up by unanimous agreement.",
+  "job": "extortion"
+ },
+ {
+  "id": "ext_barber_arrears",
+  "conditions": {
+   "max_heat": 5
+  },
+  "target": {
+   "name": "Tunde",
+   "detail": "two weeks behind and pretending he isn't"
+  },
+  "setup": "Barber's on the corner, three chairs, one busy. Tunde clocks you in the mirror and keeps cutting. The lad in the chair has no idea he's in the middle of something older than he is.",
+  "on_success": "He finishes the fade first — won't take money in front of a customer, and that's not pride, it's professionalism. The envelope comes out the back.",
+  "on_fail": "He puts the clippers down and says he's been paying somebody for eleven years and it wasn't you. You leave before you find out who.",
+  "on_crit": "He pays the two weeks and next month up front, and asks if you want a trim while you're in. You say no. He does it anyway.",
+  "job": "extortion"
+ },
+ {
+  "id": "ext_nail_bar_cash",
+  "conditions": {
+   "time": "day",
+   "max_heat": 6
+  },
+  "target": {
+   "name": "—",
+   "detail": "the nail bar that only takes cash and never bank it"
+  },
+  "setup": "A row of nail bars, all cash, none of it ever near a bank, back rooms busier than the front. Everyone pays somebody; the only question is which somebody, and you're asking to be the answer.",
+  "on_success": "A short conversation and a long silence and then the manager counts a week out of a drawer that never officially existed.",
+  "on_fail": "She's already paying a firm you'd rather not name, and now they know you tried to tax their earner, which is its own kind of appointment.",
+  "job": "extortion"
+ },
+ {
+  "id": "ext_gym_protein",
+  "conditions": {
+   "min_level": 6,
+   "max_heat": 7
+  },
+  "target": {
+   "name": "—",
+   "detail": "the back-street gym selling more than memberships"
+  },
+  "setup": "An iron gym under the arches that shifts gear over the counter alongside the protein, run by a man built like the equipment who'd rather not have his sideline discussed by the wrong people.",
+  "on_success": "You don't threaten a man that size — you mention his sideline quietly and let the maths do the frightening. He'd rather pay than explain.",
+  "on_fail": "He's bigger than you, his mates are bigger than him, and the arch has thick walls and no cameras, which suddenly works against you.",
+  "job": "extortion"
+ },
+ {
+  "id": "ext_taxi_office",
+  "conditions": {
+   "time": "night",
+   "max_heat": 8
+  },
+  "target": {
+   "name": "—",
+   "detail": "the minicab office that runs the whole rank"
+  },
+  "setup": "Cab firm on the ring road, cars in and out all night, cash counted in a back office behind reinforced glass. Control the office and you control the rank, and the rank is a river of money.",
+  "on_success": "The controller sees the sense in a quiet arrangement — a cut off the top keeps the tyres unslashed and the drivers turning up, which is worth more than the cut.",
+  "on_fail": "The controller's mic is open to forty drivers and half of them are ex-something who'll come off the rank the second he says the word.",
+  "job": "extortion"
+ },
+ {
+  "id": "ext_kebab_fire",
+  "conditions": {
+   "max_heat": 9,
+   "min_heat": 3
+  },
+  "target": {
+   "name": "Mehmet",
+   "detail": "the takeaway that had a small fire last month, coincidentally"
+  },
+  "setup": "A kebab shop that had an electrical fire nobody quite believes was electrical, reopened nervous, and a man behind the counter who's started paying attention to who comes in without ordering.",
+  "on_success": "You don't even mention the fire. You don't have to. He's already decided the envelope is cheaper than the alternative and slides it over with the chilli sauce.",
+  "on_fail": "His son's home from doing something in the forces and has strong feelings about men who lean on his dad, and no fear of consequences yet.",
+  "job": "extortion"
+ },
+ {
+  "id": "ext_church_hall",
+  "conditions": {
+   "time": "night",
+   "max_heat": 4
+  },
+  "target": {
+   "name": "—",
+   "detail": "the bloke running unlicensed lock-ins at the social club"
+  },
+  "setup": "A members' social club running late lock-ins off the books, a fire door propped for the smokers, and a steward pulling pints past closing who really can't afford a licensing visit right now.",
+  "on_success": "A cut of the after-hours till buys him a blind eye and a warning if the real trouble's ever coming. Cheap insurance for both of you.",
+  "on_fail": "Half the lock-in are off-duty doormen and a retired sergeant, and they've dealt with your sort in this exact room before.",
+  "job": "extortion"
+ }
+]

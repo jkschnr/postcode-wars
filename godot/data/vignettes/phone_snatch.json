@@ -1,0 +1,155 @@
+[
+ {
+  "id": "snatch_maps_walker",
+  "job": "phone_snatch",
+  "conditions": {
+   "max_heat": 8
+  },
+  "target": {
+   "name": "Marcus",
+   "detail": "following the blue dot, not the road"
+  },
+  "setup": "Woman walking with the phone held out flat, following the blue dot, headphones in, trusting the whole city to move around her.",
+  "on_success": "On the shoulder, off the wrist, gone down the side road before the map even reroutes.",
+  "on_fail": "She's got a wrist strap. You didn't clock the wrist strap. Now you're both attached to the same phone and only one of you is embarrassed.",
+  "on_crit": "Newest model, case still shiny. There's a second phone in her hand too. Some people."
+ },
+ {
+  "id": "snatch_cafe_window",
+  "job": "phone_snatch",
+  "conditions": {
+   "time": "day",
+   "max_heat": 7
+  },
+  "target": {
+   "name": "Priya",
+   "detail": "on a video call to family abroad"
+  },
+  "setup": "Phone propped on the café window ledge, screen out, a video call going — someone's mum, a whole kitchen, half a world away.",
+  "on_success": "You lift it mid-sentence. Somewhere a kitchen full of people is now looking at your trainers, briefly.",
+  "on_fail": "She's faster than the call. Grabs it back and doesn't even pause the conversation. 'One sec, Ma.'",
+  "on_crit": "Phone and the little battery pack it's plugged into. The call keeps going in your pocket. You hang up. Feels rude not to."
+ },
+ {
+  "id": "snatch_bike_light",
+  "job": "phone_snatch",
+  "conditions": {
+   "max_heat": 8
+  },
+  "target": {
+   "name": null,
+   "detail": "phone on the handlebars at the lights"
+  },
+  "setup": "Cyclist stopped at the red, phone clipped to the bars, thumbing a message, front foot down, not going anywhere for nine seconds.",
+  "on_success": "Green light, empty mount. He pedals off owing an explanation to whoever he was texting.",
+  "on_fail": "He's off the bike quicker than you'd think a man in cleats can move. Clip-clopping after you, furious.",
+  "on_crit": "Whole mount comes off in your hand. Phone's still recording a ride. Later there's forty minutes of tarmac and swearing."
+ },
+ {
+  "id": "snatch_pram_ledge",
+  "job": "phone_snatch",
+  "conditions": {
+   "time": "day",
+   "max_heat": 5
+  },
+  "target": {
+   "name": null,
+   "detail": "balanced while she does the straps"
+  },
+  "setup": "Mum balancing the phone on the pram hood while she wrestles a wriggling kid into the straps. Both hands full.",
+  "on_success": "Gone off the hood while she's mid-negotiation with a two-year-old. She won't miss it for a street.",
+  "on_fail": "The kid points and yells. She's up and shouting and a bloke across the road is already jogging over.",
+  "on_crit": "Phone's unlocked, a photo of the kid on the screen. You don't look at it again. You just don't."
+ },
+ {
+  "id": "snatch_platform_edge",
+  "job": "phone_snatch",
+  "conditions": {
+   "max_heat": 8
+  },
+  "target": {
+   "name": null,
+   "detail": "leaning out to look for the train"
+  },
+  "setup": "Bloke on the platform leaning out over the yellow line, phone in the outside hand, watching for the train that's two minutes out.",
+  "on_success": "You take it as the train noise builds. He's still leaning out looking for a train, phoneless, none the wiser.",
+  "on_fail": "He pulls back off the line fast and clocks you clocking him. Doors open. Neither of you gets on.",
+  "on_crit": "Top-end phone, and it's logged into everything. You wipe it and move it on the same night. No souvenirs."
+ },
+ {
+  "id": "snatch_selfie_stick",
+  "job": "phone_snatch",
+  "conditions": {
+   "time": "day",
+   "max_heat": 8
+  },
+  "target": {
+   "name": null,
+   "detail": "phone held out at arm's length"
+  },
+  "setup": "Tourist doing the big pose in front of nothing special, phone out at the end of a stick, back to the whole street.",
+  "on_success": "You take the phone, leave the stick. Balance restored to the universe.",
+  "on_fail": "The stick swings round like a weapon and there's suddenly a very loud group of them.",
+  "on_crit": "Phone off the mount and it's still on burst mode. Somewhere there's twelve blurry photos of you leaving."
+ },
+ {
+  "id": "snatch_smoker_doorway",
+  "job": "phone_snatch",
+  "conditions": {
+   "max_heat": 7
+  },
+  "target": {
+   "name": "Tone",
+   "detail": "on his break, moaning about the rota"
+  },
+  "setup": "Bloke in a doorway on his break, fag in one hand, phone in the other, deep into moaning about the rota.",
+  "on_success": "Off the palm and gone. He carries on the sentence for a second before the sentence loses its point.",
+  "on_fail": "He's got quick reflexes for a man on a fag break and a temper to match. Chef's whites and all.",
+  "on_crit": "Phone still warm, still ranting into a group chat. He was owed a raise. You are not the raise."
+ },
+ {
+  "id": "snatch_dog_walker",
+  "job": "phone_snatch",
+  "conditions": {
+   "max_heat": 8
+  },
+  "target": {
+   "name": null,
+   "detail": "one hand on the lead, one on the phone"
+  },
+  "setup": "Dog walker with the lead in one hand, phone in the other, a big soft Labrador more interested in you than in guarding anything.",
+  "on_success": "The dog wags at you the whole time. Terrible security. Lovely dog.",
+  "on_fail": "The dog's fine. The owner is not, and can run in wellies, which shouldn't be allowed.",
+  "on_crit": "Phone's lock screen is the same Labrador. You feel, briefly, like you've robbed the dog."
+ },
+ {
+  "id": "snatch_queue_scroll",
+  "job": "phone_snatch",
+  "conditions": {
+   "max_heat": 7
+  },
+  "target": {
+   "name": null,
+   "detail": "scrolling, not moving up the queue"
+  },
+  "setup": "Someone in the chicken shop queue, thumb going, not noticing the queue's moved up two people without them.",
+  "on_success": "You move up the queue as they look down at it. By the till, it's yours and you're gone.",
+  "on_fail": "The bloke behind them saw the whole thing and has decided today's the day he's a hero.",
+  "on_crit": "Phone's mid-order on a delivery app. Somewhere, food arrives at a door for a person who no longer has a phone."
+ },
+ {
+  "id": "snatch_charge_point",
+  "job": "phone_snatch",
+  "conditions": {
+   "max_heat": 8
+  },
+  "target": {
+   "name": null,
+   "detail": "tethered to a wall socket, guard down"
+  },
+  "setup": "Phone plugged into one of those station wall sockets, owner sat beside it reading a proper paper book, fully off guard.",
+  "on_success": "You pull it off the lead clean. They turn a page. By the time they look up, there's just a dangling cable.",
+  "on_fail": "The book was a decoy. They were watching the reflection in the window the whole time. Clever.",
+  "on_crit": "Phone and the charger both. Fast charger, worth having on its own. Two-for-one and a long walk to the next platform."
+ }
+]

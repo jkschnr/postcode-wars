@@ -1,0 +1,439 @@
+{
+ "p_visit": {
+  "id": "p_visit",
+  "act": 0,
+  "title": "Visiting Hours",
+  "cards": [
+   "pv1",
+   "pv2",
+   "pv3",
+   "pv4"
+  ],
+  "on_complete": {
+   "flags": [
+    "saw_kayo"
+   ],
+   "unlock_beats": [
+    "p_tea"
+   ]
+  }
+ },
+ "p_tea": {
+  "id": "p_tea",
+  "act": 0,
+  "title": "The Tea",
+  "cards": [
+   "pt1",
+   "pt2",
+   "pt3",
+   "pt4"
+  ],
+  "on_complete": {
+   "flags": [
+    "met_silas"
+   ],
+   "set": {
+    "debt_active": true
+   },
+   "unlock_beats": [
+    "p_barbershop"
+   ]
+  }
+ },
+ "p_barbershop": {
+  "id": "p_barbershop",
+  "act": 0,
+  "title": "The Barbershop",
+  "cards": [
+   "pb1",
+   "pb2",
+   "pb3",
+   "pb4"
+  ],
+  "on_complete": {
+   "flags": [
+    "met_uncle_t",
+    "learned_graft"
+   ],
+   "unlock_beats": [
+    "p_firstjob"
+   ]
+  }
+ },
+ "p_firstjob": {
+  "id": "p_firstjob",
+  "act": 0,
+  "title": "The First Job",
+  "cards": [
+   "pf1",
+   "pf_job",
+   "pf2"
+  ],
+  "on_complete": {
+   "flags": [
+    "did_first_job"
+   ],
+   "unlock_beats": [
+    "p_nads"
+   ]
+  }
+ },
+ "p_nads": {
+  "id": "p_nads",
+  "act": 0,
+  "title": "Nads",
+  "cards": [
+   "pn1",
+   "pn2",
+   "pn3"
+  ],
+  "on_complete": {
+   "flags": [
+    "met_nads"
+   ],
+   "set": {
+    "prologue_done": true
+   },
+   "unlock_beats": []
+  }
+ },
+ "a2_barber": {
+  "id": "a2_barber",
+  "act": 1,
+  "title": "The Barber's Favour",
+  "cards": [
+   "a2b1",
+   "a2b2",
+   "a2b_job",
+   "a2b3"
+  ],
+  "on_complete": {
+   "flags": [
+    "a2_started"
+   ],
+   "relationships": {
+    "uncle_t": 2
+   },
+   "unlock_beats": []
+  }
+ },
+ "a2_plug": {
+  "id": "a2_plug",
+  "act": 1,
+  "title": "The Plug",
+  "cards": [
+   "a2p1",
+   "a2p2",
+   "a2p3"
+  ],
+  "on_complete": {
+   "flags": [
+    "a2_plug"
+   ],
+   "unlock_beats": []
+  }
+ },
+ "a2_line": {
+  "id": "a2_line",
+  "act": 1,
+  "title": "Your Own Line",
+  "cards": [
+   "a2l1",
+   "a2l2",
+   "a2l3"
+  ],
+  "on_complete": {
+   "flags": [
+    "a2_line",
+    "act2_done"
+   ],
+   "set": {},
+   "unlock_beats": []
+  }
+ },
+ "a1_keisha": {
+  "id": "a1_keisha",
+  "act": 1,
+  "title": "Keisha",
+  "cards": [
+   "a1k1",
+   "a1k2",
+   "a1k3",
+   "a1k4"
+  ],
+  "on_complete": {
+   "unlock_beats": []
+  }
+ },
+ "a1_delroy": {
+  "id": "a1_delroy",
+  "act": 1,
+  "title": "Delroy",
+  "cards": [
+   "a1d1",
+   "a1d2",
+   "a1d3",
+   "a1d4"
+  ],
+  "on_complete": {
+   "unlock_beats": []
+  }
+ },
+ "a1_silas_check1": {
+  "id": "a1_silas_check1",
+  "act": 1,
+  "title": "The First Review",
+  "cards": [
+   "a1s1a",
+   "a1s1b",
+   "a1s1c"
+  ],
+  "on_complete": {
+   "unlock_beats": []
+  }
+ },
+ "a1_glb_first": {
+  "id": "a1_glb_first",
+  "act": 1,
+  "title": "Green Lane",
+  "cards": [
+   "a1g1",
+   "a1g2",
+   "a1g3",
+   "a1g4",
+   "a1g5"
+  ],
+  "on_complete": {
+   "unlock_beats": []
+  }
+ },
+ "a1_scripted_loss": {
+  "id": "a1_scripted_loss",
+  "act": 1,
+  "title": "Dropped",
+  "cards": [
+   "a1L1",
+   "a1L2",
+   "a1L3",
+   "a1L4"
+  ],
+  "on_complete": {
+   "unlock_beats": []
+  }
+ },
+ "a1_uncle_t_gym": {
+  "id": "a1_uncle_t_gym",
+  "act": 1,
+  "title": "Iron Temple",
+  "cards": [
+   "a1u1",
+   "a1u2",
+   "a1u3"
+  ],
+  "on_complete": {
+   "unlock_beats": []
+  }
+ },
+ "a1_rico_turns_up": {
+  "id": "a1_rico_turns_up",
+  "act": 1,
+  "title": "Rico",
+  "cards": [
+   "a1r1",
+   "a1r2",
+   "a1r3",
+   "a1r4"
+  ],
+  "on_complete": {
+   "unlock_beats": []
+  }
+ },
+ "a1_uncle_t_crack": {
+  "id": "a1_uncle_t_crack",
+  "act": 1,
+  "title": "You've Got a Younger",
+  "cards": [
+   "a1c1",
+   "a1c2",
+   "a1c3",
+   "a1c4"
+  ],
+  "on_complete": {
+   "unlock_beats": []
+  }
+ },
+ "a1_mum_call_1": {
+  "id": "a1_mum_call_1",
+  "act": 1,
+  "title": "Too Much Food",
+  "cards": [
+   "a1m1",
+   "a1m2",
+   "a1m3"
+  ],
+  "on_complete": {
+   "unlock_beats": []
+  }
+ },
+ "a1_hallam_1": {
+  "id": "a1_hallam_1",
+  "act": 1,
+  "title": "Four Questions",
+  "cards": [
+   "a1h1",
+   "a1h2",
+   "a1h3",
+   "a1h4",
+   "a1h5"
+  ],
+  "on_complete": {
+   "unlock_beats": []
+  }
+ },
+ "a1_nads_plan": {
+  "id": "a1_nads_plan",
+  "act": 1,
+  "title": "The Plan",
+  "cards": [
+   "a1n1",
+   "a1n2",
+   "a1n3",
+   "a1n4"
+  ],
+  "on_complete": {
+   "unlock_beats": []
+  }
+ },
+ "a1_delroy_van": {
+  "id": "a1_delroy_van",
+  "act": 1,
+  "title": "The Van",
+  "cards": [
+   "a1v1",
+   "a1v2",
+   "a1v3"
+  ],
+  "on_complete": {
+   "unlock_beats": []
+  }
+ },
+ "a1_warehouse": {
+  "id": "a1_warehouse",
+  "act": 1,
+  "title": "The Warehouse",
+  "cards": [
+   "a1w1",
+   "a1w2",
+   "a1w3",
+   "a1w4",
+   "a1w5",
+   "a1w6"
+  ],
+  "on_complete": {
+   "unlock_beats": []
+  }
+ },
+ "a1_after_warehouse": {
+  "id": "a1_after_warehouse",
+  "act": 1,
+  "title": "4am",
+  "cards": [
+   "a1aw1",
+   "a1aw2",
+   "a1aw3",
+   "a1aw4"
+  ],
+  "on_complete": {
+   "unlock_beats": []
+  }
+ },
+ "a1_silas_check2": {
+  "id": "a1_silas_check2",
+  "act": 1,
+  "title": "The Second Review",
+  "cards": [
+   "a1s2a",
+   "a1s2b",
+   "a1s2c"
+  ],
+  "on_complete": {
+   "unlock_beats": []
+  }
+ },
+ "a1_kayo_call_1": {
+  "id": "a1_kayo_call_1",
+  "act": 1,
+  "title": "The Call",
+  "cards": [
+   "a1kc1",
+   "a1kc2",
+   "a1kc3",
+   "a1kc4"
+  ],
+  "on_complete": {
+   "unlock_beats": []
+  }
+ },
+ "a1_rico_shortfall": {
+  "id": "a1_rico_shortfall",
+  "act": 1,
+  "title": "Six Hundred Light",
+  "cards": [
+   "a1rs1",
+   "a1rs2",
+   "a1rs3",
+   "a1rs4"
+  ],
+  "on_complete": {
+   "unlock_beats": []
+  }
+ },
+ "a1_sess_intro": {
+  "id": "a1_sess_intro",
+  "act": 1,
+  "title": "The Video",
+  "cards": [
+   "a1se1",
+   "a1se2",
+   "a1se3"
+  ],
+  "on_complete": {
+   "unlock_beats": []
+  }
+ },
+ "a1_the_payment": {
+  "id": "a1_the_payment",
+  "act": 1,
+  "title": "The Payment",
+  "cards": [
+   "a1p1",
+   "a1p2",
+   "a1p3",
+   "a1p4",
+   "a1p5",
+   "a1p6"
+  ],
+  "on_complete": {
+   "unlock_beats": []
+  }
+ },
+ "a1_the_offer": {
+  "id": "a1_the_offer",
+  "act": 1,
+  "title": "The Offer",
+  "cards": [
+   "a1o1",
+   "a1o2",
+   "a1o3",
+   "a1o4",
+   "a1o5",
+   "a1o6"
+  ],
+  "on_complete": {
+   "unlock_beats": [],
+   "flags": [
+    "act1_complete"
+   ]
+  }
+ }
+}

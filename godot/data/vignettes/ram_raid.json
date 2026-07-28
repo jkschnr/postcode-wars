@@ -1,0 +1,160 @@
+[
+ {
+  "id": "ram_atm",
+  "conditions": {
+   "time": "night",
+   "max_heat": 12
+  },
+  "target": {
+   "name": null,
+   "detail": "the freestanding ATM in the shop wall"
+  },
+  "setup": "Convenience store ATM set in the wall, telehandler nicked from the site down the road, chain and a three a.m. with nobody about. Loud, quick, over.",
+  "on_success": "Forks under the machine, wall gives before the alarm finishes its first ring, ATM in the back of the van and away over the fields.",
+  "on_fail": "The machine's bolted deeper than it looks and the telehandler stalls half-in. Now you've got a stuck digger and blue lights closing.",
+  "on_crit": "Full cassette, only just refilled for the weekend. It's heavier than you dared hope.",
+  "job": "ram_raid"
+ },
+ {
+  "id": "ram_shutter",
+  "target": {
+   "name": "the phone shop",
+   "detail": "roller shutter, stock room at the back"
+  },
+  "setup": "Phone shop, roller shutter you can pop with a van bumper, a stock room behind the counter full of boxed handsets still sealed.",
+  "on_success": "Reverse through the shutter, two of you clear the stockroom in ninety seconds, gone before the response car's even dispatched.",
+  "on_fail": "Bollards. New ones. The kind that stop a van dead and fold your bumper into your radiator.",
+  "on_crit": "New stock delivery was that afternoon. The back room's stacked to the ceiling.",
+  "job": "ram_raid",
+  "conditions": {
+   "max_heat": 12
+  }
+ },
+ {
+  "id": "ram_precinct_jewellers",
+  "conditions": {
+   "time": "night",
+   "min_level": 16,
+   "max_heat": 12
+  },
+  "target": {
+   "name": "—",
+   "detail": "the precinct unit with the roller shutter that's never worked right"
+  },
+  "setup": "Shutter half-jammed since Christmas and everyone knows it, bollards out front but the one on the left's been clipped so many times it moves, and a window they load for the Saturday and forget to empty.",
+  "on_success": "Bollard goes over, shutter goes up in one, ninety seconds inside, and you're back on the ring road before the alarm finishes its first cycle.",
+  "on_fail": "The bollard doesn't move. Turns out they replaced it Tuesday. The van's front end is now evidence and you're on foot.",
+  "on_crit": "The whole tray was in the window. They'd loaded it for the weekend and nobody put it back in the safe.",
+  "job": "ram_raid"
+ },
+ {
+  "id": "ram_cashpoint_wall",
+  "conditions": {
+   "time": "night",
+   "max_heat": 10
+  },
+  "target": {
+   "name": "—",
+   "detail": "the freestanding ATM set into the shop wall"
+  },
+  "setup": "Convenience-store cashpoint set in the wall, a telehandler nicked off the site down the road, a chain, and a three a.m. with nobody about. Loud, quick, and over before the road wakes up.",
+  "on_success": "Forks under the machine, the wall gives before the alarm finishes ringing, ATM in the back of the van and away across the fields on a route no camera watches.",
+  "on_fail": "It's bolted deeper than it looks and the telehandler stalls with the machine half out. Now you've a stuck digger and blue lights closing.",
+  "on_crit": "Full cassette, only just refilled for the weekend rush. It's heavier than you dared hope and you nearly can't lift it.",
+  "job": "ram_raid"
+ },
+ {
+  "id": "ram_phone_shop",
+  "conditions": {
+   "time": "night",
+   "min_level": 16,
+   "max_heat": 12
+  },
+  "target": {
+   "name": "Sim",
+   "detail": "the phone shop stockroom, just delivered to"
+  },
+  "setup": "Phone shop with a roller shutter a van bumper pops, a stockroom behind the counter full of sealed handsets, and a delivery that landed this afternoon and won't be counted till Monday.",
+  "on_success": "Reverse through the shutter, two of you clear the stockroom in ninety seconds flat, gone before the response car's even been dispatched.",
+  "on_fail": "Bollards. New ones. The kind that stop a van dead and fold the bumper up into the radiator with a noise like the end of the plan.",
+  "job": "ram_raid"
+ },
+ {
+  "id": "ram_off_licence_spirits",
+  "conditions": {
+   "time": "night",
+   "max_heat": 9
+  },
+  "target": {
+   "name": "—",
+   "detail": "the retail-park offie stacked for the bank holiday"
+  },
+  "setup": "Big retail-park off-licence, stacked to the rafters for the bank holiday, a shutter and a single overnight alarm, and a car park you can build up real speed across at four in the morning.",
+  "on_success": "Straight through the shutter, trolley the spirits into the van by the pallet, and it's on the estate at cost-plus-nothing by breakfast.",
+  "on_fail": "There's a guard doing rounds you didn't cost in, and he's already on the radio describing your van's back doors.",
+  "job": "ram_raid"
+ },
+ {
+  "id": "ram_post_office",
+  "conditions": {
+   "time": "night",
+   "min_level": 16,
+   "max_heat": 11
+  },
+  "target": {
+   "name": "—",
+   "detail": "the village post office with the safe and the pension day tomorrow"
+  },
+  "setup": "A village post office, a safe loaded ready for pension day, a front you can put a Transit through, and a nearest patrol car twenty minutes away on a good night, which most nights out here are.",
+  "on_success": "Through the front, chain on the safe, safe on the flatbed, and four miles of unlit lane between you and anyone who could stop it.",
+  "on_fail": "The postmistress lives above the shop and she's dialling before you've got the chain on, and twenty minutes turns out to be less than you thought.",
+  "on_crit": "Pension day's float came early. The safe's fuller tonight than it'll be for a month.",
+  "job": "ram_raid"
+ },
+ {
+  "id": "ram_vape_shop",
+  "conditions": {
+   "time": "night",
+   "max_heat": 8
+  },
+  "target": {
+   "name": "—",
+   "detail": "the vape shop that's really a cash business"
+  },
+  "setup": "A vape shop that shifts far more than it declares, a till that never empties properly, a flimsy shutter, and an owner who can't report the true loss without explaining the true takings.",
+  "on_success": "Through the shutter, till and stock into the van, and the owner reports a fraction of what actually went because the rest was never officially there.",
+  "on_fail": "The 'flimsy' shutter's been reinforced since the last time somebody tried, and the van bounces off it into the bus stop.",
+  "job": "ram_raid"
+ },
+ {
+  "id": "ram_bookies",
+  "conditions": {
+   "time": "night",
+   "min_level": 16,
+   "max_heat": 12
+  },
+  "target": {
+   "name": "Terry",
+   "detail": "the bookies that took a fortune on the big race"
+  },
+  "setup": "A high-street bookies the day after the big race, a safe that didn't get banked because the security van route got changed, a back door onto a service road, and a night watchman who clocks off at two.",
+  "on_success": "In off the service road at ten past two, safe out on a sack truck, away down the back lanes with a day's losing bets turned into your winning one.",
+  "on_fail": "The watchman worked a double and he's still there at ten past two, and he's braver than the wage should make him.",
+  "job": "ram_raid"
+ },
+ {
+  "id": "ram_charity_gone_wrong",
+  "conditions": {
+   "time": "night",
+   "max_heat": 7
+  },
+  "target": {
+   "name": "—",
+   "detail": "the unit you thought was a stockroom"
+  },
+  "setup": "A shutter, a quiet corner, a tip-off that it's a phone importer's overflow store. You put the van through it clean and fast, exactly to plan, and then the headlights show you what's actually inside.",
+  "on_success": "Wrong unit — but it's a wholesaler's, and pallets are pallets. You take what fits and leave, richer by accident and quieter about it.",
+  "on_fail": "It's a charity furniture store. The van's wrecked, the take is a sofa and a box of donated mugs, and you've done all this for nothing that sells.",
+  "job": "ram_raid"
+ }
+]

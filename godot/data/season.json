@@ -1,0 +1,8 @@
+{
+  "length_days": 56,
+  "themes": [
+    {"id": "winter_pressure", "name": "WINTER PRESSURE", "twist": "Cold snap on the manor. Heating bills bite, and the Christmas jewellery runs are on.", "accent": "#6E9EC0"},
+    {"id": "operation_meridian", "name": "OPERATION MERIDIAN", "twist": "Police crackdown. Heat runs hotter and there are informants on every block.", "accent": "#2E5EAA"},
+    {"id": "drought", "name": "THE DROUGHT", "twist": "Product's scarce, prices spike, and the lines are worth fighting over.", "accent": "#D97A1E"}
+  ]
+}

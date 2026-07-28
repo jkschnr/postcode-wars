@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>11-crew — Postcode Wars</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="ui.css">
+<script src="cast.js"></script>
+<script src="chrome.js"></script>
+<script src="anim.js"></script>
+<script src="atmos.js"></script>
+</head>
+<body>
+<div id="frame">
+  <div id="hud"></div>
+
+  <div class="scroll" style="top:140px; bottom:160px; padding:28px 32px 48px; box-sizing:border-box; display:flex; flex-direction:column; gap:26px;">
+
+    <div id="hero"></div>
+
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div class="sechead">
+        <span class="mono" style="font-size:20px; letter-spacing:0.2em; color:#FFA94D;">ROSTER</span>
+        <span class="rule"></span>
+        <span class="mono" style="font-size:20px; color:#5A6068;">TAP TO REASSIGN</span>
+      </div>
+      <div id="roster" style="display:flex; flex-direction:column; gap:14px;"></div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div class="sechead">
+        <span class="mono" style="font-size:20px; letter-spacing:0.2em; color:#C9A227;">RECRUIT</span>
+        <span class="rule"></span>
+        <span id="rotate" class="mono tab" style="font-size:20px; color:#9AA0A6;">ROTATES IN 02:41:08</span>
+      </div>
+      <div id="candidates" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;"></div>
+    </div>
+  </div>
+
+  <div id="nav"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+mountChrome('crew', {});
+mountHero({ lat:51.5290, lon:-0.0180, zoom:16.2, ghost:'CREW',
+  kicker:'FOUR ON THE PAYROLL', title:'Crew', meta:'BOW · WAGES £1,900/WK · 4 OF 6 SLOTS',
+  back:{ label:'LONDON', href:'02-city.html' },
+  right:'<div id="shuffle" class="mono" style="height:72px; padding:0 22px; border:1px solid #2A2E33; border-radius:14px; background:rgba(18,20,23,0.82); display:flex; align-items:center; font-size:20px; letter-spacing:0.14em; color:#FFA94D; cursor:pointer;">⟳ NEW CANDIDATES</div>' });
+
+const CLASSES = [
+  { c:'WHEELS', tint:'#4DA3FF' }, { c:'MUSCLE', tint:'#D63B3B' },
+  { c:'FACE', tint:'#FFA94D' }, { c:'TECH', tint:'#B06CF0' }, { c:'LOOKOUT', tint:'#6FCF6F' }
+];
+const JOBS = ['Driving the Bow run', 'On the door at Betfrenz', 'Sitting on the Dalston till', 'Idle — no assignment', 'Watching the arches'];
+
+function row(c, cls, lvl, job, loyalty) {
+  const idle = job.startsWith('Idle');
+  return `<div class="panel" style="padding:20px 24px; display:flex; align-items:center; gap:20px; ${idle ? 'border-color:#C9A227;' : ''}">
+    ${portraitSlot(c, 96, cls.tint)}
+    <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:8px;">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span class="disp" style="font-size:40px; line-height:1;">${c.name}</span>
+        <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:${cls.tint};">${cls.c}</span>
+        <span class="mono tab" style="font-size:20px; color:#9AA0A6;">LVL ${lvl}</span>
+      </div>
+      <span class="mono" style="font-size:20px; color:${idle ? '#C9A227' : '#9AA0A6'};">${job.toUpperCase()}</span>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span class="mono" style="font-size:20px; color:#5A6068;">LOYALTY</span>
+        <div style="width:220px; height:12px; border-radius:6px; background:#0C0E10; border:1px solid #2A2E33; overflow:hidden; display:flex;">
+          <div style="width:${loyalty}%; background:${loyalty < 40 ? '#D63B3B' : '#57C785'};"></div>
+        </div>
+        <span class="mono tab" style="font-size:20px; color:${loyalty < 40 ? '#D63B3B' : '#57C785'};">${loyalty}%</span>
+      </div>
+    </div>
+    <span class="mono" style="font-size:34px; color:#3A3F45;">›</span>
+  </div>`;
+}
+
+function card(c, cls, lvl, fee) {
+  return `<div class="panel" style="padding:22px 24px; display:flex; flex-direction:column; gap:16px;">
+    <div style="display:flex; align-items:center; gap:16px;">
+      ${portraitSlot(c, 88, cls.tint)}
+      <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:6px;">
+        <span class="disp" style="font-size:34px; line-height:1;">${c.name}</span>
+        <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:${cls.tint};">${cls.c} · LVL ${lvl}</span>
+      </div>
+    </div>
+    <span style="font-size:24px; line-height:1.35; color:#9AA0A6;">“${pick(c.lines)}”</span>
+    <div class="tab" style="display:flex; gap:12px; flex-wrap:wrap;">
+      <span class="chipm" style="color:#C9A227;">£${fee}/WK</span>
+      <span class="chipm" style="color:#9AA0A6;">${c.city.toUpperCase()}</span>
+    </div>
+    <button class="btn btn-secondary" style="font-size:30px;">Take him on</button>
+  </div>`;
+}
+
+function reroll() {
+  const crew = pickCast(4);
+  document.getElementById('roster').innerHTML = crew.map((c, i) =>
+    row(c, CLASSES[i % CLASSES.length], 8 + i * 7, JOBS[i % JOBS.length], [82, 64, 31, 55][i])).join('');
+  const cands = pickCast(4, c => !crew.includes(c));
+  document.getElementById('candidates').innerHTML = cands.map((c, i) =>
+    card(c, CLASSES[(i + 2) % CLASSES.length], 4 + i * 5, [220, 340, 480, 610][i])).join('');
+}
+document.getElementById('shuffle').addEventListener('click', reroll);
+reroll();
+</script>
+</body>
+</html>

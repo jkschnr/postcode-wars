@@ -1,0 +1,18 @@
+{
+  "curve": { "base": 70, "exp": 1.5, "max_level": 100 },
+  "per_level": { "energy_cap": 2, "stat_points": 1 },
+  "milestones": {
+    "1": "Petty jobs · London",
+    "5": "Travel to Manchester",
+    "10": "Crew + Bank laundering",
+    "15": "Tier-2 jobs unlocked",
+    "20": "Birmingham + Glasgow",
+    "25": "County lines (Trapline)",
+    "35": "Claim territory from NPC firms",
+    "50": "Found or join a Firm",
+    "60": "Heists (multi-crew)",
+    "75": "Declare war",
+    "90": "Endgame cities & gear",
+    "100": "TOP BOY — the crown is yours"
+  }
+}

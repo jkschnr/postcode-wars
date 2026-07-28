@@ -1,0 +1,8 @@
+.godot/
+godot/.godot/
+build/
+_templates/
+export/
+*.wasm
+*.pck
+.DS_Store

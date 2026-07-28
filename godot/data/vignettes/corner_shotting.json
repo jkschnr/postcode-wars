@@ -1,0 +1,153 @@
+[
+ {
+  "id": "shot_lookout",
+  "target": {
+   "name": null,
+   "detail": "the block, the bench, the same faces"
+  },
+  "setup": "Bench by the shops, youngers on the bikes doing loops as eyes, the little bag taped under the bin. Routine as a milk round.",
+  "on_success": "Steady traffic all shift, nothing above a twenty, no faces you don't know. Clean night on the block.",
+  "on_fail": "One of the buyers is wearing shoes too clean for round here. He's not buying, he's counting. You clock it a beat too late.",
+  "on_crit": "A wholesale face wants a proper amount and pays without a haggle. Double bubble, no bother.",
+  "job": "corner_shotting",
+  "conditions": {
+   "max_heat": 12
+  }
+ },
+ {
+  "id": "shot_trap_house",
+  "conditions": {
+   "min_heat": 3,
+   "max_heat": 12
+  },
+  "target": {
+   "name": "the trap",
+   "detail": "the flat with the reinforced door"
+  },
+  "setup": "The flat above the offie, letterbox stuffed with foam, punters buzzing up all evening. Heat's up so keep it tight.",
+  "on_success": "In-out on the buzzer, nothing on you longer than it takes to hand it over. Nerve held, block held.",
+  "on_fail": "Buzzer goes and it's not a punter, it's a door coming off its hinges with a warrant behind it.",
+  "on_crit": "A dry spell everywhere else means everyone comes to yours. You clear the lot at a premium.",
+  "job": "corner_shotting"
+ },
+ {
+  "id": "shot_bench_regulars",
+  "conditions": {
+   "max_heat": 6
+  },
+  "target": {
+   "name": "—",
+   "detail": "the bench by the shops, the same faces all evening"
+  },
+  "setup": "Bench outside the offie, youngers doing loops on bikes as eyes, the little bag taped under the third slat. Regular as a milk round and about as exciting, which is exactly the point.",
+  "on_success": "Steady traffic all shift, nothing above a twenty, no faces you don't already know. A clean night on a bench that's seen worse.",
+  "on_fail": "One of the buyers has shoes too clean for round here. He's not buying, he's counting, and you clock it a beat too late.",
+  "job": "corner_shotting"
+ },
+ {
+  "id": "shot_school_fence",
+  "conditions": {
+   "time": "day",
+   "max_heat": 5
+  },
+  "target": {
+   "name": "Kyle",
+   "detail": "the gap in the fence the sixth-formers use"
+  },
+  "setup": "Lunchtime, a hole in the school railings worn smooth by years of it, and a queue of blazers with dinner money and bad ideas. You don't go to them; the gap brings them to you.",
+  "on_success": "Ten minutes, twenty quid pieces, a line of kids who think they're getting away with something. Nobody's late back for double maths.",
+  "on_fail": "A teacher on gate duty has been watching that fence for a term and today's the day she walks over instead of writing it down.",
+  "on_crit": "One of them's spending his whole week's money and bringing his mates back for more. Repeat business starts young round here.",
+  "job": "corner_shotting"
+ },
+ {
+  "id": "shot_trap_flat",
+  "conditions": {
+   "min_heat": 3,
+   "max_heat": 9
+  },
+  "target": {
+   "name": "—",
+   "detail": "the flat above the offie with foam in the letterbox"
+  },
+  "setup": "Reinforced door, foam stuffed in the letterbox against a torch, punters buzzing up all evening. Heat's up in the ends so you keep it tight and you keep it moving.",
+  "on_success": "In-out on the buzzer, nothing on you longer than it takes to pass it through the gap in the door. Nerve held, block held, night banked.",
+  "on_fail": "The buzzer goes and it's not a punter — it's a door coming off its hinges with a warrant and a lot of shouting behind it.",
+  "job": "corner_shotting"
+ },
+ {
+  "id": "shot_petrol_forecourt",
+  "conditions": {
+   "time": "night",
+   "max_heat": 7
+  },
+  "target": {
+   "name": "—",
+   "detail": "the 24-hour garage where cars pull in and don't buy petrol"
+  },
+  "setup": "Night garage, bright as day, cameras everywhere, which is why nobody thinks you'd be daft enough. Cars pull onto the forecourt, a window goes down, a hand comes out, gone.",
+  "on_success": "Six cars in an hour and not one of them bought fuel. The cashier inside has decided he sees nothing for a small consideration.",
+  "on_fail": "The cashier's new and keen and he's already reading the number plates into a phone he thinks you can't see.",
+  "job": "corner_shotting"
+ },
+ {
+  "id": "shot_older_runs",
+  "conditions": {
+   "max_heat": 8
+  },
+  "target": {
+   "name": "—",
+   "detail": "the twelve-year-old on the BMX who does the actual handing over"
+  },
+  "setup": "You hold nothing. A younger on a bike holds nothing either until a text sends him to a wall where nothing is taped. Three degrees of nothing between you and the corner. That's the whole design.",
+  "on_success": "The kid does the loops, the punters get served, and if anyone gets stopped it's a child with an empty pocket and a good story.",
+  "on_fail": "The kid gets pulled and he's twelve and scared and it turns out twelve-year-olds tell the truth faster than you'd hope.",
+  "job": "corner_shotting"
+ },
+ {
+  "id": "shot_festival_field",
+  "conditions": {
+   "time": "night",
+   "min_level": 5,
+   "max_heat": 12
+  },
+  "target": {
+   "name": "Shanice",
+   "detail": "the corner of a field where the phone signal dies"
+  },
+  "setup": "Edge of a festival, past the last light, where a thousand people have money and no shop for a mile. No cameras out here, just torches and want and a field that swallows sound.",
+  "on_success": "You could sell a week's worth in a night out here. They find you by word of mouth and pay whatever the dark decides is fair.",
+  "on_fail": "Two of the torches coming towards you turn out to be event security who used to do exactly this and know every trick you've got.",
+  "job": "corner_shotting"
+ },
+ {
+  "id": "shot_dry_spell",
+  "conditions": {
+   "min_heat": 2,
+   "max_heat": 12
+  },
+  "target": {
+   "name": "—",
+   "detail": "the whole ends gone quiet because everyone else got nicked"
+  },
+  "setup": "A dry spell everywhere else means every phone in the postcode rings yours. Too much demand is its own kind of danger — a queue is a thing the police can see from space.",
+  "on_success": "You ration it, keep the queue moving, and clear the lot at a premium nobody argues with. Scarcity does the pricing for you.",
+  "on_fail": "The queue gets long enough to notice and long enough to film, and one of the faces in it has been sent to make exactly that happen.",
+  "on_crit": "You're the only shop open in three postcodes. You've never counted this fast in your life.",
+  "job": "corner_shotting"
+ },
+ {
+  "id": "shot_food_bank",
+  "conditions": {
+   "max_heat": 4
+  },
+  "target": {
+   "name": "—",
+   "detail": "the community centre car park on the quiet afternoon"
+  },
+  "setup": "Behind the community centre where the food bank runs, an afternoon lull, a low wall, and people who've learned to keep their heads down for reasons that have nothing to do with you.",
+  "on_success": "A slow hour, small money, nobody looking. It's not glamorous and it barely covers the day, and some nights that's the whole job.",
+  "on_fail": "A volunteer who does the food bank recognises somebody in your queue as their neighbour's kid and can't let it go.",
+  "job": "corner_shotting"
+ }
+]

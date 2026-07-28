@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>10-bank — Postcode Wars</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="ui.css">
+<script src="cast.js"></script>
+<script src="chrome.js"></script>
+<script src="anim.js"></script>
+<script src="atmos.js"></script>
+<style>
+  input[type=range] { -webkit-appearance:none; appearance:none; width:100%; height:36px; background:transparent; }
+  input[type=range]::-webkit-slider-runnable-track { height:20px; border-radius:10px; background:#0C0E10; border:1px solid #2A2E33; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:64px; height:64px; margin-top:-24px;
+    border-radius:50%; background:#C9A227; border:4px solid #121417; cursor:pointer; }
+</style>
+</head>
+<body>
+<div id="frame">
+  <div id="hud"></div>
+
+  <div class="scroll" style="top:140px; bottom:160px; padding:28px 32px 48px; box-sizing:border-box; display:flex; flex-direction:column; gap:26px;">
+
+    <div id="hero"></div>
+
+    <!-- dirty vs clean, visually opposed -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+      <div class="panel tab" style="border-color:#C9A227; background:linear-gradient(180deg, rgba(201,162,39,0.14), #1E2126 60%); padding:28px; display:flex; flex-direction:column; gap:12px;">
+        <span class="mono" style="font-size:22px; letter-spacing:0.16em; color:#C9A227;">DIRTY</span>
+        <span class="disp" style="font-size:72px; line-height:0.95; color:#C9A227;">£12,480</span>
+        <span class="mono" style="font-size:20px; color:#9AA0A6;">SEIZABLE · CAN'T BE SPENT ON GEAR</span>
+        <div style="display:flex; gap:8px; padding-top:4px;">
+          <span style="flex:1; height:12px; border-radius:6px; background:#C9A227;"></span>
+          <span style="flex:1; height:12px; border-radius:6px; background:#C9A227;"></span>
+          <span style="flex:1; height:12px; border-radius:6px; background:#C9A227;"></span>
+          <span style="flex:1; height:12px; border-radius:6px; background:rgba(201,162,39,0.25);"></span>
+        </div>
+        <span class="mono" style="font-size:20px; color:#D63B3B;">RAID RISK 3/4 AT THIS BALANCE</span>
+      </div>
+      <div class="panel tab" style="border-color:#57C785; background:linear-gradient(180deg, rgba(87,199,133,0.12), #1E2126 60%); padding:28px; display:flex; flex-direction:column; gap:12px;">
+        <span class="mono" style="font-size:22px; letter-spacing:0.16em; color:#57C785;">CLEAN</span>
+        <span class="disp" style="font-size:72px; line-height:0.95; color:#57C785;">£3,050</span>
+        <span class="mono" style="font-size:20px; color:#9AA0A6;">SAFE · SPENDABLE · COUNTS TOWARD DEBT</span>
+        <div style="display:flex; gap:8px; padding-top:4px;">
+          <span style="flex:1; height:12px; border-radius:6px; background:#57C785;"></span>
+          <span style="flex:1; height:12px; border-radius:6px; background:rgba(87,199,133,0.25);"></span>
+          <span style="flex:1; height:12px; border-radius:6px; background:rgba(87,199,133,0.25);"></span>
+          <span style="flex:1; height:12px; border-radius:6px; background:rgba(87,199,133,0.25);"></span>
+        </div>
+        <span class="mono" style="font-size:20px; color:#57C785;">NOTHING OWED THIS WEEK</span>
+      </div>
+    </div>
+
+    <!-- deposit -->
+    <div class="panel" style="padding:28px; display:flex; flex-direction:column; gap:20px;">
+      <div class="sechead">
+        <span class="mono" style="font-size:20px; letter-spacing:0.2em; color:#FFA94D;">WASH SOME THROUGH</span>
+        <span class="rule"></span>
+        <span id="fee" class="mono tab" style="font-size:20px; color:#9AA0A6;">FEE 11% · 4H</span>
+      </div>
+      <div class="tab" style="display:flex; align-items:baseline; gap:16px;">
+        <span id="amount" class="disp" style="font-size:96px; line-height:0.9; color:#C9A227;">£4,000</span>
+        <span id="out" class="mono" style="font-size:24px; color:#57C785;">→ £3,560 CLEAN</span>
+      </div>
+      <input id="slider" type="range" min="500" max="12480" step="500" value="4000">
+      <div style="display:flex; justify-content:space-between;">
+        <span class="mono" style="font-size:20px; color:#5A6068;">£500</span>
+        <span class="mono" style="font-size:20px; color:#5A6068;">ALL OF IT · £12,480</span>
+      </div>
+      <button class="btn btn-primary">Send it through</button>
+    </div>
+
+    <!-- queue -->
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div class="sechead">
+        <span class="mono" style="font-size:20px; letter-spacing:0.2em; color:#FFA94D;">IN THE WASH</span>
+        <span class="rule"></span>
+        <span class="mono" style="font-size:20px; color:#5A6068;">3 OF 4 SLOTS</span>
+      </div>
+      <div id="queue" class="tab" style="display:flex; flex-direction:column; gap:14px;"></div>
+    </div>
+
+    <!-- teller -->
+    <div id="teller" class="panel" style="border-left:6px solid #FFA94D; background:#2A2E33; padding:22px 26px; display:flex; align-items:center; gap:20px;"></div>
+  </div>
+
+  <div id="nav"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+mountChrome('city', {});
+mountHero({ lat:51.5445, lon:-0.0555, zoom:16.6, ghost:'BUNG',
+  kicker:'YOUR MONEY, TWO WAYS', title:'Bung', meta:'MARE STREET BRANCH · OPEN TILL MIDNIGHT · 23:41',
+  back:{ label:'LONDON', href:'02-city.html' } });
+
+const QUEUE = [
+  { label:'BETFRENZ TAKINGS', amt:2400, pct:88, left:'00:48', tint:'#C9A227' },
+  { label:'CHICKENLIX FLOAT', amt:1600, pct:41, left:'02:22', tint:'#C9A227' },
+  { label:'CAR WASH WEEKEND', amt:900, pct:100, left:'READY', tint:'#D9E021' }
+];
+document.getElementById('queue').innerHTML = QUEUE.map(q => `
+  <div class="panel" style="padding:20px 24px; display:flex; align-items:center; gap:20px; ${q.left === 'READY' ? 'border-color:#D9E021;' : ''}">
+    ${timerRing(q.pct, q.tint, 64)}
+    <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:6px;">
+      <span class="mono" style="font-size:20px; letter-spacing:0.12em; color:#9AA0A6;">${q.label}</span>
+      <span class="disp" style="font-size:38px; line-height:1;">£${q.amt.toLocaleString('en-GB')}</span>
+    </div>
+    <span class="disp" style="font-size:${q.left === 'READY' ? 34 : 40}px; color:${q.left === 'READY' ? '#D9E021' : '#EDEFF2'};">${q.left}</span>
+  </div>`).join('');
+
+const shauna = CAST.find(c => c.id === 'shauna');
+document.getElementById('teller').innerHTML = `
+  ${portraitSlot(shauna, 96, '#FFA94D')}
+  <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:8px;">
+    <span class="mono" style="font-size:20px; letter-spacing:0.14em; color:#FFA94D;">${shauna.name.toUpperCase()} · ${shauna.role} · WINDOW 2</span>
+    <span style="font-size:26px; line-height:1.35;">“${pick(shauna.lines)}”</span>
+  </div>`;
+
+const s = document.getElementById('slider');
+function sync() {
+  const v = +s.value;
+  const feePct = v > 8000 ? 0.16 : v > 4000 ? 0.13 : 0.11;
+  const hrs = v > 8000 ? 9 : v > 4000 ? 6 : 4;
+  document.getElementById('amount').textContent = '£' + v.toLocaleString('en-GB');
+  document.getElementById('out').textContent = '→ £' + Math.round(v * (1 - feePct)).toLocaleString('en-GB') + ' CLEAN';
+  document.getElementById('fee').textContent = 'FEE ' + Math.round(feePct * 100) + '% · ' + hrs + 'H';
+  document.getElementById('fee').style.color = v > 8000 ? '#D63B3B' : '#9AA0A6';
+}
+s.addEventListener('input', sync);
+sync();
+</script>
+</body>
+</html>

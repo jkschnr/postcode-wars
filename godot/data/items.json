@@ -1,0 +1,3498 @@
+{
+ "slots": [
+  {
+   "k": "head",
+   "label": "HEAD",
+   "blurb": "The most visible slot in the game. This is where drip is read from across a room.",
+   "items": [
+    {
+     "n": "Nothing",
+     "il": 0,
+     "st": "—",
+     "r": "Ba",
+     "src": "—",
+     "sh": "none",
+     "c": "charc",
+     "v": {},
+     "d": "Just your head, out in the weather.",
+     "id": "head_0",
+     "slot": "head"
+    },
+    {
+     "n": "Faded Cap",
+     "il": 2,
+     "st": "SPD",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "cap",
+     "c": "navy",
+     "v": {
+      "flat": true,
+      "button": true
+     },
+     "d": "Curved brim, no logo, been through a wash it shouldn't have.",
+     "id": "head_1",
+     "slot": "head"
+    },
+    {
+     "n": "School Beanie",
+     "il": 3,
+     "st": "TGH",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "beanie",
+     "c": "maroon",
+     "v": {
+      "bobble": true
+     },
+     "d": "Still smells faintly of a classroom.",
+     "id": "head_2",
+     "slot": "head"
+    },
+    {
+     "n": "Ribbed Beanie",
+     "il": 6,
+     "st": "SPD, SLK",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "beanie",
+     "c": "charc",
+     "v": {
+      "bobble": true
+     },
+     "d": "Pulled down to the eyebrows. Standard issue.",
+     "id": "head_3",
+     "slot": "head"
+    },
+    {
+     "n": "Five-Panel",
+     "il": 8,
+     "st": "SLK",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "cap",
+     "c": "olive",
+     "v": {
+      "flat": true,
+      "button": true
+     },
+     "d": "Flat brim, sits high, says nothing about you.",
+     "id": "head_4",
+     "slot": "head"
+    },
+    {
+     "n": "Bucket Hat",
+     "il": 10,
+     "st": "SLK, LCK",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "bucket",
+     "c": "sand",
+     "v": {
+      "plain": true
+     },
+     "d": "Half fisherman, half nuisance. Fully anonymous.",
+     "id": "head_5",
+     "slot": "head"
+    },
+    {
+     "n": "Fur-Trim Hood",
+     "il": 14,
+     "st": "TGH, SPD",
+     "r": "Pe",
+     "src": "SHOP-B",
+     "sh": "hood",
+     "c": "olive",
+     "v": {
+      "fur": true,
+      "strings": true
+     },
+     "d": "Zipped to the nose. Nobody sees your face and nobody asks.",
+     "id": "head_6",
+     "slot": "head"
+    },
+    {
+     "n": "Trapper Hat",
+     "il": 16,
+     "st": "TGH",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "trapper",
+     "c": "brown",
+     "v": {
+      "plain": true
+     },
+     "d": "Ridiculous in April. Unbeatable in January.",
+     "id": "head_7",
+     "slot": "head"
+    },
+    {
+     "n": "Cycling Cap",
+     "il": 15,
+     "st": "SPD, LCK",
+     "r": "Pe",
+     "src": "CRIT",
+     "sh": "cap",
+     "c": "white",
+     "v": {
+      "button": true
+     },
+     "d": "Nobody suspects a cyclist. Everybody hates a cyclist.",
+     "id": "head_8",
+     "slot": "head"
+    },
+    {
+     "n": "Hard Hat",
+     "il": 18,
+     "st": "TGH",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "hardhat",
+     "c": "hivis",
+     "v": {
+      "plain": true
+     },
+     "d": "Site Kit piece. Grants entry to places doors don't.",
+     "set": "Site Kit",
+     "id": "head_9",
+     "slot": "head"
+    },
+    {
+     "n": "Beanie with the Bobble",
+     "il": 20,
+     "st": "SPD, LCK",
+     "r": "Pe",
+     "src": "SHOP-B",
+     "sh": "beanie",
+     "c": "red",
+     "v": {
+      "bobble": true
+     },
+     "d": "Softens your whole face. Weaponised harmlessness.",
+     "id": "head_10",
+     "slot": "head"
+    },
+    {
+     "n": "Bike Helmet",
+     "il": 22,
+     "st": "TGH, SPD",
+     "r": "Pe",
+     "src": "CRIT",
+     "sh": "helmet",
+     "c": "lgrey",
+     "v": {
+      "plain": true
+     },
+     "d": "Legal to wear. Legal to wear indoors, technically.",
+     "id": "head_11",
+     "slot": "head"
+    },
+    {
+     "n": "Nurse's Cap",
+     "il": 24,
+     "st": "SLK, LCK",
+     "r": "Ce",
+     "src": "DEEP",
+     "sh": "nursecap",
+     "c": "white",
+     "v": {
+      "plain": true
+     },
+     "d": "Nobody's ever asked a nurse what she's doing here.",
+     "id": "head_12",
+     "slot": "head"
+    },
+    {
+     "n": "Wide-Brim Rain Hat",
+     "il": 26,
+     "st": "SLK",
+     "r": "Ce",
+     "src": "SHOP-D",
+     "sh": "rainhat",
+     "c": "charc",
+     "v": {
+      "plain": true
+     },
+     "d": "Puts your face in permanent shadow. Costs you every conversation.",
+     "id": "head_13",
+     "slot": "head"
+    },
+    {
+     "n": "Sunday Trilby",
+     "il": 28,
+     "st": "LCK",
+     "r": "Ce",
+     "src": "SHOP-D",
+     "sh": "trilby",
+     "c": "brown",
+     "v": {
+      "plain": true
+     },
+     "d": "Sunday Best piece. You look like you own something.",
+     "set": "Sunday Best",
+     "id": "head_14",
+     "slot": "head"
+    },
+    {
+     "n": "Motorcycle Lid (Tinted)",
+     "il": 32,
+     "st": "TGH, SLK",
+     "r": "Ce",
+     "src": "DEEP",
+     "sh": "motolid",
+     "c": "black",
+     "v": {
+      "plain": true
+     },
+     "d": "Full face, dark visor. Illegal in most shops and every bank.",
+     "id": "head_15",
+     "slot": "head"
+    },
+    {
+     "n": "The Grey Cap",
+     "il": 34,
+     "st": "SLK",
+     "r": "Ce",
+     "src": "PVP",
+     "sh": "cap",
+     "c": "grey",
+     "v": {
+      "flat": true,
+      "button": true
+     },
+     "d": "Grey Man piece. Forgettable by design and by law of averages.",
+     "set": "The Grey Man",
+     "id": "head_16",
+     "slot": "head"
+    },
+    {
+     "n": "Balaclava Hood (Combined)",
+     "il": 38,
+     "st": "SLK, TGH",
+     "r": "Ce",
+     "src": "DEEP",
+     "sh": "balaclava",
+     "c": "black",
+     "v": {
+      "two": true
+     },
+     "d": "Two problems solved. Two more created.",
+     "id": "head_17",
+     "slot": "head"
+    },
+    {
+     "n": "Fresh Fitted",
+     "il": 42,
+     "st": "SPD, LCK",
+     "r": "Ce",
+     "src": "SHOP-D",
+     "sh": "cap",
+     "c": "black",
+     "v": {
+      "flat": true,
+      "fitted": true
+     },
+     "d": "Straight out the box. Somebody will comment.",
+     "id": "head_18",
+     "slot": "head"
+    },
+    {
+     "n": "Uncle T's Old Cap",
+     "il": 30,
+     "st": "TGH, LCK",
+     "r": "Ic",
+     "src": "STORY",
+     "sh": "cap",
+     "c": "tan",
+     "v": {
+      "flat": true,
+      "button": true
+     },
+     "d": "He gave it to you without saying why. Unsellable.",
+     "tr": "unsellable",
+     "id": "head_19",
+     "slot": "head"
+    },
+    {
+     "n": "The Crown",
+     "il": 90,
+     "st": "all",
+     "r": "Ic",
+     "src": "STORY",
+     "sh": "crown",
+     "c": "gold",
+     "v": {
+      "plain": true
+     },
+     "d": "Level 100. Nobody wears this by accident.",
+     "id": "head_20",
+     "slot": "head"
+    },
+    {
+     "n": "Season Cap",
+     "il": 0,
+     "st": "varies",
+     "r": "Ic",
+     "src": "EVENT",
+     "sh": "cap",
+     "c": "purple",
+     "v": {
+      "flat": true
+     },
+     "d": "Seasonal. When it's gone it's gone.",
+     "id": "head_21",
+     "slot": "head"
+    }
+   ]
+  },
+  {
+   "k": "face",
+   "label": "FACE",
+   "blurb": "The trade-off slot. Everything here helps you work and hurts you socially.",
+   "items": [
+    {
+     "n": "Nothing",
+     "il": 0,
+     "st": "—",
+     "r": "Ba",
+     "src": "—",
+     "sh": "none",
+     "c": "charc",
+     "v": {},
+     "d": "Your actual face. Cameras love it.",
+     "id": "face_0",
+     "slot": "face"
+    },
+    {
+     "n": "Neck Gaiter",
+     "il": 4,
+     "st": "SLK",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "gaiter",
+     "c": "charc",
+     "v": {
+      "skull": true
+     },
+     "d": "Pulled up in winter. Nobody blinks.",
+     "tr": "mild search risk",
+     "id": "face_1",
+     "slot": "face"
+    },
+    {
+     "n": "Snood",
+     "il": 7,
+     "st": "SLK, TGH",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "gaiter",
+     "c": "olive",
+     "v": {
+      "skull": true
+     },
+     "d": "Half a scarf doing a full-time job.",
+     "tr": "mild search risk",
+     "id": "face_2",
+     "slot": "face"
+    },
+    {
+     "n": "Surgical Mask",
+     "il": 9,
+     "st": "SLK",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "mask",
+     "c": "sky",
+     "v": {
+      "valve": true
+     },
+     "d": "Nobody's questioned one of these since 2020.",
+     "id": "face_3",
+     "slot": "face"
+    },
+    {
+     "n": "Skull Bandana",
+     "il": 12,
+     "st": "SLK",
+     "r": "De",
+     "src": "CRIT",
+     "sh": "gaiter",
+     "c": "black",
+     "v": {
+      "skull": true
+     },
+     "d": "Says exactly what you're doing. Loudly.",
+     "tr": "search risk",
+     "id": "face_4",
+     "slot": "face"
+    },
+    {
+     "n": "Balaclava",
+     "il": 15,
+     "st": "SLK ×2",
+     "r": "Pe",
+     "src": "SHOP-B",
+     "sh": "balaclava",
+     "c": "black",
+     "v": {
+      "two": true
+     },
+     "d": "Cuts your face out of the footage. And out of everything else.",
+     "tr": "CCTV −60%, no drip, +search",
+     "id": "face_5",
+     "slot": "face"
+    },
+    {
+     "n": "Ski Mask (Two-Hole)",
+     "il": 18,
+     "st": "SLK, TGH",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "balaclava",
+     "c": "charc",
+     "v": {
+      "two": true
+     },
+     "d": "Warmer. Somehow more sinister.",
+     "tr": "as above, +TGH",
+     "id": "face_6",
+     "slot": "face"
+    },
+    {
+     "n": "Dust Mask",
+     "il": 20,
+     "st": "SLK",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "mask",
+     "c": "white",
+     "v": {
+      "valve": true
+     },
+     "d": "Site Kit piece. You're working. Obviously you're working.",
+     "set": "Site Kit",
+     "id": "face_7",
+     "slot": "face"
+    },
+    {
+     "n": "Scarf, Wrapped High",
+     "il": 22,
+     "st": "SLK, LCK",
+     "r": "Pe",
+     "src": "SHOP-B",
+     "sh": "gaiter",
+     "c": "maroon",
+     "v": {
+      "scarf": true
+     },
+     "d": "Deniable. It's cold, isn't it.",
+     "id": "face_8",
+     "slot": "face"
+    },
+    {
+     "n": "Motorcycle Snood",
+     "il": 26,
+     "st": "SLK, SPD",
+     "r": "Ce",
+     "src": "DEEP",
+     "sh": "gaiter",
+     "c": "navy",
+     "v": {
+      "skull": true
+     },
+     "d": "Comes off in one pull. That's the feature.",
+     "tr": "search risk",
+     "id": "face_9",
+     "slot": "face"
+    },
+    {
+     "n": "Respirator",
+     "il": 30,
+     "st": "SLK, TGH",
+     "r": "Ce",
+     "src": "SHOP-D",
+     "sh": "respirator",
+     "c": "lgrey",
+     "v": {
+      "plain": true
+     },
+     "d": "Absolute overkill. Absolutely effective.",
+     "tr": "heavy search risk",
+     "id": "face_10",
+     "slot": "face"
+    },
+    {
+     "n": "Grey Snood",
+     "il": 34,
+     "st": "SLK ×2",
+     "r": "Ce",
+     "src": "PVP",
+     "sh": "gaiter",
+     "c": "grey",
+     "v": {
+      "skull": true
+     },
+     "d": "Grey Man piece. Nothing to describe to a sketch artist.",
+     "set": "The Grey Man",
+     "tr": "reduced search risk",
+     "id": "face_11",
+     "slot": "face"
+    },
+    {
+     "n": "Bally, Gold Thread",
+     "il": 45,
+     "st": "SLK ×2, LCK",
+     "r": "Ic",
+     "src": "PVP",
+     "sh": "balaclava",
+     "c": "black",
+     "v": {
+      "gold": true
+     },
+     "d": "Someone put effort into a thing meant to be invisible.",
+     "tr": "as balaclava",
+     "id": "face_12",
+     "slot": "face"
+    },
+    {
+     "n": "The Clean Face",
+     "il": 50,
+     "st": "LCK ×2",
+     "r": "Ic",
+     "src": "STORY",
+     "sh": "none",
+     "c": "gold",
+     "v": {
+      "plain": true
+     },
+     "d": "You stopped hiding. Somehow that works better now.",
+     "tr": "no concealment at all",
+     "id": "face_13",
+     "slot": "face"
+    }
+   ]
+  },
+  {
+   "k": "jacket",
+   "label": "JACKET",
+   "blurb": "The statement piece. Biggest silhouette, biggest status read.",
+   "items": [
+    {
+     "n": "Nothing",
+     "il": 0,
+     "st": "—",
+     "r": "Ba",
+     "src": "—",
+     "sh": "none",
+     "c": "charc",
+     "v": {},
+     "d": "It's England. This is a mistake.",
+     "id": "jacket_0",
+     "slot": "jacket"
+    },
+    {
+     "n": "Charity Shop Fleece",
+     "il": 1,
+     "st": "TGH",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "jacket",
+     "c": "teal",
+     "v": {
+      "zip": true
+     },
+     "d": "Three quid. Smells of somebody's nan.",
+     "id": "jacket_1",
+     "slot": "jacket"
+    },
+    {
+     "n": "Thin Windbreaker",
+     "il": 3,
+     "st": "SPD",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "jacket",
+     "c": "sky",
+     "v": {
+      "zip": true,
+      "w": 6
+     },
+     "d": "Stops wind. Loses to rain immediately.",
+     "id": "jacket_2",
+     "slot": "jacket"
+    },
+    {
+     "n": "Zip-Up Hoodie",
+     "il": 5,
+     "st": "TGH, SPD",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "jacket",
+     "c": "charc",
+     "v": {
+      "zip": true,
+      "collar": "hood",
+      "strings": true
+     },
+     "d": "The uniform. Nobody looks twice.",
+     "id": "jacket_3",
+     "slot": "jacket"
+    },
+    {
+     "n": "Tracksuit Top",
+     "il": 8,
+     "st": "SPD ×2",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "jacket",
+     "c": "navy",
+     "v": {
+      "zip": true,
+      "stripes": true
+     },
+     "d": "Two stripes. Built for leaving somewhere quickly.",
+     "set": "Full Northside",
+     "id": "jacket_4",
+     "slot": "jacket"
+    },
+    {
+     "n": "Denim Jacket",
+     "il": 10,
+     "st": "TGH",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "jacket",
+     "c": "denim",
+     "v": {
+      "buttons": true,
+      "pockets": true,
+      "w": 6
+     },
+     "d": "Stylish. Useless in February.",
+     "id": "jacket_5",
+     "slot": "jacket"
+    },
+    {
+     "n": "Gilet",
+     "il": 12,
+     "st": "TGH, SPD",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "jacket",
+     "c": "olive",
+     "v": {
+      "zip": true,
+      "sleeveless": true,
+      "baffles": true
+     },
+     "d": "Warm arms are for people with time.",
+     "id": "jacket_6",
+     "slot": "jacket"
+    },
+    {
+     "n": "Northside Puffer",
+     "il": 16,
+     "st": "TGH ×2, LCK",
+     "r": "Pe",
+     "src": "SHOP-B",
+     "sh": "jacket",
+     "c": "black",
+     "v": {
+      "zip": true,
+      "baffles": true,
+      "w": 9
+     },
+     "d": "Two sizes too big. That's the point.",
+     "set": "Full Northside",
+     "id": "jacket_7",
+     "slot": "jacket"
+    },
+    {
+     "n": "Long Puffer",
+     "il": 20,
+     "st": "TGH ×2",
+     "r": "Pe",
+     "src": "SHOP-B",
+     "sh": "jacket",
+     "c": "charc",
+     "v": {
+      "zip": true,
+      "baffles": true,
+      "w": 8,
+      "bot": 29
+     },
+     "d": "Down to the knee. Fits everything. Hides everything.",
+     "set": "Full Northside",
+     "id": "jacket_8",
+     "slot": "jacket"
+    },
+    {
+     "n": "Parka with the Fur",
+     "il": 22,
+     "st": "TGH, SLK",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "jacket",
+     "c": "olive",
+     "v": {
+      "zip": true,
+      "collar": "fur",
+      "pockets": true,
+      "bot": 28,
+      "w": 8
+     },
+     "d": "Hood up, it's a different person walking.",
+     "id": "jacket_9",
+     "slot": "jacket"
+    },
+    {
+     "n": "Wax Jacket",
+     "il": 24,
+     "st": "TGH, LCK",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "jacket",
+     "c": "green",
+     "v": {
+      "buttons": true,
+      "pockets": true,
+      "collar": "lapel"
+     },
+     "d": "Countryside energy. Nobody stops a man in a wax jacket.",
+     "set": "Sunday Best",
+     "id": "jacket_10",
+     "slot": "jacket"
+    },
+    {
+     "n": "Hi-Vis Coat",
+     "il": 25,
+     "st": "TGH",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "jacket",
+     "c": "hivis",
+     "v": {
+      "zip": true,
+      "hivis": true,
+      "pockets": true
+     },
+     "d": "The most powerful item in the game and it costs forty quid.",
+     "set": "Site Kit",
+     "id": "jacket_11",
+     "slot": "jacket"
+    },
+    {
+     "n": "Bomber",
+     "il": 26,
+     "st": "SPD, TGH",
+     "r": "Pe",
+     "src": "CRIT",
+     "sh": "jacket",
+     "c": "olive",
+     "v": {
+      "zip": true,
+      "w": 7,
+      "bot": 24
+     },
+     "d": "Cuffs at the wrist, nothing catches on anything.",
+     "id": "jacket_12",
+     "slot": "jacket"
+    },
+    {
+     "n": "Grey Anorak",
+     "il": 28,
+     "st": "SLK ×2",
+     "r": "Ce",
+     "src": "SHOP-D",
+     "sh": "jacket",
+     "c": "grey",
+     "v": {
+      "collar": "hood",
+      "pockets": true
+     },
+     "d": "You've already forgotten what it looks like.",
+     "set": "The Grey Man",
+     "id": "jacket_13",
+     "slot": "jacket"
+    },
+    {
+     "n": "Cropped Puffer",
+     "il": 30,
+     "st": "SPD, LCK",
+     "r": "Ce",
+     "src": "SHOP-B",
+     "sh": "jacket",
+     "c": "red",
+     "v": {
+      "zip": true,
+      "baffles": true,
+      "w": 8,
+      "bot": 22
+     },
+     "d": "Shorter, faster, colder.",
+     "set": "Full Northside",
+     "id": "jacket_14",
+     "slot": "jacket"
+    },
+    {
+     "n": "Leather Jacket",
+     "il": 32,
+     "st": "TGH, STR",
+     "r": "Ce",
+     "src": "SHOP-D",
+     "sh": "jacket",
+     "c": "black",
+     "v": {
+      "zip": true,
+      "collar": "lapel",
+      "pockets": true
+     },
+     "d": "Takes a graze better than skin does.",
+     "id": "jacket_15",
+     "slot": "jacket"
+    },
+    {
+     "n": "Overcoat",
+     "il": 34,
+     "st": "SLK, LCK",
+     "r": "Ce",
+     "src": "SHOP-D",
+     "sh": "jacket",
+     "c": "charc",
+     "v": {
+      "buttons": true,
+      "collar": "lapel",
+      "bot": 29,
+      "w": 7
+     },
+     "d": "Long, dark, respectable. Doors open.",
+     "set": "Sunday Best",
+     "id": "jacket_16",
+     "slot": "jacket"
+    },
+    {
+     "n": "Technical Shell",
+     "il": 36,
+     "st": "SPD, SLK",
+     "r": "Ce",
+     "src": "DEEP",
+     "sh": "jacket",
+     "c": "teal",
+     "v": {
+      "zip": true,
+      "collar": "hood",
+      "pockets": true
+     },
+     "d": "Rustles. That's the one flaw and it's a real one.",
+     "id": "jacket_17",
+     "slot": "jacket"
+    },
+    {
+     "n": "Tailored Blazer",
+     "il": 40,
+     "st": "LCK ×2, SLK",
+     "r": "Ce",
+     "src": "SHOP-D",
+     "sh": "jacket",
+     "c": "navy",
+     "v": {
+      "buttons": true,
+      "collar": "lapel",
+      "pockets": true,
+      "w": 6
+     },
+     "d": "Nobody asks a man in a blazer for ID.",
+     "set": "Sunday Best",
+     "id": "jacket_18",
+     "slot": "jacket"
+    },
+    {
+     "n": "Site Foreman's Coat",
+     "il": 42,
+     "st": "TGH, LCK",
+     "r": "Ce",
+     "src": "DEEP",
+     "sh": "jacket",
+     "c": "orange",
+     "v": {
+      "zip": true,
+      "hivis": true,
+      "collar": "hood",
+      "pockets": true
+     },
+     "d": "Clipboard sold separately. Clipboard essential.",
+     "set": "Site Kit",
+     "id": "jacket_19",
+     "slot": "jacket"
+    },
+    {
+     "n": "The Puffer",
+     "il": 50,
+     "st": "TGH ×3, LCK",
+     "r": "Ic",
+     "src": "PVP",
+     "sh": "jacket",
+     "c": "black",
+     "v": {
+      "zip": true,
+      "baffles": true,
+      "w": 9,
+      "bot": 28
+     },
+     "d": "Everyone in the borough knows this jacket.",
+     "set": "Full Northside",
+     "id": "jacket_20",
+     "slot": "jacket"
+    },
+    {
+     "n": "Kayo's Jacket",
+     "il": 35,
+     "st": "TGH ×2, LCK ×2",
+     "r": "Ic",
+     "src": "STORY",
+     "sh": "jacket",
+     "c": "denim",
+     "v": {
+      "buttons": true,
+      "pockets": true
+     },
+     "d": "It still fits. That's the annoying part. Unsellable.",
+     "tr": "unsellable",
+     "id": "jacket_21",
+     "slot": "jacket"
+    },
+    {
+     "n": "Prison Tracksuit Top",
+     "il": 15,
+     "st": "TGH ×2",
+     "r": "Ic",
+     "src": "JAIL",
+     "sh": "jacket",
+     "c": "lgrey",
+     "v": {
+      "zip": true,
+      "w": 9
+     },
+     "d": "Grey. Enormous. Weirdly comfortable. You kept it.",
+     "set": "Prison Issue",
+     "id": "jacket_22",
+     "slot": "jacket"
+    },
+    {
+     "n": "Winter Pressure Coat",
+     "il": 0,
+     "st": "varies",
+     "r": "Ic",
+     "src": "EVENT",
+     "sh": "jacket",
+     "c": "purple",
+     "v": {
+      "zip": true,
+      "baffles": true,
+      "w": 8,
+      "bot": 28
+     },
+     "d": "Seasonal.",
+     "id": "jacket_23",
+     "slot": "jacket"
+    }
+   ]
+  },
+  {
+   "k": "top",
+   "label": "TOP",
+   "blurb": "Under the jacket. Low visibility, so this is where pure stat items live.",
+   "items": [
+    {
+     "n": "Vest",
+     "il": 1,
+     "st": "—",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "top",
+     "c": "white",
+     "v": {
+      "vest": true
+     },
+     "d": "Optimistic.",
+     "id": "top_0",
+     "slot": "top"
+    },
+    {
+     "n": "Plain Black Tee",
+     "il": 2,
+     "st": "SPD",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "top",
+     "c": "black",
+     "v": {
+      "crew": true
+     },
+     "d": "The most useful garment ever made.",
+     "id": "top_1",
+     "slot": "top"
+    },
+    {
+     "n": "Football Shirt (Nobody's Team)",
+     "il": 4,
+     "st": "SPD, LCK",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "top",
+     "c": "teal",
+     "v": {
+      "crew": true,
+      "number": true
+     },
+     "d": "Deliberately forgettable. That's the feature.",
+     "id": "top_2",
+     "slot": "top"
+    },
+    {
+     "n": "Long-Sleeve Base Layer",
+     "il": 6,
+     "st": "TGH",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "top",
+     "c": "navy",
+     "v": {
+      "crew": true
+     },
+     "d": "Tight, warm, no snag points.",
+     "id": "top_3",
+     "slot": "top"
+    },
+    {
+     "n": "Oversized Hoodie",
+     "il": 9,
+     "st": "TGH, SLK",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "top",
+     "c": "charc",
+     "v": {
+      "hood": true
+     },
+     "d": "Swallows you whole. Ideal.",
+     "id": "top_4",
+     "slot": "top"
+    },
+    {
+     "n": "Thermal",
+     "il": 11,
+     "st": "TGH ×2",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "top",
+     "c": "cream",
+     "v": {
+      "crew": true
+     },
+     "d": "Rooftops in January are a different job in this.",
+     "id": "top_5",
+     "slot": "top"
+    },
+    {
+     "n": "Rugby Top",
+     "il": 14,
+     "st": "TGH, STR",
+     "r": "Pe",
+     "src": "SHOP-B",
+     "sh": "top",
+     "c": "maroon",
+     "v": {
+      "collar": true,
+      "stripe": true
+     },
+     "d": "Collar. Buttons. Built for being grabbed.",
+     "id": "top_6",
+     "slot": "top"
+    },
+    {
+     "n": "Compression Top",
+     "il": 16,
+     "st": "SPD ×2",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "top",
+     "c": "black",
+     "v": {
+      "crew": true
+     },
+     "d": "Everything tucked in. Nothing to hold onto.",
+     "id": "top_7",
+     "slot": "top"
+    },
+    {
+     "n": "Plain White Shirt",
+     "il": 18,
+     "st": "LCK",
+     "r": "Pe",
+     "src": "SHOP-B",
+     "sh": "top",
+     "c": "white",
+     "v": {
+      "collar": true
+     },
+     "d": "Sunday Best piece. Instant respectability.",
+     "set": "Sunday Best",
+     "id": "top_8",
+     "slot": "top"
+    },
+    {
+     "n": "Grey Marl Sweatshirt",
+     "il": 22,
+     "st": "SLK ×2",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "top",
+     "c": "grey",
+     "v": {
+      "crew": true
+     },
+     "d": "Grey Man piece. Beige for people who find beige loud.",
+     "set": "The Grey Man",
+     "id": "top_9",
+     "slot": "top"
+    },
+    {
+     "n": "Hi-Vis Tee",
+     "il": 24,
+     "st": "TGH, LCK",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "top",
+     "c": "hivis",
+     "v": {
+      "crew": true,
+      "hivis": true
+     },
+     "d": "Site Kit piece. Nobody stops a man who's obviously working.",
+     "set": "Site Kit",
+     "id": "top_10",
+     "slot": "top"
+    },
+    {
+     "n": "Merino Base",
+     "il": 28,
+     "st": "TGH, SPD",
+     "r": "Ce",
+     "src": "SHOP-D",
+     "sh": "top",
+     "c": "brown",
+     "v": {
+      "crew": true
+     },
+     "d": "Expensive, invisible, correct.",
+     "id": "top_11",
+     "slot": "top"
+    },
+    {
+     "n": "Prison Issue Tee",
+     "il": 12,
+     "st": "TGH ×2",
+     "r": "Ce",
+     "src": "JAIL",
+     "sh": "top",
+     "c": "lgrey",
+     "v": {
+      "crew": true
+     },
+     "d": "Prison Issue piece. Washed a thousand times.",
+     "set": "Prison Issue",
+     "id": "top_12",
+     "slot": "top"
+    },
+    {
+     "n": "Body Warmer, Padded",
+     "il": 32,
+     "st": "TGH ×2, SPD",
+     "r": "Ce",
+     "src": "DEEP",
+     "sh": "top",
+     "c": "olive",
+     "v": {
+      "vest": true,
+      "stripe": true
+     },
+     "d": "Bulk without arms. Movement without cold.",
+     "id": "top_13",
+     "slot": "top"
+    },
+    {
+     "n": "Sess's Merch Tee",
+     "il": 26,
+     "st": "LCK ×2",
+     "r": "Ic",
+     "src": "STORY",
+     "sh": "top",
+     "c": "purple",
+     "v": {
+      "crew": true,
+      "number": true
+     },
+     "d": "He gave you one for free. It has your name on the back. Bad idea.",
+     "id": "top_14",
+     "slot": "top"
+    },
+    {
+     "n": "Vest (Iconic)",
+     "il": 55,
+     "st": "all ×1",
+     "r": "Ic",
+     "src": "PVP",
+     "sh": "top",
+     "c": "cream",
+     "v": {
+      "vest": true
+     },
+     "d": "Still just a vest. Now it means something.",
+     "id": "top_15",
+     "slot": "top"
+    }
+   ]
+  },
+  {
+   "k": "bottoms",
+   "label": "BOTTOMS",
+   "blurb": "Speed lives here. This is the running slot.",
+   "items": [
+    {
+     "n": "Old Jeans",
+     "il": 1,
+     "st": "—",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "bottoms",
+     "c": "denim",
+     "v": {
+      "belt": true,
+      "pockets": true
+     },
+     "d": "Stiff, loud, hopeless in a chase.",
+     "id": "bottoms_0",
+     "slot": "bottoms"
+    },
+    {
+     "n": "Poly Trackies",
+     "il": 3,
+     "st": "SPD",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "bottoms",
+     "c": "navy",
+     "v": {
+      "elastic": true,
+      "cuff": true
+     },
+     "d": "Swish when you walk. Everyone hears you coming.",
+     "id": "bottoms_1",
+     "slot": "bottoms"
+    },
+    {
+     "n": "Slim Joggers",
+     "il": 6,
+     "st": "SPD ×2",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "bottoms",
+     "c": "charc",
+     "v": {
+      "elastic": true,
+      "cuff": true
+     },
+     "d": "Cuffed at the ankle. Nothing to catch on a fence.",
+     "set": "Full Northside",
+     "id": "bottoms_2",
+     "slot": "bottoms"
+    },
+    {
+     "n": "Combat Trousers",
+     "il": 9,
+     "st": "TGH, SLK",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "bottoms",
+     "c": "olive",
+     "v": {
+      "pockets": true,
+      "belt": true
+     },
+     "d": "Nine pockets. You will lose things in all nine.",
+     "id": "bottoms_3",
+     "slot": "bottoms"
+    },
+    {
+     "n": "Faded Jeans",
+     "il": 10,
+     "st": "LCK",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "bottoms",
+     "c": "sky",
+     "v": {
+      "belt": true,
+      "pockets": true
+     },
+     "d": "Comfortable. Slow. Honest about it.",
+     "id": "bottoms_4",
+     "slot": "bottoms"
+    },
+    {
+     "n": "Tech Cargos",
+     "il": 14,
+     "st": "SPD, SLK",
+     "r": "Pe",
+     "src": "SHOP-B",
+     "sh": "bottoms",
+     "c": "black",
+     "v": {
+      "pockets": true,
+      "cuff": true
+     },
+     "d": "Zips that seal. Pockets that don't spill on a run.",
+     "set": "Full Northside",
+     "id": "bottoms_5",
+     "slot": "bottoms"
+    },
+    {
+     "n": "Work Trousers",
+     "il": 16,
+     "st": "TGH",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "bottoms",
+     "c": "sand",
+     "v": {
+      "pockets": true,
+      "belt": true
+     },
+     "d": "Knee pads built in. You'll be grateful once.",
+     "set": "Site Kit",
+     "id": "bottoms_6",
+     "slot": "bottoms"
+    },
+    {
+     "n": "Running Tights",
+     "il": 18,
+     "st": "SPD ×2, LCK",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "bottoms",
+     "c": "black",
+     "v": {
+      "elastic": true
+     },
+     "d": "Fast. Deeply undignified.",
+     "id": "bottoms_7",
+     "slot": "bottoms"
+    },
+    {
+     "n": "Grey Chinos",
+     "il": 20,
+     "st": "SLK ×2",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "bottoms",
+     "c": "grey",
+     "v": {
+      "belt": true,
+      "crease": true
+     },
+     "d": "Trousers so forgettable they’re almost an alibi.",
+     "set": "The Grey Man",
+     "id": "bottoms_8",
+     "slot": "bottoms"
+    },
+    {
+     "n": "Waterproof Overtrousers",
+     "il": 22,
+     "st": "TGH, SPD",
+     "r": "Pe",
+     "src": "CRIT",
+     "sh": "bottoms",
+     "c": "teal",
+     "v": {
+      "elastic": true,
+      "cuff": true
+     },
+     "d": "Rustle badly. Keep you moving in weather that stops others.",
+     "id": "bottoms_9",
+     "slot": "bottoms"
+    },
+    {
+     "n": "Suit Trousers",
+     "il": 24,
+     "st": "LCK, SLK",
+     "r": "Ce",
+     "src": "SHOP-D",
+     "sh": "bottoms",
+     "c": "charc",
+     "v": {
+      "belt": true,
+      "crease": true
+     },
+     "d": "Creased sharp. Nobody questions a crease.",
+     "set": "Sunday Best",
+     "id": "bottoms_10",
+     "slot": "bottoms"
+    },
+    {
+     "n": "Padded Motorcycle Jeans",
+     "il": 28,
+     "st": "TGH ×2",
+     "r": "Ce",
+     "src": "SHOP-D",
+     "sh": "bottoms",
+     "c": "denim",
+     "v": {
+      "belt": true,
+      "pockets": true,
+      "bands": true
+     },
+     "d": "Made for coming off a bike. Which you will.",
+     "id": "bottoms_11",
+     "slot": "bottoms"
+    },
+    {
+     "n": "Prison Bottoms",
+     "il": 12,
+     "st": "TGH ×2",
+     "r": "Ce",
+     "src": "JAIL",
+     "sh": "bottoms",
+     "c": "lgrey",
+     "v": {
+      "elastic": true
+     },
+     "d": "Elastic waist. No belt allowed. You know why.",
+     "set": "Prison Issue",
+     "id": "bottoms_12",
+     "slot": "bottoms"
+    },
+    {
+     "n": "Cargo Shorts",
+     "il": 26,
+     "st": "SPD, LCK",
+     "r": "Ce",
+     "src": "SHOP-B",
+     "sh": "bottoms",
+     "c": "sand",
+     "v": {
+      "pockets": true,
+      "belt": true,
+      "short": true
+     },
+     "d": "Four days a year these are correct. Those days you're unstoppable.",
+     "id": "bottoms_13",
+     "slot": "bottoms"
+    },
+    {
+     "n": "Reinforced Trackies",
+     "il": 32,
+     "st": "SPD ×2, TGH",
+     "r": "Ce",
+     "src": "DEEP",
+     "sh": "bottoms",
+     "c": "black",
+     "v": {
+      "elastic": true,
+      "cuff": true,
+      "crease": true
+     },
+     "d": "Double-stitched everywhere that usually goes.",
+     "set": "Full Northside",
+     "id": "bottoms_14",
+     "slot": "bottoms"
+    },
+    {
+     "n": "Site Trousers, Hi-Vis Bands",
+     "il": 34,
+     "st": "TGH, LCK",
+     "r": "Ce",
+     "src": "DEEP",
+     "sh": "bottoms",
+     "c": "hivis",
+     "v": {
+      "pockets": true,
+      "belt": true,
+      "bands": true
+     },
+     "d": "You are so clearly meant to be here.",
+     "set": "Site Kit",
+     "id": "bottoms_15",
+     "slot": "bottoms"
+    },
+    {
+     "n": "The Trackies",
+     "il": 48,
+     "st": "SPD ×3",
+     "r": "Ic",
+     "src": "PVP",
+     "sh": "bottoms",
+     "c": "black",
+     "v": {
+      "elastic": true,
+      "cuff": true,
+      "crease": true
+     },
+     "d": "Nobody outruns you in these. That's not a stat. That's a fact.",
+     "set": "Full Northside",
+     "id": "bottoms_16",
+     "slot": "bottoms"
+    },
+    {
+     "n": "Season Bottoms",
+     "il": 0,
+     "st": "varies",
+     "r": "Ic",
+     "src": "EVENT",
+     "sh": "bottoms",
+     "c": "purple",
+     "v": {
+      "elastic": true,
+      "cuff": true
+     },
+     "d": "Seasonal.",
+     "id": "bottoms_17",
+     "slot": "bottoms"
+    }
+   ]
+  },
+  {
+   "k": "feet",
+   "label": "FEET",
+   "blurb": "The status slot. In UK street culture, trainers say more than anything else you own.",
+   "items": [
+    {
+     "n": "Bare Feet",
+     "il": 0,
+     "st": "—",
+     "r": "Ba",
+     "src": "—",
+     "sh": "none",
+     "c": "charc",
+     "v": {},
+     "d": "Something has gone very wrong.",
+     "id": "feet_0",
+     "slot": "feet"
+    },
+    {
+     "n": "Charity Shop Trainers",
+     "il": 1,
+     "st": "—",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "shoe",
+     "c": "grey",
+     "v": {
+      "laces": true
+     },
+     "d": "Someone else broke these in. Badly.",
+     "id": "feet_1",
+     "slot": "feet"
+    },
+    {
+     "n": "Canvas Plimsolls",
+     "il": 3,
+     "st": "SPD",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "shoe",
+     "c": "black",
+     "v": {
+      "soleY": 23,
+      "soleH": 2
+     },
+     "d": "No grip, no support, no weight either.",
+     "set": "Prison Issue",
+     "id": "feet_2",
+     "slot": "feet"
+    },
+    {
+     "n": "Battered Classics",
+     "il": 5,
+     "st": "SPD",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "shoe",
+     "c": "white",
+     "v": {
+      "laces": true,
+      "swoosh": true
+     },
+     "d": "Held together by habit.",
+     "id": "feet_3",
+     "slot": "feet"
+    },
+    {
+     "n": "Mesh Runners",
+     "il": 8,
+     "st": "SPD ×2",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "shoe",
+     "c": "sky",
+     "v": {
+      "laces": true,
+      "swoosh": true
+     },
+     "d": "Light. Fast. Ruined by one puddle.",
+     "id": "feet_4",
+     "slot": "feet"
+    },
+    {
+     "n": "Skate Shoes",
+     "il": 10,
+     "st": "SPD, TGH",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "shoe",
+     "c": "black",
+     "v": {
+      "laces": true,
+      "soleY": 23,
+      "soleH": 3
+     },
+     "d": "Flat, wide, grip like glue on a wall.",
+     "id": "feet_5",
+     "slot": "feet"
+    },
+    {
+     "n": "Triple-Sole Trainers",
+     "il": 14,
+     "st": "SPD, LCK",
+     "r": "Pe",
+     "src": "SHOP-B",
+     "sh": "shoe",
+     "c": "white",
+     "v": {
+      "laces": true,
+      "soleY": 20,
+      "soleH": 6
+     },
+     "d": "Chunky. Loud. Correct.",
+     "set": "Full Northside",
+     "id": "feet_6",
+     "slot": "feet"
+    },
+    {
+     "n": "Work Boots",
+     "il": 16,
+     "st": "TGH ×2",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "shoe",
+     "c": "tan",
+     "v": {
+      "boot": true,
+      "laces": true,
+      "steel": true,
+      "soleC": "#23262A",
+      "soleHi": "#383C41"
+     },
+     "d": "Steel toe. Doors mind them.",
+     "set": "Site Kit",
+     "id": "feet_7",
+     "slot": "feet"
+    },
+    {
+     "n": "Trail Runners",
+     "il": 18,
+     "st": "SPD ×2, TGH",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "shoe",
+     "c": "orange",
+     "v": {
+      "laces": true,
+      "swoosh": true,
+      "soleC": "#33383D",
+      "soleHi": "#4A5057"
+     },
+     "d": "Made for hills. Excellent on scaffolding.",
+     "id": "feet_8",
+     "slot": "feet"
+    },
+    {
+     "n": "Grey Trainers",
+     "il": 20,
+     "st": "SLK ×2",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "shoe",
+     "c": "grey",
+     "v": {
+      "laces": true
+     },
+     "d": "Genuinely indescribable footwear.",
+     "set": "The Grey Man",
+     "id": "feet_9",
+     "slot": "feet"
+    },
+    {
+     "n": "Leather Brogues",
+     "il": 22,
+     "st": "LCK ×2",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "shoe",
+     "c": "brown",
+     "v": {
+      "brogue": true,
+      "soleC": "#5A3A22",
+      "soleHi": "#7A5233",
+      "soleY": 24,
+      "soleH": 2
+     },
+     "d": "Click on pavement. Announce respectability.",
+     "set": "Sunday Best",
+     "id": "feet_10",
+     "slot": "feet"
+    },
+    {
+     "n": "Fresh Whites",
+     "il": 24,
+     "st": "SPD, LCK ×2",
+     "r": "Ce",
+     "src": "SHOP-B",
+     "sh": "shoe",
+     "c": "white",
+     "v": {
+      "laces": true,
+      "soleY": 21,
+      "soleH": 5
+     },
+     "d": "Ruined the moment it rains. Worth it.",
+     "set": "Full Northside",
+     "id": "feet_11",
+     "slot": "feet"
+    },
+    {
+     "n": "Chelsea Boots",
+     "il": 26,
+     "st": "LCK, SLK",
+     "r": "Ce",
+     "src": "SHOP-D",
+     "sh": "shoe",
+     "c": "black",
+     "v": {
+      "boot": true,
+      "strap": true,
+      "soleC": "#23262A",
+      "soleHi": "#383C41",
+      "soleY": 24,
+      "soleH": 2
+     },
+     "d": "On and off in one motion. Underrated.",
+     "set": "Sunday Best",
+     "id": "feet_12",
+     "slot": "feet"
+    },
+    {
+     "n": "Motorcycle Boots",
+     "il": 30,
+     "st": "TGH ×2, SPD",
+     "r": "Ce",
+     "src": "SHOP-D",
+     "sh": "shoe",
+     "c": "black",
+     "v": {
+      "boot": true,
+      "strap": true,
+      "soleC": "#33383D",
+      "soleHi": "#4A5057"
+     },
+     "d": "Ankle armour. You'll notice the day you need it.",
+     "id": "feet_13",
+     "slot": "feet"
+    },
+    {
+     "n": "Rigger Boots",
+     "il": 32,
+     "st": "TGH ×2",
+     "r": "Ce",
+     "src": "DEEP",
+     "sh": "shoe",
+     "c": "tan",
+     "v": {
+      "boot": true,
+      "strap": true,
+      "steel": true,
+      "soleC": "#23262A",
+      "soleHi": "#383C41"
+     },
+     "d": "Pull-on. No laces to fail at the worst moment.",
+     "set": "Site Kit",
+     "id": "feet_14",
+     "slot": "feet"
+    },
+    {
+     "n": "Silent Soles",
+     "il": 36,
+     "st": "SLK ×2, SPD",
+     "r": "Ce",
+     "src": "DEEP",
+     "sh": "shoe",
+     "c": "charc",
+     "v": {
+      "laces": true,
+      "soleC": "#23262A",
+      "soleHi": "#33383D"
+     },
+     "d": "Rubber, soft, dead quiet on stairs.",
+     "id": "feet_15",
+     "slot": "feet"
+    },
+    {
+     "n": "Court Classics, Boxed",
+     "il": 40,
+     "st": "SPD, LCK ×2",
+     "r": "Ce",
+     "src": "SHOP-D",
+     "sh": "shoe",
+     "c": "cream",
+     "v": {
+      "laces": true,
+      "swoosh": true
+     },
+     "d": "Never worn. Someone kept them fifteen years.",
+     "id": "feet_16",
+     "slot": "feet"
+    },
+    {
+     "n": "The Ones",
+     "il": 52,
+     "st": "SPD ×2, LCK ×2",
+     "r": "Ic",
+     "src": "PVP",
+     "sh": "shoe",
+     "c": "white",
+     "v": {
+      "laces": true,
+      "swoosh": true,
+      "soleY": 20,
+      "soleH": 6
+     },
+     "d": "Everyone clocks them. That's the whole item.",
+     "set": "Full Northside",
+     "id": "feet_17",
+     "slot": "feet"
+    },
+    {
+     "n": "Kayo's Trainers",
+     "il": 20,
+     "st": "SPD ×2, LCK",
+     "r": "Ic",
+     "src": "STORY",
+     "sh": "shoe",
+     "c": "red",
+     "v": {
+      "laces": true
+     },
+     "d": "Half a size too big. You wear them anyway. Unsellable.",
+     "tr": "unsellable",
+     "id": "feet_18",
+     "slot": "feet"
+    },
+    {
+     "n": "Golden Sole",
+     "il": 88,
+     "st": "all",
+     "r": "Ic",
+     "src": "EVENT",
+     "sh": "shoe",
+     "c": "gold",
+     "v": {
+      "laces": true,
+      "soleC": "#C9A227",
+      "soleHi": "#E4C154",
+      "soleY": 21,
+      "soleH": 5
+     },
+     "d": "Season leaderboard reward. One per city per season.",
+     "id": "feet_19",
+     "slot": "feet"
+    }
+   ]
+  },
+  {
+   "k": "hands",
+   "label": "HANDS",
+   "blurb": "Small stats, big utility. Half of these are tools that pretend to be clothing.",
+   "items": [
+    {
+     "n": "Nothing",
+     "il": 0,
+     "st": "—",
+     "r": "Ba",
+     "src": "—",
+     "sh": "none",
+     "c": "charc",
+     "v": {},
+     "d": "Every surface remembers you.",
+     "tr": "prints everywhere",
+     "id": "hands_0",
+     "slot": "hands"
+    },
+    {
+     "n": "Nitriles (Box of 100)",
+     "il": 2,
+     "st": "SLK",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "box",
+     "c": "sky",
+     "v": {
+      "label": true,
+      "tab": true
+     },
+     "d": "Ninety-eight left. Don't think about the two.",
+     "id": "hands_1",
+     "slot": "hands"
+    },
+    {
+     "n": "Woolly Gloves",
+     "il": 4,
+     "st": "TGH",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "glove",
+     "c": "maroon",
+     "v": {
+      "fingerless": true
+     },
+     "d": "Warm. Useless for anything requiring fingers.",
+     "id": "hands_2",
+     "slot": "hands"
+    },
+    {
+     "n": "Fingerless Mitts",
+     "il": 6,
+     "st": "SLK, SPD",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "glove",
+     "c": "charc",
+     "v": {
+      "fingerless": true
+     },
+     "d": "Warmth and dexterity, at 60% of each.",
+     "id": "hands_3",
+     "slot": "hands"
+    },
+    {
+     "n": "Leather Gloves",
+     "il": 9,
+     "st": "SLK ×2",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "glove",
+     "c": "brown",
+     "v": {
+      "thin": true
+     },
+     "d": "No prints, steadier grip. Every job a touch cleaner.",
+     "id": "hands_4",
+     "slot": "hands"
+    },
+    {
+     "n": "Work Gloves",
+     "il": 12,
+     "st": "TGH, STR",
+     "r": "De",
+     "src": "SHOP-D",
+     "sh": "glove",
+     "c": "tan",
+     "v": {
+      "strap": true
+     },
+     "d": "Site Kit piece. Grip like a vice.",
+     "set": "Site Kit",
+     "id": "hands_5",
+     "slot": "hands"
+    },
+    {
+     "n": "Driving Gloves",
+     "il": 15,
+     "st": "SPD, SLK",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "glove",
+     "c": "black",
+     "v": {
+      "fingerless": true,
+      "thin": true
+     },
+     "d": "Wheel never slips. You look like a lunatic on foot.",
+     "id": "hands_6",
+     "slot": "hands"
+    },
+    {
+     "n": "Knuckle Duster",
+     "il": 18,
+     "st": "STR ×2",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "duster",
+     "c": "steel",
+     "v": {
+      "plain": true
+     },
+     "d": "Fits in a pocket. Doesn't fit any explanation.",
+     "tr": "offensive weapon charge",
+     "id": "hands_7",
+     "slot": "hands"
+    },
+    {
+     "n": "Tactical Gloves",
+     "il": 22,
+     "st": "SLK, TGH",
+     "r": "Pe",
+     "src": "DEEP",
+     "sh": "glove",
+     "c": "black",
+     "v": {
+      "knuck": true,
+      "strap": true
+     },
+     "d": "Padded knuckles. Deniable. Just about.",
+     "id": "hands_8",
+     "slot": "hands"
+    },
+    {
+     "n": "Latex, Double-Gloved",
+     "il": 24,
+     "st": "SLK ×2, LCK",
+     "r": "Ce",
+     "src": "DEEP",
+     "sh": "glove",
+     "c": "sky",
+     "v": {
+      "thin": true
+     },
+     "d": "Twice as careful. Half as comfortable.",
+     "id": "hands_9",
+     "slot": "hands"
+    },
+    {
+     "n": "Weighted Gloves",
+     "il": 28,
+     "st": "STR ×2, TGH",
+     "r": "Ce",
+     "src": "SHOP-D",
+     "sh": "glove",
+     "c": "charc",
+     "v": {
+      "knuck": true,
+      "strap": true
+     },
+     "d": "Sand in the knuckles. Technically sportswear.",
+     "tr": "search risk",
+     "id": "hands_10",
+     "slot": "hands"
+    },
+    {
+     "n": "Grey Gloves",
+     "il": 30,
+     "st": "SLK ×2",
+     "r": "Ce",
+     "src": "PVP",
+     "sh": "glove",
+     "c": "grey",
+     "v": {
+      "thin": true
+     },
+     "d": "Grey Man piece. Hands nobody could describe.",
+     "set": "The Grey Man",
+     "id": "hands_11",
+     "slot": "hands"
+    },
+    {
+     "n": "Wedding Ring (Not Yours)",
+     "il": 26,
+     "st": "LCK ×2",
+     "r": "Ce",
+     "src": "CRIT",
+     "sh": "ring",
+     "c": "gold",
+     "v": {
+      "plain": true
+     },
+     "d": "Someone's initials inside. You don't look at them often.",
+     "id": "hands_12",
+     "slot": "hands"
+    },
+    {
+     "n": "The Duster",
+     "il": 46,
+     "st": "STR ×3",
+     "r": "Ic",
+     "src": "PVP",
+     "sh": "duster",
+     "c": "gold",
+     "v": {
+      "plain": true
+     },
+     "d": "Brass. Old. Someone else’s history in your pocket.",
+     "tr": "jail time +50%",
+     "id": "hands_13",
+     "slot": "hands"
+    }
+   ]
+  },
+  {
+   "k": "weapon",
+   "label": "WEAPON",
+   "blurb": "Every step up in damage is a step up in what happens when you are stopped. The best weapon in the game should be a decision the player regrets at least once.",
+   "items": [
+    {
+     "n": "Empty Hands",
+     "il": 0,
+     "st": "—",
+     "r": "Ba",
+     "src": "—",
+     "sh": "none",
+     "c": "charc",
+     "v": {},
+     "d": "Free. Legal. Occasionally sufficient.",
+     "id": "weapon_0",
+     "slot": "weapon"
+    },
+    {
+     "n": "Bottle (Empty)",
+     "il": 2,
+     "st": "STR",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "bottle",
+     "c": "green",
+     "v": {
+      "plain": true
+     },
+     "d": "It was already there. That's the whole appeal.",
+     "tr": "breaks after one fight",
+     "id": "weapon_1",
+     "slot": "weapon"
+    },
+    {
+     "n": "Rolled Magazine",
+     "il": 3,
+     "st": "STR",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "magazine",
+     "c": "paper",
+     "v": {
+      "plain": true
+     },
+     "d": "Sounds ridiculous. Isn't.",
+     "id": "weapon_2",
+     "slot": "weapon"
+    },
+    {
+     "n": "Torch (Heavy)",
+     "il": 5,
+     "st": "STR, LCK",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "torch",
+     "c": "black",
+     "v": {
+      "plain": true
+     },
+     "d": "It's a torch. It's genuinely a torch. Mostly.",
+     "id": "weapon_3",
+     "slot": "weapon"
+    },
+    {
+     "n": "Screwdriver",
+     "il": 7,
+     "st": "STR, SLK",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "screwdriver",
+     "c": "red",
+     "v": {
+      "plain": true
+     },
+     "d": "A tool. Say tool. Keep saying tool.",
+     "tr": "mild charge",
+     "id": "weapon_4",
+     "slot": "weapon"
+    },
+    {
+     "n": "Bat",
+     "il": 9,
+     "st": "STR ×2",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "bat",
+     "c": "wood",
+     "v": {
+      "signed": true
+     },
+     "d": "There’s a ball in the boot. There is always a ball in the boot.",
+     "tr": "charge if no bag",
+     "id": "weapon_5",
+     "slot": "weapon"
+    },
+    {
+     "n": "Scaffold Pole",
+     "il": 12,
+     "st": "STR ×2, TGH",
+     "r": "De",
+     "src": "SHOP-D",
+     "sh": "pole",
+     "c": "steel",
+     "v": {
+      "plain": true
+     },
+     "d": "Site Kit adjacent. Free at any site. Impossible to hide.",
+     "tr": "conspicuous",
+     "id": "weapon_6",
+     "slot": "weapon"
+    },
+    {
+     "n": "Pepper Spray",
+     "il": 14,
+     "st": "SLK",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "spray",
+     "c": "red",
+     "v": {
+      "nozzle": true
+     },
+     "d": "Technically for dogs. Legally for dogs. Used for dogs once.",
+     "tr": "illegal in UK — real charge",
+     "id": "weapon_7",
+     "slot": "weapon"
+    },
+    {
+     "n": "Extendable Baton",
+     "il": 16,
+     "st": "STR ×2, SPD",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "baton",
+     "c": "black",
+     "v": {
+      "grip": true
+     },
+     "d": "Pocket-sized until it very much isn't.",
+     "tr": "charge",
+     "id": "weapon_8",
+     "slot": "weapon"
+    },
+    {
+     "n": "Shank",
+     "il": 18,
+     "st": "STR ×2",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "blade",
+     "c": "charc",
+     "v": {
+      "len": 13,
+      "w": 2
+     },
+     "d": "Persuasion, sharpened. Marks don't argue.",
+     "tr": "serious charge, jail ×1.5",
+     "id": "weapon_9",
+     "slot": "weapon"
+    },
+    {
+     "n": "Lock Knife",
+     "il": 20,
+     "st": "STR, SLK",
+     "r": "Pe",
+     "src": "DEEP",
+     "sh": "blade",
+     "c": "wood",
+     "v": {
+      "len": 11,
+      "w": 3,
+      "fold": true
+     },
+     "d": "Folds away. The law doesn't care that it folds away.",
+     "tr": "serious charge",
+     "id": "weapon_10",
+     "slot": "weapon"
+    },
+    {
+     "n": "Machete (Garden)",
+     "il": 26,
+     "st": "STR ×3",
+     "r": "Ce",
+     "src": "DEEP",
+     "sh": "machete",
+     "c": "black",
+     "v": {
+      "plain": true
+     },
+     "d": "Someone's going to ask about the garden. There is no garden.",
+     "tr": "jail ×2, heavy search flag",
+     "id": "weapon_11",
+     "slot": "weapon"
+    },
+    {
+     "n": "Rambo",
+     "il": 30,
+     "st": "STR ×3, TGH",
+     "r": "Ce",
+     "src": "SHOP-D",
+     "sh": "blade",
+     "c": "black",
+     "v": {
+      "len": 18,
+      "w": 4,
+      "guard": true,
+      "serr": true
+     },
+     "d": "Big blade, bigger sentence.",
+     "tr": "jail ×2",
+     "id": "weapon_12",
+     "slot": "weapon"
+    },
+    {
+     "n": "Sawn-Off",
+     "il": 45,
+     "st": "STR ×4",
+     "r": "Ic",
+     "src": "STORY",
+     "sh": "sawnoff",
+     "c": "wood",
+     "v": {
+      "plain": true
+     },
+     "d": "A statement, not a sidearm. Using it changes the game.",
+     "tr": "endgame only, instant heat 10, district event",
+     "id": "weapon_13",
+     "slot": "weapon"
+    },
+    {
+     "n": "Delroy's Wrench",
+     "il": 24,
+     "st": "STR ×2, LCK ×2",
+     "r": "Ic",
+     "src": "STORY",
+     "sh": "wrench",
+     "c": "steel",
+     "v": {
+      "plain": true
+     },
+     "d": "\"Bring it back. I mean it. That’s a good wrench.\" Unsellable.",
+     "tr": "none — it's a tool",
+     "id": "weapon_14",
+     "slot": "weapon"
+    },
+    {
+     "n": "The Bat, Signed",
+     "il": 50,
+     "st": "STR ×3, LCK",
+     "r": "Ic",
+     "src": "PVP",
+     "sh": "bat",
+     "c": "wood",
+     "v": {
+      "signed": true
+     },
+     "d": "Someone wrote a name on it. Not yours.",
+     "tr": "charge",
+     "id": "weapon_15",
+     "slot": "weapon"
+    }
+   ]
+  },
+  {
+   "k": "body",
+   "label": "BODY",
+   "blurb": "Toughness slot. Also the \"blocks set bonuses\" trade-off slot.",
+   "items": [
+    {
+     "n": "Nothing",
+     "il": 0,
+     "st": "—",
+     "r": "Ba",
+     "src": "—",
+     "sh": "none",
+     "c": "charc",
+     "v": {},
+     "d": "Just fabric between you and everything.",
+     "id": "body_0",
+     "slot": "body"
+    },
+    {
+     "n": "Padded Gilet",
+     "il": 6,
+     "st": "TGH",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "vestArmour",
+     "c": "olive",
+     "v": {
+      "pouch": true
+     },
+     "d": "A bit of bulk. A bit of warmth. A bit of help.",
+     "id": "body_1",
+     "slot": "body"
+    },
+    {
+     "n": "Chest Rig",
+     "il": 12,
+     "st": "TGH, SLK",
+     "r": "De",
+     "src": "SHOP-D",
+     "sh": "vestArmour",
+     "c": "charc",
+     "v": {
+      "molle": true,
+      "pouch": true,
+      "straps": true
+     },
+     "d": "Pouches for everything. Looks like exactly what it is.",
+     "tr": "conspicuous",
+     "id": "body_2",
+     "slot": "body"
+    },
+    {
+     "n": "Builder's Harness",
+     "il": 16,
+     "st": "TGH, STR",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "harness",
+     "c": "hivis",
+     "v": {
+      "plain": true
+     },
+     "d": "Site Kit piece. Also genuinely stops you falling.",
+     "set": "Site Kit",
+     "id": "body_3",
+     "slot": "body"
+    },
+    {
+     "n": "Stab Vest",
+     "il": 20,
+     "st": "TGH ×3",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "vestArmour",
+     "c": "black",
+     "v": {
+      "plate": true,
+      "straps": true
+     },
+     "d": "Ugly with everything. You walk away from more.",
+     "tr": "blocks all set bonuses",
+     "id": "body_4",
+     "slot": "body"
+    },
+    {
+     "n": "Motorcycle Armour",
+     "il": 24,
+     "st": "TGH ×2, SPD",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "vestArmour",
+     "c": "dsteel",
+     "v": {
+      "plate": true,
+      "molle": true
+     },
+     "d": "Built for tarmac at speed. Handy for other things.",
+     "id": "body_5",
+     "slot": "body"
+    },
+    {
+     "n": "Money Belt",
+     "il": 18,
+     "st": "SLK, LCK",
+     "r": "Pe",
+     "src": "SHOP-B",
+     "sh": "vestArmour",
+     "c": "brown",
+     "v": {
+      "belt": true
+     },
+     "d": "Halves what an ambush takes off you. Deeply uncool.",
+     "id": "body_6",
+     "slot": "body"
+    },
+    {
+     "n": "Covert Vest",
+     "il": 30,
+     "st": "TGH ×3, SLK",
+     "r": "Ce",
+     "src": "DEEP",
+     "sh": "vestArmour",
+     "c": "cream",
+     "v": {
+      "plate": true
+     },
+     "d": "Under a shirt, invisible. Costs what a car costs.",
+     "id": "body_7",
+     "slot": "body"
+    },
+    {
+     "n": "Weighted Training Vest",
+     "il": 26,
+     "st": "STR ×2, TGH",
+     "r": "Ce",
+     "src": "SHOP-D",
+     "sh": "vestArmour",
+     "c": "red",
+     "v": {
+      "pouch": true,
+      "straps": true
+     },
+     "d": "Train in it, fight in it, regret it on a chase.",
+     "tr": "−SPD while worn",
+     "id": "body_8",
+     "slot": "body"
+    },
+    {
+     "n": "Grey Gilet",
+     "il": 32,
+     "st": "SLK ×2, TGH",
+     "r": "Ce",
+     "src": "PVP",
+     "sh": "vestArmour",
+     "c": "grey",
+     "v": {
+      "pouch": true
+     },
+     "d": "Grey Man piece. A shape, not a person.",
+     "set": "The Grey Man",
+     "id": "body_9",
+     "slot": "body"
+    },
+    {
+     "n": "Prison Issue Vest",
+     "il": 14,
+     "st": "TGH ×2",
+     "r": "Ce",
+     "src": "JAIL",
+     "sh": "vestArmour",
+     "c": "lgrey",
+     "v": {
+      "pouch": true
+     },
+     "d": "Prison Issue piece. Institutional and indestructible.",
+     "set": "Prison Issue",
+     "id": "body_10",
+     "slot": "body"
+    },
+    {
+     "n": "The Plate",
+     "il": 60,
+     "st": "TGH ×4",
+     "r": "Ic",
+     "src": "PVP",
+     "sh": "vestArmour",
+     "c": "black",
+     "v": {
+      "plate": true,
+      "molle": true,
+      "straps": true
+     },
+     "d": "Overkill. Beautiful, heavy, ridiculous overkill.",
+     "tr": "blocks sets",
+     "id": "body_11",
+     "slot": "body"
+    }
+   ]
+  },
+  {
+   "k": "bag",
+   "label": "BAG",
+   "blurb": "Carry capacity, inventory slots, and the \"you look like you are carrying\" trade-off.",
+   "items": [
+    {
+     "n": "Pockets",
+     "il": 0,
+     "st": "—",
+     "r": "Ba",
+     "src": "—",
+     "sh": "none",
+     "c": "charc",
+     "v": {},
+     "d": "Four pockets and optimism.",
+     "slots": "+0",
+     "id": "bag_0",
+     "slot": "bag"
+    },
+    {
+     "n": "Bin Bag",
+     "il": 1,
+     "st": "LCK",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "binbag",
+     "c": "black",
+     "v": {
+      "plain": true
+     },
+     "d": "Holds everything. Convinces nobody.",
+     "slots": "+2",
+     "id": "bag_1",
+     "slot": "bag"
+    },
+    {
+     "n": "Carrier Bag",
+     "il": 2,
+     "st": "SLK",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "carrier",
+     "c": "white",
+     "v": {
+      "plain": true
+     },
+     "d": "The most invisible object in Britain.",
+     "slots": "+1",
+     "id": "bag_2",
+     "slot": "bag"
+    },
+    {
+     "n": "School Rucksack",
+     "il": 5,
+     "st": "TGH",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "bag",
+     "c": "navy",
+     "v": {
+      "straps": true,
+      "zip": true,
+      "pockets": true
+     },
+     "d": "Someone's name in marker inside. Not yours.",
+     "slots": "+3",
+     "id": "bag_3",
+     "slot": "bag"
+    },
+    {
+     "n": "Crossbody",
+     "il": 8,
+     "st": "SPD, SLK",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "bag",
+     "c": "charc",
+     "v": {
+      "cross": true,
+      "flap": true,
+      "top": 14
+     },
+     "d": "Sits tight. Doesn't swing when you run.",
+     "slots": "+2",
+     "id": "bag_4",
+     "slot": "bag"
+    },
+    {
+     "n": "Sports Holdall",
+     "il": 12,
+     "st": "TGH",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "bag",
+     "c": "navy",
+     "v": {
+      "handle": true,
+      "zip": true,
+      "long": true,
+      "top": 14
+     },
+     "d": "Big. Obvious. Everyone knows what a holdall means.",
+     "slots": "+5",
+     "tr": "+8% ambush chance",
+     "id": "bag_5",
+     "slot": "bag"
+    },
+    {
+     "n": "Toolbag",
+     "il": 15,
+     "st": "TGH, LCK",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "bag",
+     "c": "tan",
+     "v": {
+      "handle": true,
+      "pockets": true,
+      "top": 14
+     },
+     "d": "Site Kit piece. Rattles convincingly.",
+     "set": "Site Kit",
+     "slots": "+4",
+     "id": "bag_6",
+     "slot": "bag"
+    },
+    {
+     "n": "Backpack, Technical",
+     "il": 18,
+     "st": "SPD, TGH",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "bag",
+     "c": "olive",
+     "v": {
+      "straps": true,
+      "zip": true,
+      "pockets": true
+     },
+     "d": "Straps that don’t shift. Everything stays where it was.",
+     "slots": "+5",
+     "id": "bag_7",
+     "slot": "bag"
+    },
+    {
+     "n": "Laptop Bag",
+     "il": 20,
+     "st": "SLK, LCK",
+     "r": "Pe",
+     "src": "SHOP-B",
+     "sh": "bag",
+     "c": "brown",
+     "v": {
+      "flap": true,
+      "cross": true,
+      "top": 14
+     },
+     "d": "Sunday Best piece. You're a professional, obviously.",
+     "set": "Sunday Best",
+     "slots": "+3",
+     "id": "bag_8",
+     "slot": "bag"
+    },
+    {
+     "n": "Grey Rucksack",
+     "il": 24,
+     "st": "SLK ×2",
+     "r": "Ce",
+     "src": "PVP",
+     "sh": "bag",
+     "c": "grey",
+     "v": {
+      "straps": true,
+      "zip": true
+     },
+     "d": "Grey Man piece. Nobody has ever described this bag.",
+     "set": "The Grey Man",
+     "slots": "+4",
+     "id": "bag_9",
+     "slot": "bag"
+    },
+    {
+     "n": "Duffel",
+     "il": 28,
+     "st": "TGH ×2, LCK",
+     "r": "Ce",
+     "src": "DEEP",
+     "sh": "bag",
+     "c": "charc",
+     "v": {
+      "handle": true,
+      "zip": true,
+      "long": true,
+      "top": 13
+     },
+     "d": "The reveal-ceremony bag. Now you own one.",
+     "slots": "+7",
+     "tr": "+12% ambush chance",
+     "id": "bag_10",
+     "slot": "bag"
+    },
+    {
+     "n": "Courier Bag",
+     "il": 30,
+     "st": "SPD ×2, SLK",
+     "r": "Ce",
+     "src": "DEEP",
+     "sh": "bag",
+     "c": "teal",
+     "v": {
+      "cross": true,
+      "flap": true,
+      "top": 13
+     },
+     "d": "You're delivering something. You're always delivering something.",
+     "slots": "+5",
+     "id": "bag_11",
+     "slot": "bag"
+    },
+    {
+     "n": "Kayo's Holdall",
+     "il": 22,
+     "st": "TGH, LCK ×2",
+     "r": "Ic",
+     "src": "STORY",
+     "sh": "bag",
+     "c": "red",
+     "v": {
+      "handle": true,
+      "zip": true,
+      "long": true,
+      "top": 14
+     },
+     "d": "Still has a receipt in the side pocket from March. Unsellable.",
+     "slots": "+6",
+     "tr": "unsellable",
+     "id": "bag_12",
+     "slot": "bag"
+    },
+    {
+     "n": "The Bag",
+     "il": 55,
+     "st": "all, LCK ×2",
+     "r": "Ic",
+     "src": "PVP",
+     "sh": "bag",
+     "c": "black",
+     "v": {
+      "handle": true,
+      "zip": true,
+      "long": true,
+      "pockets": true,
+      "top": 13
+     },
+     "d": "Everything fits. Everything always fits.",
+     "slots": "+9",
+     "id": "bag_13",
+     "slot": "bag"
+    }
+   ]
+  },
+  {
+   "k": "phone",
+   "label": "PHONE",
+   "blurb": "Non-gear utility slot. Gates line features rather than giving combat stats.",
+   "items": [
+    {
+     "n": "Cracked Android",
+     "il": 1,
+     "st": "—",
+     "r": "Ba",
+     "src": "start",
+     "sh": "phone",
+     "c": "charc",
+     "v": {
+      "cracked": true
+     },
+     "d": "Screen like a windscreen. Works. Mostly.",
+     "id": "phone_0",
+     "slot": "phone"
+    },
+    {
+     "n": "Burner Phone",
+     "il": 6,
+     "st": "—",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "phone",
+     "c": "black",
+     "v": {
+      "keys": true,
+      "antenna": true
+     },
+     "d": "Clean line, no trace. Sets up the lines to come.",
+     "tr": "Unlocks 1 line",
+     "id": "phone_1",
+     "slot": "phone"
+    },
+    {
+     "n": "Second Burner",
+     "il": 12,
+     "st": "—",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "phone",
+     "c": "navy",
+     "v": {
+      "keys": true,
+      "antenna": true
+     },
+     "d": "One for the work, one for the other work.",
+     "tr": "Unlocks 2nd line",
+     "id": "phone_2",
+     "slot": "phone"
+    },
+    {
+     "n": "Prepaid Bundle",
+     "il": 16,
+     "st": "—",
+     "r": "Pe",
+     "src": "SHOP-B",
+     "sh": "sim",
+     "c": "orange",
+     "v": {
+      "plain": true
+     },
+     "d": "Enough minutes to run a small county.",
+     "tr": "+20% line yield",
+     "id": "phone_3",
+     "slot": "phone"
+    },
+    {
+     "n": "Encrypted Handset",
+     "il": 24,
+     "st": "—",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "phone",
+     "c": "black",
+     "v": {
+      "screen": "#1B2A24"
+     },
+     "d": "Costs a fortune. Worth every penny once.",
+     "tr": "−30% police intel gain",
+     "id": "phone_4",
+     "slot": "phone"
+    },
+    {
+     "n": "Dual-Sim Flagship",
+     "il": 30,
+     "st": "—",
+     "r": "Ce",
+     "src": "SHOP-D",
+     "sh": "phone",
+     "c": "dsteel",
+     "v": {
+      "dual": true
+     },
+     "d": "The one you'd never nick from someone else.",
+     "tr": "+1 line, +10% yield",
+     "id": "phone_5",
+     "slot": "phone"
+    },
+    {
+     "n": "Kayo's Old Nokia",
+     "il": 10,
+     "st": "—",
+     "r": "Ic",
+     "src": "STORY",
+     "sh": "phone",
+     "c": "teal",
+     "v": {
+      "keys": true,
+      "antenna": true
+     },
+     "d": "Battery lasts a week. Contacts list is a problem. Unsellable.",
+     "tr": "+1 prison call minute/week",
+     "id": "phone_6",
+     "slot": "phone"
+    },
+    {
+     "n": "The Line",
+     "il": 60,
+     "st": "—",
+     "r": "Ic",
+     "src": "STORY",
+     "sh": "sim",
+     "c": "gold",
+     "v": {
+      "plain": true
+     },
+     "d": "Not a phone. A number. Everyone already knows it.",
+     "tr": "+2 lines, +25% yield",
+     "id": "phone_7",
+     "slot": "phone"
+    }
+   ]
+  },
+  {
+   "k": "cons",
+   "label": "CONSUMABLES",
+   "blurb": "Single-use. The tactical layer. Bought cheap, used at the right moment.",
+   "items": [
+    {
+     "n": "Energy Drink",
+     "il": 0,
+     "st": "+15 HP mid-fight",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "can",
+     "c": "hivis",
+     "v": {
+      "tab": true
+     },
+     "d": "Tastes like a fruit that doesn't exist.",
+     "price": "£4",
+     "id": "cons_0",
+     "slot": "cons"
+    },
+    {
+     "n": "Meal Deal",
+     "il": 0,
+     "st": "+10 Energy",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "packet",
+     "c": "sky",
+     "v": {
+      "food": true
+     },
+     "d": "Sandwich, crisps, drink. The nation's fuel.",
+     "price": "£4",
+     "id": "cons_1",
+     "slot": "cons"
+    },
+    {
+     "n": "Chicken & Chips",
+     "il": 0,
+     "st": "+15 Energy",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "box",
+     "c": "red",
+     "v": {
+      "label": true
+     },
+     "d": "Small box. Restores more than it should.",
+     "price": "£6",
+     "id": "cons_2",
+     "slot": "cons"
+    },
+    {
+     "n": "Painkillers",
+     "il": 0,
+     "st": "−30% hospital time",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "packet",
+     "c": "white",
+     "v": {
+      "pills": true
+     },
+     "d": "Over the counter. Under the tongue.",
+     "price": "£8",
+     "id": "cons_3",
+     "slot": "cons"
+    },
+    {
+     "n": "Coffee, Petrol Station",
+     "il": 0,
+     "st": "+5 Energy, +5% SPD 1h",
+     "r": "Ba",
+     "src": "SHOP-B",
+     "sh": "cup",
+     "c": "brown",
+     "v": {},
+     "d": "Terrible. Effective. Both true.",
+     "price": "£3",
+     "id": "cons_4",
+     "slot": "cons"
+    },
+    {
+     "n": "Bolt Cutters",
+     "il": 0,
+     "st": "Unlocks locked stages",
+     "r": "De",
+     "src": "SHOP-D",
+     "sh": "tool",
+     "c": "steel",
+     "v": {},
+     "d": "Bulky. Conspicuous. Occasionally the whole job.",
+     "price": "£120",
+     "id": "cons_5",
+     "slot": "cons"
+    },
+    {
+     "n": "Crowbar",
+     "il": 0,
+     "st": "+15% forced entry",
+     "r": "De",
+     "src": "SHOP-D",
+     "sh": "crowbar",
+     "c": "red",
+     "v": {},
+     "d": "Aggravates any charge. Opens any door.",
+     "price": "£45",
+     "id": "cons_6",
+     "slot": "cons"
+    },
+    {
+     "n": "Lock Pick Set",
+     "il": 0,
+     "st": "+20% SLK on locks",
+     "r": "De",
+     "src": "SHOP-D",
+     "sh": "picks",
+     "c": "black",
+     "v": {},
+     "d": "Requires patience you may not have.",
+     "price": "£180",
+     "id": "cons_7",
+     "slot": "cons"
+    },
+    {
+     "n": "Meat (For The Dog)",
+     "il": 0,
+     "st": "Bypasses dog defences",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "packet",
+     "c": "cream",
+     "v": {
+      "meat": true
+     },
+     "d": "Cheapest counter to the scariest thing in the game.",
+     "price": "£5",
+     "id": "cons_8",
+     "slot": "cons"
+    },
+    {
+     "n": "Burner SIM",
+     "il": 0,
+     "st": "Resets police intel",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "sim",
+     "c": "sky",
+     "v": {},
+     "d": "New number, new man, same problems.",
+     "price": "£25",
+     "id": "cons_9",
+     "slot": "cons"
+    },
+    {
+     "n": "Spray Can",
+     "il": 0,
+     "st": "Tag territory, +rep",
+     "r": "De",
+     "src": "SHOP-B",
+     "sh": "spray",
+     "c": "purple",
+     "v": {
+      "cap": true,
+      "nozzle": true
+     },
+     "d": "Your name on a wall. Somebody will paint over it.",
+     "price": "£12",
+     "id": "cons_10",
+     "slot": "cons"
+    },
+    {
+     "n": "Pepper Spray",
+     "il": 0,
+     "st": "Skips one enemy round",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "spray",
+     "c": "red",
+     "v": {
+      "nozzle": true
+     },
+     "d": "Single use. Ends most conversations.",
+     "price": "£30",
+     "id": "cons_11",
+     "slot": "cons"
+    },
+    {
+     "n": "Fake ID",
+     "il": 0,
+     "st": "One stop-and-search escape",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "card",
+     "c": "sky",
+     "v": {
+      "photo": true,
+      "chip": true
+     },
+     "d": "Good enough for a bouncer. Not for a custody sergeant.",
+     "price": "£400",
+     "id": "cons_12",
+     "slot": "cons"
+    },
+    {
+     "n": "Angle Grinder",
+     "il": 0,
+     "st": "Unlocks stage 5 on some jobs",
+     "r": "Pe",
+     "src": "SHOP-D",
+     "sh": "grinder",
+     "c": "orange",
+     "v": {},
+     "d": "Loud enough to wake a street. Fast enough to matter.",
+     "price": "£350",
+     "id": "cons_13",
+     "slot": "cons"
+    },
+    {
+     "n": "Camera Jammer",
+     "il": 0,
+     "st": "−80% CCTV, 10 min",
+     "r": "Ce",
+     "src": "SHOP-D",
+     "sh": "jammer",
+     "c": "charc",
+     "v": {},
+     "d": "Illegal to own, sell, or explain.",
+     "price": "£600",
+     "id": "cons_14",
+     "slot": "cons"
+    },
+    {
+     "n": "Solicitor's Card",
+     "il": 0,
+     "st": "−50% jail time, one use",
+     "r": "Ce",
+     "src": "SHOP-D",
+     "sh": "card",
+     "c": "cream",
+     "v": {},
+     "d": "Frankie's number. He'll bill you for the card.",
+     "price": "£900",
+     "id": "cons_15",
+     "slot": "cons"
+    },
+    {
+     "n": "Bottle of Something Decent",
+     "il": 0,
+     "st": "+20 relationship",
+     "r": "Pe",
+     "src": "SHOP-B",
+     "sh": "spirits",
+     "c": "maroon",
+     "v": {},
+     "d": "Works on everyone except Silas, who says thank you and doesn’t drink it.",
+     "price": "£60",
+     "id": "cons_16",
+     "slot": "cons"
+    },
+    {
+     "n": "Clean Phone Drop",
+     "il": 0,
+     "st": "Cancels one ambush",
+     "r": "Ce",
+     "src": "DEEP",
+     "sh": "phone",
+     "c": "grey",
+     "v": {
+      "keys": true
+     },
+     "d": "Somebody owes somebody. Tonight it’s for you.",
+     "price": "£250",
+     "id": "cons_17",
+     "slot": "cons"
+    }
+   ]
+  },
+  {
+   "k": "trophy",
+   "label": "TROPHIES",
+   "blurb": "No slot, no stats, cannot be sold. They exist to be looked at.",
+   "items": [
+    {
+     "n": "The Engraved Watch",
+     "il": 0,
+     "st": "—",
+     "r": "Ic",
+     "src": "Act II",
+     "sh": "watch",
+     "c": "steel",
+     "v": {},
+     "d": "Initials and a date in 1994. Worth two hundred. You can’t sell it and you’ve stopped trying.",
+     "id": "trophy_0",
+     "slot": "trophy"
+    },
+    {
+     "n": "Rico's First Wage Packet",
+     "il": 0,
+     "st": "—",
+     "r": "Ic",
+     "src": "Given back",
+     "sh": "envelope",
+     "c": "sand",
+     "v": {
+      "sealed": true
+     },
+     "d": "He said he didn't need it yet. It's still sealed.",
+     "id": "trophy_1",
+     "slot": "trophy"
+    },
+    {
+     "n": "Belmarsh Visiting Order",
+     "il": 0,
+     "st": "—",
+     "r": "Ic",
+     "src": "Prologue",
+     "sh": "envelope",
+     "c": "paper",
+     "v": {
+      "window": true
+     },
+     "d": "Your name, printed by a machine. A number underneath it.",
+     "id": "trophy_2",
+     "slot": "trophy"
+    },
+    {
+     "n": "Uncle T's Note",
+     "il": 0,
+     "st": "—",
+     "r": "Ic",
+     "src": "If you lose him",
+     "sh": "note",
+     "c": "charc",
+     "v": {},
+     "d": "Four words on the back of a receipt. You’ve read it a lot.",
+     "id": "trophy_3",
+     "slot": "trophy"
+    },
+    {
+     "n": "Photo of a Dog",
+     "il": 0,
+     "st": "—",
+     "r": "Ic",
+     "src": "Pickpocket crit",
+     "sh": "photo",
+     "c": "sky",
+     "v": {},
+     "d": "Someone’s wallet. You kept the photo and left the rest on a bus.",
+     "id": "trophy_4",
+     "slot": "trophy"
+    },
+    {
+     "n": "Green Lane Bandana",
+     "il": 0,
+     "st": "—",
+     "r": "Ic",
+     "src": "Act III",
+     "sh": "bandana",
+     "c": "green",
+     "v": {},
+     "d": "Taken, or given. The game remembers which.",
+     "id": "trophy_5",
+     "slot": "trophy"
+    },
+    {
+     "n": "Silas's Fountain Pen",
+     "il": 0,
+     "st": "—",
+     "r": "Ic",
+     "src": "Act IV",
+     "sh": "pen",
+     "c": "black",
+     "v": {},
+     "d": "It’s a nice pen. It writes very well. You hate it.",
+     "id": "trophy_6",
+     "slot": "trophy"
+    },
+    {
+     "n": "The Boiler Man's Second Phone",
+     "il": 0,
+     "st": "—",
+     "r": "Ic",
+     "src": "Echo chain",
+     "sh": "phone",
+     "c": "charc",
+     "v": {
+      "keys": true
+     },
+     "d": "He got a new one. You took that one too. He never found out.",
+     "id": "trophy_7",
+     "slot": "trophy"
+    },
+    {
+     "n": "Mum's Spare Key",
+     "il": 0,
+     "st": "—",
+     "r": "Ic",
+     "src": "20 answered calls",
+     "sh": "key",
+     "c": "steel",
+     "v": {},
+     "d": "You’ve always had one. She gave you another anyway.",
+     "id": "trophy_8",
+     "slot": "trophy"
+    },
+    {
+     "n": "Season Trophy",
+     "il": 0,
+     "st": "—",
+     "r": "Ic",
+     "src": "Top 100",
+     "sh": "trophy",
+     "c": "gold",
+     "v": {},
+     "d": "Season 1. It says so on the base.",
+     "id": "trophy_9",
+     "slot": "trophy"
+    },
+    {
+     "n": "The Ledger",
+     "il": 0,
+     "st": "—",
+     "r": "Ic",
+     "src": "Top Boy ending",
+     "sh": "ledger",
+     "c": "brown",
+     "v": {},
+     "d": "Every name. Every number. Yours now.",
+     "id": "trophy_10",
+     "slot": "trophy"
+    }
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "n": "Full Northside",
+   "tag": "street status — the flex build",
+   "c": "#4DA3FF",
+   "b3": "+8% snatch/street payouts",
+   "b5": "+15% payouts, \"clocked\" aura in Neon Row, NPCs greet you by name"
+  },
+  {
+   "n": "The Grey Man",
+   "tag": "the stealth build — deliberately boring on purpose",
+   "c": "#9AA0A6",
+   "b3": "−15% heat gain",
+   "b5": "−30% heat gain, CCTV ID halved, witnesses can’t describe you"
+  },
+  {
+   "n": "Sunday Best",
+   "tag": "the legitimacy build — opens doors instead of forcing them",
+   "c": "#C9A227",
+   "b3": "+20% clean-money prices",
+   "b5": "NPCs treat you as legitimate — new dialogue, halved stop-and-search"
+  },
+  {
+   "n": "Site Kit",
+   "tag": "dress as a builder, walk in the front",
+   "c": "#D9E021",
+   "b3": "walk into industrial areas unquestioned",
+   "b5": "+25% success on industrial jobs, daylight jobs raise no heat"
+  },
+  {
+   "n": "Prison Issue",
+   "tag": "earned, not bought — only from the jail branch",
+   "c": "#B06CF0",
+   "b3": "+10% Toughness",
+   "b5": "+20% Toughness, cellmates always talk, jail time −25%"
+  }
+ ],
+ "rarity": {
+  "Ba": "BASIC",
+  "De": "DECENT",
+  "Pe": "PENG",
+  "Ce": "CERTI",
+  "Ic": "ICONIC"
+ },
+ "source": {
+  "SHOP-B": "Bossman's",
+  "SHOP-D": "Delroy's back room",
+  "CRIT": "Job crit drop",
+  "DEEP": "Push-your-luck stage 4–5",
+  "PVP": "Arena win",
+  "STORY": "Story reward",
+  "FENCE": "Player resale",
+  "JAIL": "Prison branch",
+  "EVENT": "Seasonal"
+ }
+}

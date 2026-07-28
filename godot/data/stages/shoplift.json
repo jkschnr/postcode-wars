@@ -1,0 +1,20 @@
+{
+ "job": "shoplift",
+ "stages": [
+  {
+   "name": "The first shop",
+   "text": "Big chain, one bored guard by the door looking at his phone, spirits and razor blades by the aisle nobody covers. Fill the bag calm and walk out at a normal pace.",
+   "fail_text": "Tag you missed goes off at the door and the bored guard is suddenly very much not bored."
+  },
+  {
+   "name": "The second shop",
+   "text": "Same parade, different shop, and you've still got room in the bag. This one's smaller, watches harder, but the perfume's out on the shelf instead of behind glass.",
+   "fail_text": "The owner recognises you from thirty seconds of CCTV the first shop already rang round about."
+  },
+  {
+   "name": "The third shop",
+   "text": "One more. The electronics place at the end, headphones and memory cards, small and dear. You're pushing your luck and your bag's getting heavy and obvious, but the margins are the best of the three.",
+   "fail_text": "Two of them come out from the back at once — they've had a call, they know the coat, they've been waiting by the door."
+  }
+ ]
+}

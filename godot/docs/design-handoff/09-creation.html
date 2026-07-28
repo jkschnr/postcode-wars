@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>09-creation — Postcode Wars</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="ui.css">
+<script src="chrome.js"></script>
+<script src="anim.js"></script>
+<script src="atmos.js"></script>
+<style>
+  #frame { background:#121417; }
+  .preset { border:1px solid #2A2E33; border-radius:16px; overflow:hidden; cursor:pointer; background:#1E2126; }
+  .preset.on { border-color:#FFA94D; }
+  .fake-input { height:96px; border:1px solid #2A2E33; border-radius:16px; background:#0C0E10; padding:0 26px;
+    display:flex; align-items:center; justify-content:space-between; }
+</style>
+</head>
+<body>
+<div id="frame">
+  <div style="position:absolute; inset:0; z-index:1; background:
+      radial-gradient(60% 34% at 22% 8%, rgba(255,169,77,0.22), rgba(255,169,77,0) 62%),
+      linear-gradient(180deg, rgba(18,20,23,0.80) 0%, rgba(18,20,23,0.90) 50%, rgba(12,14,16,0.94) 100%);"></div>
+  <div class="disp" style="position:absolute; right:-16px; bottom:260px; z-index:1; font-size:260px; line-height:0.8; color:#EDEFF2; opacity:0.05; pointer-events:none;">DAY 1</div>
+
+  <!-- step rail -->
+  <div style="position:absolute; left:32px; right:32px; top:70px; z-index:35; display:flex; flex-direction:column; gap:18px;">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:20px;">
+      <span class="mono" style="font-size:22px; letter-spacing:0.2em; color:#FFA94D;">NEW GAME · 90 DAYS · £40,000 OWED</span>
+      <span id="stepno" class="mono tab" style="font-size:22px; color:#9AA0A6;">STEP 1 OF 3</span>
+    </div>
+    <div id="steps" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:12px;"></div>
+  </div>
+
+  <!-- live preview -->
+  <div style="position:absolute; left:32px; right:32px; top:250px; z-index:35; display:flex; gap:24px; align-items:stretch;">
+    <div id="lookplate" style="width:300px; height:400px; flex:none; border:1px solid #2A2E33; border-radius:16px; overflow:hidden;
+      background-image:url(art/plate-carpark.png); background-size:cover; background-position:50% 24%; display:flex; align-items:flex-end; justify-content:center; padding-bottom:20px;">
+      <span id="lookname" class="mono" style="font-size:20px; letter-spacing:0.12em; color:#C3C9CF; text-shadow:0 2px 10px rgba(0,0,0,0.9);">LOOK 01</span>
+    </div>
+    <div class="panel" style="flex:1; min-width:0; padding:26px 28px; display:flex; flex-direction:column; gap:16px;">
+      <span class="mono" style="font-size:20px; letter-spacing:0.16em; color:#5A6068;">LIVE PREVIEW</span>
+      <span id="pv-name" class="disp" style="font-size:64px; line-height:0.92;">No name yet</span>
+      <span id="pv-tag" class="mono" style="font-size:26px; letter-spacing:0.14em; color:#FFA94D;">TAG: —</span>
+      <div style="height:1px; background:#2A2E33;"></div>
+      <span id="pv-origin" class="mono" style="font-size:22px; line-height:1.5; color:#9AA0A6;">ORIGIN: NOT CHOSEN</span>
+      <div id="pv-stats" class="tab" style="display:grid; grid-template-columns:1fr 1fr; gap:12px;"></div>
+    </div>
+  </div>
+
+  <!-- step body -->
+  <div id="body" class="scroll" style="top:690px; bottom:280px; padding:0 32px; box-sizing:border-box; display:flex; flex-direction:column; gap:18px;"></div>
+
+  <!-- actions -->
+  <div style="position:absolute; left:32px; right:32px; bottom:96px; z-index:40; display:flex; gap:16px;">
+    <button id="prev" class="btn btn-secondary" style="flex:1;">Back</button>
+    <button id="next" class="btn btn-primary" style="flex:2;">Next</button>
+  </div>
+
+  <div class="tooth"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+mountBackdrop({ lat:51.5470, lon:-0.0530, zoom:15.8,
+  grade:'grayscale(1) brightness(0.30) contrast(1.45) sepia(0.30) hue-rotate(-12deg) saturate(1.4) blur(1px)' });
+scaleFrame();
+
+const STEPS = ['LOOK', 'ORIGIN', 'NAME & TAG'];
+const ORIGINS = [
+  { k:'Estate kid', tint:'#FFA94D', blurb:'Born three floors up from the shop you\u2019ll rob first. Everyone knows your face, for better and worse.',
+    stats:{ STRENGTH:12, NERVE:16, SPEED:14, CHARM:10 }, perk:'+1 CONTACT IN EVERY LONDON POSTCODE' },
+  { k:'Fresh out', tint:'#D63B3B', blurb:'Eighteen months served, done quietly. You know how the inside works and it shows when you talk.',
+    stats:{ STRENGTH:18, NERVE:14, SPEED:8, CHARM:8 }, perk:'JAIL TIMERS RUN 25% FASTER' },
+  { k:'Ex-forces', tint:'#4DA3FF', blurb:'Six years, two tours, no pension worth the name. You\u2019re calm in the moment and useless at asking for help.',
+    stats:{ STRENGTH:16, NERVE:18, SPEED:12, CHARM:6 }, perk:'NERVE NEVER DROPS BELOW 4' }
+];
+const LOOKS = ['LOOK 01', 'LOOK 02', 'LOOK 03', 'LOOK 04', 'LOOK 05', 'LOOK 06'];
+const PLATES = ['carpark', 'flats', 'yard', 'barber', 'kitchen', 'office'];
+const plateURL = i => 'art/plate-' + PLATES[i] + '.png';
+const NAMES = ['Kess', 'Ade', 'Rico', 'Dane', 'Miki', 'Sol'];
+const TAGS = ['KESS90', 'E8 OWED', 'NO SLEEP', 'TENFOUR', 'BROTHER'];
+
+let step = 0, look = 0, origin = -1, name = '', tag = '';
+
+function drawSteps() {
+  document.getElementById('stepno').textContent = 'STEP ' + (step + 1) + ' OF 3';
+  document.getElementById('steps').innerHTML = STEPS.map((s, i) => `
+    <div style="height:8px; border-radius:4px; background:${i <= step ? '#FFA94D' : '#2A2E33'};"></div>`).join('');
+}
+
+function drawPreview() {
+  document.getElementById('lookname').textContent = LOOKS[look];
+  document.getElementById('lookplate').style.backgroundImage = 'url(' + plateURL(look) + ')';
+  document.getElementById('pv-name').textContent = name || 'No name yet';
+  document.getElementById('pv-tag').textContent = 'TAG: ' + (tag || '—');
+  const o = ORIGINS[origin];
+  document.getElementById('pv-origin').textContent = o ? 'ORIGIN: ' + o.k.toUpperCase() + ' · ' + o.perk : 'ORIGIN: NOT CHOSEN';
+  const stats = o ? o.stats : { STRENGTH:0, NERVE:0, SPEED:0, CHARM:0 };
+  document.getElementById('pv-stats').innerHTML = Object.entries(stats).map(([k, v]) => `
+    <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+      <span class="mono" style="font-size:20px; color:#9AA0A6;">${k}</span>
+      <span class="disp" style="font-size:34px; color:${v ? '#EDEFF2' : '#3A3F45'};">${v || '—'}</span>
+    </div>`).join('');
+}
+
+function drawBody() {
+  const b = document.getElementById('body');
+  if (step === 0) {
+    b.innerHTML = `
+      <div class="sechead"><span class="mono" style="font-size:20px; letter-spacing:0.2em; color:#FFA94D;">PICK A LOOK</span><span class="rule"></span>
+        <span class="mono" style="font-size:20px; color:#5A6068;">SWAP ANY TIME AT THE BARBERS</span></div>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;">
+        ${LOOKS.map((l, i) => `
+          <div class="preset ${i === look ? 'on' : ''}" data-i="${i}">
+            <div style="height:220px; background-image:url(${plateURL(i)}); background-size:cover; background-position:50% 26%;"></div>
+            <div style="padding:16px 18px; display:flex; align-items:center; justify-content:space-between;">
+              <span class="disp" style="font-size:28px;">${l}</span>
+              ${i === look ? '<span class="mono" style="font-size:20px; color:#FFA94D;">PICKED</span>' : ''}
+            </div>
+          </div>`).join('')}
+      </div>`;
+    b.querySelectorAll('[data-i]').forEach(el => el.addEventListener('click', () => { look = +el.dataset.i; drawBody(); drawPreview(); }));
+  } else if (step === 1) {
+    b.innerHTML = `
+      <div class="sechead"><span class="mono" style="font-size:20px; letter-spacing:0.2em; color:#FFA94D;">WHERE YOU CAME FROM</span><span class="rule"></span>
+        <span class="mono" style="font-size:20px; color:#5A6068;">PERMANENT</span></div>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;">
+        ${ORIGINS.map((o, i) => `
+          <div class="panel" data-o="${i}" style="padding:24px; display:flex; flex-direction:column; gap:14px; cursor:pointer;
+            ${i === origin ? `border-color:${o.tint}; background:${o.tint}14;` : ''}">
+            <span class="mono" style="font-size:20px; letter-spacing:0.16em; color:${o.tint};">ORIGIN 0${i + 1}</span>
+            <span class="disp" style="font-size:38px; line-height:0.98;">${o.k}</span>
+            <span style="font-size:24px; line-height:1.4; color:#9AA0A6;">${o.blurb}</span>
+            <div style="height:1px; background:#2A2E33;"></div>
+            <span class="mono" style="font-size:20px; line-height:1.5; color:${o.tint};">${o.perk}</span>
+          </div>`).join('')}
+      </div>`;
+    b.querySelectorAll('[data-o]').forEach(el => el.addEventListener('click', () => { origin = +el.dataset.o; drawBody(); drawPreview(); }));
+  } else {
+    b.innerHTML = `
+      <div class="sechead"><span class="mono" style="font-size:20px; letter-spacing:0.2em; color:#FFA94D;">NAME AND SPRAY TAG</span><span class="rule"></span></div>
+      <div class="fake-input"><span class="disp" style="font-size:40px; color:${name ? '#EDEFF2' : '#5A6068'};">${name || 'Tap to type a name'}</span>
+        <span class="mono" style="font-size:20px; color:#5A6068;">12 CHAR MAX</span></div>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        ${NAMES.map(n => `<span class="chipm" data-n="${n}" style="cursor:pointer; ${n === name ? 'border-color:#FFA94D; color:#FFA94D;' : ''}">${n}</span>`).join('')}
+      </div>
+      <div class="fake-input"><span class="mono" style="font-size:32px; letter-spacing:0.14em; color:${tag ? '#FFA94D' : '#5A6068'};">${tag || 'YOUR TAG'}</span>
+        <span class="mono" style="font-size:20px; color:#5A6068;">SPRAYED ON TERRITORY YOU HOLD</span></div>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        ${TAGS.map(t => `<span class="chipm" data-t="${t}" style="cursor:pointer; ${t === tag ? 'border-color:#FFA94D; color:#FFA94D;' : ''}">${t}</span>`).join('')}
+      </div>`;
+    b.querySelectorAll('[data-n]').forEach(el => el.addEventListener('click', () => { name = el.dataset.n; drawBody(); drawPreview(); }));
+    b.querySelectorAll('[data-t]').forEach(el => el.addEventListener('click', () => { tag = el.dataset.t; drawBody(); drawPreview(); }));
+  }
+  const nx = document.getElementById('next');
+  nx.textContent = step === 2 ? 'Start with nothing' : 'Next';
+  const ready = step !== 1 || origin >= 0;
+  nx.className = 'btn ' + (ready ? 'btn-primary' : 'btn-off');
+}
+
+document.getElementById('prev').addEventListener('click', () => { step = Math.max(0, step - 1); drawSteps(); drawBody(); });
+document.getElementById('next').addEventListener('click', () => {
+  if (step === 1 && origin < 0) return;
+  if (step === 2) { location.href = '01-map.html'; return; }
+  step = Math.min(2, step + 1); drawSteps(); drawBody();
+});
+drawSteps(); drawBody(); drawPreview();
+</script>
+</body>
+</html>
